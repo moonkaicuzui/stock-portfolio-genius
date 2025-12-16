@@ -1,0 +1,33 @@
+# FastAPI & Server
+fastapi>=0.100.0
+uvicorn[standard]>=0.20.0
+python-multipart>=0.0.6
+
+# Database
+sqlalchemy>=2.0.0
+aiosqlite>=0.19.0  # Local SQLite
+psycopg2-binary>=2.9.0  # Cloud PostgreSQL (optional)
+
+# Data & Analysis
+yfinance>=0.2.30
+pandas>=2.0.0
+numpy>=1.24.0
+ta>=0.10.0
+
+# HTTP Clients
+httpx>=0.24.0
+aiohttp>=3.8.0
+
+# AI Integration (optional)
+# ollama>=0.1.0  # Only for local
+
+# Utilities
+python-dotenv>=1.0.0
+pydantic>=2.0.0
+pydantic-settings>=2.0.0
+
+# API Keys
+finnhub-python>=2.4.0
+
+# WebSocket (optional)
+websockets>=11.0.0

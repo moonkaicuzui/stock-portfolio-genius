@@ -1,0 +1,27 @@
+# Render Blueprint - Backend Deployment
+# https://render.com/docs/blueprint-spec
+
+services:
+  - type: web
+    name: stock-portfolio-api
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: FINNHUB_API_KEY
+        sync: false  # Set in Render dashboard
+      - key: OLLAMA_BASE_URL
+        value: ""  # Ollama not available on cloud
+      - key: DATABASE_URL
+        fromDatabase:
+          name: portfolio-db
+          property: connectionString
+    healthCheckPath: /health
+    autoDeploy: true
+
+databases:
+  - name: portfolio-db
+    plan: free
+    databaseName: portfolio
+    user: portfolio_user

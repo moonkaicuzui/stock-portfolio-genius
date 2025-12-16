@@ -1,0 +1,15 @@
+#!/bin/bash
+# Stock Portfolio Genius - 더블클릭 앱
+
+APP_DIR="$(cd "$(dirname "$0")/../../.." && pwd)"
+cd "$APP_DIR"
+
+# 터미널 창 열기
+osascript -e "tell application \"Terminal\"
+    activate
+    do script \"cd '$APP_DIR' && ./scripts/start.sh\"
+end tell"
+
+# 5초 후 브라우저 자동 열기
+sleep 5
+open "http://localhost:3000"

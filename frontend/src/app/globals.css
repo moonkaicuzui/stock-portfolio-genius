@@ -1,0 +1,401 @@
+@import "tailwindcss";
+
+/* ===== Dark Trading Theme ===== */
+:root {
+  /* Core Colors */
+  --background: #0d0d0d;
+  --background-secondary: #1a1a1a;
+  --background-tertiary: #242424;
+  --foreground: #ededed;
+  --foreground-muted: #a1a1aa;
+
+  /* Accent Colors */
+  --neon-green: #00ff88;
+  --neon-green-muted: #00ff8840;
+  --neon-red: #ff4757;
+  --neon-red-muted: #ff475740;
+  --neon-blue: #00d4ff;
+  --neon-blue-muted: #00d4ff40;
+  --neon-purple: #a855f7;
+  --neon-purple-muted: #a855f740;
+  --neon-yellow: #fbbf24;
+  --neon-yellow-muted: #fbbf2440;
+
+  /* Card & Border */
+  --card: #161616;
+  --card-hover: #1e1e1e;
+  --border: #2a2a2a;
+  --border-hover: #3a3a3a;
+
+  /* Chart Colors */
+  --chart-candle-up: #00ff88;
+  --chart-candle-down: #ff4757;
+  --chart-line: #00d4ff;
+  --chart-volume: #a855f740;
+
+  /* Status */
+  --success: #00ff88;
+  --warning: #fbbf24;
+  --error: #ff4757;
+  --info: #00d4ff;
+
+  /* Gradients */
+  --gradient-green: linear-gradient(135deg, #00ff88 0%, #00cc6a 100%);
+  --gradient-red: linear-gradient(135deg, #ff4757 0%, #cc3847 100%);
+  --gradient-blue: linear-gradient(135deg, #00d4ff 0%, #00a8cc 100%);
+  --gradient-purple: linear-gradient(135deg, #a855f7 0%, #8b44cc 100%);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-background-secondary: var(--background-secondary);
+  --color-background-tertiary: var(--background-tertiary);
+  --color-foreground: var(--foreground);
+  --color-foreground-muted: var(--foreground-muted);
+
+  --color-neon-green: var(--neon-green);
+  --color-neon-green-muted: var(--neon-green-muted);
+  --color-neon-red: var(--neon-red);
+  --color-neon-red-muted: var(--neon-red-muted);
+  --color-neon-blue: var(--neon-blue);
+  --color-neon-blue-muted: var(--neon-blue-muted);
+  --color-neon-purple: var(--neon-purple);
+  --color-neon-purple-muted: var(--neon-purple-muted);
+  --color-neon-yellow: var(--neon-yellow);
+  --color-neon-yellow-muted: var(--neon-yellow-muted);
+
+  --color-card: var(--card);
+  --color-card-hover: var(--card-hover);
+  --color-border: var(--border);
+  --color-border-hover: var(--border-hover);
+
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-error: var(--error);
+  --color-info: var(--info);
+
+  --font-sans: var(--font-inter);
+  --font-mono: var(--font-mono);
+}
+
+/* ===== Base Styles ===== */
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  min-height: 100vh;
+}
+
+/* ===== Custom Components ===== */
+
+/* Card */
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 0.75rem;
+  padding: 1.25rem;
+  transition: all 0.2s ease;
+}
+
+.card:hover {
+  border-color: var(--border-hover);
+  background: var(--card-hover);
+}
+
+.card-glow-green {
+  box-shadow: 0 0 20px var(--neon-green-muted);
+}
+
+.card-glow-red {
+  box-shadow: 0 0 20px var(--neon-red-muted);
+}
+
+.card-glow-blue {
+  box-shadow: 0 0 20px var(--neon-blue-muted);
+}
+
+/* Text Colors */
+.text-up {
+  color: var(--neon-green);
+}
+
+.text-down {
+  color: var(--neon-red);
+}
+
+.text-muted {
+  color: var(--foreground-muted);
+}
+
+/* Background Highlights */
+.bg-up {
+  background: var(--neon-green-muted);
+}
+
+.bg-down {
+  background: var(--neon-red-muted);
+}
+
+/* Glow Effects */
+.glow-green {
+  text-shadow: 0 0 10px var(--neon-green-muted);
+}
+
+.glow-red {
+  text-shadow: 0 0 10px var(--neon-red-muted);
+}
+
+.glow-blue {
+  text-shadow: 0 0 10px var(--neon-blue-muted);
+}
+
+/* Chart Container */
+.chart-container {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 0.75rem;
+  overflow: hidden;
+}
+
+/* Data Table */
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.data-table th {
+  text-align: left;
+  padding: 0.75rem 1rem;
+  color: var(--foreground-muted);
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-bottom: 1px solid var(--border);
+}
+
+.data-table td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.data-table tr:hover td {
+  background: var(--card-hover);
+}
+
+/* Badge */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.5rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.badge-success {
+  background: var(--neon-green-muted);
+  color: var(--neon-green);
+}
+
+.badge-danger {
+  background: var(--neon-red-muted);
+  color: var(--neon-red);
+}
+
+.badge-warning {
+  background: var(--neon-yellow-muted);
+  color: var(--neon-yellow);
+}
+
+.badge-info {
+  background: var(--neon-blue-muted);
+  color: var(--neon-blue);
+}
+
+/* Button */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.625rem 1rem;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  border: none;
+}
+
+.btn-primary {
+  background: var(--neon-blue);
+  color: #000;
+}
+
+.btn-primary:hover {
+  background: #00b8e6;
+  box-shadow: 0 0 20px var(--neon-blue-muted);
+}
+
+.btn-success {
+  background: var(--neon-green);
+  color: #000;
+}
+
+.btn-success:hover {
+  background: #00e67a;
+  box-shadow: 0 0 20px var(--neon-green-muted);
+}
+
+.btn-danger {
+  background: var(--neon-red);
+  color: #fff;
+}
+
+.btn-danger:hover {
+  background: #e6404e;
+  box-shadow: 0 0 20px var(--neon-red-muted);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--foreground-muted);
+  border: 1px solid var(--border);
+}
+
+.btn-ghost:hover {
+  background: var(--card-hover);
+  color: var(--foreground);
+  border-color: var(--border-hover);
+}
+
+/* Input */
+.input {
+  width: 100%;
+  padding: 0.625rem 0.875rem;
+  background: var(--background-secondary);
+  border: 1px solid var(--border);
+  border-radius: 0.5rem;
+  color: var(--foreground);
+  font-size: 0.875rem;
+  transition: all 0.2s ease;
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--neon-blue);
+  box-shadow: 0 0 0 3px var(--neon-blue-muted);
+}
+
+.input::placeholder {
+  color: var(--foreground-muted);
+}
+
+/* Progress Bar */
+.progress-bar {
+  width: 100%;
+  height: 0.5rem;
+  background: var(--background-tertiary);
+  border-radius: 9999px;
+  overflow: hidden;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  border-radius: 9999px;
+  transition: width 0.3s ease;
+}
+
+.progress-bar-fill-green {
+  background: var(--gradient-green);
+}
+
+.progress-bar-fill-blue {
+  background: var(--gradient-blue);
+}
+
+.progress-bar-fill-purple {
+  background: var(--gradient-purple);
+}
+
+/* Tooltip */
+.tooltip {
+  position: relative;
+}
+
+.tooltip-content {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 0.5rem 0.75rem;
+  background: var(--background-tertiary);
+  border: 1px solid var(--border);
+  border-radius: 0.375rem;
+  font-size: 0.75rem;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.2s ease;
+  z-index: 50;
+}
+
+.tooltip:hover .tooltip-content {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--border-hover);
+}
+
+/* Animation Utilities */
+@keyframes pulse-glow {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-slide-up {
+  animation: slide-up 0.3s ease-out;
+}
+
+/* Number Display (Monospace for prices) */
+.font-mono-numbers {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
+}
