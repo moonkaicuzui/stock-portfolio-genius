@@ -1,0 +1,76 @@
+name: 🔄 Update Stock Dashboard
+
+on:
+  # 1시간마다 자동 실행 (미국 시장 시간 기준)
+  schedule:
+    - cron: '0 * * * *'  # 매시간 정각
+
+  # 수동 실행 가능
+  workflow_dispatch:
+
+  # 포트폴리오 변경 시 실행
+  push:
+    branches: [main]
+    paths:
+      - 'data/portfolio.json'
+      - 'scripts/*.py'
+
+permissions:
+  contents: write
+  pages: write
+
+jobs:
+  update-dashboard:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: 📥 Checkout repository
+      uses: actions/checkout@v4
+      with:
+        persist-credentials: true
+        fetch-depth: 0
+
+    - name: 🐍 Setup Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+
+    - name: 📚 Install dependencies
+      run: |
+        pip install yfinance pandas numpy
+
+    - name: 📈 Fetch stock prices
+      run: |
+        python scripts/fetch_prices.py
+
+    - name: 📂 Verify output
+      run: |
+        echo "=== data/portfolio.json ==="
+        cat data/portfolio.json | head -50
+        echo ""
+        echo "=== docs/data.json ==="
+        cat docs/data.json | head -50
+
+    - name: 📤 Commit and push changes
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action Bot"
+
+        git add data/portfolio.json docs/data.json
+
+        # 변경사항이 있을 때만 커밋
+        if git diff --staged --quiet; then
+          echo "No changes to commit"
+        else
+          git commit -m "🔄 Auto update: $(date '+%Y-%m-%d %H:%M') UTC"
+          git push
+          echo "✅ Dashboard updated successfully!"
+        fi
+
+    - name: 📊 Summary
+      run: |
+        echo "## 📈 Stock Portfolio Update" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "**Updated at:** $(date '+%Y-%m-%d %H:%M:%S') UTC" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "**Dashboard URL:** https://moonkaicuzui.github.io/stock-portfolio-genius/" >> $GITHUB_STEP_SUMMARY

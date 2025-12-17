@@ -11,7 +11,8 @@ __pycache__/
 
 # Database
 *.db
-data/
+data/*.db
+!data/portfolio.json
 
 # Build
 .next/
