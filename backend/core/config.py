@@ -24,7 +24,12 @@ class Settings(BaseSettings):
     DATABASE_URL: str = "sqlite:///./data/portfolio.db"
 
     # CORS
-    CORS_ORIGINS: list = ["http://localhost:3000", "http://127.0.0.1:3000"]
+    CORS_ORIGINS: list = [
+        "http://localhost:3000",
+        "http://127.0.0.1:3000",
+        "https://frontend-gilt-rho-17.vercel.app",
+        "https://*.vercel.app"
+    ]
 
     # API Keys (optional)
     FINNHUB_API_KEY: Optional[str] = None
