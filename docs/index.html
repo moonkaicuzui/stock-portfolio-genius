@@ -363,6 +363,17 @@
                         </table>
                     </div>
 
+                    <!-- Portfolio Value History Chart (ACCUMULATED DATA) -->
+                    <div class="chart-container" id="historyChartContainer" style="display:none;">
+                        <h3 class="section-title">📈 Portfolio Value History (Accumulated)</h3>
+                        <div style="height: 300px;">
+                            <canvas id="historyChart"></canvas>
+                        </div>
+                        <p style="text-align: center; color: rgba(255,255,255,0.5); margin-top: 10px; font-size: 0.85rem;">
+                            Data accumulates daily. More history = better chart!
+                        </p>
+                    </div>
+
                     <!-- Charts -->
                     <div class="allocation-grid">
                         <div class="chart-container">
@@ -372,9 +383,9 @@
                             </div>
                         </div>
                         <div class="chart-container">
-                            <h3 class="section-title">📈 Performance (1 Month)</h3>
+                            <h3 class="section-title">📊 Stock Price History</h3>
                             <div class="allocation-chart">
-                                <canvas id="performanceChart"></canvas>
+                                <canvas id="priceHistoryChart"></canvas>
                             </div>
                         </div>
                     </div>
@@ -388,7 +399,129 @@
 
             // Render Charts
             renderAllocationChart(holdings);
-            renderPerformanceChart(holdings);
+            renderPortfolioHistoryChart(data.portfolio_history);
+            renderPriceHistoryChart(data.price_history);
+        }
+
+        function renderPortfolioHistoryChart(portfolioHistory) {
+            if (!portfolioHistory || portfolioHistory.length < 2) {
+                return; // Need at least 2 data points
+            }
+
+            document.getElementById('historyChartContainer').style.display = 'block';
+            const ctx = document.getElementById('historyChart').getContext('2d');
+
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: portfolioHistory.map(d => d.date),
+                    datasets: [{
+                        label: 'Portfolio Value',
+                        data: portfolioHistory.map(d => d.total_value),
+                        borderColor: '#4ade80',
+                        backgroundColor: 'rgba(74, 222, 128, 0.1)',
+                        fill: true,
+                        borderWidth: 3,
+                        tension: 0.3,
+                        pointRadius: 4,
+                        pointBackgroundColor: '#4ade80'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            callbacks: {
+                                label: ctx => formatCurrency(ctx.raw)
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            ticks: { color: 'rgba(255,255,255,0.6)' },
+                            grid: { color: 'rgba(255,255,255,0.1)' }
+                        },
+                        y: {
+                            ticks: {
+                                color: 'rgba(255,255,255,0.6)',
+                                callback: value => '$' + value.toLocaleString()
+                            },
+                            grid: { color: 'rgba(255,255,255,0.1)' }
+                        }
+                    }
+                }
+            });
+        }
+
+        function renderPriceHistoryChart(priceHistory) {
+            if (!priceHistory || Object.keys(priceHistory).length === 0) {
+                return;
+            }
+
+            const ctx = document.getElementById('priceHistoryChart').getContext('2d');
+            const colors = ['#4ade80', '#60a5fa', '#f472b6', '#facc15', '#a78bfa'];
+            const symbols = Object.keys(priceHistory);
+
+            // Find common dates
+            const allDates = [...new Set(
+                symbols.flatMap(s => priceHistory[s].map(p => p.date))
+            )].sort();
+
+            const datasets = symbols.map((symbol, i) => {
+                const symbolData = priceHistory[symbol];
+                const dataMap = {};
+                symbolData.forEach(p => dataMap[p.date] = p.price);
+
+                // Normalize to percentage change from first value
+                const firstPrice = symbolData[0]?.price || 1;
+
+                return {
+                    label: symbol,
+                    data: allDates.map(date => {
+                        const price = dataMap[date];
+                        return price ? ((price - firstPrice) / firstPrice) * 100 : null;
+                    }),
+                    borderColor: colors[i % colors.length],
+                    backgroundColor: 'transparent',
+                    borderWidth: 2,
+                    tension: 0.3,
+                    pointRadius: 3,
+                    spanGaps: true
+                };
+            });
+
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: allDates.map(d => d.slice(5)), // MM-DD format
+                    datasets: datasets
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                            labels: { color: '#fff' }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            ticks: { color: 'rgba(255,255,255,0.6)' },
+                            grid: { color: 'rgba(255,255,255,0.1)' }
+                        },
+                        y: {
+                            ticks: {
+                                color: 'rgba(255,255,255,0.6)',
+                                callback: value => value.toFixed(1) + '%'
+                            },
+                            grid: { color: 'rgba(255,255,255,0.1)' }
+                        }
+                    }
+                }
+            });
         }
 
         function renderAllocationChart(holdings) {
@@ -412,70 +545,6 @@
                         legend: {
                             position: 'right',
                             labels: { color: '#fff' }
-                        }
-                    }
-                }
-            });
-        }
-
-        function renderPerformanceChart(holdings) {
-            const ctx = document.getElementById('performanceChart').getContext('2d');
-
-            // Get the first holding's history for the chart
-            const mainHolding = holdings[0];
-            if (!mainHolding || !mainHolding.history) return;
-
-            const colors = ['#4ade80', '#60a5fa', '#f472b6', '#facc15', '#a78bfa'];
-
-            // Create datasets for each holding
-            const datasets = holdings.slice(0, 5).map((h, i) => {
-                if (!h.history) return null;
-
-                // Normalize to percentage change from first day
-                const firstPrice = h.history[0]?.close || 1;
-                const normalizedData = h.history.map(d => ((d.close - firstPrice) / firstPrice) * 100);
-
-                return {
-                    label: h.symbol,
-                    data: normalizedData,
-                    borderColor: colors[i],
-                    backgroundColor: 'transparent',
-                    borderWidth: 2,
-                    tension: 0.3,
-                    pointRadius: 0
-                };
-            }).filter(d => d !== null);
-
-            new Chart(ctx, {
-                type: 'line',
-                data: {
-                    labels: mainHolding.history.map(d => d.date.slice(5)), // MM-DD format
-                    datasets: datasets
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    interaction: {
-                        intersect: false,
-                        mode: 'index'
-                    },
-                    plugins: {
-                        legend: {
-                            position: 'top',
-                            labels: { color: '#fff' }
-                        }
-                    },
-                    scales: {
-                        x: {
-                            ticks: { color: 'rgba(255,255,255,0.6)' },
-                            grid: { color: 'rgba(255,255,255,0.1)' }
-                        },
-                        y: {
-                            ticks: {
-                                color: 'rgba(255,255,255,0.6)',
-                                callback: value => value.toFixed(1) + '%'
-                            },
-                            grid: { color: 'rgba(255,255,255,0.1)' }
                         }
                     }
                 }
