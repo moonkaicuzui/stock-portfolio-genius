@@ -43,6 +43,10 @@ jobs:
       run: |
         python scripts/fetch_prices.py
 
+    - name: 🔍 Run value screener
+      run: |
+        python scripts/value_screener.py
+
     - name: 📂 Verify output
       run: |
         echo "=== data/portfolio.json ==="
@@ -50,13 +54,16 @@ jobs:
         echo ""
         echo "=== docs/data.json ==="
         cat docs/data.json | head -50
+        echo ""
+        echo "=== docs/screener.json (top stocks) ==="
+        cat docs/screener.json | head -100
 
     - name: 📤 Commit and push changes
       run: |
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action Bot"
 
-        git add data/portfolio.json docs/data.json
+        git add data/portfolio.json data/history.json data/screener.json docs/data.json docs/screener.json
 
         # 변경사항이 있을 때만 커밋
         if git diff --staged --quiet; then
@@ -74,3 +81,5 @@ jobs:
         echo "**Updated at:** $(date '+%Y-%m-%d %H:%M:%S') UTC" >> $GITHUB_STEP_SUMMARY
         echo "" >> $GITHUB_STEP_SUMMARY
         echo "**Dashboard URL:** https://moonkaicuzui.github.io/stock-portfolio-genius/" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "**Value Screener:** https://moonkaicuzui.github.io/stock-portfolio-genius/screener.html" >> $GITHUB_STEP_SUMMARY

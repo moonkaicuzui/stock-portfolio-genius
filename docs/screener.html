@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Value Investing Screener</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --success: #16a34a;
+            --warning: #f59e0b;
+            --danger: #dc2626;
+            --bg-dark: #1e293b;
+            --bg-card: #334155;
+            --text-primary: #f1f5f9;
+            --text-secondary: #94a3b8;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            transition: all 0.2s;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--text-primary);
+            background: var(--bg-card);
+        }
+
+        .last-updated {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* Stats Cards */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: var(--bg-card);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* Filters */
+        .filters {
+            background: var(--bg-card);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 30px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .filter-group label {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        .filter-group select,
+        .filter-group input {
+            padding: 8px 12px;
+            border-radius: 6px;
+            border: 1px solid #475569;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            min-width: 150px;
+        }
+
+        .filter-group input[type="range"] {
+            width: 150px;
+        }
+
+        /* Grade Distribution Chart */
+        .charts-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .chart-card {
+            background: var(--bg-card);
+            border-radius: 12px;
+            padding: 20px;
+        }
+
+        .chart-card h3 {
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        /* Stock Table */
+        .table-container {
+            background: var(--bg-card);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .table-header {
+            padding: 20px;
+            border-bottom: 1px solid #475569;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .table-header h3 {
+            font-size: 1.1rem;
+        }
+
+        .search-box {
+            padding: 8px 12px;
+            border-radius: 6px;
+            border: 1px solid #475569;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            width: 200px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #475569;
+        }
+
+        th {
+            background: rgba(0,0,0,0.2);
+            font-weight: 600;
+            color: var(--text-secondary);
+            cursor: pointer;
+            user-select: none;
+        }
+
+        th:hover {
+            color: var(--text-primary);
+        }
+
+        th.sorted-asc::after {
+            content: ' ▲';
+        }
+
+        th.sorted-desc::after {
+            content: ' ▼';
+        }
+
+        tr:hover {
+            background: rgba(255,255,255,0.05);
+        }
+
+        /* Score Badge */
+        .score-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-weight: bold;
+        }
+
+        .score-bar {
+            width: 60px;
+            height: 6px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .score-fill {
+            height: 100%;
+            border-radius: 3px;
+            transition: width 0.3s ease;
+        }
+
+        /* Grade Colors */
+        .grade-a-plus { background: #166534; color: #bbf7d0; }
+        .grade-a { background: #15803d; color: #bbf7d0; }
+        .grade-b-plus { background: #1d4ed8; color: #bfdbfe; }
+        .grade-b { background: #1e40af; color: #bfdbfe; }
+        .grade-c { background: #b45309; color: #fef3c7; }
+        .grade-d { background: #991b1b; color: #fecaca; }
+
+        .positive { color: #4ade80; }
+        .negative { color: #f87171; }
+        .neutral { color: var(--text-secondary); }
+
+        /* Recommendation Badge */
+        .rec-badge {
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .rec-strong-buy { background: #166534; color: #bbf7d0; }
+        .rec-buy { background: #15803d; color: #bbf7d0; }
+        .rec-moderate-buy { background: #1d4ed8; color: #bfdbfe; }
+        .rec-hold { background: #475569; color: #e2e8f0; }
+        .rec-weak-hold { background: #b45309; color: #fef3c7; }
+        .rec-avoid { background: #991b1b; color: #fecaca; }
+
+        /* Stock Detail Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: var(--bg-card);
+            border-radius: 16px;
+            max-width: 800px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .modal-header {
+            padding: 20px;
+            border-bottom: 1px solid #475569;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .modal-body {
+            padding: 20px;
+        }
+
+        .detail-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .detail-section {
+            background: var(--bg-dark);
+            border-radius: 8px;
+            padding: 15px;
+        }
+
+        .detail-section h4 {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 5px 0;
+            border-bottom: 1px solid #475569;
+        }
+
+        .detail-row:last-child {
+            border-bottom: none;
+        }
+
+        /* Loading State */
+        .loading {
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--text-secondary);
+        }
+
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid var(--bg-card);
+            border-top: 3px solid var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .table-container {
+                overflow-x: auto;
+            }
+
+            table {
+                min-width: 1000px;
+            }
+
+            .filters {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .filter-group select,
+            .filter-group input {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Value Investing Screener</h1>
+            <nav class="nav-links">
+                <a href="index.html">Portfolio</a>
+                <a href="screener.html" class="active">Screener</a>
+            </nav>
+            <span class="last-updated" id="lastUpdated">Loading...</span>
+        </header>
+
+        <!-- Stats Cards -->
+        <div class="stats-grid" id="statsGrid">
+            <div class="stat-card">
+                <div class="stat-value" id="totalStocks">-</div>
+                <div class="stat-label">Total Stocks</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="avgScore">-</div>
+                <div class="stat-label">Average Score</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="topGrade">-</div>
+                <div class="stat-label">Top Grade Count</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="buyCount">-</div>
+                <div class="stat-label">Buy Recommendations</div>
+            </div>
+        </div>
+
+        <!-- Filters -->
+        <div class="filters">
+            <div class="filter-group">
+                <label>Sector</label>
+                <select id="sectorFilter">
+                    <option value="">All Sectors</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label>Grade</label>
+                <select id="gradeFilter">
+                    <option value="">All Grades</option>
+                    <option value="A+">A+ Only</option>
+                    <option value="A">A or Better</option>
+                    <option value="B+">B+ or Better</option>
+                    <option value="B">B or Better</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label>Min Value Score: <span id="minScoreValue">0</span></label>
+                <input type="range" id="minScore" min="0" max="100" value="0">
+            </div>
+            <div class="filter-group">
+                <label>Recommendation</label>
+                <select id="recFilter">
+                    <option value="">All</option>
+                    <option value="buy">Buy Only</option>
+                    <option value="hold">Hold Only</option>
+                    <option value="avoid">Avoid Only</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Charts -->
+        <div class="charts-section">
+            <div class="chart-card">
+                <h3>Grade Distribution</h3>
+                <canvas id="gradeChart"></canvas>
+            </div>
+            <div class="chart-card">
+                <h3>Sector Distribution</h3>
+                <canvas id="sectorChart"></canvas>
+            </div>
+        </div>
+
+        <!-- Stock Table -->
+        <div class="table-container">
+            <div class="table-header">
+                <h3>Screened Stocks (<span id="filteredCount">0</span>)</h3>
+                <input type="text" class="search-box" id="searchBox" placeholder="Search symbol...">
+            </div>
+            <div id="tableContent">
+                <div class="loading">
+                    <div class="spinner"></div>
+                    <p>Loading screener data...</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Stock Detail Modal -->
+        <div class="modal" id="stockModal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 id="modalTitle">Stock Details</h2>
+                    <button class="modal-close" onclick="closeModal()">&times;</button>
+                </div>
+                <div class="modal-body" id="modalBody">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let screenerData = null;
+        let filteredData = [];
+        let sortColumn = 'value_score';
+        let sortDirection = 'desc';
+
+        // Load data
+        async function loadData() {
+            try {
+                const response = await fetch('screener.json');
+                screenerData = await response.json();
+                initializeApp();
+            } catch (error) {
+                console.error('Error loading data:', error);
+                document.getElementById('tableContent').innerHTML = `
+                    <div class="loading">
+                        <p>Error loading data. Please run the screener first.</p>
+                        <p style="color: var(--text-secondary); margin-top: 10px;">
+                            Run: python scripts/value_screener.py
+                        </p>
+                    </div>
+                `;
+            }
+        }
+
+        function initializeApp() {
+            // Update last updated
+            document.getElementById('lastUpdated').textContent =
+                `Updated: ${new Date(screenerData.last_updated).toLocaleString()}`;
+
+            // Populate sector filter
+            const sectors = [...new Set(screenerData.screener_results.map(s => s.sector))].sort();
+            const sectorSelect = document.getElementById('sectorFilter');
+            sectors.forEach(sector => {
+                const option = document.createElement('option');
+                option.value = sector;
+                option.textContent = sector;
+                sectorSelect.appendChild(option);
+            });
+
+            // Update stats
+            updateStats();
+
+            // Initialize charts
+            initCharts();
+
+            // Apply initial filter
+            applyFilters();
+
+            // Setup event listeners
+            setupEventListeners();
+        }
+
+        function updateStats() {
+            const stats = screenerData.statistics;
+            document.getElementById('totalStocks').textContent = stats.successful;
+            document.getElementById('avgScore').textContent = stats.avg_score.toFixed(1);
+
+            const topGrades = (stats.grade_distribution['A+'] || 0) + (stats.grade_distribution['A'] || 0);
+            document.getElementById('topGrade').textContent = topGrades;
+
+            const buyCount = screenerData.screener_results.filter(s =>
+                ['Strong Buy', 'Buy', 'Moderate Buy'].includes(s.recommendation)
+            ).length;
+            document.getElementById('buyCount').textContent = buyCount;
+        }
+
+        function initCharts() {
+            // Grade Distribution Chart
+            const gradeCtx = document.getElementById('gradeChart').getContext('2d');
+            const gradeData = screenerData.statistics.grade_distribution;
+            new Chart(gradeCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: Object.keys(gradeData),
+                    datasets: [{
+                        data: Object.values(gradeData),
+                        backgroundColor: ['#166534', '#15803d', '#1d4ed8', '#1e40af', '#b45309', '#991b1b']
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: { color: '#94a3b8' }
+                        }
+                    }
+                }
+            });
+
+            // Sector Distribution Chart
+            const sectorCtx = document.getElementById('sectorChart').getContext('2d');
+            const sectorCounts = {};
+            screenerData.screener_results.forEach(s => {
+                sectorCounts[s.sector] = (sectorCounts[s.sector] || 0) + 1;
+            });
+            new Chart(sectorCtx, {
+                type: 'bar',
+                data: {
+                    labels: Object.keys(sectorCounts),
+                    datasets: [{
+                        label: 'Stocks',
+                        data: Object.values(sectorCounts),
+                        backgroundColor: '#2563eb'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    indexAxis: 'y',
+                    plugins: {
+                        legend: { display: false }
+                    },
+                    scales: {
+                        x: { ticks: { color: '#94a3b8' }, grid: { color: '#475569' } },
+                        y: { ticks: { color: '#94a3b8' }, grid: { display: false } }
+                    }
+                }
+            });
+        }
+
+        function setupEventListeners() {
+            document.getElementById('sectorFilter').addEventListener('change', applyFilters);
+            document.getElementById('gradeFilter').addEventListener('change', applyFilters);
+            document.getElementById('recFilter').addEventListener('change', applyFilters);
+            document.getElementById('minScore').addEventListener('input', function() {
+                document.getElementById('minScoreValue').textContent = this.value;
+                applyFilters();
+            });
+            document.getElementById('searchBox').addEventListener('input', applyFilters);
+        }
+
+        function applyFilters() {
+            const sector = document.getElementById('sectorFilter').value;
+            const grade = document.getElementById('gradeFilter').value;
+            const rec = document.getElementById('recFilter').value;
+            const minScore = parseInt(document.getElementById('minScore').value);
+            const search = document.getElementById('searchBox').value.toLowerCase();
+
+            filteredData = screenerData.screener_results.filter(stock => {
+                if (sector && stock.sector !== sector) return false;
+                if (minScore && stock.scores.value_score < minScore) return false;
+                if (search && !stock.symbol.toLowerCase().includes(search) &&
+                    !stock.name.toLowerCase().includes(search)) return false;
+
+                if (grade) {
+                    const gradeOrder = ['A+', 'A', 'B+', 'B', 'C', 'D'];
+                    const stockGradeIndex = gradeOrder.indexOf(stock.grade);
+                    const filterGradeIndex = gradeOrder.indexOf(grade);
+                    if (stockGradeIndex > filterGradeIndex) return false;
+                }
+
+                if (rec) {
+                    const buyRecs = ['Strong Buy', 'Buy', 'Moderate Buy'];
+                    const holdRecs = ['Hold', 'Weak Hold'];
+                    const avoidRecs = ['Avoid'];
+
+                    if (rec === 'buy' && !buyRecs.includes(stock.recommendation)) return false;
+                    if (rec === 'hold' && !holdRecs.includes(stock.recommendation)) return false;
+                    if (rec === 'avoid' && !avoidRecs.includes(stock.recommendation)) return false;
+                }
+
+                return true;
+            });
+
+            sortData();
+            renderTable();
+        }
+
+        function sortData() {
+            filteredData.sort((a, b) => {
+                let valA, valB;
+
+                switch(sortColumn) {
+                    case 'symbol':
+                        valA = a.symbol;
+                        valB = b.symbol;
+                        break;
+                    case 'value_score':
+                        valA = a.scores.value_score;
+                        valB = b.scores.value_score;
+                        break;
+                    case 'grade':
+                        const gradeOrder = {'A+': 0, 'A': 1, 'B+': 2, 'B': 3, 'C': 4, 'D': 5};
+                        valA = gradeOrder[a.grade];
+                        valB = gradeOrder[b.grade];
+                        break;
+                    case 'trailing_pe':
+                        valA = a.fundamentals.trailing_pe || 999;
+                        valB = b.fundamentals.trailing_pe || 999;
+                        break;
+                    case 'pb_ratio':
+                        valA = a.fundamentals.pb_ratio || 999;
+                        valB = b.fundamentals.pb_ratio || 999;
+                        break;
+                    case 'rsi':
+                        valA = a.technicals.rsi;
+                        valB = b.technicals.rsi;
+                        break;
+                    case 'price':
+                        valA = a.price;
+                        valB = b.price;
+                        break;
+                    default:
+                        valA = a.scores.value_score;
+                        valB = b.scores.value_score;
+                }
+
+                if (sortDirection === 'asc') {
+                    return valA > valB ? 1 : -1;
+                } else {
+                    return valA < valB ? 1 : -1;
+                }
+            });
+        }
+
+        function handleSort(column) {
+            if (sortColumn === column) {
+                sortDirection = sortDirection === 'asc' ? 'desc' : 'asc';
+            } else {
+                sortColumn = column;
+                sortDirection = 'desc';
+            }
+            sortData();
+            renderTable();
+        }
+
+        function renderTable() {
+            document.getElementById('filteredCount').textContent = filteredData.length;
+
+            const getGradeClass = (grade) => {
+                const classes = {
+                    'A+': 'grade-a-plus',
+                    'A': 'grade-a',
+                    'B+': 'grade-b-plus',
+                    'B': 'grade-b',
+                    'C': 'grade-c',
+                    'D': 'grade-d'
+                };
+                return classes[grade] || '';
+            };
+
+            const getRecClass = (rec) => {
+                const classes = {
+                    'Strong Buy': 'rec-strong-buy',
+                    'Buy': 'rec-buy',
+                    'Moderate Buy': 'rec-moderate-buy',
+                    'Hold': 'rec-hold',
+                    'Weak Hold': 'rec-weak-hold',
+                    'Avoid': 'rec-avoid'
+                };
+                return classes[rec] || '';
+            };
+
+            const getScoreColor = (score) => {
+                if (score >= 70) return '#16a34a';
+                if (score >= 50) return '#2563eb';
+                if (score >= 30) return '#f59e0b';
+                return '#dc2626';
+            };
+
+            const getSortClass = (column) => {
+                if (sortColumn !== column) return '';
+                return sortDirection === 'asc' ? 'sorted-asc' : 'sorted-desc';
+            };
+
+            const html = `
+                <table>
+                    <thead>
+                        <tr>
+                            <th onclick="handleSort('symbol')" class="${getSortClass('symbol')}">Symbol</th>
+                            <th>Name</th>
+                            <th>Sector</th>
+                            <th onclick="handleSort('value_score')" class="${getSortClass('value_score')}">Value Score</th>
+                            <th onclick="handleSort('grade')" class="${getSortClass('grade')}">Grade</th>
+                            <th>Recommendation</th>
+                            <th onclick="handleSort('trailing_pe')" class="${getSortClass('trailing_pe')}">P/E</th>
+                            <th onclick="handleSort('pb_ratio')" class="${getSortClass('pb_ratio')}">P/B</th>
+                            <th onclick="handleSort('rsi')" class="${getSortClass('rsi')}">RSI</th>
+                            <th onclick="handleSort('price')" class="${getSortClass('price')}">Price</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${filteredData.map(stock => `
+                            <tr onclick="showStockDetail('${stock.symbol}')" style="cursor: pointer;">
+                                <td><strong>${stock.symbol}</strong></td>
+                                <td>${stock.name.length > 25 ? stock.name.substring(0, 25) + '...' : stock.name}</td>
+                                <td>${stock.sector}</td>
+                                <td>
+                                    <div class="score-badge">
+                                        <span>${stock.scores.value_score.toFixed(1)}</span>
+                                        <div class="score-bar">
+                                            <div class="score-fill" style="width: ${stock.scores.value_score}%; background: ${getScoreColor(stock.scores.value_score)}"></div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td><span class="score-badge ${getGradeClass(stock.grade)}">${stock.grade}</span></td>
+                                <td><span class="rec-badge ${getRecClass(stock.recommendation)}">${stock.recommendation}</span></td>
+                                <td>${stock.fundamentals.trailing_pe > 0 ? stock.fundamentals.trailing_pe.toFixed(1) : 'N/A'}</td>
+                                <td>${stock.fundamentals.pb_ratio > 0 ? stock.fundamentals.pb_ratio.toFixed(2) : 'N/A'}</td>
+                                <td class="${stock.technicals.rsi < 30 ? 'positive' : stock.technicals.rsi > 70 ? 'negative' : ''}">${stock.technicals.rsi.toFixed(1)}</td>
+                                <td>$${stock.price.toFixed(2)}</td>
+                            </tr>
+                        `).join('')}
+                    </tbody>
+                </table>
+            `;
+
+            document.getElementById('tableContent').innerHTML = html;
+        }
+
+        function showStockDetail(symbol) {
+            const stock = screenerData.screener_results.find(s => s.symbol === symbol);
+            if (!stock) return;
+
+            document.getElementById('modalTitle').textContent = `${stock.symbol} - ${stock.name}`;
+
+            const formatValue = (val, suffix = '') => {
+                if (val === 0 || val === null || val === undefined) return 'N/A';
+                return val.toFixed(2) + suffix;
+            };
+
+            const getGradeClass = (grade) => {
+                const classes = {
+                    'A+': 'grade-a-plus',
+                    'A': 'grade-a',
+                    'B+': 'grade-b-plus',
+                    'B': 'grade-b',
+                    'C': 'grade-c',
+                    'D': 'grade-d'
+                };
+                return classes[grade] || '';
+            };
+
+            document.getElementById('modalBody').innerHTML = `
+                <div style="text-align: center; margin-bottom: 20px;">
+                    <span class="score-badge ${getGradeClass(stock.grade)}" style="font-size: 2rem; padding: 10px 30px;">
+                        ${stock.grade} - ${stock.scores.value_score.toFixed(1)}
+                    </span>
+                    <p style="color: var(--text-secondary); margin-top: 10px;">${stock.recommendation}</p>
+                </div>
+
+                <div class="detail-grid">
+                    <div class="detail-section">
+                        <h4>Basic Info</h4>
+                        <div class="detail-row"><span>Sector</span><span>${stock.sector}</span></div>
+                        <div class="detail-row"><span>Industry</span><span>${stock.industry}</span></div>
+                        <div class="detail-row"><span>Price</span><span>$${stock.price.toFixed(2)}</span></div>
+                        <div class="detail-row"><span>Market Cap</span><span>$${(stock.market_cap / 1e9).toFixed(1)}B</span></div>
+                    </div>
+
+                    <div class="detail-section">
+                        <h4>Valuation Metrics</h4>
+                        <div class="detail-row"><span>Trailing P/E</span><span>${formatValue(stock.fundamentals.trailing_pe)}</span></div>
+                        <div class="detail-row"><span>Forward P/E</span><span>${formatValue(stock.fundamentals.forward_pe)}</span></div>
+                        <div class="detail-row"><span>P/B Ratio</span><span>${formatValue(stock.fundamentals.pb_ratio)}</span></div>
+                        <div class="detail-row"><span>P/S Ratio</span><span>${formatValue(stock.fundamentals.ps_ratio)}</span></div>
+                        <div class="detail-row"><span>EV/EBITDA</span><span>${formatValue(stock.fundamentals.ev_ebitda)}</span></div>
+                        <div class="detail-row"><span>Earnings Yield</span><span>${formatValue(stock.fundamentals.earnings_yield, '%')}</span></div>
+                    </div>
+
+                    <div class="detail-section">
+                        <h4>Growth Metrics</h4>
+                        <div class="detail-row"><span>Revenue Growth</span><span class="${stock.fundamentals.revenue_growth >= 0 ? 'positive' : 'negative'}">${formatValue(stock.fundamentals.revenue_growth, '%')}</span></div>
+                        <div class="detail-row"><span>Earnings Growth</span><span class="${stock.fundamentals.earnings_growth >= 0 ? 'positive' : 'negative'}">${formatValue(stock.fundamentals.earnings_growth, '%')}</span></div>
+                        <div class="detail-row"><span>Growth Tier</span><span>${stock.fundamentals.growth_tier}</span></div>
+                    </div>
+
+                    <div class="detail-section">
+                        <h4>Technical Indicators</h4>
+                        <div class="detail-row"><span>RSI (14)</span><span class="${stock.technicals.rsi < 30 ? 'positive' : stock.technicals.rsi > 70 ? 'negative' : ''}">${stock.technicals.rsi.toFixed(1)}</span></div>
+                        <div class="detail-row"><span>SMA 50</span><span>$${stock.technicals.sma_50.toFixed(2)}</span></div>
+                        <div class="detail-row"><span>SMA 200</span><span>$${stock.technicals.sma_200.toFixed(2)}</span></div>
+                        <div class="detail-row"><span>vs SMA 50</span><span class="${stock.technicals.price_vs_sma50 >= 0 ? 'positive' : 'negative'}">${formatValue(stock.technicals.price_vs_sma50, '%')}</span></div>
+                        <div class="detail-row"><span>vs SMA 200</span><span class="${stock.technicals.price_vs_sma200 >= 0 ? 'positive' : 'negative'}">${formatValue(stock.technicals.price_vs_sma200, '%')}</span></div>
+                        <div class="detail-row"><span>52W High</span><span>$${stock.technicals.week_52_high.toFixed(2)}</span></div>
+                        <div class="detail-row"><span>52W Low</span><span>$${stock.technicals.week_52_low.toFixed(2)}</span></div>
+                        <div class="detail-row"><span>Bollinger Position</span><span>${stock.technicals.bollinger_position.toFixed(1)}%</span></div>
+                    </div>
+
+                    <div class="detail-section">
+                        <h4>Score Breakdown</h4>
+                        <div class="detail-row"><span>P/E Score</span><span>${stock.scores.per_score.toFixed(1)}</span></div>
+                        <div class="detail-row"><span>P/B Score</span><span>${stock.scores.pbr_score.toFixed(1)}</span></div>
+                        <div class="detail-row"><span>P/S Score</span><span>${stock.scores.psr_score.toFixed(1)}</span></div>
+                        <div class="detail-row"><span>EV/EBITDA Score</span><span>${stock.scores.ev_ebitda_score.toFixed(1)}</span></div>
+                        <div class="detail-row"><span>Earnings Yield Score</span><span>${stock.scores.earnings_yield_score.toFixed(1)}</span></div>
+                        <div class="detail-row" style="font-weight: bold;"><span>Fundamental Score</span><span>${stock.scores.fundamental_score.toFixed(1)}</span></div>
+                        <div class="detail-row" style="font-weight: bold;"><span>Technical Score</span><span>${stock.scores.technical_score.toFixed(1)}</span></div>
+                    </div>
+                </div>
+            `;
+
+            document.getElementById('stockModal').classList.add('active');
+        }
+
+        function closeModal() {
+            document.getElementById('stockModal').classList.remove('active');
+        }
+
+        // Close modal on outside click
+        document.getElementById('stockModal').addEventListener('click', function(e) {
+            if (e.target === this) closeModal();
+        });
+
+        // Close modal on Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeModal();
+        });
+
+        // Initialize
+        loadData();
+    </script>
+</body>
+</html>
