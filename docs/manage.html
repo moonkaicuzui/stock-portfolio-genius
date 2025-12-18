@@ -1,0 +1,1016 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Portfolio Manager - Stock Portfolio Genius</title>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --success: #16a34a;
+            --warning: #f59e0b;
+            --danger: #dc2626;
+            --bg-dark: #1e293b;
+            --bg-card: #334155;
+            --text-primary: #f1f5f9;
+            --text-secondary: #94a3b8;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        h1 {
+            font-size: 1.8rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            transition: all 0.2s;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--text-primary);
+            background: var(--bg-card);
+        }
+
+        /* Cards */
+        .card {
+            background: var(--bg-card);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 24px;
+        }
+
+        .card h2 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Search Section */
+        .search-container {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .search-input {
+            flex: 1;
+            padding: 12px 16px;
+            border: 2px solid #475569;
+            border-radius: 8px;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            font-size: 1rem;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #1d4ed8;
+        }
+
+        .btn-success {
+            background: var(--success);
+            color: white;
+        }
+
+        .btn-success:hover {
+            background: #15803d;
+        }
+
+        .btn-danger {
+            background: var(--danger);
+            color: white;
+        }
+
+        .btn-danger:hover {
+            background: #b91c1c;
+        }
+
+        .btn-secondary {
+            background: #475569;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: #64748b;
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* Search Results */
+        .search-results {
+            display: none;
+            background: var(--bg-dark);
+            border-radius: 8px;
+            max-height: 300px;
+            overflow-y: auto;
+            margin-bottom: 20px;
+        }
+
+        .search-results.active {
+            display: block;
+        }
+
+        .search-result-item {
+            padding: 16px;
+            border-bottom: 1px solid #475569;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .search-result-item:hover {
+            background: rgba(255,255,255,0.05);
+        }
+
+        .search-result-item:last-child {
+            border-bottom: none;
+        }
+
+        .stock-symbol {
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        .stock-name {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .stock-price {
+            float: right;
+            font-weight: bold;
+            color: var(--success);
+        }
+
+        /* Add Form */
+        .add-form {
+            display: none;
+            background: var(--bg-dark);
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .add-form.active {
+            display: block;
+        }
+
+        .form-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .form-group label {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .form-group input {
+            padding: 10px 12px;
+            border: 2px solid #475569;
+            border-radius: 6px;
+            background: var(--bg-card);
+            color: var(--text-primary);
+            font-size: 1rem;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .form-actions {
+            display: flex;
+            gap: 12px;
+            justify-content: flex-end;
+        }
+
+        /* Holdings Table */
+        .holdings-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .holdings-table th,
+        .holdings-table td {
+            padding: 14px 16px;
+            text-align: left;
+            border-bottom: 1px solid #475569;
+        }
+
+        .holdings-table th {
+            color: var(--text-secondary);
+            font-weight: 600;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+        }
+
+        .holdings-table tr:hover {
+            background: rgba(255,255,255,0.03);
+        }
+
+        .holdings-table .symbol {
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        .holdings-table .name {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 8px;
+        }
+
+        .btn-sm {
+            padding: 6px 12px;
+            font-size: 0.85rem;
+        }
+
+        /* Empty State */
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--text-secondary);
+        }
+
+        .empty-state p {
+            margin-bottom: 20px;
+        }
+
+        /* Export Section */
+        .export-section {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .export-info {
+            flex: 1;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: var(--bg-card);
+            border-radius: 16px;
+            max-width: 500px;
+            width: 100%;
+            padding: 24px;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Toast */
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 16px 24px;
+            border-radius: 8px;
+            color: white;
+            font-weight: 500;
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 0.3s;
+            z-index: 1001;
+        }
+
+        .toast.active {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .toast.success {
+            background: var(--success);
+        }
+
+        .toast.error {
+            background: var(--danger);
+        }
+
+        /* Loading */
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 2px solid rgba(255,255,255,0.3);
+            border-top-color: white;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .search-container {
+                flex-direction: column;
+            }
+
+            .holdings-table {
+                display: block;
+                overflow-x: auto;
+            }
+
+            .export-section {
+                flex-direction: column;
+                align-items: stretch;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Portfolio Manager</h1>
+            <nav class="nav-links">
+                <a href="index.html">Portfolio</a>
+                <a href="screener.html">Screener</a>
+                <a href="manage.html" class="active">Manage</a>
+            </nav>
+        </header>
+
+        <!-- Add Stock Section -->
+        <div class="card">
+            <h2>Add Stock</h2>
+            <div class="search-container">
+                <input type="text" class="search-input" id="searchInput"
+                       placeholder="Search by ticker symbol (e.g., AAPL, MSFT, GOOGL)">
+                <button class="btn btn-primary" id="searchBtn">
+                    Search
+                </button>
+            </div>
+
+            <div class="search-results" id="searchResults"></div>
+
+            <div class="add-form" id="addForm">
+                <div class="form-header">
+                    <div>
+                        <span class="stock-symbol" id="selectedSymbol">AAPL</span>
+                        <span class="stock-name" id="selectedName">Apple Inc.</span>
+                    </div>
+                    <button class="btn btn-secondary btn-sm" onclick="cancelAdd()">Cancel</button>
+                </div>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>Shares (Number of shares)</label>
+                        <input type="number" id="sharesInput" placeholder="10" min="0.001" step="0.001">
+                    </div>
+                    <div class="form-group">
+                        <label>Average Purchase Price ($)</label>
+                        <input type="number" id="avgPriceInput" placeholder="150.00" min="0.01" step="0.01">
+                    </div>
+                    <div class="form-group">
+                        <label>Purchase Date</label>
+                        <input type="date" id="dateInput">
+                    </div>
+                </div>
+                <div class="form-actions">
+                    <button class="btn btn-success" onclick="addStock()">
+                        Add to Portfolio
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Current Holdings -->
+        <div class="card">
+            <h2>Current Holdings</h2>
+            <div id="holdingsContainer">
+                <div class="empty-state">
+                    <p>No stocks in your portfolio yet.</p>
+                    <p>Search and add stocks above to get started!</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Export Section -->
+        <div class="card">
+            <h2>Save Changes</h2>
+            <div class="export-section">
+                <div class="export-info">
+                    <p>After making changes, download the portfolio file and commit it to GitHub.</p>
+                    <p style="margin-top: 8px;">Or click "Push to GitHub" if you have a GitHub token configured.</p>
+                </div>
+                <button class="btn btn-primary" onclick="downloadPortfolio()">
+                    Download portfolio.json
+                </button>
+                <button class="btn btn-success" onclick="pushToGitHub()">
+                    Push to GitHub
+                </button>
+            </div>
+        </div>
+
+        <!-- GitHub Token Modal -->
+        <div class="modal" id="githubModal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>GitHub Authentication</h3>
+                    <button class="modal-close" onclick="closeGithubModal()">&times;</button>
+                </div>
+                <div class="form-group" style="margin-bottom: 16px;">
+                    <label>GitHub Personal Access Token</label>
+                    <input type="password" id="githubToken" placeholder="ghp_xxxxxxxxxxxx">
+                </div>
+                <p style="color: var(--text-secondary); font-size: 0.85rem; margin-bottom: 16px;">
+                    Create a token at: GitHub Settings → Developer settings → Personal access tokens → Tokens (classic)
+                    <br>Required scope: <strong>repo</strong>
+                </p>
+                <div class="form-actions">
+                    <button class="btn btn-secondary" onclick="closeGithubModal()">Cancel</button>
+                    <button class="btn btn-success" onclick="commitToGitHub()">
+                        Commit & Push
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Edit Modal -->
+        <div class="modal" id="editModal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Edit <span id="editSymbol">AAPL</span></h3>
+                    <button class="modal-close" onclick="closeEditModal()">&times;</button>
+                </div>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>Shares</label>
+                        <input type="number" id="editShares" min="0.001" step="0.001">
+                    </div>
+                    <div class="form-group">
+                        <label>Average Price ($)</label>
+                        <input type="number" id="editAvgPrice" min="0.01" step="0.01">
+                    </div>
+                </div>
+                <div class="form-actions" style="margin-top: 16px;">
+                    <button class="btn btn-danger" onclick="deleteStock()">Delete</button>
+                    <button class="btn btn-success" onclick="saveEdit()">Save</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Toast -->
+        <div class="toast" id="toast"></div>
+    </div>
+
+    <script>
+        // Portfolio data
+        let portfolio = {
+            holdings: [],
+            last_updated: null,
+            prices: {}
+        };
+
+        let selectedStock = null;
+        let editingIndex = -1;
+
+        // Popular stocks for quick suggestions
+        const popularStocks = [
+            { symbol: 'AAPL', name: 'Apple Inc.' },
+            { symbol: 'MSFT', name: 'Microsoft Corporation' },
+            { symbol: 'GOOGL', name: 'Alphabet Inc.' },
+            { symbol: 'AMZN', name: 'Amazon.com Inc.' },
+            { symbol: 'NVDA', name: 'NVIDIA Corporation' },
+            { symbol: 'META', name: 'Meta Platforms Inc.' },
+            { symbol: 'TSLA', name: 'Tesla Inc.' },
+            { symbol: 'JPM', name: 'JPMorgan Chase & Co.' },
+            { symbol: 'V', name: 'Visa Inc.' },
+            { symbol: 'JNJ', name: 'Johnson & Johnson' },
+            { symbol: 'WMT', name: 'Walmart Inc.' },
+            { symbol: 'PG', name: 'Procter & Gamble Co.' },
+            { symbol: 'MA', name: 'Mastercard Inc.' },
+            { symbol: 'UNH', name: 'UnitedHealth Group Inc.' },
+            { symbol: 'HD', name: 'The Home Depot Inc.' },
+            { symbol: 'DIS', name: 'The Walt Disney Company' },
+            { symbol: 'BAC', name: 'Bank of America Corp.' },
+            { symbol: 'ADBE', name: 'Adobe Inc.' },
+            { symbol: 'CRM', name: 'Salesforce Inc.' },
+            { symbol: 'NFLX', name: 'Netflix Inc.' },
+            { symbol: 'KO', name: 'The Coca-Cola Company' },
+            { symbol: 'PEP', name: 'PepsiCo Inc.' },
+            { symbol: 'COST', name: 'Costco Wholesale Corp.' },
+            { symbol: 'AMD', name: 'Advanced Micro Devices' },
+            { symbol: 'INTC', name: 'Intel Corporation' },
+            { symbol: 'CSCO', name: 'Cisco Systems Inc.' },
+            { symbol: 'ORCL', name: 'Oracle Corporation' },
+            { symbol: 'ACN', name: 'Accenture plc' },
+            { symbol: 'ABT', name: 'Abbott Laboratories' },
+            { symbol: 'NKE', name: 'Nike Inc.' }
+        ];
+
+        // Initialize
+        async function init() {
+            await loadPortfolio();
+            renderHoldings();
+
+            // Set default date
+            document.getElementById('dateInput').valueAsDate = new Date();
+
+            // Search on Enter
+            document.getElementById('searchInput').addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') searchStock();
+            });
+
+            // Auto-suggest on input
+            document.getElementById('searchInput').addEventListener('input', showSuggestions);
+        }
+
+        // Load portfolio from data.json
+        async function loadPortfolio() {
+            try {
+                // First try to load from localStorage (for unsaved changes)
+                const saved = localStorage.getItem('portfolio_draft');
+                if (saved) {
+                    portfolio = JSON.parse(saved);
+                    showToast('Loaded unsaved draft', 'success');
+                    return;
+                }
+
+                // Otherwise load from server
+                const response = await fetch('data.json');
+                if (response.ok) {
+                    const data = await response.json();
+                    portfolio.holdings = data.holdings || [];
+                    portfolio.last_updated = data.last_updated;
+                }
+            } catch (error) {
+                console.log('No existing portfolio data');
+            }
+        }
+
+        // Show suggestions while typing
+        function showSuggestions() {
+            const query = document.getElementById('searchInput').value.toUpperCase();
+            const resultsDiv = document.getElementById('searchResults');
+
+            if (query.length < 1) {
+                resultsDiv.classList.remove('active');
+                return;
+            }
+
+            const matches = popularStocks.filter(s =>
+                s.symbol.includes(query) || s.name.toUpperCase().includes(query)
+            ).slice(0, 5);
+
+            if (matches.length > 0) {
+                resultsDiv.innerHTML = matches.map(s => `
+                    <div class="search-result-item" onclick="selectStock('${s.symbol}', '${s.name}')">
+                        <span class="stock-symbol">${s.symbol}</span>
+                        <span class="stock-name">${s.name}</span>
+                    </div>
+                `).join('');
+                resultsDiv.classList.add('active');
+            } else {
+                resultsDiv.classList.remove('active');
+            }
+        }
+
+        // Search stock
+        async function searchStock() {
+            const symbol = document.getElementById('searchInput').value.toUpperCase().trim();
+            if (!symbol) return;
+
+            const searchBtn = document.getElementById('searchBtn');
+            searchBtn.innerHTML = '<span class="loading"></span>';
+            searchBtn.disabled = true;
+
+            try {
+                // Check if it's in popular stocks first
+                const popular = popularStocks.find(s => s.symbol === symbol);
+                if (popular) {
+                    selectStock(popular.symbol, popular.name);
+                } else {
+                    // For unknown symbols, just use the symbol as name
+                    selectStock(symbol, symbol);
+                }
+            } catch (error) {
+                showToast('Failed to search stock', 'error');
+            } finally {
+                searchBtn.innerHTML = 'Search';
+                searchBtn.disabled = false;
+            }
+        }
+
+        // Select stock to add
+        function selectStock(symbol, name) {
+            selectedStock = { symbol, name };
+            document.getElementById('selectedSymbol').textContent = symbol;
+            document.getElementById('selectedName').textContent = name;
+            document.getElementById('addForm').classList.add('active');
+            document.getElementById('searchResults').classList.remove('active');
+            document.getElementById('searchInput').value = '';
+            document.getElementById('sharesInput').focus();
+        }
+
+        // Cancel adding
+        function cancelAdd() {
+            selectedStock = null;
+            document.getElementById('addForm').classList.remove('active');
+            document.getElementById('sharesInput').value = '';
+            document.getElementById('avgPriceInput').value = '';
+        }
+
+        // Add stock to portfolio
+        function addStock() {
+            if (!selectedStock) return;
+
+            const shares = parseFloat(document.getElementById('sharesInput').value);
+            const avgPrice = parseFloat(document.getElementById('avgPriceInput').value);
+            const addedDate = document.getElementById('dateInput').value;
+
+            if (!shares || shares <= 0) {
+                showToast('Please enter valid shares', 'error');
+                return;
+            }
+
+            if (!avgPrice || avgPrice <= 0) {
+                showToast('Please enter valid average price', 'error');
+                return;
+            }
+
+            // Check if already exists
+            const existingIndex = portfolio.holdings.findIndex(h => h.symbol === selectedStock.symbol);
+            if (existingIndex >= 0) {
+                // Update existing
+                const existing = portfolio.holdings[existingIndex];
+                const totalShares = existing.shares + shares;
+                const totalCost = (existing.shares * existing.avg_price) + (shares * avgPrice);
+                portfolio.holdings[existingIndex] = {
+                    ...existing,
+                    shares: totalShares,
+                    avg_price: Math.round(totalCost / totalShares * 100) / 100
+                };
+                showToast(`Updated ${selectedStock.symbol}`, 'success');
+            } else {
+                // Add new
+                portfolio.holdings.push({
+                    symbol: selectedStock.symbol,
+                    name: selectedStock.name,
+                    shares: shares,
+                    avg_price: avgPrice,
+                    added_date: addedDate
+                });
+                showToast(`Added ${selectedStock.symbol}`, 'success');
+            }
+
+            saveDraft();
+            renderHoldings();
+            cancelAdd();
+        }
+
+        // Render holdings table
+        function renderHoldings() {
+            const container = document.getElementById('holdingsContainer');
+
+            if (portfolio.holdings.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <p>No stocks in your portfolio yet.</p>
+                        <p>Search and add stocks above to get started!</p>
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = `
+                <table class="holdings-table">
+                    <thead>
+                        <tr>
+                            <th>Symbol</th>
+                            <th>Shares</th>
+                            <th>Avg Price</th>
+                            <th>Cost Basis</th>
+                            <th>Added Date</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${portfolio.holdings.map((h, i) => `
+                            <tr>
+                                <td>
+                                    <span class="symbol">${h.symbol}</span>
+                                    <div class="name">${h.name}</div>
+                                </td>
+                                <td>${h.shares}</td>
+                                <td>$${h.avg_price.toFixed(2)}</td>
+                                <td>$${(h.shares * h.avg_price).toFixed(2)}</td>
+                                <td>${h.added_date || '-'}</td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="btn btn-secondary btn-sm" onclick="editStock(${i})">Edit</button>
+                                        <button class="btn btn-danger btn-sm" onclick="confirmDelete(${i})">Delete</button>
+                                    </div>
+                                </td>
+                            </tr>
+                        `).join('')}
+                    </tbody>
+                </table>
+            `;
+        }
+
+        // Edit stock
+        function editStock(index) {
+            editingIndex = index;
+            const stock = portfolio.holdings[index];
+            document.getElementById('editSymbol').textContent = stock.symbol;
+            document.getElementById('editShares').value = stock.shares;
+            document.getElementById('editAvgPrice').value = stock.avg_price;
+            document.getElementById('editModal').classList.add('active');
+        }
+
+        // Save edit
+        function saveEdit() {
+            if (editingIndex < 0) return;
+
+            const shares = parseFloat(document.getElementById('editShares').value);
+            const avgPrice = parseFloat(document.getElementById('editAvgPrice').value);
+
+            if (!shares || shares <= 0 || !avgPrice || avgPrice <= 0) {
+                showToast('Please enter valid values', 'error');
+                return;
+            }
+
+            portfolio.holdings[editingIndex].shares = shares;
+            portfolio.holdings[editingIndex].avg_price = avgPrice;
+
+            saveDraft();
+            renderHoldings();
+            closeEditModal();
+            showToast('Stock updated', 'success');
+        }
+
+        // Delete stock
+        function deleteStock() {
+            if (editingIndex < 0) return;
+
+            const symbol = portfolio.holdings[editingIndex].symbol;
+            portfolio.holdings.splice(editingIndex, 1);
+
+            saveDraft();
+            renderHoldings();
+            closeEditModal();
+            showToast(`Deleted ${symbol}`, 'success');
+        }
+
+        // Confirm delete
+        function confirmDelete(index) {
+            editingIndex = index;
+            const stock = portfolio.holdings[index];
+            if (confirm(`Delete ${stock.symbol} from portfolio?`)) {
+                deleteStock();
+            }
+            editingIndex = -1;
+        }
+
+        // Close edit modal
+        function closeEditModal() {
+            document.getElementById('editModal').classList.remove('active');
+            editingIndex = -1;
+        }
+
+        // Save draft to localStorage
+        function saveDraft() {
+            localStorage.setItem('portfolio_draft', JSON.stringify(portfolio));
+        }
+
+        // Clear draft
+        function clearDraft() {
+            localStorage.removeItem('portfolio_draft');
+        }
+
+        // Download portfolio.json
+        function downloadPortfolio() {
+            const data = {
+                holdings: portfolio.holdings,
+                last_updated: null,
+                prices: {}
+            };
+
+            const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'portfolio.json';
+            a.click();
+            URL.revokeObjectURL(url);
+
+            showToast('Downloaded! Place in data/ folder and push to GitHub', 'success');
+        }
+
+        // GitHub integration
+        function pushToGitHub() {
+            const savedToken = localStorage.getItem('github_token');
+            if (savedToken) {
+                document.getElementById('githubToken').value = savedToken;
+            }
+            document.getElementById('githubModal').classList.add('active');
+        }
+
+        function closeGithubModal() {
+            document.getElementById('githubModal').classList.remove('active');
+        }
+
+        async function commitToGitHub() {
+            const token = document.getElementById('githubToken').value.trim();
+            if (!token) {
+                showToast('Please enter GitHub token', 'error');
+                return;
+            }
+
+            // Save token for future use
+            localStorage.setItem('github_token', token);
+
+            const data = {
+                holdings: portfolio.holdings,
+                last_updated: null,
+                prices: {}
+            };
+
+            const content = btoa(unescape(encodeURIComponent(JSON.stringify(data, null, 2))));
+
+            try {
+                // Get current file SHA
+                const getResponse = await fetch(
+                    'https://api.github.com/repos/moonkaicuzui/stock-portfolio-genius/contents/data/portfolio.json',
+                    {
+                        headers: {
+                            'Authorization': `token ${token}`,
+                            'Accept': 'application/vnd.github.v3+json'
+                        }
+                    }
+                );
+
+                let sha = null;
+                if (getResponse.ok) {
+                    const fileData = await getResponse.json();
+                    sha = fileData.sha;
+                }
+
+                // Update file
+                const updateResponse = await fetch(
+                    'https://api.github.com/repos/moonkaicuzui/stock-portfolio-genius/contents/data/portfolio.json',
+                    {
+                        method: 'PUT',
+                        headers: {
+                            'Authorization': `token ${token}`,
+                            'Accept': 'application/vnd.github.v3+json',
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            message: `Update portfolio: ${new Date().toISOString().split('T')[0]}`,
+                            content: content,
+                            sha: sha
+                        })
+                    }
+                );
+
+                if (updateResponse.ok) {
+                    clearDraft();
+                    closeGithubModal();
+                    showToast('Pushed to GitHub! Dashboard will update soon.', 'success');
+                } else {
+                    const error = await updateResponse.json();
+                    showToast(`Error: ${error.message}`, 'error');
+                }
+            } catch (error) {
+                showToast(`Error: ${error.message}`, 'error');
+            }
+        }
+
+        // Toast notification
+        function showToast(message, type = 'success') {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.className = `toast ${type} active`;
+
+            setTimeout(() => {
+                toast.classList.remove('active');
+            }, 3000);
+        }
+
+        // Close modals on outside click
+        document.querySelectorAll('.modal').forEach(modal => {
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    modal.classList.remove('active');
+                }
+            });
+        });
+
+        // Initialize
+        init();
+    </script>
+</body>
+</html>
