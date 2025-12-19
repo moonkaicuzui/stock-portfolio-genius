@@ -43,6 +43,10 @@ jobs:
       run: |
         python scripts/fetch_prices.py
 
+    - name: 🤖 Update AI portfolio
+      run: |
+        python scripts/ai_portfolio.py
+
     - name: 🔍 Run value screener
       run: |
         python scripts/value_screener.py
@@ -63,7 +67,7 @@ jobs:
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action Bot"
 
-        git add data/portfolio.json data/history.json data/screener.json docs/data.json docs/screener.json
+        git add data/portfolio.json data/history.json data/screener.json data/ai_history.json docs/data.json docs/screener.json docs/ai_data.json
 
         # 변경사항이 있을 때만 커밋
         if git diff --staged --quiet; then
@@ -83,3 +87,5 @@ jobs:
         echo "**Dashboard URL:** https://moonkaicuzui.github.io/stock-portfolio-genius/" >> $GITHUB_STEP_SUMMARY
         echo "" >> $GITHUB_STEP_SUMMARY
         echo "**Value Screener:** https://moonkaicuzui.github.io/stock-portfolio-genius/screener.html" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "**AI Battle:** https://moonkaicuzui.github.io/stock-portfolio-genius/battle.html" >> $GITHUB_STEP_SUMMARY

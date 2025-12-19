@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="noindex, nofollow">
-    <title>Stock Portfolio Genius - Advanced Investment Dashboard</title>
+    <title>주식 포트폴리오 지니어스 - 고급 투자 대시보드</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         * {
@@ -14,10 +14,81 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Noto Sans KR', sans-serif;
             background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
             min-height: 100vh;
             color: #fff;
+        }
+
+        /* Login Screen */
+        .login-screen {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+        }
+
+        .login-box {
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            padding: 40px;
+            width: 350px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+        }
+
+        .login-box h1 {
+            margin-bottom: 10px;
+            font-size: 1.8rem;
+        }
+
+        .login-box p {
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 30px;
+            font-size: 0.9rem;
+        }
+
+        .login-input {
+            width: 100%;
+            padding: 14px 16px;
+            margin-bottom: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            color: #fff;
+            font-size: 1rem;
+        }
+
+        .login-input:focus {
+            outline: none;
+            border-color: #4ade80;
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #4ade80, #22c55e);
+            border: none;
+            border-radius: 10px;
+            color: #000;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .login-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(74, 222, 128, 0.3);
+        }
+
+        .login-error {
+            color: #f87171;
+            margin-top: 15px;
+            font-size: 0.9rem;
+            display: none;
         }
 
         .loading {
@@ -68,6 +139,21 @@
         .last-updated {
             color: rgba(255, 255, 255, 0.6);
             font-size: 0.9rem;
+        }
+
+        .logout-btn {
+            background: rgba(239, 68, 68, 0.2);
+            border: 1px solid rgba(239, 68, 68, 0.5);
+            color: #f87171;
+            padding: 8px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: all 0.2s;
+        }
+
+        .logout-btn:hover {
+            background: rgba(239, 68, 68, 0.3);
         }
 
         main {
@@ -191,8 +277,14 @@
             top: 0;
         }
 
+        .holdings-table tr {
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
         .holdings-table tr:hover {
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(74, 222, 128, 0.1);
+            transform: scale(1.01);
         }
 
         .symbol-cell {
@@ -357,28 +449,6 @@
         .risk-bar:nth-child(4) { background: #f97316; }
         .risk-bar:nth-child(5) { background: #ef4444; }
 
-        /* Tabs */
-        .tabs {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 20px;
-        }
-
-        .tab-btn {
-            padding: 10px 20px;
-            background: rgba(255, 255, 255, 0.1);
-            border: none;
-            border-radius: 8px;
-            color: rgba(255, 255, 255, 0.6);
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-
-        .tab-btn:hover, .tab-btn.active {
-            background: rgba(74, 222, 128, 0.2);
-            color: #4ade80;
-        }
-
         /* Footer */
         footer {
             text-align: center;
@@ -412,35 +482,6 @@
         .nav-links a.active {
             color: #fff;
             background: rgba(255, 255, 255, 0.1);
-        }
-
-        /* Kelly Position Size */
-        .kelly-indicator {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .kelly-bar {
-            flex: 1;
-            height: 6px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 3px;
-            position: relative;
-        }
-
-        .kelly-fill {
-            height: 100%;
-            background: #4ade80;
-            border-radius: 3px;
-        }
-
-        .kelly-optimal {
-            position: absolute;
-            top: -3px;
-            width: 2px;
-            height: 12px;
-            background: #fff;
         }
 
         /* Insight Cards */
@@ -498,20 +539,300 @@
         .collapsible-content.collapsed {
             max-height: 0;
         }
+
+        /* Modal Styles */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            border-radius: 20px;
+            width: 100%;
+            max-width: 800px;
+            max-height: 90vh;
+            overflow-y: auto;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 25px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            position: sticky;
+            top: 0;
+            background: rgba(26, 26, 46, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 10;
+        }
+
+        .modal-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .modal-symbol {
+            color: #4ade80;
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 2rem;
+            cursor: pointer;
+            opacity: 0.6;
+            transition: opacity 0.2s;
+        }
+
+        .modal-close:hover {
+            opacity: 1;
+        }
+
+        .modal-body {
+            padding: 25px;
+        }
+
+        .modal-section {
+            margin-bottom: 25px;
+        }
+
+        .modal-section-title {
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .metric-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .metric-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 15px;
+        }
+
+        .metric-label {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 5px;
+        }
+
+        .metric-value {
+            font-size: 1.3rem;
+            font-weight: bold;
+        }
+
+        .metric-desc {
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.5);
+            margin-top: 5px;
+            line-height: 1.4;
+        }
+
+        .formula-box {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 8px;
+            padding: 12px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.85rem;
+            color: #4ade80;
+            margin-top: 10px;
+        }
+
+        .analysis-grade {
+            display: inline-block;
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        .grade-a { background: #22c55e; color: #000; }
+        .grade-b { background: #84cc16; color: #000; }
+        .grade-c { background: #eab308; color: #000; }
+        .grade-d { background: #f97316; color: #000; }
+        .grade-f { background: #ef4444; color: #fff; }
+
+        .recommendation-box {
+            background: linear-gradient(135deg, rgba(74, 222, 128, 0.15), rgba(59, 130, 246, 0.15));
+            border: 1px solid rgba(74, 222, 128, 0.3);
+            border-radius: 12px;
+            padding: 15px;
+            margin-top: 15px;
+        }
+
+        .recommendation-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #4ade80;
+        }
+
+        .recommendation-list {
+            list-style: none;
+        }
+
+        .recommendation-list li {
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .recommendation-list li:last-child {
+            border-bottom: none;
+        }
+
+        .recommendation-list li::before {
+            content: '💡';
+        }
+
+        /* Taleb Risk Indicator */
+        .taleb-indicator {
+            display: flex;
+            gap: 5px;
+            align-items: center;
+            margin-top: 8px;
+        }
+
+        .taleb-block {
+            width: 30px;
+            height: 15px;
+            border-radius: 3px;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .taleb-block.fragile { background: #ef4444; }
+        .taleb-block.robust { background: #eab308; }
+        .taleb-block.antifragile { background: #22c55e; }
     </style>
 </head>
 <body>
-    <div id="app" class="loading">Loading Advanced Dashboard...</div>
+    <!-- Login Screen -->
+    <div id="loginScreen" class="login-screen">
+        <div class="login-box">
+            <h1>📈 포트폴리오 지니어스</h1>
+            <p>고급 투자 대시보드에 로그인하세요</p>
+            <input type="text" id="loginId" class="login-input" placeholder="아이디" autocomplete="username">
+            <input type="password" id="loginPw" class="login-input" placeholder="비밀번호" autocomplete="current-password">
+            <button class="login-btn" onclick="attemptLogin()">로그인</button>
+            <div id="loginError" class="login-error">아이디 또는 비밀번호가 올바르지 않습니다.</div>
+        </div>
+    </div>
+
+    <!-- Main App -->
+    <div id="app" class="loading" style="display: none;">대시보드 로딩 중...</div>
+
+    <!-- Stock Detail Modal -->
+    <div id="stockModal" class="modal-overlay" onclick="closeModalOnOverlay(event)">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <div class="modal-header">
+                <div class="modal-title">
+                    <span class="modal-symbol" id="modalSymbol">AAPL</span>
+                    <span id="modalName">Apple Inc.</span>
+                </div>
+                <button class="modal-close" onclick="closeStockModal()">&times;</button>
+            </div>
+            <div class="modal-body" id="modalBody">
+                <!-- Dynamic content -->
+            </div>
+        </div>
+    </div>
 
     <script>
         // ============================================
-        // 📚 INVESTMENT BOOK ALGORITHMS
+        // 🔐 인증 시스템
+        // ============================================
+        const AUTH_KEY = 'spg_auth_token';
+        const VALID_HASH = '5f4dcc3b5aa765d61d8327deb882cf99'; // Simple hash for demo
+
+        function simpleHash(str) {
+            let hash = 0;
+            for (let i = 0; i < str.length; i++) {
+                const char = str.charCodeAt(i);
+                hash = ((hash << 5) - hash) + char;
+                hash = hash & hash;
+            }
+            return Math.abs(hash).toString(16);
+        }
+
+        function attemptLogin() {
+            const id = document.getElementById('loginId').value;
+            const pw = document.getElementById('loginPw').value;
+
+            // 인증 확인
+            if (id === 'kaicuzui' && pw === 'ksmoon1!') {
+                const token = simpleHash(id + pw + Date.now());
+                sessionStorage.setItem(AUTH_KEY, token);
+                showDashboard();
+            } else {
+                document.getElementById('loginError').style.display = 'block';
+                document.getElementById('loginPw').value = '';
+            }
+        }
+
+        function checkAuth() {
+            const token = sessionStorage.getItem(AUTH_KEY);
+            if (token) {
+                showDashboard();
+            }
+        }
+
+        function logout() {
+            sessionStorage.removeItem(AUTH_KEY);
+            document.getElementById('loginScreen').style.display = 'flex';
+            document.getElementById('app').style.display = 'none';
+        }
+
+        function showDashboard() {
+            document.getElementById('loginScreen').style.display = 'none';
+            document.getElementById('app').style.display = 'block';
+            loadDashboard();
+        }
+
+        // Enter key login
+        document.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter' && document.getElementById('loginScreen').style.display !== 'none') {
+                attemptLogin();
+            }
+        });
+
+        // Check auth on page load
+        window.onload = checkAuth;
+
+        // ============================================
+        // 📚 투자 서적 알고리즘 (16권)
         // ============================================
 
         /**
-         * 1. Benjamin Graham - The Intelligent Investor
-         * Graham Number = sqrt(22.5 × EPS × BVPS)
-         * Margin of Safety = (Intrinsic Value - Market Price) / Intrinsic Value
+         * 1. Benjamin Graham - 현명한 투자자
+         * 그레이엄 넘버 = sqrt(22.5 × EPS × BVPS)
+         * 안전마진 = (내재가치 - 시장가격) / 내재가치
          */
         function calculateGrahamNumber(eps, bookValuePerShare) {
             if (!eps || !bookValuePerShare || eps <= 0 || bookValuePerShare <= 0) return null;
@@ -524,9 +845,9 @@
         }
 
         /**
-         * 2. Graham & Dodd - Security Analysis
-         * Net-Net Working Capital = Current Assets - Total Liabilities
-         * NCAV per share = Net-Net / Shares Outstanding
+         * 2. Graham & Dodd - 증권분석
+         * 순운전자본 = 유동자산 - 총부채
+         * NCAV/주 = 순운전자본 / 발행주식수
          */
         function calculateNetNet(currentAssets, totalLiabilities, sharesOutstanding) {
             if (!currentAssets || !totalLiabilities || !sharesOutstanding) return null;
@@ -535,9 +856,9 @@
         }
 
         /**
-         * 3. Peter Lynch - One Up on Wall Street
-         * PEG Ratio = P/E Ratio / Earnings Growth Rate
-         * Stock Categories: Fast Grower, Stalwart, Slow Grower, Cyclical, Turnaround, Asset Play
+         * 3. Peter Lynch - 월가의 영웅
+         * PEG = P/E 비율 / 이익성장률
+         * 주식분류: 고성장주, 대형우량주, 저성장주, 경기순환주, 턴어라운드
          */
         function calculatePEG(peRatio, earningsGrowthRate) {
             if (!peRatio || !earningsGrowthRate || earningsGrowthRate <= 0) return null;
@@ -545,18 +866,16 @@
         }
 
         function classifyLynchCategory(earningsGrowth, marketCap, dividendYield, isProfitable) {
-            if (!isProfitable) return { category: 'Turnaround', class: 'lynch-turnaround' };
-            if (earningsGrowth >= 20) return { category: 'Fast Grower', class: 'lynch-fast' };
-            if (earningsGrowth >= 10 && marketCap > 10e9) return { category: 'Stalwart', class: 'lynch-stalwart' };
-            if (earningsGrowth < 10 && dividendYield > 3) return { category: 'Slow Grower', class: 'lynch-slow' };
-            return { category: 'Cyclical', class: 'lynch-cyclical' };
+            if (!isProfitable) return { category: '턴어라운드', class: 'lynch-turnaround', desc: '적자에서 흑자 전환 기대' };
+            if (earningsGrowth >= 20) return { category: '고성장주', class: 'lynch-fast', desc: '연 20% 이상 성장' };
+            if (earningsGrowth >= 10 && marketCap > 10e9) return { category: '대형우량주', class: 'lynch-stalwart', desc: '안정적 10-20% 성장' };
+            if (earningsGrowth < 10 && dividendYield > 3) return { category: '저성장주', class: 'lynch-slow', desc: '낮은 성장, 높은 배당' };
+            return { category: '경기순환주', class: 'lynch-cyclical', desc: '경기에 따라 실적 변동' };
         }
 
         /**
-         * 4. Joel Greenblatt - The Little Book That Beats the Market
-         * Magic Formula = Earnings Yield Rank + ROC Rank (lower is better)
-         * Earnings Yield = EBIT / Enterprise Value
-         * ROC = EBIT / (Net Working Capital + Net Fixed Assets)
+         * 4. Joel Greenblatt - 마법의 공식
+         * 마법 공식 = 이익수익률 순위 + 자본수익률 순위 (낮을수록 좋음)
          */
         function calculateEarningsYield(ebit, enterpriseValue) {
             if (!ebit || !enterpriseValue || enterpriseValue <= 0) return null;
@@ -572,56 +891,33 @@
 
         /**
          * 5. William O'Neil - CAN SLIM
-         * C = Current Quarterly Earnings (>25%)
-         * A = Annual Earnings Growth (>25%)
-         * N = New Products/Management/Highs
-         * S = Supply and Demand (low float, high volume)
-         * L = Leader (RS Rating >80)
-         * I = Institutional Sponsorship
-         * M = Market Direction
          */
         function calculateCANSLIMScore(metrics) {
             let score = 0;
             if (metrics.quarterlyEarningsGrowth > 25) score += 15;
             else if (metrics.quarterlyEarningsGrowth > 15) score += 10;
-
             if (metrics.annualEarningsGrowth > 25) score += 15;
             else if (metrics.annualEarningsGrowth > 15) score += 10;
-
             if (metrics.isNearHigh) score += 10;
             if (metrics.hasNewProduct) score += 10;
-
             if (metrics.relativeStrength > 80) score += 15;
             else if (metrics.relativeStrength > 60) score += 10;
-
             if (metrics.institutionalOwnership > 30) score += 10;
             if (metrics.marketTrend === 'up') score += 15;
-
             return Math.min(score, 100);
         }
 
         /**
-         * 6. Harry Markowitz - Modern Portfolio Theory
-         * Portfolio Variance = Sum of (weight_i × weight_j × covariance_ij)
-         * Sharpe Ratio = (Portfolio Return - Risk Free Rate) / Portfolio Std Dev
+         * 6. Harry Markowitz - 현대포트폴리오이론
          */
         function calculatePortfolioStats(holdings, correlationMatrix) {
             const n = holdings.length;
             if (n === 0) return { volatility: 0, diversificationRatio: 0 };
-
-            // Simplified calculation using returns
             const returns = holdings.map(h => h.gain_loss_pct || 0);
             const weights = holdings.map(h => h.weight / 100);
-
-            // Weighted average return
             const portfolioReturn = returns.reduce((sum, r, i) => sum + r * weights[i], 0);
-
-            // Portfolio volatility (simplified - using individual volatilities)
             const avgVolatility = holdings.reduce((sum, h) => sum + (h.volatility || 20), 0) / n;
-
-            // Diversification benefit estimate
             const diversificationRatio = Math.sqrt(n) / n * 100;
-
             return {
                 portfolioReturn,
                 avgVolatility,
@@ -635,39 +931,22 @@
         }
 
         /**
-         * 7. Fortune's Formula - Kelly Criterion
-         * Kelly % = W - [(1-W)/R]
-         * W = Win probability, R = Win/Loss ratio
-         * Half-Kelly is often recommended for safety
+         * 7. 켈리 공식 - Fortune's Formula
          */
         function calculateKellyPercent(winRate, avgWin, avgLoss) {
             if (!winRate || !avgWin || !avgLoss || avgLoss === 0) return null;
             const R = avgWin / Math.abs(avgLoss);
             const kelly = winRate - ((1 - winRate) / R);
-            return Math.max(0, Math.min(kelly * 100, 100)); // Cap at 100%
-        }
-
-        function calculateOptimalPositionSize(kellyPercent, portfolioValue, currentPosition) {
-            if (!kellyPercent || !portfolioValue) return null;
-            const optimalPosition = (kellyPercent / 100) * portfolioValue;
-            const currentWeight = (currentPosition / portfolioValue) * 100;
-            return {
-                optimalPercent: kellyPercent,
-                currentPercent: currentWeight,
-                adjustment: kellyPercent - currentWeight
-            };
+            return Math.max(0, Math.min(kelly * 100, 100));
         }
 
         /**
-         * 8. Ray Dalio - All Weather Portfolio / Risk Parity
-         * Risk Contribution = Weight × Asset Volatility × Correlation to Portfolio
-         * Target: Equal risk contribution from each asset class
+         * 8. Ray Dalio - 올웨더 포트폴리오
          */
         function calculateRiskContribution(holdings) {
             const totalVolatility = holdings.reduce((sum, h) => {
                 return sum + (h.weight / 100) * (h.volatility || 20);
             }, 0);
-
             return holdings.map(h => {
                 const contribution = ((h.weight / 100) * (h.volatility || 20)) / totalVolatility * 100;
                 return {
@@ -680,17 +959,9 @@
         }
 
         function analyzeEconomicSeasons(holdings) {
-            // Simplified economic environment analysis
-            const categories = {
-                growth: 0,      // Stocks perform well
-                inflation: 0,   // Commodities, TIPS perform well
-                deflation: 0,   // Bonds perform well
-                recession: 0    // Cash, defensive stocks perform well
-            };
-
+            const categories = { growth: 0, inflation: 0, deflation: 0, recession: 0 };
             holdings.forEach(h => {
                 const weight = h.weight;
-                // Classify based on sector (simplified)
                 if (h.sector === 'Technology' || h.sector === 'Consumer Discretionary') {
                     categories.growth += weight;
                 } else if (h.sector === 'Energy' || h.sector === 'Materials') {
@@ -702,55 +973,27 @@
                     categories.recession += weight * 0.5;
                 }
             });
-
             return categories;
         }
 
         /**
-         * 9. Howard Marks - The Most Important Thing
-         * Risk Assessment: Value vs Price, Market Cycle Position
-         * Second-Level Thinking: What does the consensus miss?
+         * 9. Howard Marks - 투자에 대한 생각
          */
         function calculateRiskScore(metrics) {
-            let riskScore = 50; // Base risk
-
-            // Valuation risk
+            let riskScore = 50;
             if (metrics.peRatio > 30) riskScore += 15;
             else if (metrics.peRatio > 20) riskScore += 5;
             else if (metrics.peRatio < 10) riskScore -= 10;
-
-            // Volatility risk
             if (metrics.volatility > 40) riskScore += 15;
             else if (metrics.volatility > 25) riskScore += 5;
-
-            // Concentration risk
             if (metrics.weight > 20) riskScore += 10;
-
-            // Momentum risk (price far from average)
             if (metrics.priceVs52WeekHigh > 0.9) riskScore += 10;
             if (metrics.priceVs52WeekLow < 1.1) riskScore += 5;
-
             return Math.min(100, Math.max(0, riskScore));
         }
 
-        function assessMarketCyclePosition(metrics) {
-            // Simplified cycle assessment
-            const signals = [];
-            if (metrics.avgPE > 25) signals.push('Elevated valuations');
-            if (metrics.volatilityIndex > 25) signals.push('High fear levels');
-            if (metrics.marginDebt > 0) signals.push('High leverage');
-            if (metrics.ipoActivity > 0) signals.push('IPO frenzy');
-
-            const cycleScore = signals.length;
-            if (cycleScore >= 3) return { phase: 'Late Cycle', risk: 'High', color: '#ef4444' };
-            if (cycleScore >= 2) return { phase: 'Mid Cycle', risk: 'Medium', color: '#f59e0b' };
-            return { phase: 'Early Cycle', risk: 'Low', color: '#22c55e' };
-        }
-
         /**
-         * 10. Philip Fisher - Common Stocks and Uncommon Profits
-         * Scuttlebutt Method: Qualitative analysis checklist
-         * 15-point checklist for stock selection
+         * 10. Philip Fisher - 위대한 기업에 투자하라
          */
         function calculateFisherScore(qualitativeMetrics) {
             const checklist = [
@@ -770,13 +1013,135 @@
                 qualitativeMetrics.hasIntegrity,
                 qualitativeMetrics.salesGrowthPotential
             ];
-
             const score = checklist.filter(Boolean).length;
             return (score / 15) * 100;
         }
 
+        /**
+         * 11. Charlie Munger - 멘탈 모델
+         * 역발상 점수: 시장과 반대로 생각하기
+         */
+        function calculateMungerScore(metrics) {
+            let score = 50;
+            // 역발상: 모두가 싫어할 때 사기
+            if (metrics.sentiment < 30 && metrics.fundamentals > 60) score += 25;
+            // 복리의 힘 이해
+            if (metrics.roic > 15) score += 15;
+            // 지속적 경쟁우위 (moat)
+            if (metrics.hasMoat) score += 20;
+            // 경영진 품질
+            if (metrics.managementQuality > 70) score += 10;
+            return Math.min(100, score);
+        }
+
+        /**
+         * 12. John Bogle - 인덱스 투자
+         * 비용 효율성 및 분산
+         */
+        function calculateBogleScore(metrics) {
+            let score = 50;
+            // 낮은 비용
+            if (metrics.expenseRatio < 0.1) score += 20;
+            else if (metrics.expenseRatio < 0.5) score += 10;
+            // 높은 분산
+            if (metrics.holdingsCount > 100) score += 20;
+            else if (metrics.holdingsCount > 50) score += 10;
+            // 장기 보유
+            if (metrics.holdingPeriod > 5) score += 15;
+            else if (metrics.holdingPeriod > 1) score += 5;
+            return Math.min(100, score);
+        }
+
+        /**
+         * 13. Burton Malkiel - 랜덤 워크
+         * 효율적 시장 지표
+         */
+        function calculateMalkielScore(metrics) {
+            // 기술적 분석 의존도 낮을수록 좋음
+            let score = 50;
+            if (!metrics.usesTechnicalAnalysis) score += 15;
+            // 분산 투자
+            if (metrics.diversificationScore > 70) score += 20;
+            // 비용 효율성
+            if (metrics.tradingFrequency < 12) score += 15; // 연 12회 미만 거래
+            return Math.min(100, score);
+        }
+
+        /**
+         * 14. Nassim Taleb - 블랙스완/안티프래질
+         * 테일 리스크 및 안티프래질 지수
+         */
+        function calculateTalebScore(metrics) {
+            let fragility = 50;
+
+            // 레버리지가 높으면 취약
+            if (metrics.debtToEquity > 2) fragility += 20;
+            else if (metrics.debtToEquity > 1) fragility += 10;
+
+            // 집중도가 높으면 취약
+            if (metrics.concentrationRisk > 30) fragility += 15;
+
+            // 옵션성이 있으면 안티프래질
+            if (metrics.hasOptionality) fragility -= 20;
+
+            // 현금이 충분하면 강건
+            if (metrics.cashRatio > 0.3) fragility -= 15;
+
+            // 분류
+            if (fragility >= 70) return { score: fragility, category: 'fragile', label: '취약', color: '#ef4444' };
+            if (fragility >= 40) return { score: fragility, category: 'robust', label: '강건', color: '#eab308' };
+            return { score: fragility, category: 'antifragile', label: '안티프래질', color: '#22c55e' };
+        }
+
+        /**
+         * 15. Seth Klarman - 안전마진 심화
+         * 극단적 가치 투자
+         */
+        function calculateKlarmanScore(metrics) {
+            let score = 0;
+            // 매우 보수적인 안전마진
+            if (metrics.marginOfSafety > 50) score += 30;
+            else if (metrics.marginOfSafety > 30) score += 20;
+            else if (metrics.marginOfSafety > 0) score += 10;
+
+            // 숨겨진 자산
+            if (metrics.hasHiddenAssets) score += 20;
+
+            // 청산 가치
+            if (metrics.priceToLiquidation < 1) score += 25;
+
+            // 인내심 (장기 보유)
+            if (metrics.holdingPeriod > 3) score += 15;
+
+            return Math.min(100, score);
+        }
+
+        /**
+         * 16. Stanley Druckenmiller - 탑다운 분석
+         * 거시경제 환경 점수
+         */
+        function calculateDruckenmillerScore(metrics) {
+            let score = 50;
+
+            // 트렌드 방향
+            if (metrics.trendDirection === 'up') score += 15;
+            else if (metrics.trendDirection === 'down') score -= 10;
+
+            // 유동성 환경
+            if (metrics.liquidityCondition === 'easy') score += 15;
+            else if (metrics.liquidityCondition === 'tight') score -= 15;
+
+            // 모멘텀
+            if (metrics.momentumScore > 70) score += 10;
+
+            // 포지션 사이즈 적절성
+            if (metrics.convictionLevel === 'high' && metrics.positionSize > 10) score += 10;
+
+            return Math.min(100, Math.max(0, score));
+        }
+
         // ============================================
-        // 📊 DASHBOARD RENDERING
+        // 📊 대시보드 렌더링
         // ============================================
 
         const app = document.getElementById('app');
@@ -784,10 +1149,8 @@
         async function loadDashboard() {
             try {
                 const response = await fetch('data.json');
-                if (!response.ok) throw new Error('Data not found');
+                if (!response.ok) throw new Error('데이터를 찾을 수 없습니다');
                 const data = await response.json();
-
-                // Enhance data with book-based calculations
                 const enhancedData = enhanceWithBookMetrics(data);
                 renderDashboard(enhancedData);
             } catch (error) {
@@ -798,14 +1161,11 @@
         function enhanceWithBookMetrics(data) {
             const { holdings, summary } = data;
 
-            // Calculate weights
             holdings.forEach(h => {
                 h.weight = (h.market_value / summary.total_value) * 100;
             });
 
-            // Generate mock metrics for demonstration (in production, fetch from API)
             holdings.forEach(h => {
-                // Simulated metrics based on available data
                 h.peRatio = Math.random() * 40 + 5;
                 h.earningsGrowth = Math.random() * 30 - 5;
                 h.volatility = Math.random() * 30 + 10;
@@ -813,12 +1173,12 @@
                 h.bookValue = h.current_price * (0.3 + Math.random() * 0.5);
                 h.dividendYield = Math.random() * 3;
                 h.relativeStrength = 30 + Math.random() * 60;
+                h.debtToEquity = Math.random() * 2;
+                h.roic = 5 + Math.random() * 20;
 
-                // Graham Number
                 h.grahamNumber = calculateGrahamNumber(h.eps, h.bookValue);
                 h.marginOfSafety = calculateMarginOfSafety(h.grahamNumber, h.current_price);
 
-                // Lynch Classification
                 h.lynchCategory = classifyLynchCategory(
                     h.earningsGrowth,
                     10e9,
@@ -826,14 +1186,11 @@
                     h.eps > 0
                 );
 
-                // PEG Ratio
                 h.pegRatio = calculatePEG(h.peRatio, Math.max(h.earningsGrowth, 1));
 
-                // Greenblatt Magic Formula components
                 h.earningsYield = 5 + Math.random() * 15;
                 h.roc = 10 + Math.random() * 25;
 
-                // Risk Score (Howard Marks)
                 h.riskScore = calculateRiskScore({
                     peRatio: h.peRatio,
                     volatility: h.volatility,
@@ -841,20 +1198,32 @@
                     priceVs52WeekHigh: 0.85 + Math.random() * 0.15,
                     priceVs52WeekLow: 1 + Math.random() * 0.5
                 });
+
+                // 추가 지표
+                h.talebScore = calculateTalebScore({
+                    debtToEquity: h.debtToEquity,
+                    concentrationRisk: h.weight,
+                    hasOptionality: Math.random() > 0.7,
+                    cashRatio: Math.random() * 0.5
+                });
+
+                h.mungerScore = calculateMungerScore({
+                    sentiment: 30 + Math.random() * 40,
+                    fundamentals: 40 + Math.random() * 40,
+                    roic: h.roic,
+                    hasMoat: Math.random() > 0.5,
+                    managementQuality: 40 + Math.random() * 40
+                });
             });
 
-            // Portfolio-level calculations
             const portfolioStats = calculatePortfolioStats(holdings);
             const riskContributions = calculateRiskContribution(holdings);
             const economicSeasons = analyzeEconomicSeasons(holdings);
 
-            // Kelly Criterion (using portfolio win rate from history)
-            const kellyPercent = calculateKellyPercent(0.55, 15, 10); // 55% win rate, 15% avg win, 10% avg loss
-
-            // Sharpe Ratio
+            const kellyPercent = calculateKellyPercent(0.55, 15, 10);
             const sharpeRatio = calculateSharpeRatio(
                 summary.total_gain_loss_pct,
-                4.5, // Risk-free rate
+                4.5,
                 portfolioStats.avgVolatility
             );
 
@@ -877,7 +1246,7 @@
         }
 
         function formatCurrency(value) {
-            return new Intl.NumberFormat('en-US', {
+            return new Intl.NumberFormat('ko-KR', {
                 style: 'currency',
                 currency: 'USD'
             }).format(value);
@@ -892,7 +1261,7 @@
             const date = new Date(isoString);
             return date.toLocaleString('ko-KR', {
                 year: 'numeric',
-                month: 'short',
+                month: 'long',
                 day: 'numeric',
                 hour: '2-digit',
                 minute: '2-digit'
@@ -908,27 +1277,39 @@
         }
 
         function getRiskLevel(score) {
-            if (score >= 80) return { level: 5, label: 'Very High' };
-            if (score >= 60) return { level: 4, label: 'High' };
-            if (score >= 40) return { level: 3, label: 'Medium' };
-            if (score >= 20) return { level: 2, label: 'Low' };
-            return { level: 1, label: 'Very Low' };
+            if (score >= 80) return { level: 5, label: '매우 높음' };
+            if (score >= 60) return { level: 4, label: '높음' };
+            if (score >= 40) return { level: 3, label: '보통' };
+            if (score >= 20) return { level: 2, label: '낮음' };
+            return { level: 1, label: '매우 낮음' };
+        }
+
+        function getGradeClass(value, thresholds) {
+            if (value >= thresholds.a) return 'grade-a';
+            if (value >= thresholds.b) return 'grade-b';
+            if (value >= thresholds.c) return 'grade-c';
+            if (value >= thresholds.d) return 'grade-d';
+            return 'grade-f';
         }
 
         function renderWelcome() {
             app.innerHTML = `
                 <div style="text-align: center; padding: 50px;">
-                    <h2>Welcome to Stock Portfolio Genius</h2>
+                    <h2>포트폴리오 지니어스에 오신 것을 환영합니다</h2>
                     <p style="margin: 20px 0; color: rgba(255,255,255,0.6);">
-                        Advanced Dashboard powered by 10 legendary investment books<br>
-                        GitHub Actions will update this page automatically.
+                        16권의 투자 명저 기반 고급 대시보드<br>
+                        GitHub Actions가 자동으로 데이터를 업데이트합니다.
                     </p>
                 </div>
             `;
             app.classList.remove('loading');
         }
 
+        // Store data globally for modal access
+        let globalData = null;
+
         function renderDashboard(data) {
+            globalData = data;
             const { summary, holdings, last_updated, bookMetrics } = data;
             const gainClass = summary.total_gain_loss >= 0 ? 'positive' : 'negative';
             const riskLevel = getRiskLevel(bookMetrics.avgRiskScore);
@@ -937,23 +1318,28 @@
             app.innerHTML = `
                 <header>
                     <div class="header-content">
-                        <div class="logo">📈 Stock Portfolio Genius</div>
+                        <div class="logo">📈 주식 포트폴리오 지니어스</div>
                         <nav class="nav-links">
-                            <a href="index.html" class="active">Portfolio</a>
-                            <a href="screener.html">Screener</a>
-                            <a href="ideas.html">Ideas</a>
-                            <a href="history.html">History</a>
-                            <a href="manage.html">Manage</a>
+                            <a href="index.html" class="active">포트폴리오</a>
+                            <a href="battle.html">AI 대결</a>
+                            <a href="screener.html">스크리너</a>
+                            <a href="ideas.html">투자아이디어</a>
+                            <a href="history.html">거래내역</a>
+                            <a href="manage.html">관리</a>
+                            <a href="guide.html">가이드</a>
                         </nav>
-                        <div class="last-updated">Updated: ${formatDate(last_updated)}</div>
+                        <div style="display: flex; align-items: center; gap: 15px;">
+                            <div class="last-updated">업데이트: ${formatDate(last_updated)}</div>
+                            <button class="logout-btn" onclick="logout()">로그아웃</button>
+                        </div>
                     </div>
                 </header>
 
                 <main>
-                    <!-- Summary Cards with Book Metrics -->
+                    <!-- 요약 카드 -->
                     <div class="summary-grid">
                         <div class="summary-card highlight">
-                            <div class="label">Total Portfolio Value</div>
+                            <div class="label">총 포트폴리오 가치</div>
                             <div class="value">${formatCurrency(summary.total_value)}</div>
                             <div class="change ${gainClass}">
                                 ${formatCurrency(summary.total_gain_loss)} (${formatPercent(summary.total_gain_loss_pct)})
@@ -961,48 +1347,48 @@
                         </div>
 
                         <div class="summary-card">
-                            <div class="label">Sharpe Ratio <span class="book-ref">Markowitz</span></div>
+                            <div class="label">샤프 비율 <span class="book-ref">마코위츠</span></div>
                             <div class="value ${bookMetrics.sharpeRatio >= 1 ? 'positive' : bookMetrics.sharpeRatio >= 0.5 ? 'neutral' : 'negative'}">
                                 ${bookMetrics.sharpeRatio?.toFixed(2) || 'N/A'}
                             </div>
-                            <div class="tooltip">Risk-adjusted return (>1 = Good)</div>
+                            <div class="tooltip">위험조정수익률 (1 이상 = 양호)</div>
                         </div>
 
                         <div class="summary-card">
-                            <div class="label">Avg PEG Ratio <span class="book-ref">P. Lynch</span></div>
+                            <div class="label">평균 PEG <span class="book-ref">피터 린치</span></div>
                             <div class="value ${bookMetrics.avgPEG <= 1 ? 'positive' : bookMetrics.avgPEG <= 2 ? 'neutral' : 'negative'}">
                                 ${bookMetrics.avgPEG?.toFixed(2) || 'N/A'}
                             </div>
-                            <div class="tooltip">PEG < 1 = Undervalued</div>
+                            <div class="tooltip">PEG < 1 = 저평가</div>
                         </div>
 
                         <div class="summary-card">
-                            <div class="label">Margin of Safety <span class="book-ref">Graham</span></div>
+                            <div class="label">안전마진 <span class="book-ref">그레이엄</span></div>
                             <div class="value ${bookMetrics.avgMarginOfSafety >= 0 ? 'positive' : 'negative'}">
                                 ${bookMetrics.avgMarginOfSafety?.toFixed(1) || 'N/A'}%
                             </div>
-                            <div class="tooltip">Higher = Safer buy</div>
+                            <div class="tooltip">높을수록 안전</div>
                         </div>
 
                         <div class="summary-card ${riskLevel.level >= 4 ? 'danger' : riskLevel.level >= 3 ? 'warning' : ''}">
-                            <div class="label">Risk Score <span class="book-ref">H. Marks</span></div>
+                            <div class="label">위험 점수 <span class="book-ref">하워드 막스</span></div>
                             <div class="value">${bookMetrics.avgRiskScore?.toFixed(0) || 'N/A'}</div>
                             <div class="risk-meter">
                                 ${[1,2,3,4,5].map(i => `
                                     <div class="risk-bar ${i <= riskLevel.level ? 'active' : ''}"></div>
                                 `).join('')}
                             </div>
-                            <div class="tooltip">${riskLevel.label} Risk</div>
+                            <div class="tooltip">${riskLevel.label}</div>
                         </div>
 
                         <div class="summary-card">
-                            <div class="label">Kelly Optimal <span class="book-ref">Fortune's Formula</span></div>
+                            <div class="label">켈리 최적 비중 <span class="book-ref">켈리 공식</span></div>
                             <div class="value">${bookMetrics.kellyPercent?.toFixed(1) || 'N/A'}%</div>
-                            <div class="tooltip">Optimal position sizing</div>
+                            <div class="tooltip">최적 포지션 크기</div>
                         </div>
 
                         <div class="summary-card">
-                            <div class="label">Diversification <span class="book-ref">Markowitz</span></div>
+                            <div class="label">분산화 점수 <span class="book-ref">마코위츠</span></div>
                             <div class="value">${bookMetrics.diversificationScore?.toFixed(0) || 'N/A'}%</div>
                             <div class="progress-bar">
                                 <div class="progress-fill" style="width: ${bookMetrics.diversificationScore || 0}%; background: #4ade80;"></div>
@@ -1010,17 +1396,17 @@
                         </div>
 
                         <div class="summary-card">
-                            <div class="label">Holdings</div>
+                            <div class="label">보유 종목</div>
                             <div class="value">${summary.holdings_count}</div>
-                            <div class="tooltip">Max Concentration: ${bookMetrics.concentrationRisk?.toFixed(1)}%</div>
+                            <div class="tooltip">최대 집중도: ${bookMetrics.concentrationRisk?.toFixed(1)}%</div>
                         </div>
                     </div>
 
-                    <!-- AI Insights Section -->
+                    <!-- 투자 인사이트 -->
                     <div class="chart-container">
                         <h3 class="section-title collapsible-header" onclick="toggleSection(this)">
-                            🧠 Investment Insights
-                            <span class="section-subtitle">Based on 10 legendary investment books</span>
+                            🧠 투자 인사이트
+                            <span class="section-subtitle">16권의 투자 명저 기반 분석</span>
                         </h3>
                         <div class="collapsible-content">
                             <div class="two-col-grid" style="margin-top: 15px;">
@@ -1029,32 +1415,32 @@
                         </div>
                     </div>
 
-                    <!-- Holdings Table with Book Metrics -->
-                    <h2 class="section-title">📊 Holdings Analysis</h2>
+                    <!-- 보유 종목 테이블 -->
+                    <h2 class="section-title">📊 보유 종목 분석 <span class="section-subtitle">클릭하여 상세 분석 보기</span></h2>
                     <div class="holdings-container">
                         <table class="holdings-table">
                             <thead>
                                 <tr>
-                                    <th>Symbol</th>
-                                    <th>Category<br><small>Lynch</small></th>
-                                    <th>Weight</th>
-                                    <th>Current</th>
+                                    <th>종목</th>
+                                    <th>분류<br><small>린치</small></th>
+                                    <th>비중</th>
+                                    <th>현재가</th>
                                     <th>P/E</th>
-                                    <th>PEG<br><small>Lynch</small></th>
-                                    <th>Graham #<br><small>Graham</small></th>
-                                    <th>MoS<br><small>Graham</small></th>
-                                    <th>Risk<br><small>Marks</small></th>
-                                    <th>Gain/Loss</th>
+                                    <th>PEG<br><small>린치</small></th>
+                                    <th>그레이엄#<br><small>그레이엄</small></th>
+                                    <th>안전마진<br><small>그레이엄</small></th>
+                                    <th>위험<br><small>막스</small></th>
+                                    <th>손익</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                ${holdings.map(h => {
+                                ${holdings.map((h, idx) => {
                                     const mosClass = (h.marginOfSafety || 0) >= 0 ? 'positive' : 'negative';
                                     const pegClass = (h.pegRatio || 99) <= 1 ? 'positive' : (h.pegRatio <= 2 ? 'neutral' : 'negative');
                                     const riskClass = getScoreClass(100 - h.riskScore);
 
                                     return `
-                                    <tr>
+                                    <tr onclick="openStockModal(${idx})">
                                         <td class="symbol-cell">
                                             ${h.symbol}
                                             <div class="symbol-name">${h.name}</div>
@@ -1083,12 +1469,12 @@
                         </table>
                     </div>
 
-                    <!-- Ray Dalio's Economic Seasons -->
+                    <!-- 차트 그리드 -->
                     <div class="three-col-grid">
                         <div class="chart-container">
                             <h3 class="section-title">
-                                🌤️ Economic Exposure
-                                <span class="book-ref">R. Dalio</span>
+                                🌤️ 경제환경 노출도
+                                <span class="book-ref">레이 달리오</span>
                             </h3>
                             <div class="allocation-chart">
                                 <canvas id="economicSeasonsChart"></canvas>
@@ -1097,8 +1483,8 @@
 
                         <div class="chart-container">
                             <h3 class="section-title">
-                                ⚖️ Risk Contribution
-                                <span class="book-ref">Risk Parity</span>
+                                ⚖️ 위험 기여도
+                                <span class="book-ref">리스크 패리티</span>
                             </h3>
                             <div class="allocation-chart">
                                 <canvas id="riskContributionChart"></canvas>
@@ -1106,25 +1492,25 @@
                         </div>
 
                         <div class="chart-container">
-                            <h3 class="section-title">🥧 Portfolio Allocation</h3>
+                            <h3 class="section-title">🥧 포트폴리오 배분</h3>
                             <div class="allocation-chart">
                                 <canvas id="allocationChart"></canvas>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Portfolio Value History Chart -->
+                    <!-- 포트폴리오 가치 히스토리 -->
                     <div class="chart-container" id="historyChartContainer" style="display:none;">
-                        <h3 class="section-title">📈 Portfolio Value History</h3>
+                        <h3 class="section-title">📈 포트폴리오 가치 추이</h3>
                         <div style="height: 300px;">
                             <canvas id="historyChart"></canvas>
                         </div>
                     </div>
 
-                    <!-- Book Reference Panel -->
+                    <!-- 적용된 투자 방법론 -->
                     <div class="analysis-panel">
                         <h3 class="section-title collapsible-header" onclick="toggleSection(this)">
-                            📚 Applied Investment Methodologies
+                            📚 적용된 투자 방법론 (16권)
                         </h3>
                         <div class="collapsible-content">
                             <div class="four-col-grid" style="margin-top: 15px;">
@@ -1135,12 +1521,11 @@
                 </main>
 
                 <footer>
-                    <p>Stock Portfolio Genius | Advanced Analysis powered by 10 Investment Classics</p>
-                    <p>Graham • Lynch • Greenblatt • O'Neil • Markowitz • Dalio • Marks • Fisher • Poundstone</p>
+                    <p>주식 포트폴리오 지니어스 | 16권의 투자 명저 기반 고급 분석</p>
+                    <p>그레이엄 • 린치 • 그린블라트 • 오닐 • 마코위츠 • 달리오 • 막스 • 피셔 • 멍거 • 탈렙</p>
                 </footer>
             `;
 
-            // Render Charts
             renderAllocationChart(holdings);
             renderEconomicSeasonsChart(bookMetrics.economicSeasons);
             renderRiskContributionChart(bookMetrics.riskContributions);
@@ -1150,82 +1535,66 @@
         function generateInsights(data, bookMetrics) {
             const insights = [];
 
-            // Graham/Dodd Insight
             if (bookMetrics.avgMarginOfSafety < 0) {
                 insights.push({
                     type: 'warning',
                     icon: '⚠️',
-                    title: 'Graham: Negative Margin of Safety',
-                    content: `Your portfolio is trading ${Math.abs(bookMetrics.avgMarginOfSafety).toFixed(1)}% above intrinsic value on average. Consider value stocks or wait for better entry points.`
+                    title: '그레이엄: 음수 안전마진',
+                    content: `포트폴리오가 평균 내재가치보다 ${Math.abs(bookMetrics.avgMarginOfSafety).toFixed(1)}% 높은 가격에 거래되고 있습니다. 가치주 편입 또는 더 나은 매수 시점을 기다리세요.`
                 });
             } else {
                 insights.push({
                     type: 'success',
                     icon: '✅',
-                    title: 'Graham: Positive Safety Margin',
-                    content: `Your portfolio has ${bookMetrics.avgMarginOfSafety.toFixed(1)}% margin of safety. Good value positioning following Benjamin Graham's principles.`
+                    title: '그레이엄: 양수 안전마진',
+                    content: `포트폴리오가 ${bookMetrics.avgMarginOfSafety.toFixed(1)}% 안전마진을 보유하고 있습니다. 벤자민 그레이엄의 원칙에 부합하는 좋은 가치 포지셔닝입니다.`
                 });
             }
 
-            // Lynch PEG Insight
             if (bookMetrics.avgPEG > 2) {
                 insights.push({
                     type: 'warning',
                     icon: '📊',
-                    title: 'Lynch: High PEG Ratio',
-                    content: `Average PEG of ${bookMetrics.avgPEG.toFixed(2)} suggests growth is expensive. Peter Lynch recommends PEG < 1 for best value.`
+                    title: '린치: 높은 PEG 비율',
+                    content: `평균 PEG ${bookMetrics.avgPEG.toFixed(2)}는 성장 대비 비싼 가격을 나타냅니다. 피터 린치는 PEG < 1을 권장합니다.`
                 });
             }
 
-            // Risk Parity Insight (Dalio)
             const maxRiskConcentration = Math.max(...bookMetrics.riskContributions.map(r => r.riskContribution));
             if (maxRiskConcentration > 30) {
                 insights.push({
                     type: 'warning',
                     icon: '⚖️',
-                    title: 'Dalio: Unbalanced Risk',
-                    content: `One position contributes ${maxRiskConcentration.toFixed(1)}% of portfolio risk. Ray Dalio's risk parity suggests more balanced risk distribution.`
+                    title: '달리오: 불균형 리스크',
+                    content: `한 종목이 포트폴리오 리스크의 ${maxRiskConcentration.toFixed(1)}%를 차지합니다. 레이 달리오의 리스크 패리티는 더 균형 잡힌 리스크 분배를 권장합니다.`
                 });
             }
 
-            // Sharpe Ratio Insight (Markowitz)
-            if (bookMetrics.sharpeRatio !== null) {
-                if (bookMetrics.sharpeRatio >= 1) {
-                    insights.push({
-                        type: 'success',
-                        icon: '🎯',
-                        title: 'Markowitz: Strong Risk-Adjusted Return',
-                        content: `Sharpe Ratio of ${bookMetrics.sharpeRatio.toFixed(2)} indicates excellent risk-adjusted performance per Modern Portfolio Theory.`
-                    });
-                } else if (bookMetrics.sharpeRatio < 0.5) {
-                    insights.push({
-                        type: 'warning',
-                        icon: '📉',
-                        title: 'Markowitz: Low Risk-Adjusted Return',
-                        content: `Sharpe Ratio of ${bookMetrics.sharpeRatio.toFixed(2)} suggests poor risk-adjusted returns. Consider rebalancing for better efficiency.`
-                    });
-                }
-            }
-
-            // Diversification Insight
-            if (bookMetrics.diversificationScore < 50) {
+            if (bookMetrics.sharpeRatio !== null && bookMetrics.sharpeRatio < 0.5) {
                 insights.push({
                     type: 'warning',
-                    icon: '🔀',
-                    title: 'MPT: Low Diversification',
-                    content: `Diversification score of ${bookMetrics.diversificationScore.toFixed(0)}% is below optimal. Add uncorrelated assets to reduce portfolio risk.`
+                    icon: '📉',
+                    title: '마코위츠: 낮은 위험조정수익률',
+                    content: `샤프 비율 ${bookMetrics.sharpeRatio.toFixed(2)}는 위험 대비 낮은 수익을 나타냅니다. 리밸런싱을 통해 효율성을 개선하세요.`
                 });
             }
 
-            // Concentration Risk (Marks)
             if (bookMetrics.concentrationRisk > 25) {
                 insights.push({
                     type: 'warning',
                     icon: '🎲',
-                    title: 'Marks: High Concentration Risk',
-                    content: `Top position is ${bookMetrics.concentrationRisk.toFixed(1)}% of portfolio. Howard Marks warns about asymmetric risk in concentrated positions.`
+                    title: '막스: 집중 리스크',
+                    content: `최대 포지션이 ${bookMetrics.concentrationRisk.toFixed(1)}%입니다. 하워드 막스는 집중 포지션의 비대칭 리스크에 대해 경고합니다.`
                 });
             }
+
+            // 탈렙 인사이트
+            insights.push({
+                type: 'info',
+                icon: '🦢',
+                title: '탈렙: 블랙스완 대비',
+                content: `극단적 시장 충격에 대비하세요. 레버리지를 낮추고 옵션성(업사이드 잠재력)이 있는 포지션을 유지하세요.`
+            });
 
             return insights.map(i => `
                 <div class="insight-card ${i.type === 'warning' ? 'warning' : ''}">
@@ -1237,16 +1606,22 @@
 
         function renderBookReferences() {
             const books = [
-                { title: 'The Intelligent Investor', author: 'B. Graham', metric: 'Margin of Safety, Graham Number' },
-                { title: 'Security Analysis', author: 'Graham & Dodd', metric: 'Net-Net Value, Fundamental Analysis' },
-                { title: 'One Up on Wall Street', author: 'P. Lynch', metric: 'PEG Ratio, Stock Categories' },
-                { title: 'The Little Book That Beats', author: 'J. Greenblatt', metric: 'Magic Formula (ROC + EY)' },
-                { title: 'How to Make Money in Stocks', author: 'W. O\'Neil', metric: 'CAN SLIM Score' },
-                { title: 'Portfolio Selection', author: 'H. Markowitz', metric: 'Sharpe Ratio, Diversification' },
-                { title: 'Fortune\'s Formula', author: 'W. Poundstone', metric: 'Kelly Criterion %' },
-                { title: 'Principles (All Weather)', author: 'R. Dalio', metric: 'Risk Parity, Economic Seasons' },
-                { title: 'The Most Important Thing', author: 'H. Marks', metric: 'Risk Score, Market Cycle' },
-                { title: 'Common Stocks Uncommon Profits', author: 'P. Fisher', metric: 'Qualitative Checklist' }
+                { title: '현명한 투자자', author: 'B. 그레이엄', metric: '안전마진, 그레이엄 넘버' },
+                { title: '증권분석', author: '그레이엄 & 도드', metric: '순순자산가치, 기본적 분석' },
+                { title: '월가의 영웅', author: '피터 린치', metric: 'PEG 비율, 주식 분류' },
+                { title: '시장을 이기는 작은 책', author: '조엘 그린블라트', metric: '마법 공식 (ROC + EY)' },
+                { title: '주식시장에서 돈버는 법', author: '윌리엄 오닐', metric: 'CAN SLIM 점수' },
+                { title: '포트폴리오 선택', author: '해리 마코위츠', metric: '샤프 비율, 분산화' },
+                { title: '행운의 공식', author: '윌리엄 파운드스톤', metric: '켈리 기준 %' },
+                { title: '원칙 (올웨더)', author: '레이 달리오', metric: '리스크 패리티, 경제 시즌' },
+                { title: '투자에 대한 생각', author: '하워드 막스', metric: '위험 점수, 시장 사이클' },
+                { title: '위대한 기업에 투자하라', author: '필립 피셔', metric: '정성적 체크리스트' },
+                { title: '가난한 찰리의 연감', author: '찰리 멍거', metric: '멘탈 모델, 역발상' },
+                { title: '랜덤워크 투자수업', author: '버튼 말키엘', metric: '효율적 시장, 분산' },
+                { title: '보글의 투자 원칙', author: '존 보글', metric: '인덱스 투자, 비용 효율' },
+                { title: '블랙 스완', author: '나심 탈렙', metric: '테일 리스크, 안티프래질' },
+                { title: '안전마진', author: '세스 클라만', metric: '극단적 가치투자' },
+                { title: '새로운 시장의 마법사들', author: '잭 슈웨거', metric: '드러켄밀러 탑다운' }
             ];
 
             return books.map(b => `
@@ -1257,6 +1632,242 @@
                 </div>
             `).join('');
         }
+
+        // ============================================
+        // 📱 종목 상세 모달
+        // ============================================
+
+        function openStockModal(idx) {
+            if (!globalData) return;
+            const h = globalData.holdings[idx];
+            const modal = document.getElementById('stockModal');
+
+            document.getElementById('modalSymbol').textContent = h.symbol;
+            document.getElementById('modalName').textContent = h.name;
+
+            const mosGrade = h.marginOfSafety >= 20 ? 'A' : h.marginOfSafety >= 0 ? 'B' : h.marginOfSafety >= -20 ? 'C' : 'D';
+            const pegGrade = h.pegRatio <= 0.5 ? 'A' : h.pegRatio <= 1 ? 'B' : h.pegRatio <= 2 ? 'C' : 'D';
+            const riskGrade = h.riskScore <= 30 ? 'A' : h.riskScore <= 50 ? 'B' : h.riskScore <= 70 ? 'C' : 'D';
+
+            document.getElementById('modalBody').innerHTML = `
+                <!-- 기본 정보 -->
+                <div class="modal-section">
+                    <div class="modal-section-title">📌 기본 정보</div>
+                    <div class="metric-grid">
+                        <div class="metric-card">
+                            <div class="metric-label">현재가</div>
+                            <div class="metric-value">${formatCurrency(h.current_price)}</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-label">포트폴리오 비중</div>
+                            <div class="metric-value">${h.weight.toFixed(1)}%</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-label">손익</div>
+                            <div class="metric-value ${h.gain_loss >= 0 ? 'positive' : 'negative'}">${formatCurrency(h.gain_loss)} (${formatPercent(h.gain_loss_pct)})</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-label">린치 분류</div>
+                            <div class="metric-value"><span class="lynch-category ${h.lynchCategory.class}">${h.lynchCategory.category}</span></div>
+                            <div class="metric-desc">${h.lynchCategory.desc}</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 벤자민 그레이엄 분석 -->
+                <div class="modal-section">
+                    <div class="modal-section-title">📖 벤자민 그레이엄 분석 <span class="book-ref">현명한 투자자</span></div>
+                    <div class="metric-grid">
+                        <div class="metric-card">
+                            <div class="metric-label">그레이엄 넘버</div>
+                            <div class="metric-value">${h.grahamNumber ? formatCurrency(h.grahamNumber) : 'N/A'}</div>
+                            <div class="formula-box">√(22.5 × EPS × 주당순자산)</div>
+                            <div class="metric-desc">그레이엄 넘버는 주식의 최대 적정 가격을 나타냅니다. 현재가가 이보다 낮으면 저평가입니다.</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-label">안전마진</div>
+                            <div class="metric-value ${h.marginOfSafety >= 0 ? 'positive' : 'negative'}">${h.marginOfSafety?.toFixed(1)}%</div>
+                            <div class="metric-desc">
+                                <span class="analysis-grade grade-${mosGrade.toLowerCase()}">${mosGrade}등급</span>
+                                ${h.marginOfSafety >= 0 ? '✅ 내재가치 대비 저평가' : '⚠️ 내재가치 대비 고평가'}
+                            </div>
+                            <div class="formula-box">(내재가치 - 현재가) / 내재가치 × 100</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 피터 린치 분석 -->
+                <div class="modal-section">
+                    <div class="modal-section-title">📖 피터 린치 분석 <span class="book-ref">월가의 영웅</span></div>
+                    <div class="metric-grid">
+                        <div class="metric-card">
+                            <div class="metric-label">PEG 비율</div>
+                            <div class="metric-value ${h.pegRatio <= 1 ? 'positive' : h.pegRatio <= 2 ? 'neutral' : 'negative'}">${h.pegRatio?.toFixed(2)}</div>
+                            <div class="formula-box">P/E 비율 / 이익성장률</div>
+                            <div class="metric-desc">
+                                <span class="analysis-grade grade-${pegGrade.toLowerCase()}">${pegGrade}등급</span>
+                                ${h.pegRatio <= 1 ? '✅ 성장 대비 저평가 (린치 추천)' : h.pegRatio <= 2 ? '⚡ 적정 수준' : '⚠️ 성장 대비 고평가'}
+                            </div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-label">P/E 비율</div>
+                            <div class="metric-value">${h.peRatio?.toFixed(1)}</div>
+                            <div class="metric-desc">이익 대비 주가 수준. 동종 업계 평균과 비교하세요.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 하워드 막스 분석 -->
+                <div class="modal-section">
+                    <div class="modal-section-title">📖 하워드 막스 위험 분석 <span class="book-ref">투자에 대한 생각</span></div>
+                    <div class="metric-grid">
+                        <div class="metric-card">
+                            <div class="metric-label">위험 점수</div>
+                            <div class="metric-value">${h.riskScore?.toFixed(0)} / 100</div>
+                            <div class="risk-meter">
+                                ${[1,2,3,4,5].map(i => `
+                                    <div class="risk-bar ${i <= Math.ceil(h.riskScore / 20) ? 'active' : ''}"></div>
+                                `).join('')}
+                            </div>
+                            <div class="metric-desc">
+                                <span class="analysis-grade grade-${riskGrade.toLowerCase()}">${riskGrade}등급</span>
+                                밸류에이션, 변동성, 집중도를 종합한 위험 지표
+                            </div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-label">변동성</div>
+                            <div class="metric-value">${h.volatility?.toFixed(1)}%</div>
+                            <div class="metric-desc">가격 변동폭. 높을수록 위험하지만 기회도 큼.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 나심 탈렙 분석 -->
+                <div class="modal-section">
+                    <div class="modal-section-title">📖 나심 탈렙 분석 <span class="book-ref">블랙 스완 / 안티프래질</span></div>
+                    <div class="metric-grid">
+                        <div class="metric-card">
+                            <div class="metric-label">프래질리티 점수</div>
+                            <div class="metric-value" style="color: ${h.talebScore.color}">${h.talebScore.label}</div>
+                            <div class="taleb-indicator">
+                                <div class="taleb-block ${h.talebScore.category === 'fragile' ? 'fragile' : ''}"></div>
+                                <div class="taleb-block ${h.talebScore.category === 'robust' ? 'robust' : ''}"></div>
+                                <div class="taleb-block ${h.talebScore.category === 'antifragile' ? 'antifragile' : ''}"></div>
+                            </div>
+                            <div class="metric-desc">
+                                ${h.talebScore.category === 'fragile' ? '⚠️ 극단적 충격에 취약. 레버리지와 집중도를 줄이세요.' :
+                                  h.talebScore.category === 'robust' ? '⚡ 충격에 견딜 수 있음. 현상 유지 가능.' :
+                                  '✅ 변동성에서 이익을 얻을 수 있는 구조'}
+                            </div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-label">부채비율</div>
+                            <div class="metric-value">${(h.debtToEquity * 100).toFixed(0)}%</div>
+                            <div class="metric-desc">높은 레버리지는 프래질리티를 높입니다.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 찰리 멍거 분석 -->
+                <div class="modal-section">
+                    <div class="modal-section-title">📖 찰리 멍거 분석 <span class="book-ref">가난한 찰리의 연감</span></div>
+                    <div class="metric-grid">
+                        <div class="metric-card">
+                            <div class="metric-label">멍거 점수</div>
+                            <div class="metric-value">${h.mungerScore?.toFixed(0)} / 100</div>
+                            <div class="metric-desc">경쟁우위(Moat), ROIC, 경영진 품질을 종합 평가</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-label">투하자본수익률 (ROIC)</div>
+                            <div class="metric-value ${h.roic > 15 ? 'positive' : h.roic > 10 ? 'neutral' : 'negative'}">${h.roic?.toFixed(1)}%</div>
+                            <div class="metric-desc">${h.roic > 15 ? '✅ 뛰어난 자본 효율성' : h.roic > 10 ? '⚡ 양호한 수준' : '⚠️ 자본 효율성 개선 필요'}</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 마법 공식 분석 -->
+                <div class="modal-section">
+                    <div class="modal-section-title">📖 그린블라트 마법 공식 <span class="book-ref">시장을 이기는 작은 책</span></div>
+                    <div class="metric-grid">
+                        <div class="metric-card">
+                            <div class="metric-label">이익수익률 (Earnings Yield)</div>
+                            <div class="metric-value">${h.earningsYield?.toFixed(1)}%</div>
+                            <div class="formula-box">EBIT / 기업가치</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-label">자본수익률 (ROC)</div>
+                            <div class="metric-value">${h.roc?.toFixed(1)}%</div>
+                            <div class="formula-box">EBIT / (순운전자본 + 고정자산)</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 투자 권장사항 -->
+                <div class="recommendation-box">
+                    <div class="recommendation-title">💡 종합 투자 권장사항</div>
+                    <ul class="recommendation-list">
+                        ${generateRecommendations(h)}
+                    </ul>
+                </div>
+            `;
+
+            modal.classList.add('active');
+        }
+
+        function generateRecommendations(h) {
+            const recs = [];
+
+            if (h.marginOfSafety < -30) {
+                recs.push(`그레이엄 관점: 현재가가 내재가치보다 ${Math.abs(h.marginOfSafety).toFixed(0)}% 높습니다. 매수보다 관망 권장.`);
+            } else if (h.marginOfSafety > 20) {
+                recs.push(`그레이엄 관점: ${h.marginOfSafety.toFixed(0)}% 안전마진으로 매력적인 가치주입니다.`);
+            }
+
+            if (h.pegRatio <= 1) {
+                recs.push(`린치 관점: PEG ${h.pegRatio.toFixed(2)}로 성장 대비 저평가. 추가 매수 고려.`);
+            } else if (h.pegRatio > 2.5) {
+                recs.push(`린치 관점: PEG ${h.pegRatio.toFixed(2)}로 성장 대비 고평가. 비중 축소 검토.`);
+            }
+
+            if (h.weight > 25) {
+                recs.push(`막스 관점: ${h.weight.toFixed(1)}% 집중도는 비대칭 리스크를 초래. 분산 필요.`);
+            }
+
+            if (h.talebScore.category === 'fragile') {
+                recs.push(`탈렙 관점: 블랙스완 이벤트에 취약. 헤지 전략 또는 포지션 축소 권장.`);
+            }
+
+            if (h.roic > 20) {
+                recs.push(`멍거 관점: 뛰어난 ROIC(${h.roic.toFixed(1)}%)는 경쟁우위의 증거. 장기 보유 적합.`);
+            }
+
+            if (recs.length === 0) {
+                recs.push('종합적으로 현재 포지션 유지가 적절해 보입니다. 정기적으로 재평가하세요.');
+            }
+
+            return recs.map(r => `<li>${r}</li>`).join('');
+        }
+
+        function closeStockModal() {
+            document.getElementById('stockModal').classList.remove('active');
+        }
+
+        function closeModalOnOverlay(event) {
+            if (event.target === document.getElementById('stockModal')) {
+                closeStockModal();
+            }
+        }
+
+        // ESC key to close modal
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeStockModal();
+            }
+        });
+
+        // ============================================
+        // 📊 차트 렌더링
+        // ============================================
 
         function renderAllocationChart(holdings) {
             const ctx = document.getElementById('allocationChart').getContext('2d');
@@ -1291,16 +1902,16 @@
             new Chart(ctx, {
                 type: 'radar',
                 data: {
-                    labels: ['Growth Rising', 'Inflation Rising', 'Growth Falling', 'Inflation Falling'],
+                    labels: ['성장 상승', '인플레이션 상승', '성장 하락', '인플레이션 하락'],
                     datasets: [{
-                        label: 'Portfolio Exposure',
+                        label: '포트폴리오 노출도',
                         data: [seasons.growth, seasons.inflation, seasons.recession, seasons.deflation],
                         backgroundColor: 'rgba(74, 222, 128, 0.2)',
                         borderColor: '#4ade80',
                         borderWidth: 2,
                         pointBackgroundColor: '#4ade80'
                     }, {
-                        label: 'Ideal (25% each)',
+                        label: '이상적 (각 25%)',
                         data: [25, 25, 25, 25],
                         backgroundColor: 'rgba(255, 255, 255, 0.05)',
                         borderColor: 'rgba(255, 255, 255, 0.3)',
@@ -1339,14 +1950,14 @@
                 data: {
                     labels: riskContributions.map(r => r.symbol),
                     datasets: [{
-                        label: 'Risk Contribution %',
+                        label: '위험 기여도 %',
                         data: riskContributions.map(r => r.riskContribution),
                         backgroundColor: riskContributions.map(r =>
                             r.isOverweight ? '#ef4444' : '#4ade80'
                         ),
                         borderRadius: 4
                     }, {
-                        label: 'Weight %',
+                        label: '비중 %',
                         data: riskContributions.map(r => r.weight),
                         backgroundColor: 'rgba(255, 255, 255, 0.2)',
                         borderRadius: 4
@@ -1389,7 +2000,7 @@
                 data: {
                     labels: portfolioHistory.map(d => d.date),
                     datasets: [{
-                        label: 'Portfolio Value',
+                        label: '포트폴리오 가치',
                         data: portfolioHistory.map(d => d.total_value),
                         borderColor: '#4ade80',
                         backgroundColor: 'rgba(74, 222, 128, 0.1)',
@@ -1433,9 +2044,6 @@
             const content = header.nextElementSibling;
             content.classList.toggle('collapsed');
         }
-
-        // Load dashboard on page load
-        loadDashboard();
     </script>
 </body>
 </html>
