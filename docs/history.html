@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Transaction History - Stock Portfolio Genius</title>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --success: #16a34a;
+            --warning: #f59e0b;
+            --danger: #dc2626;
+            --bg-dark: #1e293b;
+            --bg-card: #334155;
+            --text-primary: #f1f5f9;
+            --text-secondary: #94a3b8;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container { max-width: 1200px; margin: 0 auto; }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        h1 { font-size: 1.8rem; }
+
+        .nav-links { display: flex; gap: 15px; flex-wrap: wrap; }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            transition: all 0.2s;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--text-primary);
+            background: var(--bg-card);
+        }
+
+        .card {
+            background: var(--bg-card);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 24px;
+        }
+
+        .card h2 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+        }
+
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .stat-card {
+            background: var(--bg-dark);
+            border-radius: 8px;
+            padding: 16px;
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 4px;
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+
+        /* Form */
+        .form-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .form-group label {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+
+        .form-group input,
+        .form-group select {
+            padding: 10px 12px;
+            border: 2px solid #475569;
+            border-radius: 6px;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            font-size: 1rem;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-primary { background: var(--primary); color: white; }
+        .btn-success { background: var(--success); color: white; }
+        .btn-danger { background: var(--danger); color: white; }
+        .btn-secondary { background: #475569; color: white; }
+        .btn-sm { padding: 6px 12px; font-size: 0.85rem; }
+
+        /* Transaction Type Badges */
+        .badge {
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .badge-buy { background: #166534; color: #bbf7d0; }
+        .badge-sell { background: #991b1b; color: #fecaca; }
+        .badge-dividend { background: #1d4ed8; color: #bfdbfe; }
+
+        /* Table */
+        .table-container { overflow-x: auto; }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 12px 16px;
+            text-align: left;
+            border-bottom: 1px solid #475569;
+        }
+
+        th {
+            color: var(--text-secondary);
+            font-weight: 600;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+        }
+
+        tr:hover { background: rgba(255,255,255,0.03); }
+
+        .positive { color: #4ade80; }
+        .negative { color: #f87171; }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 10px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: #475569;
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-bottom: 24px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -24px;
+            top: 4px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--primary);
+        }
+
+        .timeline-item.buy::before { background: var(--success); }
+        .timeline-item.sell::before { background: var(--danger); }
+        .timeline-item.dividend::before { background: var(--primary); }
+
+        .timeline-date {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            margin-bottom: 4px;
+        }
+
+        .timeline-content {
+            background: var(--bg-dark);
+            border-radius: 8px;
+            padding: 12px;
+        }
+
+        .timeline-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .timeline-symbol {
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        .timeline-details {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* Filters */
+        .filters {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        .filter-btn {
+            padding: 8px 16px;
+            border: 2px solid #475569;
+            border-radius: 6px;
+            background: transparent;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            border-color: var(--primary);
+            color: var(--text-primary);
+            background: rgba(37, 99, 235, 0.2);
+        }
+
+        /* Toast */
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 16px 24px;
+            border-radius: 8px;
+            color: white;
+            font-weight: 500;
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 0.3s;
+            z-index: 1000;
+        }
+
+        .toast.active { transform: translateY(0); opacity: 1; }
+        .toast.success { background: var(--success); }
+        .toast.error { background: var(--danger); }
+
+        /* View Toggle */
+        .view-toggle {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .form-row { grid-template-columns: 1fr; }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Transaction History</h1>
+            <nav class="nav-links">
+                <a href="index.html">Portfolio</a>
+                <a href="screener.html">Screener</a>
+                <a href="ideas.html">Ideas</a>
+                <a href="history.html" class="active">History</a>
+                <a href="manage.html">Manage</a>
+            </nav>
+        </header>
+
+        <!-- Stats -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-value" id="totalTransactions">0</div>
+                <div class="stat-label">Total Transactions</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="totalBuys">0</div>
+                <div class="stat-label">Buy Orders</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="totalSells">0</div>
+                <div class="stat-label">Sell Orders</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value positive" id="realizedGains">$0</div>
+                <div class="stat-label">Realized Gains</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="totalDividends">$0</div>
+                <div class="stat-label">Dividends</div>
+            </div>
+        </div>
+
+        <!-- Add Transaction -->
+        <div class="card">
+            <h2>Add Transaction</h2>
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Type</label>
+                    <select id="txType">
+                        <option value="buy">Buy (매수)</option>
+                        <option value="sell">Sell (매도)</option>
+                        <option value="dividend">Dividend (배당)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Symbol</label>
+                    <input type="text" id="txSymbol" placeholder="AAPL" style="text-transform: uppercase;">
+                </div>
+                <div class="form-group">
+                    <label>Date</label>
+                    <input type="date" id="txDate">
+                </div>
+                <div class="form-group" id="sharesGroup">
+                    <label>Shares</label>
+                    <input type="number" id="txShares" placeholder="10" min="0.001" step="0.001">
+                </div>
+                <div class="form-group">
+                    <label id="priceLabel">Price per Share ($)</label>
+                    <input type="number" id="txPrice" placeholder="150.00" min="0.01" step="0.01">
+                </div>
+                <div class="form-group">
+                    <label>Notes (optional)</label>
+                    <input type="text" id="txNotes" placeholder="Reason for trade...">
+                </div>
+            </div>
+            <div style="display: flex; gap: 12px;">
+                <button class="btn btn-success" onclick="addTransaction()">Add Transaction</button>
+            </div>
+        </div>
+
+        <!-- Transaction List -->
+        <div class="card">
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; margin-bottom: 20px;">
+                <h2 style="margin-bottom: 0;">Transactions</h2>
+                <div class="view-toggle">
+                    <button class="filter-btn active" onclick="setView('table', this)">Table</button>
+                    <button class="filter-btn" onclick="setView('timeline', this)">Timeline</button>
+                </div>
+            </div>
+
+            <div class="filters">
+                <button class="filter-btn active" onclick="filterType('all', this)">All</button>
+                <button class="filter-btn" onclick="filterType('buy', this)">Buy</button>
+                <button class="filter-btn" onclick="filterType('sell', this)">Sell</button>
+                <button class="filter-btn" onclick="filterType('dividend', this)">Dividend</button>
+            </div>
+
+            <div id="transactionView">
+                <!-- Table or Timeline will be rendered here -->
+            </div>
+        </div>
+
+        <!-- Export -->
+        <div class="card">
+            <h2>Save & Export</h2>
+            <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+                <button class="btn btn-primary" onclick="downloadHistory()">Download transactions.json</button>
+                <button class="btn btn-success" onclick="pushToGitHub()">Push to GitHub</button>
+                <button class="btn btn-secondary" onclick="exportCSV()">Export CSV</button>
+            </div>
+        </div>
+
+        <div class="toast" id="toast"></div>
+    </div>
+
+    <script>
+        let transactions = [];
+        let currentView = 'table';
+        let currentFilter = 'all';
+
+        // Initialize
+        async function init() {
+            document.getElementById('txDate').valueAsDate = new Date();
+            await loadTransactions();
+            renderTransactions();
+            updateStats();
+
+            // Handle dividend type
+            document.getElementById('txType').addEventListener('change', function() {
+                const sharesGroup = document.getElementById('sharesGroup');
+                const priceLabel = document.getElementById('priceLabel');
+                if (this.value === 'dividend') {
+                    sharesGroup.style.display = 'none';
+                    priceLabel.textContent = 'Dividend Amount ($)';
+                } else {
+                    sharesGroup.style.display = 'flex';
+                    priceLabel.textContent = 'Price per Share ($)';
+                }
+            });
+        }
+
+        // Load transactions
+        async function loadTransactions() {
+            try {
+                // First check localStorage
+                const saved = localStorage.getItem('transactions_draft');
+                if (saved) {
+                    transactions = JSON.parse(saved);
+                    return;
+                }
+
+                // Try to load from server
+                const response = await fetch('transactions.json');
+                if (response.ok) {
+                    const data = await response.json();
+                    transactions = data.transactions || [];
+                }
+            } catch (error) {
+                console.log('No existing transactions');
+            }
+        }
+
+        // Save draft
+        function saveDraft() {
+            localStorage.setItem('transactions_draft', JSON.stringify(transactions));
+        }
+
+        // Add transaction
+        function addTransaction() {
+            const type = document.getElementById('txType').value;
+            const symbol = document.getElementById('txSymbol').value.toUpperCase().trim();
+            const date = document.getElementById('txDate').value;
+            const shares = type === 'dividend' ? 0 : parseFloat(document.getElementById('txShares').value);
+            const price = parseFloat(document.getElementById('txPrice').value);
+            const notes = document.getElementById('txNotes').value.trim();
+
+            if (!symbol) {
+                showToast('Please enter symbol', 'error');
+                return;
+            }
+
+            if (!date) {
+                showToast('Please select date', 'error');
+                return;
+            }
+
+            if (type !== 'dividend' && (!shares || shares <= 0)) {
+                showToast('Please enter valid shares', 'error');
+                return;
+            }
+
+            if (!price || price <= 0) {
+                showToast('Please enter valid price/amount', 'error');
+                return;
+            }
+
+            const transaction = {
+                id: Date.now(),
+                type,
+                symbol,
+                date,
+                shares: type === 'dividend' ? 0 : shares,
+                price,
+                total: type === 'dividend' ? price : shares * price,
+                notes,
+                createdAt: new Date().toISOString()
+            };
+
+            transactions.unshift(transaction);
+            saveDraft();
+            renderTransactions();
+            updateStats();
+            clearForm();
+            showToast(`${type.charAt(0).toUpperCase() + type.slice(1)} transaction added`, 'success');
+        }
+
+        // Clear form
+        function clearForm() {
+            document.getElementById('txSymbol').value = '';
+            document.getElementById('txShares').value = '';
+            document.getElementById('txPrice').value = '';
+            document.getElementById('txNotes').value = '';
+        }
+
+        // Delete transaction
+        function deleteTransaction(id) {
+            if (!confirm('Delete this transaction?')) return;
+            transactions = transactions.filter(t => t.id !== id);
+            saveDraft();
+            renderTransactions();
+            updateStats();
+            showToast('Transaction deleted', 'success');
+        }
+
+        // Update stats
+        function updateStats() {
+            const buys = transactions.filter(t => t.type === 'buy');
+            const sells = transactions.filter(t => t.type === 'sell');
+            const dividends = transactions.filter(t => t.type === 'dividend');
+
+            document.getElementById('totalTransactions').textContent = transactions.length;
+            document.getElementById('totalBuys').textContent = buys.length;
+            document.getElementById('totalSells').textContent = sells.length;
+
+            // Calculate realized gains (simplified)
+            const totalSellValue = sells.reduce((sum, t) => sum + t.total, 0);
+            const totalDividendValue = dividends.reduce((sum, t) => sum + t.total, 0);
+
+            document.getElementById('realizedGains').textContent = '$' + totalSellValue.toFixed(2);
+            document.getElementById('totalDividends').textContent = '$' + totalDividendValue.toFixed(2);
+        }
+
+        // Filter & View
+        function filterType(type, btn) {
+            currentFilter = type;
+            document.querySelectorAll('.filters .filter-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            renderTransactions();
+        }
+
+        function setView(view, btn) {
+            currentView = view;
+            document.querySelectorAll('.view-toggle .filter-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            renderTransactions();
+        }
+
+        // Render transactions
+        function renderTransactions() {
+            const filtered = currentFilter === 'all'
+                ? transactions
+                : transactions.filter(t => t.type === currentFilter);
+
+            const container = document.getElementById('transactionView');
+
+            if (filtered.length === 0) {
+                container.innerHTML = `
+                    <div style="text-align: center; padding: 40px; color: var(--text-secondary);">
+                        <p>No transactions yet.</p>
+                        <p>Add your first transaction above!</p>
+                    </div>
+                `;
+                return;
+            }
+
+            if (currentView === 'table') {
+                renderTable(filtered);
+            } else {
+                renderTimeline(filtered);
+            }
+        }
+
+        function renderTable(data) {
+            const container = document.getElementById('transactionView');
+            container.innerHTML = `
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Type</th>
+                                <th>Symbol</th>
+                                <th>Shares</th>
+                                <th>Price</th>
+                                <th>Total</th>
+                                <th>Notes</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${data.map(t => `
+                                <tr>
+                                    <td>${t.date}</td>
+                                    <td><span class="badge badge-${t.type}">${t.type.toUpperCase()}</span></td>
+                                    <td><strong>${t.symbol}</strong></td>
+                                    <td>${t.type === 'dividend' ? '-' : t.shares}</td>
+                                    <td>$${t.price.toFixed(2)}</td>
+                                    <td class="${t.type === 'sell' || t.type === 'dividend' ? 'positive' : ''}">
+                                        ${t.type === 'buy' ? '-' : '+'}$${t.total.toFixed(2)}
+                                    </td>
+                                    <td style="color: var(--text-secondary); max-width: 150px; overflow: hidden; text-overflow: ellipsis;">
+                                        ${t.notes || '-'}
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-danger btn-sm" onclick="deleteTransaction(${t.id})">Delete</button>
+                                    </td>
+                                </tr>
+                            `).join('')}
+                        </tbody>
+                    </table>
+                </div>
+            `;
+        }
+
+        function renderTimeline(data) {
+            const container = document.getElementById('transactionView');
+            container.innerHTML = `
+                <div class="timeline">
+                    ${data.map(t => `
+                        <div class="timeline-item ${t.type}">
+                            <div class="timeline-date">${t.date}</div>
+                            <div class="timeline-content">
+                                <div class="timeline-header">
+                                    <span class="timeline-symbol">${t.symbol}</span>
+                                    <span class="badge badge-${t.type}">${t.type.toUpperCase()}</span>
+                                </div>
+                                <div class="timeline-details">
+                                    ${t.type === 'dividend'
+                                        ? `Dividend: <span class="positive">+$${t.total.toFixed(2)}</span>`
+                                        : `${t.shares} shares @ $${t.price.toFixed(2)} = $${t.total.toFixed(2)}`
+                                    }
+                                    ${t.notes ? `<br><em>"${t.notes}"</em>` : ''}
+                                </div>
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+        }
+
+        // Download
+        function downloadHistory() {
+            const data = {
+                transactions,
+                exported_at: new Date().toISOString()
+            };
+            const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'transactions.json';
+            a.click();
+            URL.revokeObjectURL(url);
+            showToast('Downloaded!', 'success');
+        }
+
+        // Export CSV
+        function exportCSV() {
+            const headers = ['Date', 'Type', 'Symbol', 'Shares', 'Price', 'Total', 'Notes'];
+            const rows = transactions.map(t => [
+                t.date, t.type, t.symbol, t.shares, t.price, t.total, t.notes || ''
+            ]);
+            const csv = [headers, ...rows].map(r => r.join(',')).join('\n');
+            const blob = new Blob([csv], { type: 'text/csv' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'transactions.csv';
+            a.click();
+            URL.revokeObjectURL(url);
+            showToast('CSV exported!', 'success');
+        }
+
+        // Push to GitHub
+        async function pushToGitHub() {
+            const token = localStorage.getItem('github_token');
+            if (!token) {
+                showToast('Set GitHub token in Manage page first', 'error');
+                return;
+            }
+
+            const data = { transactions, updated_at: new Date().toISOString() };
+            const content = btoa(unescape(encodeURIComponent(JSON.stringify(data, null, 2))));
+
+            try {
+                // Get SHA
+                const getRes = await fetch(
+                    'https://api.github.com/repos/moonkaicuzui/stock-portfolio-genius/contents/docs/transactions.json',
+                    { headers: { 'Authorization': `token ${token}` } }
+                );
+                const sha = getRes.ok ? (await getRes.json()).sha : null;
+
+                // Update
+                const putRes = await fetch(
+                    'https://api.github.com/repos/moonkaicuzui/stock-portfolio-genius/contents/docs/transactions.json',
+                    {
+                        method: 'PUT',
+                        headers: {
+                            'Authorization': `token ${token}`,
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            message: `Update transactions: ${new Date().toISOString().split('T')[0]}`,
+                            content,
+                            sha
+                        })
+                    }
+                );
+
+                if (putRes.ok) {
+                    localStorage.removeItem('transactions_draft');
+                    showToast('Pushed to GitHub!', 'success');
+                } else {
+                    throw new Error((await putRes.json()).message);
+                }
+            } catch (error) {
+                showToast(`Error: ${error.message}`, 'error');
+            }
+        }
+
+        // Toast
+        function showToast(msg, type) {
+            const toast = document.getElementById('toast');
+            toast.textContent = msg;
+            toast.className = `toast ${type} active`;
+            setTimeout(() => toast.classList.remove('active'), 3000);
+        }
+
+        init();
+    </script>
+</body>
+</html>

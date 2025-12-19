@@ -1,0 +1,1037 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Investment Ideas - Stock Portfolio Genius</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --success: #16a34a;
+            --warning: #f59e0b;
+            --danger: #dc2626;
+            --bg-dark: #1e293b;
+            --bg-card: #334155;
+            --text-primary: #f1f5f9;
+            --text-secondary: #94a3b8;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container { max-width: 1400px; margin: 0 auto; }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        h1 { font-size: 1.8rem; }
+
+        .nav-links { display: flex; gap: 15px; flex-wrap: wrap; }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            transition: all 0.2s;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--text-primary);
+            background: var(--bg-card);
+        }
+
+        .card {
+            background: var(--bg-card);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 24px;
+        }
+
+        .card h2 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Stats */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .stat-card {
+            background: var(--bg-dark);
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 4px;
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* Form */
+        .form-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .form-group label {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            padding: 10px 12px;
+            border: 2px solid #475569;
+            border-radius: 6px;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            font-size: 1rem;
+            font-family: inherit;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-primary { background: var(--primary); color: white; }
+        .btn-success { background: var(--success); color: white; }
+        .btn-warning { background: var(--warning); color: black; }
+        .btn-danger { background: var(--danger); color: white; }
+        .btn-secondary { background: #475569; color: white; }
+        .btn-sm { padding: 6px 12px; font-size: 0.85rem; }
+
+        /* Status Badges */
+        .badge {
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .badge-active { background: #1d4ed8; color: #bfdbfe; }
+        .badge-hit { background: #166534; color: #bbf7d0; }
+        .badge-miss { background: #991b1b; color: #fecaca; }
+        .badge-pending { background: #475569; color: #e2e8f0; }
+
+        /* Direction */
+        .direction-up { color: #4ade80; }
+        .direction-down { color: #f87171; }
+
+        .positive { color: #4ade80; }
+        .negative { color: #f87171; }
+
+        /* Ideas Grid */
+        .ideas-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 20px;
+        }
+
+        .idea-card {
+            background: var(--bg-dark);
+            border-radius: 12px;
+            padding: 20px;
+            border-left: 4px solid var(--primary);
+        }
+
+        .idea-card.hit { border-left-color: var(--success); }
+        .idea-card.miss { border-left-color: var(--danger); }
+        .idea-card.pending { border-left-color: #475569; }
+
+        .idea-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 12px;
+        }
+
+        .idea-symbol {
+            font-size: 1.3rem;
+            font-weight: bold;
+        }
+
+        .idea-name {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+
+        .idea-prediction {
+            background: rgba(255,255,255,0.05);
+            border-radius: 8px;
+            padding: 12px;
+            margin: 12px 0;
+        }
+
+        .prediction-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+
+        .prediction-row:last-child { margin-bottom: 0; }
+
+        .prediction-label { color: var(--text-secondary); }
+
+        .idea-thesis {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.5;
+            margin: 12px 0;
+            font-style: italic;
+        }
+
+        .idea-result {
+            background: rgba(255,255,255,0.05);
+            border-radius: 8px;
+            padding: 12px;
+            margin-top: 12px;
+        }
+
+        .idea-actions {
+            display: flex;
+            gap: 8px;
+            margin-top: 12px;
+        }
+
+        /* Accuracy Meter */
+        .accuracy-meter {
+            background: rgba(255,255,255,0.1);
+            border-radius: 8px;
+            height: 24px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .accuracy-fill {
+            height: 100%;
+            border-radius: 8px;
+            transition: width 0.5s ease;
+        }
+
+        .accuracy-label {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-weight: bold;
+            font-size: 0.85rem;
+        }
+
+        /* Chart */
+        .chart-container {
+            height: 250px;
+            margin-top: 20px;
+        }
+
+        /* Screener Suggestions */
+        .suggestion-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px;
+            background: var(--bg-dark);
+            border-radius: 8px;
+            margin-bottom: 8px;
+        }
+
+        .suggestion-info {
+            flex: 1;
+        }
+
+        .suggestion-symbol {
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        .suggestion-name {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+
+        .suggestion-score {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-right: 12px;
+        }
+
+        /* Toast */
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 16px 24px;
+            border-radius: 8px;
+            color: white;
+            font-weight: 500;
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 0.3s;
+            z-index: 1000;
+        }
+
+        .toast.active { transform: translateY(0); opacity: 1; }
+        .toast.success { background: var(--success); }
+        .toast.error { background: var(--danger); }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .modal.active { display: flex; }
+
+        .modal-content {
+            background: var(--bg-card);
+            border-radius: 16px;
+            max-width: 500px;
+            width: 100%;
+            padding: 24px;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Tabs */
+        .tabs {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #475569;
+            padding-bottom: 8px;
+        }
+
+        .tab-btn {
+            padding: 8px 16px;
+            background: transparent;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            cursor: pointer;
+            border-radius: 6px 6px 0 0;
+            transition: all 0.2s;
+        }
+
+        .tab-btn:hover { color: var(--text-primary); }
+        .tab-btn.active {
+            color: var(--text-primary);
+            background: rgba(255,255,255,0.1);
+        }
+
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+
+        @media (max-width: 768px) {
+            .ideas-grid { grid-template-columns: 1fr; }
+            .form-row { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Investment Ideas</h1>
+            <nav class="nav-links">
+                <a href="index.html">Portfolio</a>
+                <a href="screener.html">Screener</a>
+                <a href="ideas.html" class="active">Ideas</a>
+                <a href="history.html">History</a>
+                <a href="manage.html">Manage</a>
+            </nav>
+        </header>
+
+        <!-- Prediction Accuracy Stats -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-value" id="totalIdeas">0</div>
+                <div class="stat-label">Total Ideas</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="activeIdeas">0</div>
+                <div class="stat-label">Active Predictions</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value positive" id="hitCount">0</div>
+                <div class="stat-label">Hits (Correct)</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value negative" id="missCount">0</div>
+                <div class="stat-label">Misses (Wrong)</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="accuracyRate">0%</div>
+                <div class="stat-label">Accuracy Rate</div>
+                <div class="accuracy-meter" style="margin-top: 8px;">
+                    <div class="accuracy-fill" id="accuracyFill" style="width: 0%; background: linear-gradient(90deg, #dc2626, #f59e0b, #16a34a);"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tabs -->
+        <div class="tabs">
+            <button class="tab-btn active" onclick="showTab('ideas', this)">My Ideas</button>
+            <button class="tab-btn" onclick="showTab('suggestions', this)">Screener Suggestions</button>
+            <button class="tab-btn" onclick="showTab('analysis', this)">Performance Analysis</button>
+        </div>
+
+        <!-- Tab: My Ideas -->
+        <div class="tab-content active" id="tab-ideas">
+            <!-- Add New Idea -->
+            <div class="card">
+                <h2>Add Investment Idea</h2>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Symbol</label>
+                        <input type="text" id="ideaSymbol" placeholder="AAPL" style="text-transform: uppercase;">
+                    </div>
+                    <div class="form-group">
+                        <label>Company Name</label>
+                        <input type="text" id="ideaName" placeholder="Apple Inc.">
+                    </div>
+                    <div class="form-group">
+                        <label>Direction</label>
+                        <select id="ideaDirection">
+                            <option value="up">Bullish (Up)</option>
+                            <option value="down">Bearish (Down)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Entry Price ($)</label>
+                        <input type="number" id="ideaEntry" placeholder="Current price" min="0.01" step="0.01">
+                    </div>
+                    <div class="form-group">
+                        <label>Target Price ($)</label>
+                        <input type="number" id="ideaTarget" placeholder="Target price" min="0.01" step="0.01">
+                    </div>
+                    <div class="form-group">
+                        <label>Target Date</label>
+                        <input type="date" id="ideaTargetDate">
+                    </div>
+                </div>
+                <div class="form-group" style="margin-bottom: 16px;">
+                    <label>Investment Thesis (Why?)</label>
+                    <textarea id="ideaThesis" rows="3" placeholder="Write your investment thesis... Why do you think this stock will move?"></textarea>
+                </div>
+                <div style="display: flex; gap: 12px;">
+                    <button class="btn btn-success" onclick="addIdea()">Add Idea</button>
+                </div>
+            </div>
+
+            <!-- Ideas List -->
+            <div class="card">
+                <h2>My Investment Ideas</h2>
+                <div class="ideas-grid" id="ideasGrid">
+                    <div style="text-align: center; padding: 40px; color: var(--text-secondary); grid-column: 1 / -1;">
+                        <p>No investment ideas yet.</p>
+                        <p>Add your first prediction above!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab: Screener Suggestions -->
+        <div class="tab-content" id="tab-suggestions">
+            <div class="card">
+                <h2>Top Value Stocks from Screener</h2>
+                <p style="color: var(--text-secondary); margin-bottom: 20px;">
+                    These stocks have the highest Value Scores from the screener. Consider researching them for investment ideas.
+                </p>
+                <div id="suggestionsList">
+                    <div style="text-align: center; padding: 20px; color: var(--text-secondary);">
+                        Loading screener data...
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab: Performance Analysis -->
+        <div class="tab-content" id="tab-analysis">
+            <div class="card">
+                <h2>Prediction Performance</h2>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                    <div>
+                        <h3 style="margin-bottom: 12px; font-size: 1rem;">Accuracy by Direction</h3>
+                        <div class="chart-container">
+                            <canvas id="directionChart"></canvas>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 style="margin-bottom: 12px; font-size: 1rem;">Results Over Time</h3>
+                        <div class="chart-container">
+                            <canvas id="timeChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>Performance Summary</h2>
+                <div id="performanceSummary">
+                    <p style="color: var(--text-secondary);">Complete some predictions to see your performance analysis.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Result Modal -->
+        <div class="modal" id="resultModal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Record Result for <span id="resultSymbol">AAPL</span></h3>
+                    <button class="modal-close" onclick="closeResultModal()">&times;</button>
+                </div>
+                <div class="form-group" style="margin-bottom: 16px;">
+                    <label>Actual Price ($)</label>
+                    <input type="number" id="resultPrice" placeholder="Enter actual price" min="0.01" step="0.01">
+                </div>
+                <div class="form-group" style="margin-bottom: 16px;">
+                    <label>Notes</label>
+                    <textarea id="resultNotes" rows="2" placeholder="Any notes about this result..."></textarea>
+                </div>
+                <div style="display: flex; gap: 12px; justify-content: flex-end;">
+                    <button class="btn btn-secondary" onclick="closeResultModal()">Cancel</button>
+                    <button class="btn btn-success" onclick="recordResult()">Save Result</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="toast" id="toast"></div>
+    </div>
+
+    <script>
+        let ideas = [];
+        let screenerData = null;
+        let recordingId = null;
+
+        // Initialize
+        async function init() {
+            // Set default target date (3 months from now)
+            const targetDate = new Date();
+            targetDate.setMonth(targetDate.getMonth() + 3);
+            document.getElementById('ideaTargetDate').valueAsDate = targetDate;
+
+            await loadIdeas();
+            await loadScreenerData();
+            renderIdeas();
+            updateStats();
+        }
+
+        // Load ideas
+        async function loadIdeas() {
+            try {
+                const saved = localStorage.getItem('ideas_draft');
+                if (saved) {
+                    ideas = JSON.parse(saved);
+                    return;
+                }
+
+                const response = await fetch('ideas.json');
+                if (response.ok) {
+                    const data = await response.json();
+                    ideas = data.ideas || [];
+                }
+            } catch (error) {
+                console.log('No existing ideas');
+            }
+        }
+
+        // Load screener data
+        async function loadScreenerData() {
+            try {
+                const response = await fetch('screener.json');
+                if (response.ok) {
+                    screenerData = await response.json();
+                    renderSuggestions();
+                }
+            } catch (error) {
+                console.log('No screener data');
+            }
+        }
+
+        // Save draft
+        function saveDraft() {
+            localStorage.setItem('ideas_draft', JSON.stringify(ideas));
+        }
+
+        // Add idea
+        function addIdea() {
+            const symbol = document.getElementById('ideaSymbol').value.toUpperCase().trim();
+            const name = document.getElementById('ideaName').value.trim();
+            const direction = document.getElementById('ideaDirection').value;
+            const entryPrice = parseFloat(document.getElementById('ideaEntry').value);
+            const targetPrice = parseFloat(document.getElementById('ideaTarget').value);
+            const targetDate = document.getElementById('ideaTargetDate').value;
+            const thesis = document.getElementById('ideaThesis').value.trim();
+
+            if (!symbol || !entryPrice || !targetPrice || !targetDate) {
+                showToast('Please fill all required fields', 'error');
+                return;
+            }
+
+            const expectedReturn = ((targetPrice - entryPrice) / entryPrice) * 100;
+
+            const idea = {
+                id: Date.now(),
+                symbol,
+                name: name || symbol,
+                direction,
+                entryPrice,
+                targetPrice,
+                targetDate,
+                thesis,
+                expectedReturn: Math.round(expectedReturn * 100) / 100,
+                status: 'active', // active, hit, miss, pending
+                actualPrice: null,
+                actualReturn: null,
+                resultNotes: null,
+                closedAt: null,
+                createdAt: new Date().toISOString()
+            };
+
+            ideas.unshift(idea);
+            saveDraft();
+            renderIdeas();
+            updateStats();
+            clearForm();
+            showToast('Investment idea added!', 'success');
+        }
+
+        // Clear form
+        function clearForm() {
+            document.getElementById('ideaSymbol').value = '';
+            document.getElementById('ideaName').value = '';
+            document.getElementById('ideaEntry').value = '';
+            document.getElementById('ideaTarget').value = '';
+            document.getElementById('ideaThesis').value = '';
+        }
+
+        // Render ideas
+        function renderIdeas() {
+            const container = document.getElementById('ideasGrid');
+
+            if (ideas.length === 0) {
+                container.innerHTML = `
+                    <div style="text-align: center; padding: 40px; color: var(--text-secondary); grid-column: 1 / -1;">
+                        <p>No investment ideas yet.</p>
+                        <p>Add your first prediction above!</p>
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = ideas.map(idea => {
+                const statusClass = idea.status;
+                const directionIcon = idea.direction === 'up' ? '📈' : '📉';
+                const directionClass = idea.direction === 'up' ? 'direction-up' : 'direction-down';
+                const isExpired = new Date(idea.targetDate) < new Date() && idea.status === 'active';
+
+                return `
+                    <div class="idea-card ${statusClass}">
+                        <div class="idea-header">
+                            <div>
+                                <span class="idea-symbol">${idea.symbol}</span> ${directionIcon}
+                                <div class="idea-name">${idea.name}</div>
+                            </div>
+                            <span class="badge badge-${idea.status}">
+                                ${idea.status.toUpperCase()}
+                            </span>
+                        </div>
+
+                        <div class="idea-prediction">
+                            <div class="prediction-row">
+                                <span class="prediction-label">Entry Price</span>
+                                <span>$${idea.entryPrice.toFixed(2)}</span>
+                            </div>
+                            <div class="prediction-row">
+                                <span class="prediction-label">Target Price</span>
+                                <span class="${directionClass}">$${idea.targetPrice.toFixed(2)}</span>
+                            </div>
+                            <div class="prediction-row">
+                                <span class="prediction-label">Expected Return</span>
+                                <span class="${idea.expectedReturn >= 0 ? 'positive' : 'negative'}">
+                                    ${idea.expectedReturn >= 0 ? '+' : ''}${idea.expectedReturn.toFixed(1)}%
+                                </span>
+                            </div>
+                            <div class="prediction-row">
+                                <span class="prediction-label">Target Date</span>
+                                <span ${isExpired ? 'style="color: var(--warning);"' : ''}>
+                                    ${idea.targetDate} ${isExpired ? '(Expired)' : ''}
+                                </span>
+                            </div>
+                        </div>
+
+                        ${idea.thesis ? `<div class="idea-thesis">"${idea.thesis}"</div>` : ''}
+
+                        ${idea.status !== 'active' ? `
+                            <div class="idea-result">
+                                <div class="prediction-row">
+                                    <span class="prediction-label">Actual Price</span>
+                                    <span>$${idea.actualPrice?.toFixed(2) || 'N/A'}</span>
+                                </div>
+                                <div class="prediction-row">
+                                    <span class="prediction-label">Actual Return</span>
+                                    <span class="${idea.actualReturn >= 0 ? 'positive' : 'negative'}">
+                                        ${idea.actualReturn >= 0 ? '+' : ''}${idea.actualReturn?.toFixed(1) || 0}%
+                                    </span>
+                                </div>
+                                ${idea.resultNotes ? `<div style="color: var(--text-secondary); font-size: 0.85rem; margin-top: 8px;">${idea.resultNotes}</div>` : ''}
+                            </div>
+                        ` : ''}
+
+                        <div class="idea-actions">
+                            ${idea.status === 'active' ? `
+                                <button class="btn btn-success btn-sm" onclick="openResultModal(${idea.id})">Record Result</button>
+                            ` : ''}
+                            <button class="btn btn-danger btn-sm" onclick="deleteIdea(${idea.id})">Delete</button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // Render screener suggestions
+        function renderSuggestions() {
+            const container = document.getElementById('suggestionsList');
+
+            if (!screenerData || !screenerData.screener_results) {
+                container.innerHTML = `
+                    <div style="text-align: center; padding: 20px; color: var(--text-secondary);">
+                        No screener data. Run the screener first.
+                    </div>
+                `;
+                return;
+            }
+
+            const topStocks = screenerData.screener_results
+                .filter(s => s.scores.value_score >= 60)
+                .slice(0, 10);
+
+            if (topStocks.length === 0) {
+                container.innerHTML = `
+                    <div style="text-align: center; padding: 20px; color: var(--text-secondary);">
+                        No high-value stocks found. Try lowering the threshold.
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = topStocks.map(stock => `
+                <div class="suggestion-item">
+                    <div class="suggestion-info">
+                        <span class="suggestion-symbol">${stock.symbol}</span>
+                        <span class="badge badge-${stock.grade === 'A+' || stock.grade === 'A' ? 'hit' : 'active'}">
+                            ${stock.grade}
+                        </span>
+                        <div class="suggestion-name">${stock.name}</div>
+                        <div style="color: var(--text-secondary); font-size: 0.85rem; margin-top: 4px;">
+                            P/E: ${stock.fundamentals.trailing_pe.toFixed(1)} |
+                            RSI: ${stock.technicals.rsi.toFixed(0)} |
+                            ${stock.recommendation}
+                        </div>
+                    </div>
+                    <div style="text-align: right;">
+                        <div class="suggestion-score ${stock.scores.value_score >= 70 ? 'positive' : ''}">${stock.scores.value_score.toFixed(0)}</div>
+                        <div style="color: var(--text-secondary); font-size: 0.85rem;">$${stock.price.toFixed(2)}</div>
+                    </div>
+                    <button class="btn btn-primary btn-sm" onclick="addFromSuggestion('${stock.symbol}', '${stock.name.replace(/'/g, "\\'")}', ${stock.price})">
+                        + Add Idea
+                    </button>
+                </div>
+            `).join('');
+        }
+
+        // Add from suggestion
+        function addFromSuggestion(symbol, name, price) {
+            document.getElementById('ideaSymbol').value = symbol;
+            document.getElementById('ideaName').value = name;
+            document.getElementById('ideaEntry').value = price.toFixed(2);
+            document.getElementById('ideaTarget').value = (price * 1.15).toFixed(2); // +15% default target
+
+            showTab('ideas', document.querySelector('.tab-btn'));
+            document.getElementById('ideaThesis').focus();
+            showToast('Fill in target and thesis', 'success');
+        }
+
+        // Update stats
+        function updateStats() {
+            const active = ideas.filter(i => i.status === 'active');
+            const hits = ideas.filter(i => i.status === 'hit');
+            const misses = ideas.filter(i => i.status === 'miss');
+            const completed = hits.length + misses.length;
+            const accuracy = completed > 0 ? (hits.length / completed) * 100 : 0;
+
+            document.getElementById('totalIdeas').textContent = ideas.length;
+            document.getElementById('activeIdeas').textContent = active.length;
+            document.getElementById('hitCount').textContent = hits.length;
+            document.getElementById('missCount').textContent = misses.length;
+            document.getElementById('accuracyRate').textContent = accuracy.toFixed(0) + '%';
+
+            const accuracyFill = document.getElementById('accuracyFill');
+            accuracyFill.style.width = accuracy + '%';
+
+            updateCharts();
+            updatePerformanceSummary();
+        }
+
+        // Update charts
+        function updateCharts() {
+            const completed = ideas.filter(i => i.status !== 'active');
+
+            // Direction chart
+            const bullishHits = ideas.filter(i => i.direction === 'up' && i.status === 'hit').length;
+            const bullishMisses = ideas.filter(i => i.direction === 'up' && i.status === 'miss').length;
+            const bearishHits = ideas.filter(i => i.direction === 'down' && i.status === 'hit').length;
+            const bearishMisses = ideas.filter(i => i.direction === 'down' && i.status === 'miss').length;
+
+            const directionCtx = document.getElementById('directionChart');
+            if (directionCtx.chart) directionCtx.chart.destroy();
+
+            directionCtx.chart = new Chart(directionCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['Bullish', 'Bearish'],
+                    datasets: [
+                        { label: 'Hits', data: [bullishHits, bearishHits], backgroundColor: '#16a34a' },
+                        { label: 'Misses', data: [bullishMisses, bearishMisses], backgroundColor: '#dc2626' }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { labels: { color: '#94a3b8' } } },
+                    scales: {
+                        x: { ticks: { color: '#94a3b8' }, grid: { display: false } },
+                        y: { ticks: { color: '#94a3b8' }, grid: { color: '#475569' } }
+                    }
+                }
+            });
+
+            // Time chart
+            const timeData = completed
+                .sort((a, b) => new Date(a.closedAt) - new Date(b.closedAt))
+                .map((idea, i) => ({
+                    x: i + 1,
+                    y: idea.actualReturn || 0
+                }));
+
+            const timeCtx = document.getElementById('timeChart');
+            if (timeCtx.chart) timeCtx.chart.destroy();
+
+            timeCtx.chart = new Chart(timeCtx, {
+                type: 'line',
+                data: {
+                    labels: timeData.map((_, i) => `#${i + 1}`),
+                    datasets: [{
+                        label: 'Return %',
+                        data: timeData.map(d => d.y),
+                        borderColor: '#2563eb',
+                        backgroundColor: 'rgba(37, 99, 235, 0.1)',
+                        fill: true,
+                        tension: 0.3
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
+                    scales: {
+                        x: { ticks: { color: '#94a3b8' }, grid: { display: false } },
+                        y: { ticks: { color: '#94a3b8' }, grid: { color: '#475569' } }
+                    }
+                }
+            });
+        }
+
+        // Update performance summary
+        function updatePerformanceSummary() {
+            const completed = ideas.filter(i => i.status !== 'active' && i.actualReturn !== null);
+            if (completed.length === 0) {
+                document.getElementById('performanceSummary').innerHTML = `
+                    <p style="color: var(--text-secondary);">Complete some predictions to see your performance analysis.</p>
+                `;
+                return;
+            }
+
+            const avgReturn = completed.reduce((sum, i) => sum + i.actualReturn, 0) / completed.length;
+            const bestIdea = completed.reduce((best, i) => i.actualReturn > best.actualReturn ? i : best);
+            const worstIdea = completed.reduce((worst, i) => i.actualReturn < worst.actualReturn ? i : worst);
+
+            document.getElementById('performanceSummary').innerHTML = `
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px;">
+                    <div class="stat-card">
+                        <div class="stat-value ${avgReturn >= 0 ? 'positive' : 'negative'}">
+                            ${avgReturn >= 0 ? '+' : ''}${avgReturn.toFixed(1)}%
+                        </div>
+                        <div class="stat-label">Average Return</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value positive">+${bestIdea.actualReturn.toFixed(1)}%</div>
+                        <div class="stat-label">Best: ${bestIdea.symbol}</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value negative">${worstIdea.actualReturn.toFixed(1)}%</div>
+                        <div class="stat-label">Worst: ${worstIdea.symbol}</div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Result modal
+        function openResultModal(id) {
+            recordingId = id;
+            const idea = ideas.find(i => i.id === id);
+            document.getElementById('resultSymbol').textContent = idea.symbol;
+            document.getElementById('resultPrice').value = '';
+            document.getElementById('resultNotes').value = '';
+            document.getElementById('resultModal').classList.add('active');
+        }
+
+        function closeResultModal() {
+            document.getElementById('resultModal').classList.remove('active');
+            recordingId = null;
+        }
+
+        function recordResult() {
+            if (!recordingId) return;
+
+            const actualPrice = parseFloat(document.getElementById('resultPrice').value);
+            const notes = document.getElementById('resultNotes').value.trim();
+
+            if (!actualPrice || actualPrice <= 0) {
+                showToast('Please enter actual price', 'error');
+                return;
+            }
+
+            const idea = ideas.find(i => i.id === recordingId);
+            const actualReturn = ((actualPrice - idea.entryPrice) / idea.entryPrice) * 100;
+
+            // Determine if hit or miss
+            let isHit = false;
+            if (idea.direction === 'up') {
+                isHit = actualPrice >= idea.targetPrice || actualReturn > 0;
+            } else {
+                isHit = actualPrice <= idea.targetPrice || actualReturn < 0;
+            }
+
+            idea.actualPrice = actualPrice;
+            idea.actualReturn = Math.round(actualReturn * 100) / 100;
+            idea.status = isHit ? 'hit' : 'miss';
+            idea.resultNotes = notes;
+            idea.closedAt = new Date().toISOString();
+
+            saveDraft();
+            renderIdeas();
+            updateStats();
+            closeResultModal();
+            showToast(`Result recorded: ${isHit ? 'HIT!' : 'MISS'}`, isHit ? 'success' : 'error');
+        }
+
+        // Delete idea
+        function deleteIdea(id) {
+            if (!confirm('Delete this idea?')) return;
+            ideas = ideas.filter(i => i.id !== id);
+            saveDraft();
+            renderIdeas();
+            updateStats();
+            showToast('Idea deleted', 'success');
+        }
+
+        // Tab navigation
+        function showTab(tabId, btn) {
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+            btn.classList.add('active');
+            document.getElementById('tab-' + tabId).classList.add('active');
+        }
+
+        // Toast
+        function showToast(msg, type) {
+            const toast = document.getElementById('toast');
+            toast.textContent = msg;
+            toast.className = `toast ${type} active`;
+            setTimeout(() => toast.classList.remove('active'), 3000);
+        }
+
+        // Close modal on outside click
+        document.getElementById('resultModal').addEventListener('click', function(e) {
+            if (e.target === this) closeResultModal();
+        });
+
+        init();
+    </script>
+</body>
+</html>
