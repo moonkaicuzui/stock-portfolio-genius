@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Value Investing Screener</title>
+    <title>가치 투자 스크리너 - 주식 포트폴리오 지니어스</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         :root {
@@ -397,66 +397,68 @@
 <body>
     <div class="container">
         <header>
-            <h1>Value Investing Screener</h1>
+            <h1>📊 가치 투자 스크리너</h1>
             <nav class="nav-links">
-                <a href="index.html">Portfolio</a>
-                <a href="screener.html" class="active">Screener</a>
-                <a href="ideas.html">Ideas</a>
-                <a href="history.html">History</a>
-                <a href="manage.html">Manage</a>
+                <a href="index.html">포트폴리오</a>
+                <a href="battle.html">AI 대결</a>
+                <a href="screener.html" class="active">스크리너</a>
+                <a href="ideas.html">투자아이디어</a>
+                <a href="history.html">거래내역</a>
+                <a href="manage.html">관리</a>
+                <a href="guide.html">가이드</a>
             </nav>
-            <span class="last-updated" id="lastUpdated">Loading...</span>
+            <span class="last-updated" id="lastUpdated">로딩 중...</span>
         </header>
 
         <!-- Stats Cards -->
         <div class="stats-grid" id="statsGrid">
             <div class="stat-card">
                 <div class="stat-value" id="totalStocks">-</div>
-                <div class="stat-label">Total Stocks</div>
+                <div class="stat-label">총 종목 수</div>
             </div>
             <div class="stat-card">
                 <div class="stat-value" id="avgScore">-</div>
-                <div class="stat-label">Average Score</div>
+                <div class="stat-label">평균 점수</div>
             </div>
             <div class="stat-card">
                 <div class="stat-value" id="topGrade">-</div>
-                <div class="stat-label">Top Grade Count</div>
+                <div class="stat-label">최상위 등급 수</div>
             </div>
             <div class="stat-card">
                 <div class="stat-value" id="buyCount">-</div>
-                <div class="stat-label">Buy Recommendations</div>
+                <div class="stat-label">매수 추천</div>
             </div>
         </div>
 
         <!-- Filters -->
         <div class="filters">
             <div class="filter-group">
-                <label>Sector</label>
+                <label>섹터</label>
                 <select id="sectorFilter">
-                    <option value="">All Sectors</option>
+                    <option value="">전체 섹터</option>
                 </select>
             </div>
             <div class="filter-group">
-                <label>Grade</label>
+                <label>등급</label>
                 <select id="gradeFilter">
-                    <option value="">All Grades</option>
-                    <option value="A+">A+ Only</option>
-                    <option value="A">A or Better</option>
-                    <option value="B+">B+ or Better</option>
-                    <option value="B">B or Better</option>
+                    <option value="">전체 등급</option>
+                    <option value="A+">A+ 만</option>
+                    <option value="A">A 이상</option>
+                    <option value="B+">B+ 이상</option>
+                    <option value="B">B 이상</option>
                 </select>
             </div>
             <div class="filter-group">
-                <label>Min Value Score: <span id="minScoreValue">0</span></label>
+                <label>최소 가치 점수: <span id="minScoreValue">0</span></label>
                 <input type="range" id="minScore" min="0" max="100" value="0">
             </div>
             <div class="filter-group">
-                <label>Recommendation</label>
+                <label>추천</label>
                 <select id="recFilter">
-                    <option value="">All</option>
-                    <option value="buy">Buy Only</option>
-                    <option value="hold">Hold Only</option>
-                    <option value="avoid">Avoid Only</option>
+                    <option value="">전체</option>
+                    <option value="buy">매수만</option>
+                    <option value="hold">보유만</option>
+                    <option value="avoid">회피만</option>
                 </select>
             </div>
         </div>
@@ -464,11 +466,11 @@
         <!-- Charts -->
         <div class="charts-section">
             <div class="chart-card">
-                <h3>Grade Distribution</h3>
+                <h3>등급 분포</h3>
                 <canvas id="gradeChart"></canvas>
             </div>
             <div class="chart-card">
-                <h3>Sector Distribution</h3>
+                <h3>섹터 분포</h3>
                 <canvas id="sectorChart"></canvas>
             </div>
         </div>
@@ -476,13 +478,13 @@
         <!-- Stock Table -->
         <div class="table-container">
             <div class="table-header">
-                <h3>Screened Stocks (<span id="filteredCount">0</span>)</h3>
-                <input type="text" class="search-box" id="searchBox" placeholder="Search symbol...">
+                <h3>스크리닝 종목 (<span id="filteredCount">0</span>)</h3>
+                <input type="text" class="search-box" id="searchBox" placeholder="종목 검색...">
             </div>
             <div id="tableContent">
                 <div class="loading">
                     <div class="spinner"></div>
-                    <p>Loading screener data...</p>
+                    <p>스크리너 데이터 로딩 중...</p>
                 </div>
             </div>
         </div>
@@ -491,7 +493,7 @@
         <div class="modal" id="stockModal">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h2 id="modalTitle">Stock Details</h2>
+                    <h2 id="modalTitle">종목 상세</h2>
                     <button class="modal-close" onclick="closeModal()">&times;</button>
                 </div>
                 <div class="modal-body" id="modalBody">
@@ -516,9 +518,9 @@
                 console.error('Error loading data:', error);
                 document.getElementById('tableContent').innerHTML = `
                     <div class="loading">
-                        <p>Error loading data. Please run the screener first.</p>
+                        <p>데이터 로딩 오류. 먼저 스크리너를 실행하세요.</p>
                         <p style="color: var(--text-secondary); margin-top: 10px;">
-                            Run: python scripts/value_screener.py
+                            실행: python scripts/value_screener.py
                         </p>
                     </div>
                 `;
@@ -528,7 +530,7 @@
         function initializeApp() {
             // Update last updated
             document.getElementById('lastUpdated').textContent =
-                `Updated: ${new Date(screenerData.last_updated).toLocaleString()}`;
+                `업데이트: ${new Date(screenerData.last_updated).toLocaleString('ko-KR')}`;
 
             // Populate sector filter
             const sectors = [...new Set(screenerData.screener_results.map(s => s.sector))].sort();
@@ -602,7 +604,7 @@
                 data: {
                     labels: Object.keys(sectorCounts),
                     datasets: [{
-                        label: 'Stocks',
+                        label: '종목 수',
                         data: Object.values(sectorCounts),
                         backgroundColor: '#2563eb'
                     }]
@@ -770,16 +772,16 @@
                 <table>
                     <thead>
                         <tr>
-                            <th onclick="handleSort('symbol')" class="${getSortClass('symbol')}">Symbol</th>
-                            <th>Name</th>
-                            <th>Sector</th>
-                            <th onclick="handleSort('value_score')" class="${getSortClass('value_score')}">Value Score</th>
-                            <th onclick="handleSort('grade')" class="${getSortClass('grade')}">Grade</th>
-                            <th>Recommendation</th>
+                            <th onclick="handleSort('symbol')" class="${getSortClass('symbol')}">종목</th>
+                            <th>이름</th>
+                            <th>섹터</th>
+                            <th onclick="handleSort('value_score')" class="${getSortClass('value_score')}">가치 점수</th>
+                            <th onclick="handleSort('grade')" class="${getSortClass('grade')}">등급</th>
+                            <th>추천</th>
                             <th onclick="handleSort('trailing_pe')" class="${getSortClass('trailing_pe')}">P/E</th>
                             <th onclick="handleSort('pb_ratio')" class="${getSortClass('pb_ratio')}">P/B</th>
                             <th onclick="handleSort('rsi')" class="${getSortClass('rsi')}">RSI</th>
-                            <th onclick="handleSort('price')" class="${getSortClass('price')}">Price</th>
+                            <th onclick="handleSort('price')" class="${getSortClass('price')}">가격</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -844,51 +846,51 @@
 
                 <div class="detail-grid">
                     <div class="detail-section">
-                        <h4>Basic Info</h4>
-                        <div class="detail-row"><span>Sector</span><span>${stock.sector}</span></div>
-                        <div class="detail-row"><span>Industry</span><span>${stock.industry}</span></div>
-                        <div class="detail-row"><span>Price</span><span>$${stock.price.toFixed(2)}</span></div>
-                        <div class="detail-row"><span>Market Cap</span><span>$${(stock.market_cap / 1e9).toFixed(1)}B</span></div>
+                        <h4>기본 정보</h4>
+                        <div class="detail-row"><span>섹터</span><span>${stock.sector}</span></div>
+                        <div class="detail-row"><span>산업</span><span>${stock.industry}</span></div>
+                        <div class="detail-row"><span>가격</span><span>$${stock.price.toFixed(2)}</span></div>
+                        <div class="detail-row"><span>시가총액</span><span>$${(stock.market_cap / 1e9).toFixed(1)}B</span></div>
                     </div>
 
                     <div class="detail-section">
-                        <h4>Valuation Metrics</h4>
+                        <h4>밸류에이션 지표</h4>
                         <div class="detail-row"><span>Trailing P/E</span><span>${formatValue(stock.fundamentals.trailing_pe)}</span></div>
                         <div class="detail-row"><span>Forward P/E</span><span>${formatValue(stock.fundamentals.forward_pe)}</span></div>
-                        <div class="detail-row"><span>P/B Ratio</span><span>${formatValue(stock.fundamentals.pb_ratio)}</span></div>
-                        <div class="detail-row"><span>P/S Ratio</span><span>${formatValue(stock.fundamentals.ps_ratio)}</span></div>
+                        <div class="detail-row"><span>P/B 비율</span><span>${formatValue(stock.fundamentals.pb_ratio)}</span></div>
+                        <div class="detail-row"><span>P/S 비율</span><span>${formatValue(stock.fundamentals.ps_ratio)}</span></div>
                         <div class="detail-row"><span>EV/EBITDA</span><span>${formatValue(stock.fundamentals.ev_ebitda)}</span></div>
-                        <div class="detail-row"><span>Earnings Yield</span><span>${formatValue(stock.fundamentals.earnings_yield, '%')}</span></div>
+                        <div class="detail-row"><span>이익수익률</span><span>${formatValue(stock.fundamentals.earnings_yield, '%')}</span></div>
                     </div>
 
                     <div class="detail-section">
-                        <h4>Growth Metrics</h4>
-                        <div class="detail-row"><span>Revenue Growth</span><span class="${stock.fundamentals.revenue_growth >= 0 ? 'positive' : 'negative'}">${formatValue(stock.fundamentals.revenue_growth, '%')}</span></div>
-                        <div class="detail-row"><span>Earnings Growth</span><span class="${stock.fundamentals.earnings_growth >= 0 ? 'positive' : 'negative'}">${formatValue(stock.fundamentals.earnings_growth, '%')}</span></div>
-                        <div class="detail-row"><span>Growth Tier</span><span>${stock.fundamentals.growth_tier}</span></div>
+                        <h4>성장 지표</h4>
+                        <div class="detail-row"><span>매출 성장률</span><span class="${stock.fundamentals.revenue_growth >= 0 ? 'positive' : 'negative'}">${formatValue(stock.fundamentals.revenue_growth, '%')}</span></div>
+                        <div class="detail-row"><span>이익 성장률</span><span class="${stock.fundamentals.earnings_growth >= 0 ? 'positive' : 'negative'}">${formatValue(stock.fundamentals.earnings_growth, '%')}</span></div>
+                        <div class="detail-row"><span>성장 등급</span><span>${stock.fundamentals.growth_tier}</span></div>
                     </div>
 
                     <div class="detail-section">
-                        <h4>Technical Indicators</h4>
+                        <h4>기술적 지표</h4>
                         <div class="detail-row"><span>RSI (14)</span><span class="${stock.technicals.rsi < 30 ? 'positive' : stock.technicals.rsi > 70 ? 'negative' : ''}">${stock.technicals.rsi.toFixed(1)}</span></div>
                         <div class="detail-row"><span>SMA 50</span><span>$${stock.technicals.sma_50.toFixed(2)}</span></div>
                         <div class="detail-row"><span>SMA 200</span><span>$${stock.technicals.sma_200.toFixed(2)}</span></div>
                         <div class="detail-row"><span>vs SMA 50</span><span class="${stock.technicals.price_vs_sma50 >= 0 ? 'positive' : 'negative'}">${formatValue(stock.technicals.price_vs_sma50, '%')}</span></div>
                         <div class="detail-row"><span>vs SMA 200</span><span class="${stock.technicals.price_vs_sma200 >= 0 ? 'positive' : 'negative'}">${formatValue(stock.technicals.price_vs_sma200, '%')}</span></div>
-                        <div class="detail-row"><span>52W High</span><span>$${stock.technicals.week_52_high.toFixed(2)}</span></div>
-                        <div class="detail-row"><span>52W Low</span><span>$${stock.technicals.week_52_low.toFixed(2)}</span></div>
-                        <div class="detail-row"><span>Bollinger Position</span><span>${stock.technicals.bollinger_position.toFixed(1)}%</span></div>
+                        <div class="detail-row"><span>52주 최고</span><span>$${stock.technicals.week_52_high.toFixed(2)}</span></div>
+                        <div class="detail-row"><span>52주 최저</span><span>$${stock.technicals.week_52_low.toFixed(2)}</span></div>
+                        <div class="detail-row"><span>볼린저 위치</span><span>${stock.technicals.bollinger_position.toFixed(1)}%</span></div>
                     </div>
 
                     <div class="detail-section">
-                        <h4>Score Breakdown</h4>
-                        <div class="detail-row"><span>P/E Score</span><span>${stock.scores.per_score.toFixed(1)}</span></div>
-                        <div class="detail-row"><span>P/B Score</span><span>${stock.scores.pbr_score.toFixed(1)}</span></div>
-                        <div class="detail-row"><span>P/S Score</span><span>${stock.scores.psr_score.toFixed(1)}</span></div>
-                        <div class="detail-row"><span>EV/EBITDA Score</span><span>${stock.scores.ev_ebitda_score.toFixed(1)}</span></div>
-                        <div class="detail-row"><span>Earnings Yield Score</span><span>${stock.scores.earnings_yield_score.toFixed(1)}</span></div>
-                        <div class="detail-row" style="font-weight: bold;"><span>Fundamental Score</span><span>${stock.scores.fundamental_score.toFixed(1)}</span></div>
-                        <div class="detail-row" style="font-weight: bold;"><span>Technical Score</span><span>${stock.scores.technical_score.toFixed(1)}</span></div>
+                        <h4>점수 내역</h4>
+                        <div class="detail-row"><span>P/E 점수</span><span>${stock.scores.per_score.toFixed(1)}</span></div>
+                        <div class="detail-row"><span>P/B 점수</span><span>${stock.scores.pbr_score.toFixed(1)}</span></div>
+                        <div class="detail-row"><span>P/S 점수</span><span>${stock.scores.psr_score.toFixed(1)}</span></div>
+                        <div class="detail-row"><span>EV/EBITDA 점수</span><span>${stock.scores.ev_ebitda_score.toFixed(1)}</span></div>
+                        <div class="detail-row"><span>이익수익률 점수</span><span>${stock.scores.earnings_yield_score.toFixed(1)}</span></div>
+                        <div class="detail-row" style="font-weight: bold;"><span>펀더멘털 점수</span><span>${stock.scores.fundamental_score.toFixed(1)}</span></div>
+                        <div class="detail-row" style="font-weight: bold;"><span>기술적 점수</span><span>${stock.scores.technical_score.toFixed(1)}</span></div>
                     </div>
                 </div>
             `;

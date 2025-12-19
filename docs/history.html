@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="noindex, nofollow">
-    <title>Transaction History - Stock Portfolio Genius</title>
+    <title>거래 내역 - 주식 포트폴리오 지니어스</title>
     <style>
         :root {
             --primary: #2563eb;
@@ -307,13 +307,15 @@
 <body>
     <div class="container">
         <header>
-            <h1>Transaction History</h1>
+            <h1>📋 거래 내역</h1>
             <nav class="nav-links">
-                <a href="index.html">Portfolio</a>
-                <a href="screener.html">Screener</a>
-                <a href="ideas.html">Ideas</a>
-                <a href="history.html" class="active">History</a>
-                <a href="manage.html">Manage</a>
+                <a href="index.html">포트폴리오</a>
+                <a href="battle.html">AI 대결</a>
+                <a href="screener.html">스크리너</a>
+                <a href="ideas.html">투자아이디어</a>
+                <a href="history.html" class="active">거래내역</a>
+                <a href="manage.html">관리</a>
+                <a href="guide.html">가이드</a>
             </nav>
         </header>
 
@@ -321,79 +323,79 @@
         <div class="stats-grid">
             <div class="stat-card">
                 <div class="stat-value" id="totalTransactions">0</div>
-                <div class="stat-label">Total Transactions</div>
+                <div class="stat-label">총 거래</div>
             </div>
             <div class="stat-card">
                 <div class="stat-value" id="totalBuys">0</div>
-                <div class="stat-label">Buy Orders</div>
+                <div class="stat-label">매수 주문</div>
             </div>
             <div class="stat-card">
                 <div class="stat-value" id="totalSells">0</div>
-                <div class="stat-label">Sell Orders</div>
+                <div class="stat-label">매도 주문</div>
             </div>
             <div class="stat-card">
                 <div class="stat-value positive" id="realizedGains">$0</div>
-                <div class="stat-label">Realized Gains</div>
+                <div class="stat-label">실현 손익</div>
             </div>
             <div class="stat-card">
                 <div class="stat-value" id="totalDividends">$0</div>
-                <div class="stat-label">Dividends</div>
+                <div class="stat-label">배당금</div>
             </div>
         </div>
 
         <!-- Add Transaction -->
         <div class="card">
-            <h2>Add Transaction</h2>
+            <h2>거래 추가</h2>
             <div class="form-row">
                 <div class="form-group">
-                    <label>Type</label>
+                    <label>거래 유형</label>
                     <select id="txType">
-                        <option value="buy">Buy (매수)</option>
-                        <option value="sell">Sell (매도)</option>
-                        <option value="dividend">Dividend (배당)</option>
+                        <option value="buy">매수</option>
+                        <option value="sell">매도</option>
+                        <option value="dividend">배당</option>
                     </select>
                 </div>
                 <div class="form-group">
-                    <label>Symbol</label>
+                    <label>종목 코드</label>
                     <input type="text" id="txSymbol" placeholder="AAPL" style="text-transform: uppercase;">
                 </div>
                 <div class="form-group">
-                    <label>Date</label>
+                    <label>날짜</label>
                     <input type="date" id="txDate">
                 </div>
                 <div class="form-group" id="sharesGroup">
-                    <label>Shares</label>
+                    <label>수량</label>
                     <input type="number" id="txShares" placeholder="10" min="0.001" step="0.001">
                 </div>
                 <div class="form-group">
-                    <label id="priceLabel">Price per Share ($)</label>
+                    <label id="priceLabel">주당 가격 ($)</label>
                     <input type="number" id="txPrice" placeholder="150.00" min="0.01" step="0.01">
                 </div>
                 <div class="form-group">
-                    <label>Notes (optional)</label>
-                    <input type="text" id="txNotes" placeholder="Reason for trade...">
+                    <label>메모 (선택)</label>
+                    <input type="text" id="txNotes" placeholder="거래 사유...">
                 </div>
             </div>
             <div style="display: flex; gap: 12px;">
-                <button class="btn btn-success" onclick="addTransaction()">Add Transaction</button>
+                <button class="btn btn-success" onclick="addTransaction()">거래 추가</button>
             </div>
         </div>
 
         <!-- Transaction List -->
         <div class="card">
             <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; margin-bottom: 20px;">
-                <h2 style="margin-bottom: 0;">Transactions</h2>
+                <h2 style="margin-bottom: 0;">거래 목록</h2>
                 <div class="view-toggle">
-                    <button class="filter-btn active" onclick="setView('table', this)">Table</button>
-                    <button class="filter-btn" onclick="setView('timeline', this)">Timeline</button>
+                    <button class="filter-btn active" onclick="setView('table', this)">테이블</button>
+                    <button class="filter-btn" onclick="setView('timeline', this)">타임라인</button>
                 </div>
             </div>
 
             <div class="filters">
-                <button class="filter-btn active" onclick="filterType('all', this)">All</button>
-                <button class="filter-btn" onclick="filterType('buy', this)">Buy</button>
-                <button class="filter-btn" onclick="filterType('sell', this)">Sell</button>
-                <button class="filter-btn" onclick="filterType('dividend', this)">Dividend</button>
+                <button class="filter-btn active" onclick="filterType('all', this)">전체</button>
+                <button class="filter-btn" onclick="filterType('buy', this)">매수</button>
+                <button class="filter-btn" onclick="filterType('sell', this)">매도</button>
+                <button class="filter-btn" onclick="filterType('dividend', this)">배당</button>
             </div>
 
             <div id="transactionView">
@@ -403,11 +405,11 @@
 
         <!-- Export -->
         <div class="card">
-            <h2>Save & Export</h2>
+            <h2>저장 및 내보내기</h2>
             <div style="display: flex; gap: 12px; flex-wrap: wrap;">
-                <button class="btn btn-primary" onclick="downloadHistory()">Download transactions.json</button>
-                <button class="btn btn-success" onclick="pushToGitHub()">Push to GitHub</button>
-                <button class="btn btn-secondary" onclick="exportCSV()">Export CSV</button>
+                <button class="btn btn-primary" onclick="downloadHistory()">transactions.json 다운로드</button>
+                <button class="btn btn-success" onclick="pushToGitHub()">GitHub에 푸시</button>
+                <button class="btn btn-secondary" onclick="exportCSV()">CSV 내보내기</button>
             </div>
         </div>
 
@@ -432,10 +434,10 @@
                 const priceLabel = document.getElementById('priceLabel');
                 if (this.value === 'dividend') {
                     sharesGroup.style.display = 'none';
-                    priceLabel.textContent = 'Dividend Amount ($)';
+                    priceLabel.textContent = '배당금 ($)';
                 } else {
                     sharesGroup.style.display = 'flex';
-                    priceLabel.textContent = 'Price per Share ($)';
+                    priceLabel.textContent = '주당 가격 ($)';
                 }
             });
         }
@@ -476,22 +478,22 @@
             const notes = document.getElementById('txNotes').value.trim();
 
             if (!symbol) {
-                showToast('Please enter symbol', 'error');
+                showToast('종목 코드를 입력하세요', 'error');
                 return;
             }
 
             if (!date) {
-                showToast('Please select date', 'error');
+                showToast('날짜를 선택하세요', 'error');
                 return;
             }
 
             if (type !== 'dividend' && (!shares || shares <= 0)) {
-                showToast('Please enter valid shares', 'error');
+                showToast('올바른 수량을 입력하세요', 'error');
                 return;
             }
 
             if (!price || price <= 0) {
-                showToast('Please enter valid price/amount', 'error');
+                showToast('올바른 가격/금액을 입력하세요', 'error');
                 return;
             }
 
@@ -512,7 +514,8 @@
             renderTransactions();
             updateStats();
             clearForm();
-            showToast(`${type.charAt(0).toUpperCase() + type.slice(1)} transaction added`, 'success');
+            const typeKorean = type === 'buy' ? '매수' : type === 'sell' ? '매도' : '배당';
+            showToast(`${typeKorean} 거래가 추가되었습니다`, 'success');
         }
 
         // Clear form
@@ -525,12 +528,12 @@
 
         // Delete transaction
         function deleteTransaction(id) {
-            if (!confirm('Delete this transaction?')) return;
+            if (!confirm('이 거래를 삭제하시겠습니까?')) return;
             transactions = transactions.filter(t => t.id !== id);
             saveDraft();
             renderTransactions();
             updateStats();
-            showToast('Transaction deleted', 'success');
+            showToast('거래가 삭제되었습니다', 'success');
         }
 
         // Update stats
@@ -577,8 +580,8 @@
             if (filtered.length === 0) {
                 container.innerHTML = `
                     <div style="text-align: center; padding: 40px; color: var(--text-secondary);">
-                        <p>No transactions yet.</p>
-                        <p>Add your first transaction above!</p>
+                        <p>아직 거래가 없습니다.</p>
+                        <p>위에서 첫 번째 거래를 추가하세요!</p>
                     </div>
                 `;
                 return;
@@ -598,14 +601,14 @@
                     <table>
                         <thead>
                             <tr>
-                                <th>Date</th>
-                                <th>Type</th>
-                                <th>Symbol</th>
-                                <th>Shares</th>
-                                <th>Price</th>
-                                <th>Total</th>
-                                <th>Notes</th>
-                                <th>Actions</th>
+                                <th>날짜</th>
+                                <th>유형</th>
+                                <th>종목</th>
+                                <th>수량</th>
+                                <th>가격</th>
+                                <th>합계</th>
+                                <th>메모</th>
+                                <th>작업</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -623,7 +626,7 @@
                                         ${t.notes || '-'}
                                     </td>
                                     <td>
-                                        <button class="btn btn-danger btn-sm" onclick="deleteTransaction(${t.id})">Delete</button>
+                                        <button class="btn btn-danger btn-sm" onclick="deleteTransaction(${t.id})">삭제</button>
                                     </td>
                                 </tr>
                             `).join('')}
@@ -647,8 +650,8 @@
                                 </div>
                                 <div class="timeline-details">
                                     ${t.type === 'dividend'
-                                        ? `Dividend: <span class="positive">+$${t.total.toFixed(2)}</span>`
-                                        : `${t.shares} shares @ $${t.price.toFixed(2)} = $${t.total.toFixed(2)}`
+                                        ? `배당: <span class="positive">+$${t.total.toFixed(2)}</span>`
+                                        : `${t.shares}주 @ $${t.price.toFixed(2)} = $${t.total.toFixed(2)}`
                                     }
                                     ${t.notes ? `<br><em>"${t.notes}"</em>` : ''}
                                 </div>
@@ -672,7 +675,7 @@
             a.download = 'transactions.json';
             a.click();
             URL.revokeObjectURL(url);
-            showToast('Downloaded!', 'success');
+            showToast('다운로드 완료!', 'success');
         }
 
         // Export CSV
@@ -689,14 +692,14 @@
             a.download = 'transactions.csv';
             a.click();
             URL.revokeObjectURL(url);
-            showToast('CSV exported!', 'success');
+            showToast('CSV 내보내기 완료!', 'success');
         }
 
         // Push to GitHub
         async function pushToGitHub() {
             const token = localStorage.getItem('github_token');
             if (!token) {
-                showToast('Set GitHub token in Manage page first', 'error');
+                showToast('먼저 관리 페이지에서 GitHub 토큰을 설정하세요', 'error');
                 return;
             }
 
@@ -730,12 +733,12 @@
 
                 if (putRes.ok) {
                     localStorage.removeItem('transactions_draft');
-                    showToast('Pushed to GitHub!', 'success');
+                    showToast('GitHub에 푸시 완료!', 'success');
                 } else {
                     throw new Error((await putRes.json()).message);
                 }
             } catch (error) {
-                showToast(`Error: ${error.message}`, 'error');
+                showToast(`오류: ${error.message}`, 'error');
             }
         }
 
