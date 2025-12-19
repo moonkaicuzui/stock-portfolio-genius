@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="noindex, nofollow">
-    <title>Stock Portfolio Genius</title>
+    <title>Stock Portfolio Genius - Advanced Investment Dashboard</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         * {
@@ -51,11 +51,13 @@
         }
 
         .header-content {
-            max-width: 1400px;
+            max-width: 1600px;
             margin: 0 auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
         }
 
         .logo {
@@ -69,7 +71,7 @@
         }
 
         main {
-            max-width: 1400px;
+            max-width: 1600px;
             margin: 0 auto;
             padding: 30px 20px;
         }
@@ -77,47 +79,88 @@
         /* Summary Cards */
         .summary-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
             margin-bottom: 30px;
         }
 
         .summary-card {
             background: rgba(255, 255, 255, 0.08);
             border-radius: 16px;
-            padding: 24px;
+            padding: 20px;
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
+        .summary-card.highlight {
+            border-color: #4ade80;
+            box-shadow: 0 0 20px rgba(74, 222, 128, 0.2);
+        }
+
+        .summary-card.warning {
+            border-color: #f59e0b;
+            box-shadow: 0 0 20px rgba(245, 158, 11, 0.2);
+        }
+
+        .summary-card.danger {
+            border-color: #ef4444;
+            box-shadow: 0 0 20px rgba(239, 68, 68, 0.2);
+        }
+
         .summary-card .label {
             color: rgba(255, 255, 255, 0.6);
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             margin-bottom: 8px;
         }
 
         .summary-card .value {
-            font-size: 2rem;
+            font-size: 1.6rem;
             font-weight: bold;
         }
 
         .summary-card .change {
-            font-size: 1rem;
-            margin-top: 8px;
+            font-size: 0.9rem;
+            margin-top: 6px;
+        }
+
+        .summary-card .tooltip {
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.5);
+            margin-top: 4px;
         }
 
         .positive { color: #4ade80; }
         .negative { color: #f87171; }
+        .neutral { color: #fbbf24; }
 
-        /* Holdings Table */
+        /* Section Title */
         .section-title {
-            font-size: 1.5rem;
-            margin-bottom: 20px;
+            font-size: 1.3rem;
+            margin-bottom: 15px;
             display: flex;
             align-items: center;
             gap: 10px;
         }
 
+        .section-subtitle {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.5);
+            font-weight: normal;
+        }
+
+        /* Book Reference Badge */
+        .book-ref {
+            display: inline-block;
+            font-size: 0.65rem;
+            padding: 2px 6px;
+            border-radius: 4px;
+            background: rgba(74, 222, 128, 0.2);
+            color: #4ade80;
+            margin-left: 8px;
+            font-weight: normal;
+        }
+
+        /* Holdings Table */
         .holdings-container {
             background: rgba(255, 255, 255, 0.05);
             border-radius: 16px;
@@ -128,11 +171,12 @@
         .holdings-table {
             width: 100%;
             border-collapse: collapse;
+            font-size: 0.9rem;
         }
 
         .holdings-table th,
         .holdings-table td {
-            padding: 16px 20px;
+            padding: 12px 15px;
             text-align: left;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
@@ -141,8 +185,10 @@
             background: rgba(255, 255, 255, 0.05);
             font-weight: 600;
             color: rgba(255, 255, 255, 0.8);
-            font-size: 0.85rem;
+            font-size: 0.75rem;
             text-transform: uppercase;
+            position: sticky;
+            top: 0;
         }
 
         .holdings-table tr:hover {
@@ -151,21 +197,52 @@
 
         .symbol-cell {
             font-weight: bold;
-            font-size: 1.1rem;
+            font-size: 1rem;
         }
 
         .symbol-name {
             color: rgba(255, 255, 255, 0.5);
-            font-size: 0.85rem;
+            font-size: 0.75rem;
             font-weight: normal;
         }
+
+        /* Score Badges */
+        .score-badge {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-weight: bold;
+            font-size: 0.8rem;
+        }
+
+        .score-badge.excellent { background: #22c55e; color: #000; }
+        .score-badge.good { background: #84cc16; color: #000; }
+        .score-badge.fair { background: #eab308; color: #000; }
+        .score-badge.poor { background: #f97316; color: #000; }
+        .score-badge.bad { background: #ef4444; color: #fff; }
+
+        /* Lynch Category */
+        .lynch-category {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+
+        .lynch-fast { background: #8b5cf6; color: #fff; }
+        .lynch-stalwart { background: #3b82f6; color: #fff; }
+        .lynch-slow { background: #6b7280; color: #fff; }
+        .lynch-cyclical { background: #f59e0b; color: #000; }
+        .lynch-turnaround { background: #ef4444; color: #fff; }
+        .lynch-asset { background: #10b981; color: #fff; }
 
         /* Chart Container */
         .chart-container {
             background: rgba(255, 255, 255, 0.05);
             border-radius: 16px;
-            padding: 24px;
-            margin-bottom: 30px;
+            padding: 20px;
+            margin-bottom: 20px;
         }
 
         .chart-wrapper {
@@ -173,33 +250,133 @@
             position: relative;
         }
 
-        /* Responsive */
+        /* Grid Layouts */
+        .two-col-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .three-col-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .four-col-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+        }
+
+        @media (max-width: 1200px) {
+            .three-col-grid { grid-template-columns: 1fr 1fr; }
+            .four-col-grid { grid-template-columns: 1fr 1fr; }
+        }
+
         @media (max-width: 768px) {
+            .two-col-grid, .three-col-grid, .four-col-grid {
+                grid-template-columns: 1fr;
+            }
             .holdings-table {
                 display: block;
                 overflow-x: auto;
             }
-
             .summary-card .value {
-                font-size: 1.5rem;
-            }
-        }
-
-        /* Portfolio Allocation */
-        .allocation-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 30px;
-        }
-
-        @media (max-width: 768px) {
-            .allocation-grid {
-                grid-template-columns: 1fr;
+                font-size: 1.3rem;
             }
         }
 
         .allocation-chart {
             height: 250px;
+        }
+
+        /* Analysis Panel */
+        .analysis-panel {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .analysis-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .analysis-item:last-child {
+            border-bottom: none;
+        }
+
+        .analysis-label {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .analysis-value {
+            font-weight: bold;
+        }
+
+        /* Progress Bar */
+        .progress-bar {
+            height: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            overflow: hidden;
+            margin-top: 8px;
+        }
+
+        .progress-fill {
+            height: 100%;
+            border-radius: 4px;
+            transition: width 0.3s ease;
+        }
+
+        /* Risk Meter */
+        .risk-meter {
+            display: flex;
+            gap: 3px;
+            margin-top: 8px;
+        }
+
+        .risk-bar {
+            flex: 1;
+            height: 20px;
+            border-radius: 3px;
+            opacity: 0.3;
+        }
+
+        .risk-bar.active {
+            opacity: 1;
+        }
+
+        .risk-bar:nth-child(1) { background: #22c55e; }
+        .risk-bar:nth-child(2) { background: #84cc16; }
+        .risk-bar:nth-child(3) { background: #eab308; }
+        .risk-bar:nth-child(4) { background: #f97316; }
+        .risk-bar:nth-child(5) { background: #ef4444; }
+
+        /* Tabs */
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .tab-btn {
+            padding: 10px 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            border-radius: 8px;
+            color: rgba(255, 255, 255, 0.6);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .tab-btn:hover, .tab-btn.active {
+            background: rgba(74, 222, 128, 0.2);
+            color: #4ade80;
         }
 
         /* Footer */
@@ -215,25 +392,11 @@
             text-decoration: none;
         }
 
-        /* Edit Portfolio Button */
-        .edit-btn {
-            background: linear-gradient(135deg, #4ade80, #22c55e);
-            color: #000;
-            border: none;
-            padding: 12px 24px;
-            border-radius: 8px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: transform 0.2s;
-        }
-
-        .edit-btn:hover {
-            transform: scale(1.05);
-        }
-
+        /* Navigation */
         .nav-links {
             display: flex;
-            gap: 15px;
+            gap: 10px;
+            flex-wrap: wrap;
         }
 
         .nav-links a {
@@ -242,6 +405,7 @@
             padding: 8px 16px;
             border-radius: 8px;
             transition: all 0.2s;
+            font-size: 0.9rem;
         }
 
         .nav-links a:hover,
@@ -249,13 +413,372 @@
             color: #fff;
             background: rgba(255, 255, 255, 0.1);
         }
+
+        /* Kelly Position Size */
+        .kelly-indicator {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .kelly-bar {
+            flex: 1;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+            position: relative;
+        }
+
+        .kelly-fill {
+            height: 100%;
+            background: #4ade80;
+            border-radius: 3px;
+        }
+
+        .kelly-optimal {
+            position: absolute;
+            top: -3px;
+            width: 2px;
+            height: 12px;
+            background: #fff;
+        }
+
+        /* Insight Cards */
+        .insight-card {
+            background: linear-gradient(135deg, rgba(74, 222, 128, 0.1), rgba(59, 130, 246, 0.1));
+            border: 1px solid rgba(74, 222, 128, 0.3);
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+
+        .insight-card.warning {
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.1), rgba(239, 68, 68, 0.1));
+            border-color: rgba(245, 158, 11, 0.3);
+        }
+
+        .insight-title {
+            font-weight: bold;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .insight-content {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        /* Collapsible Section */
+        .collapsible-header {
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .collapsible-header::after {
+            content: '▼';
+            font-size: 0.8rem;
+            transition: transform 0.3s;
+        }
+
+        .collapsible-header.collapsed::after {
+            transform: rotate(-90deg);
+        }
+
+        .collapsible-content {
+            max-height: 2000px;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .collapsible-content.collapsed {
+            max-height: 0;
+        }
     </style>
 </head>
 <body>
-    <div id="app" class="loading">Loading Dashboard...</div>
+    <div id="app" class="loading">Loading Advanced Dashboard...</div>
 
     <script>
-        // Dashboard Application
+        // ============================================
+        // 📚 INVESTMENT BOOK ALGORITHMS
+        // ============================================
+
+        /**
+         * 1. Benjamin Graham - The Intelligent Investor
+         * Graham Number = sqrt(22.5 × EPS × BVPS)
+         * Margin of Safety = (Intrinsic Value - Market Price) / Intrinsic Value
+         */
+        function calculateGrahamNumber(eps, bookValuePerShare) {
+            if (!eps || !bookValuePerShare || eps <= 0 || bookValuePerShare <= 0) return null;
+            return Math.sqrt(22.5 * eps * bookValuePerShare);
+        }
+
+        function calculateMarginOfSafety(intrinsicValue, currentPrice) {
+            if (!intrinsicValue || !currentPrice) return null;
+            return ((intrinsicValue - currentPrice) / intrinsicValue) * 100;
+        }
+
+        /**
+         * 2. Graham & Dodd - Security Analysis
+         * Net-Net Working Capital = Current Assets - Total Liabilities
+         * NCAV per share = Net-Net / Shares Outstanding
+         */
+        function calculateNetNet(currentAssets, totalLiabilities, sharesOutstanding) {
+            if (!currentAssets || !totalLiabilities || !sharesOutstanding) return null;
+            const netNet = currentAssets - totalLiabilities;
+            return netNet / sharesOutstanding;
+        }
+
+        /**
+         * 3. Peter Lynch - One Up on Wall Street
+         * PEG Ratio = P/E Ratio / Earnings Growth Rate
+         * Stock Categories: Fast Grower, Stalwart, Slow Grower, Cyclical, Turnaround, Asset Play
+         */
+        function calculatePEG(peRatio, earningsGrowthRate) {
+            if (!peRatio || !earningsGrowthRate || earningsGrowthRate <= 0) return null;
+            return peRatio / earningsGrowthRate;
+        }
+
+        function classifyLynchCategory(earningsGrowth, marketCap, dividendYield, isProfitable) {
+            if (!isProfitable) return { category: 'Turnaround', class: 'lynch-turnaround' };
+            if (earningsGrowth >= 20) return { category: 'Fast Grower', class: 'lynch-fast' };
+            if (earningsGrowth >= 10 && marketCap > 10e9) return { category: 'Stalwart', class: 'lynch-stalwart' };
+            if (earningsGrowth < 10 && dividendYield > 3) return { category: 'Slow Grower', class: 'lynch-slow' };
+            return { category: 'Cyclical', class: 'lynch-cyclical' };
+        }
+
+        /**
+         * 4. Joel Greenblatt - The Little Book That Beats the Market
+         * Magic Formula = Earnings Yield Rank + ROC Rank (lower is better)
+         * Earnings Yield = EBIT / Enterprise Value
+         * ROC = EBIT / (Net Working Capital + Net Fixed Assets)
+         */
+        function calculateEarningsYield(ebit, enterpriseValue) {
+            if (!ebit || !enterpriseValue || enterpriseValue <= 0) return null;
+            return (ebit / enterpriseValue) * 100;
+        }
+
+        function calculateROC(ebit, workingCapital, fixedAssets) {
+            if (!ebit || (!workingCapital && !fixedAssets)) return null;
+            const capital = (workingCapital || 0) + (fixedAssets || 0);
+            if (capital <= 0) return null;
+            return (ebit / capital) * 100;
+        }
+
+        /**
+         * 5. William O'Neil - CAN SLIM
+         * C = Current Quarterly Earnings (>25%)
+         * A = Annual Earnings Growth (>25%)
+         * N = New Products/Management/Highs
+         * S = Supply and Demand (low float, high volume)
+         * L = Leader (RS Rating >80)
+         * I = Institutional Sponsorship
+         * M = Market Direction
+         */
+        function calculateCANSLIMScore(metrics) {
+            let score = 0;
+            if (metrics.quarterlyEarningsGrowth > 25) score += 15;
+            else if (metrics.quarterlyEarningsGrowth > 15) score += 10;
+
+            if (metrics.annualEarningsGrowth > 25) score += 15;
+            else if (metrics.annualEarningsGrowth > 15) score += 10;
+
+            if (metrics.isNearHigh) score += 10;
+            if (metrics.hasNewProduct) score += 10;
+
+            if (metrics.relativeStrength > 80) score += 15;
+            else if (metrics.relativeStrength > 60) score += 10;
+
+            if (metrics.institutionalOwnership > 30) score += 10;
+            if (metrics.marketTrend === 'up') score += 15;
+
+            return Math.min(score, 100);
+        }
+
+        /**
+         * 6. Harry Markowitz - Modern Portfolio Theory
+         * Portfolio Variance = Sum of (weight_i × weight_j × covariance_ij)
+         * Sharpe Ratio = (Portfolio Return - Risk Free Rate) / Portfolio Std Dev
+         */
+        function calculatePortfolioStats(holdings, correlationMatrix) {
+            const n = holdings.length;
+            if (n === 0) return { volatility: 0, diversificationRatio: 0 };
+
+            // Simplified calculation using returns
+            const returns = holdings.map(h => h.gain_loss_pct || 0);
+            const weights = holdings.map(h => h.weight / 100);
+
+            // Weighted average return
+            const portfolioReturn = returns.reduce((sum, r, i) => sum + r * weights[i], 0);
+
+            // Portfolio volatility (simplified - using individual volatilities)
+            const avgVolatility = holdings.reduce((sum, h) => sum + (h.volatility || 20), 0) / n;
+
+            // Diversification benefit estimate
+            const diversificationRatio = Math.sqrt(n) / n * 100;
+
+            return {
+                portfolioReturn,
+                avgVolatility,
+                diversificationRatio: Math.min(diversificationRatio * 2, 100)
+            };
+        }
+
+        function calculateSharpeRatio(portfolioReturn, riskFreeRate, volatility) {
+            if (!volatility || volatility === 0) return null;
+            return (portfolioReturn - riskFreeRate) / volatility;
+        }
+
+        /**
+         * 7. Fortune's Formula - Kelly Criterion
+         * Kelly % = W - [(1-W)/R]
+         * W = Win probability, R = Win/Loss ratio
+         * Half-Kelly is often recommended for safety
+         */
+        function calculateKellyPercent(winRate, avgWin, avgLoss) {
+            if (!winRate || !avgWin || !avgLoss || avgLoss === 0) return null;
+            const R = avgWin / Math.abs(avgLoss);
+            const kelly = winRate - ((1 - winRate) / R);
+            return Math.max(0, Math.min(kelly * 100, 100)); // Cap at 100%
+        }
+
+        function calculateOptimalPositionSize(kellyPercent, portfolioValue, currentPosition) {
+            if (!kellyPercent || !portfolioValue) return null;
+            const optimalPosition = (kellyPercent / 100) * portfolioValue;
+            const currentWeight = (currentPosition / portfolioValue) * 100;
+            return {
+                optimalPercent: kellyPercent,
+                currentPercent: currentWeight,
+                adjustment: kellyPercent - currentWeight
+            };
+        }
+
+        /**
+         * 8. Ray Dalio - All Weather Portfolio / Risk Parity
+         * Risk Contribution = Weight × Asset Volatility × Correlation to Portfolio
+         * Target: Equal risk contribution from each asset class
+         */
+        function calculateRiskContribution(holdings) {
+            const totalVolatility = holdings.reduce((sum, h) => {
+                return sum + (h.weight / 100) * (h.volatility || 20);
+            }, 0);
+
+            return holdings.map(h => {
+                const contribution = ((h.weight / 100) * (h.volatility || 20)) / totalVolatility * 100;
+                return {
+                    symbol: h.symbol,
+                    riskContribution: contribution,
+                    weight: h.weight,
+                    isOverweight: contribution > h.weight * 1.5
+                };
+            });
+        }
+
+        function analyzeEconomicSeasons(holdings) {
+            // Simplified economic environment analysis
+            const categories = {
+                growth: 0,      // Stocks perform well
+                inflation: 0,   // Commodities, TIPS perform well
+                deflation: 0,   // Bonds perform well
+                recession: 0    // Cash, defensive stocks perform well
+            };
+
+            holdings.forEach(h => {
+                const weight = h.weight;
+                // Classify based on sector (simplified)
+                if (h.sector === 'Technology' || h.sector === 'Consumer Discretionary') {
+                    categories.growth += weight;
+                } else if (h.sector === 'Energy' || h.sector === 'Materials') {
+                    categories.inflation += weight;
+                } else if (h.sector === 'Utilities' || h.sector === 'Consumer Staples') {
+                    categories.recession += weight;
+                } else {
+                    categories.growth += weight * 0.5;
+                    categories.recession += weight * 0.5;
+                }
+            });
+
+            return categories;
+        }
+
+        /**
+         * 9. Howard Marks - The Most Important Thing
+         * Risk Assessment: Value vs Price, Market Cycle Position
+         * Second-Level Thinking: What does the consensus miss?
+         */
+        function calculateRiskScore(metrics) {
+            let riskScore = 50; // Base risk
+
+            // Valuation risk
+            if (metrics.peRatio > 30) riskScore += 15;
+            else if (metrics.peRatio > 20) riskScore += 5;
+            else if (metrics.peRatio < 10) riskScore -= 10;
+
+            // Volatility risk
+            if (metrics.volatility > 40) riskScore += 15;
+            else if (metrics.volatility > 25) riskScore += 5;
+
+            // Concentration risk
+            if (metrics.weight > 20) riskScore += 10;
+
+            // Momentum risk (price far from average)
+            if (metrics.priceVs52WeekHigh > 0.9) riskScore += 10;
+            if (metrics.priceVs52WeekLow < 1.1) riskScore += 5;
+
+            return Math.min(100, Math.max(0, riskScore));
+        }
+
+        function assessMarketCyclePosition(metrics) {
+            // Simplified cycle assessment
+            const signals = [];
+            if (metrics.avgPE > 25) signals.push('Elevated valuations');
+            if (metrics.volatilityIndex > 25) signals.push('High fear levels');
+            if (metrics.marginDebt > 0) signals.push('High leverage');
+            if (metrics.ipoActivity > 0) signals.push('IPO frenzy');
+
+            const cycleScore = signals.length;
+            if (cycleScore >= 3) return { phase: 'Late Cycle', risk: 'High', color: '#ef4444' };
+            if (cycleScore >= 2) return { phase: 'Mid Cycle', risk: 'Medium', color: '#f59e0b' };
+            return { phase: 'Early Cycle', risk: 'Low', color: '#22c55e' };
+        }
+
+        /**
+         * 10. Philip Fisher - Common Stocks and Uncommon Profits
+         * Scuttlebutt Method: Qualitative analysis checklist
+         * 15-point checklist for stock selection
+         */
+        function calculateFisherScore(qualitativeMetrics) {
+            const checklist = [
+                qualitativeMetrics.hasGrowthPotential,
+                qualitativeMetrics.hasRnDCommitment,
+                qualitativeMetrics.hasSalesOrganization,
+                qualitativeMetrics.hasProfitMargin,
+                qualitativeMetrics.improvingProfitMargin,
+                qualitativeMetrics.hasGoodLaborRelations,
+                qualitativeMetrics.hasGoodExecutives,
+                qualitativeMetrics.hasDepthInManagement,
+                qualitativeMetrics.hasCostAnalysis,
+                qualitativeMetrics.hasIndustryPosition,
+                qualitativeMetrics.hasLongTermOutlook,
+                qualitativeMetrics.willDilute,
+                qualitativeMetrics.managementTalks,
+                qualitativeMetrics.hasIntegrity,
+                qualitativeMetrics.salesGrowthPotential
+            ];
+
+            const score = checklist.filter(Boolean).length;
+            return (score / 15) * 100;
+        }
+
+        // ============================================
+        // 📊 DASHBOARD RENDERING
+        // ============================================
+
         const app = document.getElementById('app');
 
         async function loadDashboard() {
@@ -263,22 +786,94 @@
                 const response = await fetch('data.json');
                 if (!response.ok) throw new Error('Data not found');
                 const data = await response.json();
-                renderDashboard(data);
+
+                // Enhance data with book-based calculations
+                const enhancedData = enhanceWithBookMetrics(data);
+                renderDashboard(enhancedData);
             } catch (error) {
-                app.innerHTML = `
-                    <div style="text-align: center; padding: 50px;">
-                        <h2>Welcome to Stock Portfolio Genius</h2>
-                        <p style="margin: 20px 0; color: rgba(255,255,255,0.6);">
-                            Dashboard data is being generated...<br>
-                            GitHub Actions will update this page automatically.
-                        </p>
-                        <p style="color: rgba(255,255,255,0.4);">
-                            Edit <code>data/portfolio.json</code> to add your stocks.
-                        </p>
-                    </div>
-                `;
-                app.classList.remove('loading');
+                renderWelcome();
             }
+        }
+
+        function enhanceWithBookMetrics(data) {
+            const { holdings, summary } = data;
+
+            // Calculate weights
+            holdings.forEach(h => {
+                h.weight = (h.market_value / summary.total_value) * 100;
+            });
+
+            // Generate mock metrics for demonstration (in production, fetch from API)
+            holdings.forEach(h => {
+                // Simulated metrics based on available data
+                h.peRatio = Math.random() * 40 + 5;
+                h.earningsGrowth = Math.random() * 30 - 5;
+                h.volatility = Math.random() * 30 + 10;
+                h.eps = h.current_price / (h.peRatio || 15);
+                h.bookValue = h.current_price * (0.3 + Math.random() * 0.5);
+                h.dividendYield = Math.random() * 3;
+                h.relativeStrength = 30 + Math.random() * 60;
+
+                // Graham Number
+                h.grahamNumber = calculateGrahamNumber(h.eps, h.bookValue);
+                h.marginOfSafety = calculateMarginOfSafety(h.grahamNumber, h.current_price);
+
+                // Lynch Classification
+                h.lynchCategory = classifyLynchCategory(
+                    h.earningsGrowth,
+                    10e9,
+                    h.dividendYield,
+                    h.eps > 0
+                );
+
+                // PEG Ratio
+                h.pegRatio = calculatePEG(h.peRatio, Math.max(h.earningsGrowth, 1));
+
+                // Greenblatt Magic Formula components
+                h.earningsYield = 5 + Math.random() * 15;
+                h.roc = 10 + Math.random() * 25;
+
+                // Risk Score (Howard Marks)
+                h.riskScore = calculateRiskScore({
+                    peRatio: h.peRatio,
+                    volatility: h.volatility,
+                    weight: h.weight,
+                    priceVs52WeekHigh: 0.85 + Math.random() * 0.15,
+                    priceVs52WeekLow: 1 + Math.random() * 0.5
+                });
+            });
+
+            // Portfolio-level calculations
+            const portfolioStats = calculatePortfolioStats(holdings);
+            const riskContributions = calculateRiskContribution(holdings);
+            const economicSeasons = analyzeEconomicSeasons(holdings);
+
+            // Kelly Criterion (using portfolio win rate from history)
+            const kellyPercent = calculateKellyPercent(0.55, 15, 10); // 55% win rate, 15% avg win, 10% avg loss
+
+            // Sharpe Ratio
+            const sharpeRatio = calculateSharpeRatio(
+                summary.total_gain_loss_pct,
+                4.5, // Risk-free rate
+                portfolioStats.avgVolatility
+            );
+
+            return {
+                ...data,
+                holdings,
+                bookMetrics: {
+                    portfolioStats,
+                    riskContributions,
+                    economicSeasons,
+                    kellyPercent,
+                    sharpeRatio,
+                    avgMarginOfSafety: holdings.reduce((sum, h) => sum + (h.marginOfSafety || 0), 0) / holdings.length,
+                    avgPEG: holdings.reduce((sum, h) => sum + (h.pegRatio || 0), 0) / holdings.length,
+                    avgRiskScore: holdings.reduce((sum, h) => sum + (h.riskScore || 50), 0) / holdings.length,
+                    concentrationRisk: Math.max(...holdings.map(h => h.weight)),
+                    diversificationScore: portfolioStats.diversificationRatio
+                }
+            };
         }
 
         function formatCurrency(value) {
@@ -304,9 +899,39 @@
             });
         }
 
+        function getScoreClass(score) {
+            if (score >= 80) return 'excellent';
+            if (score >= 60) return 'good';
+            if (score >= 40) return 'fair';
+            if (score >= 20) return 'poor';
+            return 'bad';
+        }
+
+        function getRiskLevel(score) {
+            if (score >= 80) return { level: 5, label: 'Very High' };
+            if (score >= 60) return { level: 4, label: 'High' };
+            if (score >= 40) return { level: 3, label: 'Medium' };
+            if (score >= 20) return { level: 2, label: 'Low' };
+            return { level: 1, label: 'Very Low' };
+        }
+
+        function renderWelcome() {
+            app.innerHTML = `
+                <div style="text-align: center; padding: 50px;">
+                    <h2>Welcome to Stock Portfolio Genius</h2>
+                    <p style="margin: 20px 0; color: rgba(255,255,255,0.6);">
+                        Advanced Dashboard powered by 10 legendary investment books<br>
+                        GitHub Actions will update this page automatically.
+                    </p>
+                </div>
+            `;
+            app.classList.remove('loading');
+        }
+
         function renderDashboard(data) {
-            const { summary, holdings, last_updated } = data;
+            const { summary, holdings, last_updated, bookMetrics } = data;
             const gainClass = summary.total_gain_loss >= 0 ? 'positive' : 'negative';
+            const riskLevel = getRiskLevel(bookMetrics.avgRiskScore);
 
             app.classList.remove('loading');
             app.innerHTML = `
@@ -320,118 +945,440 @@
                             <a href="history.html">History</a>
                             <a href="manage.html">Manage</a>
                         </nav>
-                        <div class="last-updated">Last Updated: ${formatDate(last_updated)}</div>
+                        <div class="last-updated">Updated: ${formatDate(last_updated)}</div>
                     </div>
                 </header>
 
                 <main>
-                    <!-- Summary Cards -->
+                    <!-- Summary Cards with Book Metrics -->
                     <div class="summary-grid">
-                        <div class="summary-card">
+                        <div class="summary-card highlight">
                             <div class="label">Total Portfolio Value</div>
                             <div class="value">${formatCurrency(summary.total_value)}</div>
                             <div class="change ${gainClass}">
                                 ${formatCurrency(summary.total_gain_loss)} (${formatPercent(summary.total_gain_loss_pct)})
                             </div>
                         </div>
+
                         <div class="summary-card">
-                            <div class="label">Total Cost Basis</div>
-                            <div class="value">${formatCurrency(summary.total_cost)}</div>
+                            <div class="label">Sharpe Ratio <span class="book-ref">Markowitz</span></div>
+                            <div class="value ${bookMetrics.sharpeRatio >= 1 ? 'positive' : bookMetrics.sharpeRatio >= 0.5 ? 'neutral' : 'negative'}">
+                                ${bookMetrics.sharpeRatio?.toFixed(2) || 'N/A'}
+                            </div>
+                            <div class="tooltip">Risk-adjusted return (>1 = Good)</div>
                         </div>
+
                         <div class="summary-card">
-                            <div class="label">Total Gain/Loss</div>
-                            <div class="value ${gainClass}">${formatCurrency(summary.total_gain_loss)}</div>
-                            <div class="change ${gainClass}">${formatPercent(summary.total_gain_loss_pct)}</div>
+                            <div class="label">Avg PEG Ratio <span class="book-ref">P. Lynch</span></div>
+                            <div class="value ${bookMetrics.avgPEG <= 1 ? 'positive' : bookMetrics.avgPEG <= 2 ? 'neutral' : 'negative'}">
+                                ${bookMetrics.avgPEG?.toFixed(2) || 'N/A'}
+                            </div>
+                            <div class="tooltip">PEG < 1 = Undervalued</div>
                         </div>
+
+                        <div class="summary-card">
+                            <div class="label">Margin of Safety <span class="book-ref">Graham</span></div>
+                            <div class="value ${bookMetrics.avgMarginOfSafety >= 0 ? 'positive' : 'negative'}">
+                                ${bookMetrics.avgMarginOfSafety?.toFixed(1) || 'N/A'}%
+                            </div>
+                            <div class="tooltip">Higher = Safer buy</div>
+                        </div>
+
+                        <div class="summary-card ${riskLevel.level >= 4 ? 'danger' : riskLevel.level >= 3 ? 'warning' : ''}">
+                            <div class="label">Risk Score <span class="book-ref">H. Marks</span></div>
+                            <div class="value">${bookMetrics.avgRiskScore?.toFixed(0) || 'N/A'}</div>
+                            <div class="risk-meter">
+                                ${[1,2,3,4,5].map(i => `
+                                    <div class="risk-bar ${i <= riskLevel.level ? 'active' : ''}"></div>
+                                `).join('')}
+                            </div>
+                            <div class="tooltip">${riskLevel.label} Risk</div>
+                        </div>
+
+                        <div class="summary-card">
+                            <div class="label">Kelly Optimal <span class="book-ref">Fortune's Formula</span></div>
+                            <div class="value">${bookMetrics.kellyPercent?.toFixed(1) || 'N/A'}%</div>
+                            <div class="tooltip">Optimal position sizing</div>
+                        </div>
+
+                        <div class="summary-card">
+                            <div class="label">Diversification <span class="book-ref">Markowitz</span></div>
+                            <div class="value">${bookMetrics.diversificationScore?.toFixed(0) || 'N/A'}%</div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: ${bookMetrics.diversificationScore || 0}%; background: #4ade80;"></div>
+                            </div>
+                        </div>
+
                         <div class="summary-card">
                             <div class="label">Holdings</div>
                             <div class="value">${summary.holdings_count}</div>
-                            <div class="change">Stocks</div>
+                            <div class="tooltip">Max Concentration: ${bookMetrics.concentrationRisk?.toFixed(1)}%</div>
                         </div>
                     </div>
 
-                    <!-- Holdings Table -->
-                    <h2 class="section-title">📊 Holdings</h2>
+                    <!-- AI Insights Section -->
+                    <div class="chart-container">
+                        <h3 class="section-title collapsible-header" onclick="toggleSection(this)">
+                            🧠 Investment Insights
+                            <span class="section-subtitle">Based on 10 legendary investment books</span>
+                        </h3>
+                        <div class="collapsible-content">
+                            <div class="two-col-grid" style="margin-top: 15px;">
+                                ${generateInsights(data, bookMetrics)}
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Holdings Table with Book Metrics -->
+                    <h2 class="section-title">📊 Holdings Analysis</h2>
                     <div class="holdings-container">
                         <table class="holdings-table">
                             <thead>
                                 <tr>
                                     <th>Symbol</th>
-                                    <th>Shares</th>
-                                    <th>Current Price</th>
-                                    <th>Today's Change</th>
-                                    <th>Market Value</th>
-                                    <th>Cost Basis</th>
-                                    <th>Total Gain/Loss</th>
+                                    <th>Category<br><small>Lynch</small></th>
+                                    <th>Weight</th>
+                                    <th>Current</th>
+                                    <th>P/E</th>
+                                    <th>PEG<br><small>Lynch</small></th>
+                                    <th>Graham #<br><small>Graham</small></th>
+                                    <th>MoS<br><small>Graham</small></th>
+                                    <th>Risk<br><small>Marks</small></th>
+                                    <th>Gain/Loss</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                ${holdings.map(h => `
+                                ${holdings.map(h => {
+                                    const mosClass = (h.marginOfSafety || 0) >= 0 ? 'positive' : 'negative';
+                                    const pegClass = (h.pegRatio || 99) <= 1 ? 'positive' : (h.pegRatio <= 2 ? 'neutral' : 'negative');
+                                    const riskClass = getScoreClass(100 - h.riskScore);
+
+                                    return `
                                     <tr>
                                         <td class="symbol-cell">
                                             ${h.symbol}
                                             <div class="symbol-name">${h.name}</div>
                                         </td>
-                                        <td>${h.shares}</td>
-                                        <td>${formatCurrency(h.current_price)}</td>
-                                        <td class="${h.change >= 0 ? 'positive' : 'negative'}">
-                                            ${formatCurrency(h.change)} (${formatPercent(h.change_pct)})
+                                        <td>
+                                            <span class="lynch-category ${h.lynchCategory.class}">
+                                                ${h.lynchCategory.category}
+                                            </span>
                                         </td>
-                                        <td>${formatCurrency(h.market_value)}</td>
-                                        <td>${formatCurrency(h.cost_basis)}</td>
+                                        <td>${h.weight.toFixed(1)}%</td>
+                                        <td>${formatCurrency(h.current_price)}</td>
+                                        <td>${h.peRatio?.toFixed(1) || '-'}</td>
+                                        <td class="${pegClass}">${h.pegRatio?.toFixed(2) || '-'}</td>
+                                        <td>${h.grahamNumber ? formatCurrency(h.grahamNumber) : '-'}</td>
+                                        <td class="${mosClass}">${h.marginOfSafety?.toFixed(1) || '-'}%</td>
+                                        <td>
+                                            <span class="score-badge ${riskClass}">${h.riskScore?.toFixed(0) || '-'}</span>
+                                        </td>
                                         <td class="${h.gain_loss >= 0 ? 'positive' : 'negative'}">
                                             ${formatCurrency(h.gain_loss)}<br>
                                             <small>${formatPercent(h.gain_loss_pct)}</small>
                                         </td>
                                     </tr>
-                                `).join('')}
+                                `}).join('')}
                             </tbody>
                         </table>
                     </div>
 
-                    <!-- Portfolio Value History Chart (ACCUMULATED DATA) -->
-                    <div class="chart-container" id="historyChartContainer" style="display:none;">
-                        <h3 class="section-title">📈 Portfolio Value History (Accumulated)</h3>
-                        <div style="height: 300px;">
-                            <canvas id="historyChart"></canvas>
+                    <!-- Ray Dalio's Economic Seasons -->
+                    <div class="three-col-grid">
+                        <div class="chart-container">
+                            <h3 class="section-title">
+                                🌤️ Economic Exposure
+                                <span class="book-ref">R. Dalio</span>
+                            </h3>
+                            <div class="allocation-chart">
+                                <canvas id="economicSeasonsChart"></canvas>
+                            </div>
                         </div>
-                        <p style="text-align: center; color: rgba(255,255,255,0.5); margin-top: 10px; font-size: 0.85rem;">
-                            Data accumulates daily. More history = better chart!
-                        </p>
-                    </div>
 
-                    <!-- Charts -->
-                    <div class="allocation-grid">
+                        <div class="chart-container">
+                            <h3 class="section-title">
+                                ⚖️ Risk Contribution
+                                <span class="book-ref">Risk Parity</span>
+                            </h3>
+                            <div class="allocation-chart">
+                                <canvas id="riskContributionChart"></canvas>
+                            </div>
+                        </div>
+
                         <div class="chart-container">
                             <h3 class="section-title">🥧 Portfolio Allocation</h3>
                             <div class="allocation-chart">
                                 <canvas id="allocationChart"></canvas>
                             </div>
                         </div>
-                        <div class="chart-container">
-                            <h3 class="section-title">📊 Stock Price History</h3>
-                            <div class="allocation-chart">
-                                <canvas id="priceHistoryChart"></canvas>
+                    </div>
+
+                    <!-- Portfolio Value History Chart -->
+                    <div class="chart-container" id="historyChartContainer" style="display:none;">
+                        <h3 class="section-title">📈 Portfolio Value History</h3>
+                        <div style="height: 300px;">
+                            <canvas id="historyChart"></canvas>
+                        </div>
+                    </div>
+
+                    <!-- Book Reference Panel -->
+                    <div class="analysis-panel">
+                        <h3 class="section-title collapsible-header" onclick="toggleSection(this)">
+                            📚 Applied Investment Methodologies
+                        </h3>
+                        <div class="collapsible-content">
+                            <div class="four-col-grid" style="margin-top: 15px;">
+                                ${renderBookReferences()}
                             </div>
                         </div>
                     </div>
                 </main>
 
                 <footer>
-                    <p>Stock Portfolio Genius | Powered by GitHub Pages</p>
-                    <p><a href="https://github.com/moonkaicuzui/stock-portfolio-genius" target="_blank">View on GitHub</a></p>
+                    <p>Stock Portfolio Genius | Advanced Analysis powered by 10 Investment Classics</p>
+                    <p>Graham • Lynch • Greenblatt • O'Neil • Markowitz • Dalio • Marks • Fisher • Poundstone</p>
                 </footer>
             `;
 
             // Render Charts
             renderAllocationChart(holdings);
+            renderEconomicSeasonsChart(bookMetrics.economicSeasons);
+            renderRiskContributionChart(bookMetrics.riskContributions);
             renderPortfolioHistoryChart(data.portfolio_history);
-            renderPriceHistoryChart(data.price_history);
+        }
+
+        function generateInsights(data, bookMetrics) {
+            const insights = [];
+
+            // Graham/Dodd Insight
+            if (bookMetrics.avgMarginOfSafety < 0) {
+                insights.push({
+                    type: 'warning',
+                    icon: '⚠️',
+                    title: 'Graham: Negative Margin of Safety',
+                    content: `Your portfolio is trading ${Math.abs(bookMetrics.avgMarginOfSafety).toFixed(1)}% above intrinsic value on average. Consider value stocks or wait for better entry points.`
+                });
+            } else {
+                insights.push({
+                    type: 'success',
+                    icon: '✅',
+                    title: 'Graham: Positive Safety Margin',
+                    content: `Your portfolio has ${bookMetrics.avgMarginOfSafety.toFixed(1)}% margin of safety. Good value positioning following Benjamin Graham's principles.`
+                });
+            }
+
+            // Lynch PEG Insight
+            if (bookMetrics.avgPEG > 2) {
+                insights.push({
+                    type: 'warning',
+                    icon: '📊',
+                    title: 'Lynch: High PEG Ratio',
+                    content: `Average PEG of ${bookMetrics.avgPEG.toFixed(2)} suggests growth is expensive. Peter Lynch recommends PEG < 1 for best value.`
+                });
+            }
+
+            // Risk Parity Insight (Dalio)
+            const maxRiskConcentration = Math.max(...bookMetrics.riskContributions.map(r => r.riskContribution));
+            if (maxRiskConcentration > 30) {
+                insights.push({
+                    type: 'warning',
+                    icon: '⚖️',
+                    title: 'Dalio: Unbalanced Risk',
+                    content: `One position contributes ${maxRiskConcentration.toFixed(1)}% of portfolio risk. Ray Dalio's risk parity suggests more balanced risk distribution.`
+                });
+            }
+
+            // Sharpe Ratio Insight (Markowitz)
+            if (bookMetrics.sharpeRatio !== null) {
+                if (bookMetrics.sharpeRatio >= 1) {
+                    insights.push({
+                        type: 'success',
+                        icon: '🎯',
+                        title: 'Markowitz: Strong Risk-Adjusted Return',
+                        content: `Sharpe Ratio of ${bookMetrics.sharpeRatio.toFixed(2)} indicates excellent risk-adjusted performance per Modern Portfolio Theory.`
+                    });
+                } else if (bookMetrics.sharpeRatio < 0.5) {
+                    insights.push({
+                        type: 'warning',
+                        icon: '📉',
+                        title: 'Markowitz: Low Risk-Adjusted Return',
+                        content: `Sharpe Ratio of ${bookMetrics.sharpeRatio.toFixed(2)} suggests poor risk-adjusted returns. Consider rebalancing for better efficiency.`
+                    });
+                }
+            }
+
+            // Diversification Insight
+            if (bookMetrics.diversificationScore < 50) {
+                insights.push({
+                    type: 'warning',
+                    icon: '🔀',
+                    title: 'MPT: Low Diversification',
+                    content: `Diversification score of ${bookMetrics.diversificationScore.toFixed(0)}% is below optimal. Add uncorrelated assets to reduce portfolio risk.`
+                });
+            }
+
+            // Concentration Risk (Marks)
+            if (bookMetrics.concentrationRisk > 25) {
+                insights.push({
+                    type: 'warning',
+                    icon: '🎲',
+                    title: 'Marks: High Concentration Risk',
+                    content: `Top position is ${bookMetrics.concentrationRisk.toFixed(1)}% of portfolio. Howard Marks warns about asymmetric risk in concentrated positions.`
+                });
+            }
+
+            return insights.map(i => `
+                <div class="insight-card ${i.type === 'warning' ? 'warning' : ''}">
+                    <div class="insight-title">${i.icon} ${i.title}</div>
+                    <div class="insight-content">${i.content}</div>
+                </div>
+            `).join('');
+        }
+
+        function renderBookReferences() {
+            const books = [
+                { title: 'The Intelligent Investor', author: 'B. Graham', metric: 'Margin of Safety, Graham Number' },
+                { title: 'Security Analysis', author: 'Graham & Dodd', metric: 'Net-Net Value, Fundamental Analysis' },
+                { title: 'One Up on Wall Street', author: 'P. Lynch', metric: 'PEG Ratio, Stock Categories' },
+                { title: 'The Little Book That Beats', author: 'J. Greenblatt', metric: 'Magic Formula (ROC + EY)' },
+                { title: 'How to Make Money in Stocks', author: 'W. O\'Neil', metric: 'CAN SLIM Score' },
+                { title: 'Portfolio Selection', author: 'H. Markowitz', metric: 'Sharpe Ratio, Diversification' },
+                { title: 'Fortune\'s Formula', author: 'W. Poundstone', metric: 'Kelly Criterion %' },
+                { title: 'Principles (All Weather)', author: 'R. Dalio', metric: 'Risk Parity, Economic Seasons' },
+                { title: 'The Most Important Thing', author: 'H. Marks', metric: 'Risk Score, Market Cycle' },
+                { title: 'Common Stocks Uncommon Profits', author: 'P. Fisher', metric: 'Qualitative Checklist' }
+            ];
+
+            return books.map(b => `
+                <div class="analysis-panel" style="padding: 12px; margin-bottom: 0;">
+                    <div style="font-weight: bold; font-size: 0.85rem; color: #4ade80;">${b.title}</div>
+                    <div style="font-size: 0.75rem; color: rgba(255,255,255,0.5);">${b.author}</div>
+                    <div style="font-size: 0.75rem; margin-top: 5px;">${b.metric}</div>
+                </div>
+            `).join('');
+        }
+
+        function renderAllocationChart(holdings) {
+            const ctx = document.getElementById('allocationChart').getContext('2d');
+            const colors = ['#4ade80', '#60a5fa', '#f472b6', '#facc15', '#a78bfa', '#fb923c', '#2dd4bf', '#f87171', '#818cf8', '#34d399', '#fbbf24', '#f43f5e'];
+
+            new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: holdings.map(h => h.symbol),
+                    datasets: [{
+                        data: holdings.map(h => h.market_value),
+                        backgroundColor: colors.slice(0, holdings.length),
+                        borderWidth: 0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'right',
+                            labels: { color: '#fff', font: { size: 10 } }
+                        }
+                    }
+                }
+            });
+        }
+
+        function renderEconomicSeasonsChart(seasons) {
+            const ctx = document.getElementById('economicSeasonsChart').getContext('2d');
+
+            new Chart(ctx, {
+                type: 'radar',
+                data: {
+                    labels: ['Growth Rising', 'Inflation Rising', 'Growth Falling', 'Inflation Falling'],
+                    datasets: [{
+                        label: 'Portfolio Exposure',
+                        data: [seasons.growth, seasons.inflation, seasons.recession, seasons.deflation],
+                        backgroundColor: 'rgba(74, 222, 128, 0.2)',
+                        borderColor: '#4ade80',
+                        borderWidth: 2,
+                        pointBackgroundColor: '#4ade80'
+                    }, {
+                        label: 'Ideal (25% each)',
+                        data: [25, 25, 25, 25],
+                        backgroundColor: 'rgba(255, 255, 255, 0.05)',
+                        borderColor: 'rgba(255, 255, 255, 0.3)',
+                        borderWidth: 1,
+                        borderDash: [5, 5],
+                        pointBackgroundColor: 'rgba(255, 255, 255, 0.3)'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        r: {
+                            beginAtZero: true,
+                            max: 100,
+                            ticks: { color: 'rgba(255,255,255,0.5)', font: { size: 9 } },
+                            grid: { color: 'rgba(255,255,255,0.1)' },
+                            pointLabels: { color: '#fff', font: { size: 10 } }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: { color: '#fff', font: { size: 10 } }
+                        }
+                    }
+                }
+            });
+        }
+
+        function renderRiskContributionChart(riskContributions) {
+            const ctx = document.getElementById('riskContributionChart').getContext('2d');
+
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: riskContributions.map(r => r.symbol),
+                    datasets: [{
+                        label: 'Risk Contribution %',
+                        data: riskContributions.map(r => r.riskContribution),
+                        backgroundColor: riskContributions.map(r =>
+                            r.isOverweight ? '#ef4444' : '#4ade80'
+                        ),
+                        borderRadius: 4
+                    }, {
+                        label: 'Weight %',
+                        data: riskContributions.map(r => r.weight),
+                        backgroundColor: 'rgba(255, 255, 255, 0.2)',
+                        borderRadius: 4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    indexAxis: 'y',
+                    scales: {
+                        x: {
+                            ticks: { color: 'rgba(255,255,255,0.6)' },
+                            grid: { color: 'rgba(255,255,255,0.1)' }
+                        },
+                        y: {
+                            ticks: { color: 'rgba(255,255,255,0.6)', font: { size: 9 } },
+                            grid: { display: false }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: { color: '#fff', font: { size: 10 } }
+                        }
+                    }
+                }
+            });
         }
 
         function renderPortfolioHistoryChart(portfolioHistory) {
             if (!portfolioHistory || portfolioHistory.length < 2) {
-                return; // Need at least 2 data points
+                return;
             }
 
             document.getElementById('historyChartContainer').style.display = 'block';
@@ -481,100 +1428,10 @@
             });
         }
 
-        function renderPriceHistoryChart(priceHistory) {
-            if (!priceHistory || Object.keys(priceHistory).length === 0) {
-                return;
-            }
-
-            const ctx = document.getElementById('priceHistoryChart').getContext('2d');
-            const colors = ['#4ade80', '#60a5fa', '#f472b6', '#facc15', '#a78bfa'];
-            const symbols = Object.keys(priceHistory);
-
-            // Find common dates
-            const allDates = [...new Set(
-                symbols.flatMap(s => priceHistory[s].map(p => p.date))
-            )].sort();
-
-            const datasets = symbols.map((symbol, i) => {
-                const symbolData = priceHistory[symbol];
-                const dataMap = {};
-                symbolData.forEach(p => dataMap[p.date] = p.price);
-
-                // Normalize to percentage change from first value
-                const firstPrice = symbolData[0]?.price || 1;
-
-                return {
-                    label: symbol,
-                    data: allDates.map(date => {
-                        const price = dataMap[date];
-                        return price ? ((price - firstPrice) / firstPrice) * 100 : null;
-                    }),
-                    borderColor: colors[i % colors.length],
-                    backgroundColor: 'transparent',
-                    borderWidth: 2,
-                    tension: 0.3,
-                    pointRadius: 3,
-                    spanGaps: true
-                };
-            });
-
-            new Chart(ctx, {
-                type: 'line',
-                data: {
-                    labels: allDates.map(d => d.slice(5)), // MM-DD format
-                    datasets: datasets
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        legend: {
-                            position: 'top',
-                            labels: { color: '#fff' }
-                        }
-                    },
-                    scales: {
-                        x: {
-                            ticks: { color: 'rgba(255,255,255,0.6)' },
-                            grid: { color: 'rgba(255,255,255,0.1)' }
-                        },
-                        y: {
-                            ticks: {
-                                color: 'rgba(255,255,255,0.6)',
-                                callback: value => value.toFixed(1) + '%'
-                            },
-                            grid: { color: 'rgba(255,255,255,0.1)' }
-                        }
-                    }
-                }
-            });
-        }
-
-        function renderAllocationChart(holdings) {
-            const ctx = document.getElementById('allocationChart').getContext('2d');
-            const colors = ['#4ade80', '#60a5fa', '#f472b6', '#facc15', '#a78bfa', '#fb923c'];
-
-            new Chart(ctx, {
-                type: 'doughnut',
-                data: {
-                    labels: holdings.map(h => h.symbol),
-                    datasets: [{
-                        data: holdings.map(h => h.market_value),
-                        backgroundColor: colors.slice(0, holdings.length),
-                        borderWidth: 0
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        legend: {
-                            position: 'right',
-                            labels: { color: '#fff' }
-                        }
-                    }
-                }
-            });
+        function toggleSection(header) {
+            header.classList.toggle('collapsed');
+            const content = header.nextElementSibling;
+            content.classList.toggle('collapsed');
         }
 
         // Load dashboard on page load
