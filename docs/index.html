@@ -2577,6 +2577,11 @@
             renderRiskContributionChart(bookMetrics.riskContributions);
             renderSectorCharts(holdings);
             renderPortfolioHistoryChart(data.portfolio_history);
+
+            // 기술적 분석, 배당, AI 추천 렌더링 (globalData 설정 후)
+            renderTechnicalAnalysis();
+            renderDividendTracking();
+            generateAIRecommendations();
         }
 
         // ============================================
@@ -4010,17 +4015,13 @@
         }
 
         // 시장 데이터 로드 후 모든 분석 렌더링
+        // (renderDashboard에서 호출됨 - loadDashboard가 먼저 fetchMarketData 호출)
         async function loadAndRenderMarketAnalysis() {
             await fetchMarketData();
             renderTechnicalAnalysis();
             renderDividendTracking();
             generateAIRecommendations();
         }
-
-        // 페이지 로드 시 분석 데이터 로드
-        document.addEventListener('DOMContentLoaded', () => {
-            loadAndRenderMarketAnalysis();
-        });
 
         // ============================================
         // 🔧 PWA 서비스 워커 등록
