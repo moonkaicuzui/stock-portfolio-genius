@@ -1,0 +1,84 @@
+{
+  "name": "주식 포트폴리오 지니어스",
+  "short_name": "포트폴리오",
+  "description": "16권의 투자 명저 기반 고급 투자 대시보드",
+  "start_url": "/stock-portfolio-genius/",
+  "display": "standalone",
+  "background_color": "#1a1a2e",
+  "theme_color": "#4ade80",
+  "orientation": "any",
+  "icons": [
+    {
+      "src": "icons/icon-72.svg",
+      "sizes": "72x72",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icons/icon-96.svg",
+      "sizes": "96x96",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icons/icon-128.svg",
+      "sizes": "128x128",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icons/icon-144.svg",
+      "sizes": "144x144",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icons/icon-152.svg",
+      "sizes": "152x152",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icons/icon-192.svg",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icons/icon-384.svg",
+      "sizes": "384x384",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icons/icon-512.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["finance", "productivity"],
+  "lang": "ko",
+  "shortcuts": [
+    {
+      "name": "대시보드",
+      "url": "/stock-portfolio-genius/index.html",
+      "icons": [{"src": "icons/icon-96.png", "sizes": "96x96"}]
+    },
+    {
+      "name": "AI 대결",
+      "url": "/stock-portfolio-genius/battle.html",
+      "icons": [{"src": "icons/icon-96.png", "sizes": "96x96"}]
+    },
+    {
+      "name": "스크리너",
+      "url": "/stock-portfolio-genius/screener.html",
+      "icons": [{"src": "icons/icon-96.png", "sizes": "96x96"}]
+    },
+    {
+      "name": "투자 퀴즈",
+      "url": "/stock-portfolio-genius/quiz.html",
+      "icons": [{"src": "icons/icon-96.png", "sizes": "96x96"}]
+    }
+  ]
+}

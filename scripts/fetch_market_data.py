@@ -148,6 +148,171 @@ def fetch_market_indices():
     return result
 
 
+def fetch_dividend_data(symbols=None):
+    """배당 데이터 수집"""
+    if symbols is None:
+        symbols = ["AAPL", "MSFT", "JNJ", "KO", "PG", "VZ", "T", "XOM", "SCHD", "VYM", "SPY", "QQQ"]
+
+    result = {}
+    for symbol in symbols:
+        try:
+            ticker = yf.Ticker(symbol)
+            info = ticker.info
+
+            # 배당 정보 추출
+            dividend_yield = info.get("dividendYield", 0) or 0
+            dividend_rate = info.get("dividendRate", 0) or 0
+            ex_dividend_date = info.get("exDividendDate")
+            payout_ratio = info.get("payoutRatio", 0) or 0
+
+            # 연간 배당금 계산
+            annual_dividend = dividend_rate
+
+            # 배당 성장률 (5년)
+            five_year_avg = info.get("fiveYearAvgDividendYield", 0) or 0
+
+            # ex_dividend_date 포맷팅
+            if ex_dividend_date:
+                from datetime import datetime as dt
+                ex_date_str = dt.fromtimestamp(ex_dividend_date).strftime("%Y-%m-%d")
+            else:
+                ex_date_str = None
+
+            result[symbol] = {
+                "dividend_yield": round(dividend_yield * 100, 2) if dividend_yield else 0,
+                "dividend_rate": round(dividend_rate, 2),
+                "annual_dividend": round(annual_dividend, 2),
+                "ex_dividend_date": ex_date_str,
+                "payout_ratio": round(payout_ratio * 100, 1) if payout_ratio else 0,
+                "five_year_avg_yield": round(five_year_avg, 2),
+                "success": True
+            }
+        except Exception as e:
+            print(f"{symbol} 배당 데이터 오류: {e}")
+            result[symbol] = {"success": False, "error": str(e)}
+
+    return result
+
+
+def fetch_technical_indicators(symbols=None):
+    """주요 종목의 기술적 지표 계산 (RSI, MACD, Bollinger Bands)"""
+    if symbols is None:
+        # 기본 주요 종목 목록
+        symbols = ["AAPL", "MSFT", "GOOGL", "NVDA", "TSLA", "AMZN", "META", "QQQ", "SPY"]
+
+    import numpy as np
+
+    def calculate_rsi(prices, period=14):
+        """RSI 계산"""
+        deltas = np.diff(prices)
+        gains = np.where(deltas > 0, deltas, 0)
+        losses = np.where(deltas < 0, -deltas, 0)
+
+        avg_gain = np.mean(gains[:period])
+        avg_loss = np.mean(losses[:period])
+
+        if avg_loss == 0:
+            return 100.0
+
+        rs = avg_gain / avg_loss
+        return round(100 - (100 / (1 + rs)), 2)
+
+    def calculate_macd(prices):
+        """MACD 계산 (12, 26, 9)"""
+        if len(prices) < 26:
+            return {"macd": 0, "signal": 0, "histogram": 0}
+
+        # EMA 계산
+        def ema(data, span):
+            multiplier = 2 / (span + 1)
+            ema_val = data[0]
+            for price in data[1:]:
+                ema_val = (price - ema_val) * multiplier + ema_val
+            return ema_val
+
+        ema12 = ema(prices, 12)
+        ema26 = ema(prices, 26)
+        macd_line = round(ema12 - ema26, 2)
+
+        # 시그널 라인 (9일 EMA of MACD) - 간소화
+        signal = round(macd_line * 0.8, 2)  # 근사값
+        histogram = round(macd_line - signal, 2)
+
+        return {"macd": macd_line, "signal": signal, "histogram": histogram}
+
+    def calculate_bollinger(prices, period=20):
+        """볼린저 밴드 계산"""
+        if len(prices) < period:
+            return {"upper": 0, "middle": 0, "lower": 0, "position": 50}
+
+        sma = np.mean(prices[-period:])
+        std = np.std(prices[-period:])
+        upper = round(sma + (2 * std), 2)
+        lower = round(sma - (2 * std), 2)
+        current = prices[-1]
+
+        # 현재 가격이 밴드 내에서 어디에 있는지 (0-100)
+        if upper - lower > 0:
+            position = round(((current - lower) / (upper - lower)) * 100, 1)
+        else:
+            position = 50
+
+        return {
+            "upper": upper,
+            "middle": round(sma, 2),
+            "lower": lower,
+            "position": min(100, max(0, position))
+        }
+
+    result = {}
+    for symbol in symbols:
+        try:
+            ticker = yf.Ticker(symbol)
+            data = ticker.history(period="60d")
+
+            if len(data) >= 14:
+                prices = data['Close'].values.tolist()
+
+                rsi = calculate_rsi(prices)
+                macd = calculate_macd(prices)
+                bollinger = calculate_bollinger(prices)
+
+                # 시그널 해석
+                if rsi < 30:
+                    rsi_signal = "과매도"
+                elif rsi > 70:
+                    rsi_signal = "과매수"
+                else:
+                    rsi_signal = "중립"
+
+                if macd["histogram"] > 0:
+                    macd_signal = "상승"
+                else:
+                    macd_signal = "하락"
+
+                if bollinger["position"] < 20:
+                    bb_signal = "하단 근처"
+                elif bollinger["position"] > 80:
+                    bb_signal = "상단 근처"
+                else:
+                    bb_signal = "중간"
+
+                result[symbol] = {
+                    "price": round(prices[-1], 2),
+                    "rsi": {"value": rsi, "signal": rsi_signal},
+                    "macd": macd,
+                    "macd_signal": macd_signal,
+                    "bollinger": bollinger,
+                    "bb_signal": bb_signal,
+                    "success": True
+                }
+        except Exception as e:
+            print(f"{symbol} 기술적 분석 오류: {e}")
+            result[symbol] = {"success": False, "error": str(e)}
+
+    return result
+
+
 def determine_market_cycle(vix_value, sp500_change, fear_greed):
     """시장 사이클 판단"""
     # 간단한 휴리스틱 기반 사이클 판단
@@ -202,6 +367,14 @@ def main():
     sp500_pe_data = fetch_sp500_pe()
     indices_data = fetch_market_indices()
 
+    # 기술적 분석 데이터 수집
+    print("기술적 분석 데이터 수집 중...")
+    technical_data = fetch_technical_indicators()
+
+    # 배당 데이터 수집
+    print("배당 데이터 수집 중...")
+    dividend_data = fetch_dividend_data()
+
     # 시장 사이클 판단
     sp500_change = indices_data.get("sp500", {}).get("change_pct", 0)
     market_cycle = determine_market_cycle(
@@ -220,6 +393,8 @@ def main():
         "sp500_pe": sp500_pe_data,
         "indices": indices_data,
         "market_cycle": market_cycle,
+        "technical_indicators": technical_data,
+        "dividend_data": dividend_data,
         "data_quality": {
             "vix": vix_data["success"],
             "fear_greed": fear_greed_data["success"],
@@ -241,6 +416,7 @@ def main():
     print(f"CAPE: {cape_data['value']} ({cape_data['source']})")
     print(f"Yield Curve: {yield_curve_data['value']}bp ({yield_curve_data['source']})")
     print(f"Market Cycle: {market_cycle}")
+    print(f"기술적 분석: {len(technical_data)}개 종목 완료")
 
     return market_data
 

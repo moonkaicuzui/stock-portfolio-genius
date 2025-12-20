@@ -843,12 +843,24 @@
             return hash.toString(16);
         }
 
-        function attemptLogin() {
+        // 보안: SHA-256 해시 (평문 비밀번호 노출 방지)
+        async function sha256(message) {
+            const msgBuffer = new TextEncoder().encode(message);
+            const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
+            const hashArray = Array.from(new Uint8Array(hashBuffer));
+            return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+        }
+
+        async function attemptLogin() {
             const id = document.getElementById('loginId').value;
             const pw = document.getElementById('loginPw').value;
 
-            if (id === 'kaicuzui' && pw === 'ksmoon1!') {
-                const token = simpleHash(id + pw + Date.now());
+            // 보안 인증: 해시 비교
+            const inputHash = await sha256(id + ':' + pw);
+            const expectedHash = '2c70e12b7a0646f92279f427c7b38e7334d8e5389cff167a1dc30e73f826b683';
+
+            if (inputHash === expectedHash) {
+                const token = await sha256(id + pw + Date.now() + Math.random());
                 sessionStorage.setItem(AUTH_KEY, token);
                 showDashboard();
             } else {

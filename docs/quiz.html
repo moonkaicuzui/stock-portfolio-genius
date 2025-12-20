@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>투자 퀴즈 - 주식 포트폴리오 지니어스</title>
+    <meta name="theme-color" content="#4ade80">
+    <link rel="manifest" href="manifest.json">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Noto Sans KR', sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            min-height: 100vh;
+            color: #fff;
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .nav-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            margin-left: 20px;
+            padding: 8px 16px;
+            border-radius: 8px;
+            transition: all 0.2s;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: #fff;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        main {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .quiz-container {
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            padding: 40px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .quiz-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .quiz-title {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .quiz-subtitle {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .quiz-progress {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 30px;
+        }
+
+        .progress-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            transition: all 0.3s;
+        }
+
+        .progress-dot.active {
+            background: #4ade80;
+            box-shadow: 0 0 10px rgba(74, 222, 128, 0.5);
+        }
+
+        .progress-dot.correct {
+            background: #4ade80;
+        }
+
+        .progress-dot.wrong {
+            background: #ef4444;
+        }
+
+        .question-card {
+            text-align: center;
+        }
+
+        .question-number {
+            color: #4ade80;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+
+        .question-text {
+            font-size: 1.3rem;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        .answers {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .answer-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            padding: 16px 24px;
+            border-radius: 12px;
+            color: #fff;
+            font-size: 1rem;
+            text-align: left;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .answer-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(74, 222, 128, 0.5);
+        }
+
+        .answer-btn.selected {
+            background: rgba(74, 222, 128, 0.2);
+            border-color: #4ade80;
+        }
+
+        .answer-btn.correct {
+            background: rgba(74, 222, 128, 0.3);
+            border-color: #4ade80;
+        }
+
+        .answer-btn.wrong {
+            background: rgba(239, 68, 68, 0.3);
+            border-color: #ef4444;
+        }
+
+        .answer-btn:disabled {
+            cursor: default;
+        }
+
+        .explanation {
+            margin-top: 20px;
+            padding: 20px;
+            background: rgba(74, 222, 128, 0.1);
+            border-radius: 12px;
+            border-left: 4px solid #4ade80;
+            display: none;
+        }
+
+        .explanation.show {
+            display: block;
+        }
+
+        .explanation-title {
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: #4ade80;
+        }
+
+        .next-btn {
+            margin-top: 30px;
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #4ade80, #22c55e);
+            border: none;
+            border-radius: 12px;
+            color: #000;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: none;
+        }
+
+        .next-btn.show {
+            display: block;
+        }
+
+        .next-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(74, 222, 128, 0.3);
+        }
+
+        .result-container {
+            text-align: center;
+            display: none;
+        }
+
+        .result-container.show {
+            display: block;
+        }
+
+        .result-icon {
+            font-size: 5rem;
+            margin-bottom: 20px;
+        }
+
+        .result-title {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .result-score {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #4ade80;
+            margin-bottom: 20px;
+        }
+
+        .result-message {
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .restart-btn {
+            padding: 16px 40px;
+            background: linear-gradient(135deg, #4ade80, #22c55e);
+            border: none;
+            border-radius: 12px;
+            color: #000;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .restart-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(74, 222, 128, 0.3);
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="logo">📈 투자 퀴즈</div>
+            <nav class="nav-links">
+                <a href="index.html">포트폴리오</a>
+                <a href="battle.html">AI 대결</a>
+                <a href="screener.html">스크리너</a>
+                <a href="quiz.html" class="active">퀴즈</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="quiz-container">
+            <div class="quiz-header">
+                <h1 class="quiz-title">투자 지식 퀴즈</h1>
+                <p class="quiz-subtitle">16권의 투자 명저에서 배운 지식을 테스트해보세요</p>
+            </div>
+
+            <div class="quiz-progress" id="progressDots"></div>
+
+            <div class="question-card" id="questionCard">
+                <div class="question-number" id="questionNumber">문제 1 / 10</div>
+                <div class="question-text" id="questionText"></div>
+                <div class="answers" id="answers"></div>
+                <div class="explanation" id="explanation">
+                    <div class="explanation-title">해설</div>
+                    <div id="explanationText"></div>
+                </div>
+                <button class="next-btn" id="nextBtn" onclick="nextQuestion()">다음 문제</button>
+            </div>
+
+            <div class="result-container" id="resultContainer">
+                <div class="result-icon" id="resultIcon">🏆</div>
+                <h2 class="result-title">퀴즈 완료!</h2>
+                <div class="result-score" id="resultScore">0/10</div>
+                <p class="result-message" id="resultMessage"></p>
+                <button class="restart-btn" onclick="startQuiz()">다시 풀기</button>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>주식 포트폴리오 지니어스 - 투자 퀴즈</p>
+    </footer>
+
+    <script>
+        const questions = [
+            {
+                question: "벤자민 그레이엄이 강조한 '안전마진(Margin of Safety)'의 의미는?",
+                answers: [
+                    "주가가 내재가치보다 충분히 낮을 때 매수",
+                    "항상 손절매 라인을 설정",
+                    "레버리지를 사용하지 않음",
+                    "배당주만 투자"
+                ],
+                correct: 0,
+                explanation: "그레이엄의 안전마진 개념은 기업의 내재가치보다 충분히 낮은 가격에 매수하여 하방 리스크를 줄이는 것입니다. 이는 가치투자의 핵심 원칙입니다."
+            },
+            {
+                question: "피터 린치가 말한 'PEG 비율'이 1 미만이면 무엇을 의미하나요?",
+                answers: [
+                    "과대평가된 주식",
+                    "성장률 대비 저평가된 주식",
+                    "배당이 없는 주식",
+                    "고위험 주식"
+                ],
+                correct: 1,
+                explanation: "PEG = PE / 성장률. PEG가 1 미만이면 성장률 대비 주가가 저평가되어 있다는 것을 의미합니다. 피터 린치는 이를 매력적인 투자 기회로 봤습니다."
+            },
+            {
+                question: "레이 달리오의 '올웨더(All Weather)' 포트폴리오의 핵심 원리는?",
+                answers: [
+                    "모든 자산을 주식에 투자",
+                    "경제 4계절 모두에 대비한 분산",
+                    "암호화폐 중심 투자",
+                    "단기 트레이딩 전략"
+                ],
+                correct: 1,
+                explanation: "올웨더 포트폴리오는 성장/인플레이션의 상승/하락 4가지 경제 환경 모두에서 안정적인 수익을 추구하는 분산 전략입니다."
+            },
+            {
+                question: "하워드 막스가 강조한 '2차적 사고(Second-Level Thinking)'란?",
+                answers: [
+                    "기술적 분석만 사용",
+                    "대중의 생각을 따라감",
+                    "시장 컨센서스를 넘어서는 깊은 분석",
+                    "빠른 의사결정"
+                ],
+                correct: 2,
+                explanation: "2차적 사고는 '좋은 회사인가?'를 넘어 '좋은 회사지만 가격은 적정한가?', '시장이 과소평가했나?'까지 고려하는 깊은 사고입니다."
+            },
+            {
+                question: "워렌 버핏이 말한 '경제적 해자(Economic Moat)'의 예시가 아닌 것은?",
+                answers: [
+                    "브랜드 파워",
+                    "네트워크 효과",
+                    "낮은 진입장벽",
+                    "규모의 경제"
+                ],
+                correct: 2,
+                explanation: "경제적 해자는 경쟁자가 쉽게 따라올 수 없는 경쟁우위입니다. 높은 진입장벽, 브랜드, 네트워크 효과, 규모의 경제 등이 해자의 예시입니다."
+            },
+            {
+                question: "나심 탈렙의 '안티프래질(Antifragile)' 개념은?",
+                answers: [
+                    "변동성을 피해야 함",
+                    "충격과 변동성으로부터 오히려 이득을 얻음",
+                    "안정적인 배당주만 보유",
+                    "시장을 완벽히 예측"
+                ],
+                correct: 1,
+                explanation: "안티프래질은 단순히 충격에 견디는 것(견고함)을 넘어, 변동성과 스트레스로부터 더 강해지는 속성을 말합니다."
+            },
+            {
+                question: "해리 마코위츠의 현대 포트폴리오 이론에서 '효율적 프론티어'란?",
+                answers: [
+                    "가장 높은 수익률을 내는 포트폴리오",
+                    "위험 대비 최적의 수익을 제공하는 포트폴리오 집합",
+                    "무위험 자산만으로 구성된 포트폴리오",
+                    "기술주 중심의 포트폴리오"
+                ],
+                correct: 1,
+                explanation: "효율적 프론티어는 주어진 위험 수준에서 최대 수익을, 또는 주어진 수익 수준에서 최소 위험을 제공하는 최적의 포트폴리오 조합입니다."
+            },
+            {
+                question: "'샤프 비율(Sharpe Ratio)'이 높을수록 의미하는 것은?",
+                answers: [
+                    "절대 수익률이 높음",
+                    "위험 대비 초과수익이 우수함",
+                    "변동성이 높음",
+                    "배당수익률이 높음"
+                ],
+                correct: 1,
+                explanation: "샤프 비율 = (수익률 - 무위험수익률) / 표준편차. 높을수록 감수한 위험 대비 더 좋은 초과수익을 냈다는 의미입니다."
+            },
+            {
+                question: "윌리엄 오닐의 CANSLIM 전략에서 'C'가 의미하는 것은?",
+                answers: [
+                    "Cash Flow (현금흐름)",
+                    "Current Quarterly Earnings (분기 실적)",
+                    "Company Size (회사 규모)",
+                    "Consumer Demand (소비자 수요)"
+                ],
+                correct: 1,
+                explanation: "CANSLIM에서 C는 Current Quarterly Earnings(현재 분기 이익)로, 최소 25% 이상의 분기 이익 성장을 찾는 것입니다."
+            },
+            {
+                question: "찰리 멍거가 강조한 '역량의 원(Circle of Competence)'이란?",
+                answers: [
+                    "모든 산업에 분산 투자",
+                    "자신이 잘 이해하는 영역에만 투자",
+                    "전문가 조언만 따름",
+                    "기술주 전문화"
+                ],
+                correct: 1,
+                explanation: "역량의 원은 자신이 진정으로 이해하는 영역 안에서만 투자하라는 원칙입니다. 원의 크기보다 경계를 아는 것이 더 중요합니다."
+            }
+        ];
+
+        let currentQuestion = 0;
+        let score = 0;
+        let answered = false;
+
+        function startQuiz() {
+            currentQuestion = 0;
+            score = 0;
+            answered = false;
+
+            document.getElementById('questionCard').style.display = 'block';
+            document.getElementById('resultContainer').classList.remove('show');
+
+            // 진행 점 초기화
+            const dotsHtml = questions.map((_, i) =>
+                `<div class="progress-dot" id="dot${i}"></div>`
+            ).join('');
+            document.getElementById('progressDots').innerHTML = dotsHtml;
+
+            showQuestion();
+        }
+
+        function showQuestion() {
+            const q = questions[currentQuestion];
+            document.getElementById('questionNumber').textContent = `문제 ${currentQuestion + 1} / ${questions.length}`;
+            document.getElementById('questionText').textContent = q.question;
+
+            const answersHtml = q.answers.map((answer, i) =>
+                `<button class="answer-btn" onclick="selectAnswer(${i})">${answer}</button>`
+            ).join('');
+            document.getElementById('answers').innerHTML = answersHtml;
+
+            document.getElementById('explanation').classList.remove('show');
+            document.getElementById('nextBtn').classList.remove('show');
+            document.getElementById(`dot${currentQuestion}`).classList.add('active');
+            answered = false;
+        }
+
+        function selectAnswer(index) {
+            if (answered) return;
+            answered = true;
+
+            const q = questions[currentQuestion];
+            const buttons = document.querySelectorAll('.answer-btn');
+
+            buttons.forEach((btn, i) => {
+                btn.disabled = true;
+                if (i === q.correct) {
+                    btn.classList.add('correct');
+                } else if (i === index) {
+                    btn.classList.add('wrong');
+                }
+            });
+
+            if (index === q.correct) {
+                score++;
+                document.getElementById(`dot${currentQuestion}`).classList.add('correct');
+            } else {
+                document.getElementById(`dot${currentQuestion}`).classList.add('wrong');
+            }
+
+            document.getElementById(`dot${currentQuestion}`).classList.remove('active');
+
+            document.getElementById('explanationText').textContent = q.explanation;
+            document.getElementById('explanation').classList.add('show');
+
+            if (currentQuestion < questions.length - 1) {
+                document.getElementById('nextBtn').textContent = '다음 문제';
+            } else {
+                document.getElementById('nextBtn').textContent = '결과 보기';
+            }
+            document.getElementById('nextBtn').classList.add('show');
+        }
+
+        function nextQuestion() {
+            if (currentQuestion < questions.length - 1) {
+                currentQuestion++;
+                showQuestion();
+            } else {
+                showResult();
+            }
+        }
+
+        function showResult() {
+            document.getElementById('questionCard').style.display = 'none';
+            document.getElementById('resultContainer').classList.add('show');
+
+            const percentage = (score / questions.length) * 100;
+            document.getElementById('resultScore').textContent = `${score}/${questions.length}`;
+
+            let icon, message;
+            if (percentage >= 90) {
+                icon = '🏆';
+                message = '투자 마스터! 16권의 투자 명저를 완벽히 이해하고 계시네요. 이 지식을 실전에 적용해보세요!';
+            } else if (percentage >= 70) {
+                icon = '🥈';
+                message = '훌륭해요! 투자 기본기가 탄탄합니다. 조금 더 공부하면 마스터가 될 수 있어요!';
+            } else if (percentage >= 50) {
+                icon = '🥉';
+                message = '좋은 시작이에요! 투자 명저들을 더 깊이 읽어보면 투자 실력이 향상될 거예요.';
+            } else {
+                icon = '📚';
+                message = '투자 공부를 시작해보세요! 가이드 페이지에서 16권의 투자 명저 요약을 확인할 수 있어요.';
+            }
+
+            document.getElementById('resultIcon').textContent = icon;
+            document.getElementById('resultMessage').textContent = message;
+        }
+
+        // 페이지 로드 시 퀴즈 시작
+        startQuiz();
+    </script>
+</body>
+</html>

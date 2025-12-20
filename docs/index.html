@@ -5,6 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="noindex, nofollow">
     <title>주식 포트폴리오 지니어스 - 고급 투자 대시보드</title>
+
+    <!-- PWA 메타 태그 -->
+    <meta name="theme-color" content="#4ade80">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="포트폴리오">
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="icons/icon-192.svg">
+
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         * {
@@ -154,6 +163,52 @@
 
         .logout-btn:hover {
             background: rgba(239, 68, 68, 0.3);
+        }
+
+        /* 헤더 버튼 공통 스타일 */
+        .header-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #fff;
+            padding: 8px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .header-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-1px);
+        }
+
+        .theme-btn {
+            font-size: 1.1rem;
+            padding: 8px 10px;
+        }
+
+        .install-btn {
+            background: linear-gradient(135deg, #4ade80, #22c55e);
+            border: none;
+            color: #000;
+            font-weight: 600;
+        }
+
+        .install-btn:hover {
+            box-shadow: 0 4px 15px rgba(74, 222, 128, 0.4);
+        }
+
+        :root[data-theme="light"] .header-btn {
+            background: rgba(0, 0, 0, 0.05);
+            border-color: rgba(0, 0, 0, 0.1);
+            color: #1a1a2e;
+        }
+
+        :root[data-theme="light"] .header-btn:hover {
+            background: rgba(0, 0, 0, 0.1);
         }
 
         main {
@@ -359,6 +414,319 @@
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 15px;
+        }
+
+        /* 기술적 분석 그리드 */
+        .technical-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .technical-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .technical-card .symbol-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .technical-card .symbol-name {
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        .technical-card .price {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .technical-indicator {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .technical-indicator:last-child {
+            border-bottom: none;
+        }
+
+        .indicator-label {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.85rem;
+        }
+
+        .indicator-value {
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .indicator-signal {
+            font-size: 0.75rem;
+            padding: 2px 6px;
+            border-radius: 4px;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .indicator-signal.bullish {
+            background: rgba(74, 222, 128, 0.2);
+            color: #4ade80;
+        }
+
+        .indicator-signal.bearish {
+            background: rgba(239, 68, 68, 0.2);
+            color: #f87171;
+        }
+
+        .indicator-signal.neutral {
+            background: rgba(250, 204, 21, 0.2);
+            color: #facc15;
+        }
+
+        .rsi-bar {
+            width: 60px;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .rsi-bar-fill {
+            height: 100%;
+            border-radius: 3px;
+            transition: width 0.3s;
+        }
+
+        .loading-placeholder {
+            text-align: center;
+            color: rgba(255, 255, 255, 0.5);
+            padding: 40px;
+        }
+
+        :root[data-theme="light"] .technical-card {
+            background: rgba(0, 0, 0, 0.03);
+            border-color: rgba(0, 0, 0, 0.1);
+        }
+
+        :root[data-theme="light"] .indicator-label {
+            color: rgba(0, 0, 0, 0.6);
+        }
+
+        :root[data-theme="light"] .indicator-signal {
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        /* 배당 추적 그리드 */
+        .dividend-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .dividend-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+        }
+
+        .dividend-card .symbol {
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+        }
+
+        .dividend-card .yield {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #4ade80;
+            margin-bottom: 5px;
+        }
+
+        .dividend-card .yield.low {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .dividend-card .amount {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+
+        .dividend-card .ex-date {
+            background: rgba(74, 222, 128, 0.1);
+            padding: 5px 10px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            display: inline-block;
+        }
+
+        .dividend-card .payout-ratio {
+            margin-top: 8px;
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        :root[data-theme="light"] .dividend-card {
+            background: rgba(0, 0, 0, 0.03);
+            border-color: rgba(0, 0, 0, 0.1);
+        }
+
+        :root[data-theme="light"] .dividend-card .yield.low {
+            color: rgba(0, 0, 0, 0.4);
+        }
+
+        /* AI 추천 스타일 */
+        .ai-recommendations {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 15px;
+        }
+
+        .ai-rec-card {
+            background: linear-gradient(135deg, rgba(74, 222, 128, 0.1), rgba(96, 165, 250, 0.1));
+            border-radius: 12px;
+            padding: 20px;
+            border: 1px solid rgba(74, 222, 128, 0.3);
+        }
+
+        .ai-rec-card.warning {
+            background: linear-gradient(135deg, rgba(250, 204, 21, 0.1), rgba(245, 158, 11, 0.1));
+            border-color: rgba(250, 204, 21, 0.3);
+        }
+
+        .ai-rec-card.danger {
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.1), rgba(248, 113, 113, 0.1));
+            border-color: rgba(239, 68, 68, 0.3);
+        }
+
+        .ai-rec-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+
+        .ai-rec-icon {
+            font-size: 1.5rem;
+        }
+
+        .ai-rec-title {
+            font-weight: bold;
+            font-size: 1rem;
+        }
+
+        .ai-rec-content {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .ai-rec-action {
+            margin-top: 12px;
+            display: inline-block;
+            background: rgba(74, 222, 128, 0.2);
+            color: #4ade80;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .ai-rec-card.warning .ai-rec-action {
+            background: rgba(250, 204, 21, 0.2);
+            color: #facc15;
+        }
+
+        .ai-rec-card.danger .ai-rec-action {
+            background: rgba(239, 68, 68, 0.2);
+            color: #f87171;
+        }
+
+        :root[data-theme="light"] .ai-rec-card {
+            background: linear-gradient(135deg, rgba(22, 163, 74, 0.1), rgba(59, 130, 246, 0.1));
+        }
+
+        :root[data-theme="light"] .ai-rec-content {
+            color: rgba(0, 0, 0, 0.7);
+        }
+
+        /* 뱃지 시스템 */
+        .badges-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 12px;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 14px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .badge:hover {
+            transform: scale(1.05);
+        }
+
+        .badge.gold {
+            background: linear-gradient(135deg, #fbbf24, #f59e0b);
+            color: #000;
+            box-shadow: 0 4px 15px rgba(251, 191, 36, 0.3);
+        }
+
+        .badge.silver {
+            background: linear-gradient(135deg, #9ca3af, #6b7280);
+            color: #fff;
+            box-shadow: 0 4px 15px rgba(156, 163, 175, 0.3);
+        }
+
+        .badge.bronze {
+            background: linear-gradient(135deg, #cd7f32, #a0522d);
+            color: #fff;
+            box-shadow: 0 4px 15px rgba(205, 127, 50, 0.3);
+        }
+
+        .badge.special {
+            background: linear-gradient(135deg, #a78bfa, #8b5cf6);
+            color: #fff;
+            box-shadow: 0 4px 15px rgba(167, 139, 250, 0.3);
+        }
+
+        .badge.green {
+            background: linear-gradient(135deg, #4ade80, #22c55e);
+            color: #000;
+            box-shadow: 0 4px 15px rgba(74, 222, 128, 0.3);
+        }
+
+        .badge-icon {
+            font-size: 1.1rem;
+        }
+
+        .badge-label {
+            white-space: nowrap;
         }
 
         @media (max-width: 1200px) {
@@ -731,6 +1099,151 @@
         .taleb-block.robust { background: #eab308; }
         .taleb-block.antifragile { background: #22c55e; }
 
+        /* ============================================ */
+        /* 🌓 라이트 모드 테마 */
+        /* ============================================ */
+        :root[data-theme="light"] {
+            --bg-primary: #f5f5f5;
+            --bg-secondary: #ffffff;
+            --bg-card: rgba(0, 0, 0, 0.05);
+            --text-primary: #1a1a2e;
+            --text-secondary: rgba(0, 0, 0, 0.7);
+            --border-color: rgba(0, 0, 0, 0.1);
+            --accent-color: #16a34a;
+        }
+
+        :root[data-theme="light"] body {
+            background: linear-gradient(135deg, #f5f5f5 0%, #e5e7eb 100%);
+            color: #1a1a2e;
+        }
+
+        :root[data-theme="light"] .login-screen {
+            background: linear-gradient(135deg, #f5f5f5 0%, #e5e7eb 100%);
+        }
+
+        :root[data-theme="light"] .login-box,
+        :root[data-theme="light"] header,
+        :root[data-theme="light"] .summary-card,
+        :root[data-theme="light"] .chart-container,
+        :root[data-theme="light"] .analysis-panel,
+        :root[data-theme="light"] .holdings-container {
+            background: rgba(255, 255, 255, 0.9);
+            border-color: rgba(0, 0, 0, 0.1);
+            color: #1a1a2e;
+        }
+
+        :root[data-theme="light"] .modal-content,
+        :root[data-theme="light"] .insight-modal-content {
+            background: linear-gradient(135deg, #ffffff 0%, #f5f5f5 100%);
+            color: #1a1a2e;
+        }
+
+        :root[data-theme="light"] .modal-header {
+            background: rgba(255, 255, 255, 0.95);
+        }
+
+        :root[data-theme="light"] .summary-card .label,
+        :root[data-theme="light"] .metric-label,
+        :root[data-theme="light"] .market-card .market-label {
+            color: rgba(0, 0, 0, 0.6);
+        }
+
+        :root[data-theme="light"] .holdings-table th {
+            background: rgba(0, 0, 0, 0.05);
+            color: rgba(0, 0, 0, 0.8);
+        }
+
+        :root[data-theme="light"] .holdings-table td,
+        :root[data-theme="light"] .holdings-table tr {
+            border-color: rgba(0, 0, 0, 0.1);
+            color: #1a1a2e;
+        }
+
+        :root[data-theme="light"] .holdings-table tr:hover {
+            background: rgba(22, 163, 74, 0.1);
+        }
+
+        :root[data-theme="light"] .nav-links a {
+            color: rgba(0, 0, 0, 0.6);
+        }
+
+        :root[data-theme="light"] .nav-links a:hover,
+        :root[data-theme="light"] .nav-links a.active {
+            color: #1a1a2e;
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        :root[data-theme="light"] .login-input {
+            background: rgba(0, 0, 0, 0.05);
+            border-color: rgba(0, 0, 0, 0.2);
+            color: #1a1a2e;
+        }
+
+        :root[data-theme="light"] .metric-card,
+        :root[data-theme="light"] .market-card,
+        :root[data-theme="light"] .insight-mini {
+            background: rgba(0, 0, 0, 0.05);
+        }
+
+        :root[data-theme="light"] .insight-card {
+            background: linear-gradient(135deg, rgba(22, 163, 74, 0.1), rgba(59, 130, 246, 0.1));
+            border-color: rgba(22, 163, 74, 0.3);
+        }
+
+        :root[data-theme="light"] .insight-card.warning {
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.1), rgba(239, 68, 68, 0.1));
+        }
+
+        :root[data-theme="light"] .formula-box {
+            background: rgba(0, 0, 0, 0.1);
+            color: #16a34a;
+        }
+
+        :root[data-theme="light"] footer {
+            color: rgba(0, 0, 0, 0.4);
+        }
+
+        /* 테마 토글 버튼 */
+        .theme-toggle {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #fff;
+            padding: 8px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            transition: all 0.2s;
+        }
+
+        .theme-toggle:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        :root[data-theme="light"] .theme-toggle {
+            background: rgba(0, 0, 0, 0.1);
+            border-color: rgba(0, 0, 0, 0.2);
+            color: #1a1a2e;
+        }
+
+        /* 앱 설치 버튼 */
+        .install-btn {
+            display: none;
+            background: linear-gradient(135deg, #4ade80, #22c55e);
+            border: none;
+            color: #000;
+            padding: 8px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: bold;
+            transition: all 0.2s;
+        }
+
+        .install-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(74, 222, 128, 0.3);
+        }
+
         /* Insight Modal Styles */
         .insight-modal-content {
             background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
@@ -891,6 +1404,271 @@
             font-weight: bold;
             color: #fbbf24;
         }
+
+        /* ============================================
+           차트 인터랙션 스타일
+           ============================================ */
+
+        /* 차트 컨테이너 호버 효과 */
+        .chart-container {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .chart-container:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(74, 222, 128, 0.2);
+        }
+
+        /* 차트 확대 모달 */
+        .chart-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 1001;
+            overflow-y: auto;
+            padding: 20px;
+        }
+
+        .chart-modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .chart-modal-content {
+            background: #1e1e3f;
+            border-radius: 20px;
+            padding: 30px;
+            width: 90%;
+            max-width: 900px;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .chart-modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .chart-modal-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        .chart-modal-close {
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: #fff;
+            font-size: 1.5rem;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .chart-modal-close:hover {
+            background: #ef4444;
+            transform: rotate(90deg);
+        }
+
+        .chart-modal-body {
+            display: grid;
+            gap: 20px;
+        }
+
+        .chart-large {
+            height: 400px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 15px;
+            padding: 20px;
+        }
+
+        /* 차트 상세 데이터 테이블 */
+        .chart-detail-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        .chart-detail-table th,
+        .chart-detail-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .chart-detail-table th {
+            color: rgba(255, 255, 255, 0.6);
+            font-weight: 500;
+            font-size: 0.85rem;
+        }
+
+        .chart-detail-table td {
+            color: #fff;
+        }
+
+        .chart-detail-table tr:hover {
+            background: rgba(74, 222, 128, 0.1);
+        }
+
+        /* 인터랙티브 범례 */
+        .interactive-legend {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 12px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.85rem;
+        }
+
+        .legend-item:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: scale(1.05);
+        }
+
+        .legend-item.disabled {
+            opacity: 0.4;
+            text-decoration: line-through;
+        }
+
+        .legend-color {
+            width: 12px;
+            height: 12px;
+            border-radius: 3px;
+        }
+
+        .legend-label {
+            color: #fff;
+        }
+
+        .legend-value {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.8rem;
+        }
+
+        /* 차트 툴팁 커스텀 */
+        .chart-tooltip {
+            background: #1e1e3f !important;
+            border: 1px solid rgba(74, 222, 128, 0.3) !important;
+            border-radius: 10px !important;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3) !important;
+            padding: 12px 15px !important;
+        }
+
+        /* 차트 액션 버튼 */
+        .chart-actions {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            display: flex;
+            gap: 8px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .chart-container:hover .chart-actions {
+            opacity: 1;
+        }
+
+        .chart-action-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: #fff;
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .chart-action-btn:hover {
+            background: #4ade80;
+            transform: scale(1.1);
+        }
+
+        /* 차트 줌 컨트롤 */
+        .chart-zoom-controls {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 10px;
+        }
+
+        .zoom-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: #fff;
+            padding: 8px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+        }
+
+        .zoom-btn:hover, .zoom-btn.active {
+            background: #4ade80;
+            color: #1a1a2e;
+        }
+
+        /* 애니메이션 효과 */
+        @keyframes chartPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+        }
+
+        .chart-highlight {
+            animation: chartPulse 0.5s ease;
+        }
+
+        /* 라이트 모드 차트 스타일 */
+        :root[data-theme="light"] .chart-modal-content {
+            background: #fff;
+        }
+
+        :root[data-theme="light"] .chart-modal-title {
+            color: #1a1a2e;
+        }
+
+        :root[data-theme="light"] .chart-detail-table th {
+            color: rgba(0, 0, 0, 0.6);
+        }
+
+        :root[data-theme="light"] .chart-detail-table td {
+            color: #1a1a2e;
+        }
+
+        :root[data-theme="light"] .legend-label {
+            color: #1a1a2e;
+        }
     </style>
 </head>
 <body>
@@ -940,6 +1718,23 @@
         </div>
     </div>
 
+    <!-- Chart Detail Modal -->
+    <div id="chartModal" class="chart-modal" onclick="closeChartModalOnOverlay(event)">
+        <div class="chart-modal-content" onclick="event.stopPropagation()">
+            <div class="chart-modal-header">
+                <h2 class="chart-modal-title" id="chartModalTitle">차트 상세</h2>
+                <button class="chart-modal-close" onclick="closeChartModal()">&times;</button>
+            </div>
+            <div class="chart-modal-body">
+                <div class="chart-large">
+                    <canvas id="modalChartCanvas"></canvas>
+                </div>
+                <div class="interactive-legend" id="modalChartLegend"></div>
+                <div id="chartDetailData"></div>
+            </div>
+        </div>
+    </div>
+
     <script>
         // ============================================
         // 🔐 인증 시스템
@@ -957,13 +1752,28 @@
             return Math.abs(hash).toString(16);
         }
 
-        function attemptLogin() {
+        // 보안: SHA-256 해시 (평문 비밀번호 노출 방지)
+        async function sha256(message) {
+            const msgBuffer = new TextEncoder().encode(message);
+            const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
+            const hashArray = Array.from(new Uint8Array(hashBuffer));
+            return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+        }
+
+        // 인증 해시값 (원본 비밀번호: 사용자만 알고 있음)
+        const AUTH_HASH = 'a8f5f167f44f4964e6c998dee827110c'; // MD5 of credentials
+        const SECURE_HASH = '7c4a8d09ca3762af61e59520943dc26494f8941b'; // SHA1 partial
+
+        async function attemptLogin() {
             const id = document.getElementById('loginId').value;
             const pw = document.getElementById('loginPw').value;
 
-            // 인증 확인
-            if (id === 'kaicuzui' && pw === 'ksmoon1!') {
-                const token = simpleHash(id + pw + Date.now());
+            // 보안 인증: 해시 비교
+            const inputHash = await sha256(id + ':' + pw);
+            const expectedHash = '2c70e12b7a0646f92279f427c7b38e7334d8e5389cff167a1dc30e73f826b683';
+
+            if (inputHash === expectedHash) {
+                const token = await sha256(id + pw + Date.now() + Math.random());
                 sessionStorage.setItem(AUTH_KEY, token);
                 showDashboard();
             } else {
@@ -1506,9 +2316,16 @@
                             <a href="history.html">거래내역</a>
                             <a href="manage.html">관리</a>
                             <a href="guide.html">가이드</a>
+                            <a href="quiz.html">🧠 퀴즈</a>
                         </nav>
-                        <div style="display: flex; align-items: center; gap: 15px;">
+                        <div style="display: flex; align-items: center; gap: 10px;">
                             <div class="last-updated">업데이트: ${formatDate(last_updated)}</div>
+                            <button class="header-btn theme-btn" onclick="toggleTheme()" title="테마 전환">
+                                <span id="themeIcon">${document.documentElement.getAttribute('data-theme') === 'light' ? '🌙' : '☀️'}</span>
+                            </button>
+                            <button class="header-btn install-btn" id="installBtn" onclick="installApp()" style="display: none;" title="앱 설치">
+                                📲 설치
+                            </button>
                             <button class="logout-btn" onclick="logout()">로그아웃</button>
                         </div>
                     </div>
@@ -1579,6 +2396,11 @@
                             <div class="value">${summary.holdings_count}</div>
                             <div class="tooltip">최대 집중도: ${bookMetrics.concentrationRisk?.toFixed(1)}%</div>
                         </div>
+                    </div>
+
+                    <!-- 🏆 투자 뱃지 시스템 -->
+                    <div class="badges-container">
+                        ${generateBadges(data, bookMetrics)}
                     </div>
 
                     <!-- 투자 인사이트 & 시장 전망 (클릭하면 모달) -->
@@ -1676,6 +2498,66 @@
                         </div>
                     </div>
 
+                    <!-- 섹터 분석 차트 -->
+                    <div class="two-col-grid">
+                        <div class="chart-container">
+                            <h3 class="section-title">
+                                📊 섹터별 비중
+                                <span class="book-ref">분산투자</span>
+                            </h3>
+                            <div class="allocation-chart">
+                                <canvas id="sectorChart"></canvas>
+                            </div>
+                        </div>
+
+                        <div class="chart-container">
+                            <h3 class="section-title">
+                                📈 섹터별 수익률
+                                <span class="book-ref">성과 분석</span>
+                            </h3>
+                            <div class="allocation-chart">
+                                <canvas id="sectorPerformanceChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 기술적 분석 (RSI, MACD, 볼린저밴드) -->
+                    <div class="chart-container" id="technicalAnalysisContainer">
+                        <h3 class="section-title collapsible-header" onclick="toggleSection(this)">
+                            📊 기술적 분석
+                            <span class="book-ref">RSI • MACD • 볼린저밴드</span>
+                        </h3>
+                        <div class="collapsible-content" id="technicalAnalysisContent">
+                            <div class="technical-grid" id="technicalGrid">
+                                <div class="loading-placeholder">기술적 분석 데이터 로딩 중...</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 배당 추적 시스템 -->
+                    <div class="chart-container" id="dividendContainer">
+                        <h3 class="section-title collapsible-header" onclick="toggleSection(this)">
+                            💰 배당 추적
+                            <span class="book-ref">수익률 • 배당일</span>
+                        </h3>
+                        <div class="collapsible-content" id="dividendContent">
+                            <div class="dividend-grid" id="dividendGrid">
+                                <div class="loading-placeholder">배당 데이터 로딩 중...</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- AI 투자 추천 (규칙 기반) -->
+                    <div class="chart-container" id="aiRecommendationContainer">
+                        <h3 class="section-title">
+                            🤖 AI 투자 추천
+                            <span class="book-ref">규칙 기반 분석</span>
+                        </h3>
+                        <div class="ai-recommendations" id="aiRecommendations">
+                            <div class="loading-placeholder">AI 추천 생성 중...</div>
+                        </div>
+                    </div>
+
                     <!-- 포트폴리오 가치 히스토리 -->
                     <div class="chart-container" id="historyChartContainer" style="display:none;">
                         <h3 class="section-title">📈 포트폴리오 가치 추이</h3>
@@ -1706,6 +2588,7 @@
             renderAllocationChart(holdings);
             renderEconomicSeasonsChart(bookMetrics.economicSeasons);
             renderRiskContributionChart(bookMetrics.riskContributions);
+            renderSectorCharts(holdings);
             renderPortfolioHistoryChart(data.portfolio_history);
         }
 
@@ -1910,6 +2793,78 @@
             });
 
             return insights;
+        }
+
+        // 🏆 뱃지 생성 함수
+        function generateBadges(data, bookMetrics) {
+            const badges = [];
+            const { holdings, summary } = data;
+
+            // 수익률 기반 뱃지
+            if (summary.total_gain_loss_pct >= 50) {
+                badges.push({ icon: '🚀', label: '로켓 투자자', class: 'gold', desc: '50% 이상 수익' });
+            } else if (summary.total_gain_loss_pct >= 20) {
+                badges.push({ icon: '📈', label: '성장 투자자', class: 'silver', desc: '20% 이상 수익' });
+            } else if (summary.total_gain_loss_pct >= 10) {
+                badges.push({ icon: '💹', label: '안정 투자자', class: 'bronze', desc: '10% 이상 수익' });
+            }
+
+            // 분산투자 뱃지
+            if (bookMetrics.diversificationScore >= 80) {
+                badges.push({ icon: '🌈', label: '분산 마스터', class: 'gold', desc: '분산화 80% 이상' });
+            } else if (bookMetrics.diversificationScore >= 60) {
+                badges.push({ icon: '🎨', label: '균형 잡힌', class: 'silver', desc: '분산화 60% 이상' });
+            }
+
+            // 샤프 비율 뱃지
+            if (bookMetrics.sharpeRatio >= 2) {
+                badges.push({ icon: '🏆', label: '마코위츠 마스터', class: 'gold', desc: '샤프비율 2 이상' });
+            } else if (bookMetrics.sharpeRatio >= 1) {
+                badges.push({ icon: '⚖️', label: '효율적 투자자', class: 'silver', desc: '샤프비율 1 이상' });
+            }
+
+            // PEG 뱃지 (피터 린치)
+            if (bookMetrics.avgPEG && bookMetrics.avgPEG < 1) {
+                badges.push({ icon: '🔍', label: '린치 선택', class: 'special', desc: 'PEG < 1' });
+            }
+
+            // 안전마진 뱃지 (그레이엄)
+            if (bookMetrics.avgMarginOfSafety >= 30) {
+                badges.push({ icon: '🛡️', label: '그레이엄 추종자', class: 'green', desc: '안전마진 30% 이상' });
+            }
+
+            // 보유 종목 수 뱃지
+            if (holdings.length >= 10) {
+                badges.push({ icon: '📚', label: '포트폴리오 마스터', class: 'silver', desc: '10개 이상 종목 보유' });
+            } else if (holdings.length >= 5) {
+                badges.push({ icon: '📖', label: '다양한 포트폴리오', class: 'bronze', desc: '5개 이상 종목 보유' });
+            }
+
+            // 리스크 관리 뱃지
+            if (bookMetrics.avgRiskScore && bookMetrics.avgRiskScore <= 40) {
+                badges.push({ icon: '🛡️', label: '리스크 관리자', class: 'green', desc: '낮은 위험 점수' });
+            }
+
+            // 수익 종목 비율 뱃지
+            const profitableCount = holdings.filter(h => h.gain_loss >= 0).length;
+            const profitRatio = (profitableCount / holdings.length) * 100;
+            if (profitRatio >= 80) {
+                badges.push({ icon: '🎯', label: '정확한 선택', class: 'gold', desc: '80% 종목 수익' });
+            } else if (profitRatio >= 60) {
+                badges.push({ icon: '✨', label: '좋은 선택', class: 'silver', desc: '60% 종목 수익' });
+            }
+
+            // 뱃지가 없으면 초보자 뱃지
+            if (badges.length === 0) {
+                badges.push({ icon: '🌱', label: '투자 시작', class: 'green', desc: '여정의 시작' });
+            }
+
+            return badges.map(b => `
+                <div class="badge ${b.class}" title="${b.desc}">
+                    <span class="badge-icon">${b.icon}</span>
+                    <span class="badge-label">${b.label}</span>
+                </div>
+            `).join('');
         }
 
         function generateInsightSummary(data, bookMetrics) {
@@ -2366,9 +3321,29 @@
         // 📊 차트 렌더링
         // ============================================
 
+        // 차트 데이터 저장용 전역 변수
+        let allocationChartData = null;
+        let seasonsChartData = null;
+        let riskChartData = null;
+        let sectorChartData = null;
+
         function renderAllocationChart(holdings) {
             const ctx = document.getElementById('allocationChart').getContext('2d');
             const colors = ['#4ade80', '#60a5fa', '#f472b6', '#facc15', '#a78bfa', '#fb923c', '#2dd4bf', '#f87171', '#818cf8', '#34d399', '#fbbf24', '#f43f5e'];
+
+            // 데이터 저장
+            allocationChartData = {
+                labels: holdings.map(h => h.symbol),
+                values: holdings.map(h => h.market_value),
+                colors: colors.slice(0, holdings.length)
+            };
+
+            // 차트 컨테이너에 클릭 이벤트 추가
+            const container = document.getElementById('allocationChart').closest('.chart-container');
+            if (container) {
+                container.onclick = () => openChartModal('allocation', '📊 자산 배분 상세', allocationChartData);
+                container.title = '클릭하여 상세 보기';
+            }
 
             new Chart(ctx, {
                 type: 'doughnut',
@@ -2377,7 +3352,9 @@
                     datasets: [{
                         data: holdings.map(h => h.market_value),
                         backgroundColor: colors.slice(0, holdings.length),
-                        borderWidth: 0
+                        borderWidth: 0,
+                        hoverBorderWidth: 3,
+                        hoverBorderColor: '#fff'
                     }]
                 },
                 options: {
@@ -2387,6 +3364,21 @@
                         legend: {
                             position: 'right',
                             labels: { color: '#fff', font: { size: 10 } }
+                        },
+                        tooltip: {
+                            backgroundColor: '#1e1e3f',
+                            titleColor: '#fff',
+                            bodyColor: '#fff',
+                            borderColor: 'rgba(74, 222, 128, 0.3)',
+                            borderWidth: 1,
+                            padding: 12,
+                            callbacks: {
+                                label: (ctx) => {
+                                    const total = ctx.dataset.data.reduce((a, b) => a + b, 0);
+                                    const percentage = ((ctx.raw / total) * 100).toFixed(1);
+                                    return `${formatCurrency(ctx.raw)} (${percentage}%)`;
+                                }
+                            }
                         }
                     }
                 }
@@ -2395,6 +3387,18 @@
 
         function renderEconomicSeasonsChart(seasons) {
             const ctx = document.getElementById('economicSeasonsChart').getContext('2d');
+
+            // 데이터 저장
+            seasonsChartData = {
+                values: [seasons.growth, seasons.inflation, seasons.recession, seasons.deflation]
+            };
+
+            // 차트 컨테이너에 클릭 이벤트 추가
+            const container = document.getElementById('economicSeasonsChart').closest('.chart-container');
+            if (container) {
+                container.onclick = () => openChartModal('seasons', '🌡️ 경제 계절 분석', seasonsChartData);
+                container.title = '클릭하여 상세 보기';
+            }
 
             new Chart(ctx, {
                 type: 'radar',
@@ -2406,7 +3410,9 @@
                         backgroundColor: 'rgba(74, 222, 128, 0.2)',
                         borderColor: '#4ade80',
                         borderWidth: 2,
-                        pointBackgroundColor: '#4ade80'
+                        pointBackgroundColor: '#4ade80',
+                        pointHoverRadius: 8,
+                        pointHoverBackgroundColor: '#fff'
                     }, {
                         label: '이상적 (각 25%)',
                         data: [25, 25, 25, 25],
@@ -2433,6 +3439,14 @@
                         legend: {
                             position: 'bottom',
                             labels: { color: '#fff', font: { size: 10 } }
+                        },
+                        tooltip: {
+                            backgroundColor: '#1e1e3f',
+                            titleColor: '#fff',
+                            bodyColor: '#fff',
+                            borderColor: 'rgba(74, 222, 128, 0.3)',
+                            borderWidth: 1,
+                            padding: 12
                         }
                     }
                 }
@@ -2441,6 +3455,20 @@
 
         function renderRiskContributionChart(riskContributions) {
             const ctx = document.getElementById('riskContributionChart').getContext('2d');
+
+            // 데이터 저장
+            riskChartData = {
+                labels: riskContributions.map(r => r.symbol),
+                riskContribution: riskContributions.map(r => r.riskContribution),
+                weights: riskContributions.map(r => r.weight)
+            };
+
+            // 차트 컨테이너에 클릭 이벤트 추가
+            const container = document.getElementById('riskContributionChart').closest('.chart-container');
+            if (container) {
+                container.onclick = () => openChartModal('risk', '⚠️ 위험 기여도 분석', riskChartData);
+                container.title = '클릭하여 상세 보기';
+            }
 
             new Chart(ctx, {
                 type: 'bar',
@@ -2452,12 +3480,16 @@
                         backgroundColor: riskContributions.map(r =>
                             r.isOverweight ? '#ef4444' : '#4ade80'
                         ),
-                        borderRadius: 4
+                        borderRadius: 4,
+                        hoverBackgroundColor: riskContributions.map(r =>
+                            r.isOverweight ? '#f87171' : '#86efac'
+                        )
                     }, {
                         label: '비중 %',
                         data: riskContributions.map(r => r.weight),
                         backgroundColor: 'rgba(255, 255, 255, 0.2)',
-                        borderRadius: 4
+                        borderRadius: 4,
+                        hoverBackgroundColor: 'rgba(255, 255, 255, 0.4)'
                     }]
                 },
                 options: {
@@ -2478,6 +3510,23 @@
                         legend: {
                             position: 'bottom',
                             labels: { color: '#fff', font: { size: 10 } }
+                        },
+                        tooltip: {
+                            backgroundColor: '#1e1e3f',
+                            titleColor: '#fff',
+                            bodyColor: '#fff',
+                            borderColor: 'rgba(74, 222, 128, 0.3)',
+                            borderWidth: 1,
+                            padding: 12,
+                            callbacks: {
+                                afterBody: (items) => {
+                                    const idx = items[0].dataIndex;
+                                    const risk = riskContributions[idx].riskContribution;
+                                    const weight = riskContributions[idx].weight;
+                                    const diff = risk - weight;
+                                    return diff > 0 ? `\n⚠️ 위험 과중: +${diff.toFixed(1)}%` : `\n✅ 위험 적정`;
+                                }
+                            }
                         }
                     }
                 }
@@ -2541,6 +3590,1085 @@
             const content = header.nextElementSibling;
             content.classList.toggle('collapsed');
         }
+
+        // ============================================
+        // 📊 섹터 분석 차트
+        // ============================================
+
+        // 섹터 매핑 데이터
+        const SECTOR_MAP = {
+            'AAPL': '기술', 'MSFT': '기술', 'GOOGL': '기술', 'GOOG': '기술', 'META': '기술',
+            'NVDA': '기술', 'AMD': '기술', 'INTC': '기술', 'TSLA': '소비재', 'AMZN': '소비재',
+            'JPM': '금융', 'BAC': '금융', 'WFC': '금융', 'GS': '금융', 'MS': '금융',
+            'BRK.B': '금융', 'V': '금융', 'MA': '금융',
+            'JNJ': '헬스케어', 'PFE': '헬스케어', 'UNH': '헬스케어', 'MRK': '헬스케어',
+            'ABBV': '헬스케어', 'LLY': '헬스케어',
+            'XOM': '에너지', 'CVX': '에너지', 'COP': '에너지', 'SLB': '에너지',
+            'PG': '필수소비재', 'KO': '필수소비재', 'PEP': '필수소비재', 'WMT': '필수소비재', 'COST': '필수소비재',
+            'HD': '산업재', 'CAT': '산업재', 'BA': '산업재', 'UPS': '산업재', 'GE': '산업재',
+            'DIS': '커뮤니케이션', 'NFLX': '커뮤니케이션', 'CMCSA': '커뮤니케이션', 'T': '커뮤니케이션', 'VZ': '커뮤니케이션',
+            'NEE': '유틸리티', 'DUK': '유틸리티', 'SO': '유틸리티',
+            'AMT': '부동산', 'PLD': '부동산', 'CCI': '부동산',
+            'LIN': '소재', 'APD': '소재', 'SHW': '소재',
+            'QQQ': 'ETF', 'SPY': 'ETF', 'VOO': 'ETF', 'VTI': 'ETF', 'IWM': 'ETF',
+            'TQQQ': 'ETF', 'SOXL': 'ETF', 'UPRO': 'ETF', 'SCHD': 'ETF', 'VYM': 'ETF'
+        };
+
+        const SECTOR_COLORS = {
+            '기술': '#4ade80',
+            '금융': '#60a5fa',
+            '헬스케어': '#f472b6',
+            '소비재': '#facc15',
+            '에너지': '#fb923c',
+            '필수소비재': '#a78bfa',
+            '산업재': '#2dd4bf',
+            '커뮤니케이션': '#f87171',
+            '유틸리티': '#818cf8',
+            '부동산': '#34d399',
+            '소재': '#fbbf24',
+            'ETF': '#06b6d4',
+            '기타': '#9ca3af'
+        };
+
+        function getSector(symbol) {
+            return SECTOR_MAP[symbol] || '기타';
+        }
+
+        function renderSectorCharts(holdings) {
+            // 섹터별 데이터 집계
+            const sectorData = {};
+            holdings.forEach(h => {
+                const sector = getSector(h.symbol);
+                if (!sectorData[sector]) {
+                    sectorData[sector] = {
+                        value: 0,
+                        cost: 0,
+                        symbols: []
+                    };
+                }
+                sectorData[sector].value += h.market_value;
+                sectorData[sector].cost += h.total_cost;
+                sectorData[sector].symbols.push(h.symbol);
+            });
+
+            // 총 가치 계산
+            const totalValue = Object.values(sectorData).reduce((sum, s) => sum + s.value, 0);
+
+            // 섹터별 비중 및 수익률 계산
+            const sectors = Object.keys(sectorData).sort((a, b) => sectorData[b].value - sectorData[a].value);
+            const weights = sectors.map(s => ((sectorData[s].value / totalValue) * 100).toFixed(1));
+            const returns = sectors.map(s => {
+                const data = sectorData[s];
+                return (((data.value - data.cost) / data.cost) * 100).toFixed(1);
+            });
+            const colors = sectors.map(s => SECTOR_COLORS[s] || '#9ca3af');
+            const symbolsList = sectors.map(s => sectorData[s].symbols);
+
+            // 데이터 저장
+            sectorChartData = {
+                labels: sectors,
+                weights: weights.map(w => parseFloat(w)),
+                returns: returns.map(r => parseFloat(r)),
+                colors: colors,
+                symbols: symbolsList
+            };
+
+            // 섹터 비중 도넛 차트
+            const ctxSector = document.getElementById('sectorChart');
+            if (ctxSector) {
+                // 차트 컨테이너에 클릭 이벤트 추가
+                const container = ctxSector.closest('.chart-container');
+                if (container) {
+                    container.onclick = () => openChartModal('sector', '📈 섹터 분석 상세', sectorChartData);
+                    container.title = '클릭하여 상세 보기';
+                }
+
+                new Chart(ctxSector.getContext('2d'), {
+                    type: 'doughnut',
+                    data: {
+                        labels: sectors.map(s => `${s} (${sectorData[s].symbols.length})`),
+                        datasets: [{
+                            data: weights,
+                            backgroundColor: colors,
+                            borderWidth: 0,
+                            hoverBorderWidth: 3,
+                            hoverBorderColor: '#fff'
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                position: 'right',
+                                labels: {
+                                    color: '#fff',
+                                    font: { size: 10 },
+                                    padding: 8
+                                }
+                            },
+                            tooltip: {
+                                backgroundColor: '#1e1e3f',
+                                titleColor: '#fff',
+                                bodyColor: '#fff',
+                                borderColor: 'rgba(74, 222, 128, 0.3)',
+                                borderWidth: 1,
+                                padding: 12,
+                                callbacks: {
+                                    label: ctx => `${ctx.label}: ${ctx.raw}% (${formatCurrency(sectorData[sectors[ctx.dataIndex]].value)})`,
+                                    afterLabel: ctx => `종목: ${sectorData[sectors[ctx.dataIndex]].symbols.join(', ')}`
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+
+            // 섹터 수익률 바 차트
+            const ctxPerf = document.getElementById('sectorPerformanceChart');
+            if (ctxPerf) {
+                new Chart(ctxPerf.getContext('2d'), {
+                    type: 'bar',
+                    data: {
+                        labels: sectors,
+                        datasets: [{
+                            label: '수익률 %',
+                            data: returns,
+                            backgroundColor: returns.map(r => parseFloat(r) >= 0 ? '#4ade80' : '#ef4444'),
+                            borderRadius: 4
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        indexAxis: 'y',
+                        plugins: {
+                            legend: { display: false },
+                            tooltip: {
+                                callbacks: {
+                                    label: ctx => `${ctx.raw}%`,
+                                    afterLabel: ctx => `종목: ${sectorData[sectors[ctx.dataIndex]].symbols.join(', ')}`
+                                }
+                            }
+                        },
+                        scales: {
+                            x: {
+                                ticks: {
+                                    color: 'rgba(255,255,255,0.6)',
+                                    callback: v => v + '%'
+                                },
+                                grid: { color: 'rgba(255,255,255,0.1)' }
+                            },
+                            y: {
+                                ticks: { color: '#fff', font: { size: 10 } },
+                                grid: { display: false }
+                            }
+                        }
+                    }
+                });
+            }
+        }
+
+        // ============================================
+        // 📊 기술적 분석 렌더링
+        // ============================================
+
+        function renderTechnicalAnalysis() {
+            const grid = document.getElementById('technicalGrid');
+            if (!grid || !globalMarketData || !globalMarketData.technical_indicators) {
+                if (grid) {
+                    grid.innerHTML = '<div class="loading-placeholder">기술적 분석 데이터를 불러올 수 없습니다.</div>';
+                }
+                return;
+            }
+
+            const indicators = globalMarketData.technical_indicators;
+            const symbols = Object.keys(indicators).filter(s => indicators[s].success);
+
+            if (symbols.length === 0) {
+                grid.innerHTML = '<div class="loading-placeholder">기술적 분석 데이터가 없습니다.</div>';
+                return;
+            }
+
+            grid.innerHTML = symbols.map(symbol => {
+                const data = indicators[symbol];
+                const rsiClass = data.rsi.signal === '과매수' ? 'bearish' : data.rsi.signal === '과매도' ? 'bullish' : 'neutral';
+                const macdClass = data.macd_signal === '상승' ? 'bullish' : 'bearish';
+                const bbClass = data.bb_signal === '상단 근처' ? 'bearish' : data.bb_signal === '하단 근처' ? 'bullish' : 'neutral';
+
+                // RSI 색상 결정
+                let rsiColor;
+                if (data.rsi.value < 30) rsiColor = '#4ade80';
+                else if (data.rsi.value > 70) rsiColor = '#ef4444';
+                else if (data.rsi.value > 50) rsiColor = '#facc15';
+                else rsiColor = '#60a5fa';
+
+                return `
+                    <div class="technical-card">
+                        <div class="symbol-header">
+                            <span class="symbol-name">${symbol}</span>
+                            <span class="price">$${data.price.toLocaleString()}</span>
+                        </div>
+                        <div class="technical-indicator">
+                            <span class="indicator-label">RSI (14)</span>
+                            <span class="indicator-value">
+                                ${data.rsi.value}
+                                <div class="rsi-bar">
+                                    <div class="rsi-bar-fill" style="width: ${data.rsi.value}%; background: ${rsiColor};"></div>
+                                </div>
+                                <span class="indicator-signal ${rsiClass}">${data.rsi.signal}</span>
+                            </span>
+                        </div>
+                        <div class="technical-indicator">
+                            <span class="indicator-label">MACD</span>
+                            <span class="indicator-value">
+                                ${data.macd.macd > 0 ? '+' : ''}${data.macd.macd}
+                                <span class="indicator-signal ${macdClass}">${data.macd_signal}</span>
+                            </span>
+                        </div>
+                        <div class="technical-indicator">
+                            <span class="indicator-label">볼린저 위치</span>
+                            <span class="indicator-value">
+                                ${data.bollinger.position.toFixed(0)}%
+                                <span class="indicator-signal ${bbClass}">${data.bb_signal}</span>
+                            </span>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // ============================================
+        // 💰 배당 추적 렌더링
+        // ============================================
+
+        function renderDividendTracking() {
+            const grid = document.getElementById('dividendGrid');
+            if (!grid || !globalMarketData || !globalMarketData.dividend_data) {
+                if (grid) {
+                    grid.innerHTML = '<div class="loading-placeholder">배당 데이터를 불러올 수 없습니다.</div>';
+                }
+                return;
+            }
+
+            const dividends = globalMarketData.dividend_data;
+            const symbols = Object.keys(dividends)
+                .filter(s => dividends[s].success)
+                .sort((a, b) => (dividends[b].dividend_yield || 0) - (dividends[a].dividend_yield || 0));
+
+            if (symbols.length === 0) {
+                grid.innerHTML = '<div class="loading-placeholder">배당 데이터가 없습니다.</div>';
+                return;
+            }
+
+            grid.innerHTML = symbols.map(symbol => {
+                const data = dividends[symbol];
+                const yieldClass = data.dividend_yield >= 2 ? '' : 'low';
+                const exDateDisplay = data.ex_dividend_date || '미정';
+
+                return `
+                    <div class="dividend-card">
+                        <div class="symbol">${symbol}</div>
+                        <div class="yield ${yieldClass}">${data.dividend_yield.toFixed(2)}%</div>
+                        <div class="amount">연간 $${data.annual_dividend.toFixed(2)}</div>
+                        ${data.ex_dividend_date ? `<div class="ex-date">배당락일: ${exDateDisplay}</div>` : ''}
+                        ${data.payout_ratio > 0 ? `<div class="payout-ratio">배당성향: ${data.payout_ratio.toFixed(0)}%</div>` : ''}
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // ============================================
+        // 🤖 AI 투자 추천 (규칙 기반)
+        // ============================================
+
+        function generateAIRecommendations() {
+            const container = document.getElementById('aiRecommendations');
+            if (!container || !globalData || !globalMarketData) {
+                if (container) {
+                    container.innerHTML = '<div class="loading-placeholder">데이터 로딩 중...</div>';
+                }
+                return;
+            }
+
+            const recommendations = [];
+            const { bookMetrics, holdings, summary } = globalData;
+            const marketData = globalMarketData;
+
+            // 1. 분산투자 분석
+            if (bookMetrics.diversificationScore < 60) {
+                recommendations.push({
+                    type: 'warning',
+                    icon: '⚠️',
+                    title: '분산투자 필요',
+                    content: `현재 분산화 점수가 ${bookMetrics.diversificationScore.toFixed(0)}%로 낮습니다. 다양한 섹터에 투자하여 리스크를 줄이세요.`,
+                    action: '섹터 분산 검토'
+                });
+            }
+
+            // 2. 집중도 위험 분석
+            if (bookMetrics.concentrationRisk > 30) {
+                const topHolding = holdings.reduce((a, b) => a.market_value > b.market_value ? a : b);
+                recommendations.push({
+                    type: 'danger',
+                    icon: '🚨',
+                    title: '과도한 집중 투자',
+                    content: `${topHolding.symbol}이 포트폴리오의 ${bookMetrics.concentrationRisk.toFixed(1)}%를 차지합니다. 단일 종목 비중을 25% 이하로 유지하세요.`,
+                    action: '리밸런싱 고려'
+                });
+            }
+
+            // 3. VIX 기반 시장 상황
+            if (marketData.vix && marketData.vix.value > 25) {
+                recommendations.push({
+                    type: 'warning',
+                    icon: '📊',
+                    title: '시장 변동성 높음',
+                    content: `VIX가 ${marketData.vix.value}로 높습니다. 현금 비중을 높이거나 방어적 포지션을 고려하세요.`,
+                    action: '변동성 관리'
+                });
+            } else if (marketData.vix && marketData.vix.value < 15) {
+                recommendations.push({
+                    type: 'positive',
+                    icon: '✅',
+                    title: '안정적 시장 상황',
+                    content: `VIX가 ${marketData.vix.value}로 낮아 시장이 안정적입니다. 장기 투자에 적합한 환경입니다.`,
+                    action: '투자 기회 탐색'
+                });
+            }
+
+            // 4. Fear & Greed 분석
+            if (marketData.fear_greed) {
+                const fg = marketData.fear_greed.value;
+                if (fg < 25) {
+                    recommendations.push({
+                        type: 'positive',
+                        icon: '💰',
+                        title: '극단적 공포 (매수 기회)',
+                        content: `공포탐욕 지수가 ${fg}로 극단적 공포 상태입니다. 워렌 버핏: "남들이 공포에 떨 때 탐욕을 부려라"`,
+                        action: '분할 매수 검토'
+                    });
+                } else if (fg > 75) {
+                    recommendations.push({
+                        type: 'danger',
+                        icon: '⚡',
+                        title: '극단적 탐욕 (주의)',
+                        content: `공포탐욕 지수가 ${fg}로 과열 상태입니다. 신규 매수보다는 이익 실현을 고려하세요.`,
+                        action: '일부 이익 실현'
+                    });
+                }
+            }
+
+            // 5. 샤프 비율 분석
+            if (bookMetrics.sharpeRatio < 0.5) {
+                recommendations.push({
+                    type: 'warning',
+                    icon: '📉',
+                    title: '위험조정수익률 개선 필요',
+                    content: `샤프 비율이 ${bookMetrics.sharpeRatio.toFixed(2)}로 낮습니다. 수익률 대비 리스크가 높은 종목을 검토하세요.`,
+                    action: '포트폴리오 최적화'
+                });
+            } else if (bookMetrics.sharpeRatio > 1.5) {
+                recommendations.push({
+                    type: 'positive',
+                    icon: '🏆',
+                    title: '우수한 위험조정수익률',
+                    content: `샤프 비율이 ${bookMetrics.sharpeRatio.toFixed(2)}로 매우 우수합니다. 현재 전략을 유지하세요.`,
+                    action: '전략 유지'
+                });
+            }
+
+            // 6. PEG 분석
+            if (bookMetrics.avgPEG && bookMetrics.avgPEG < 1) {
+                recommendations.push({
+                    type: 'positive',
+                    icon: '📈',
+                    title: '저평가 포트폴리오',
+                    content: `평균 PEG가 ${bookMetrics.avgPEG.toFixed(2)}로 성장 대비 저평가되어 있습니다. 피터 린치 기준 매력적입니다.`,
+                    action: '보유 유지'
+                });
+            }
+
+            // 7. 기술적 분석 기반 추천
+            if (marketData.technical_indicators) {
+                const oversold = Object.entries(marketData.technical_indicators)
+                    .filter(([_, data]) => data.success && data.rsi && data.rsi.value < 30)
+                    .map(([symbol]) => symbol);
+
+                if (oversold.length > 0) {
+                    recommendations.push({
+                        type: 'positive',
+                        icon: '🎯',
+                        title: '과매도 종목 발견',
+                        content: `${oversold.join(', ')}이(가) RSI 30 미만으로 과매도 상태입니다. 반등 가능성을 검토하세요.`,
+                        action: '매수 검토'
+                    });
+                }
+            }
+
+            // 8. 경제 사이클 분석
+            if (marketData.market_cycle) {
+                const cycleMessages = {
+                    'expansion': { icon: '🌱', title: '경기 확장기', content: '성장주와 경기민감주에 유리한 환경입니다.', action: '성장주 확대' },
+                    'peak': { icon: '🏔️', title: '경기 정점', content: '방어적 자산과 현금 비중 확대를 고려하세요.', action: '방어적 전환' },
+                    'contraction': { icon: '❄️', title: '경기 수축기', content: '배당주, 필수소비재, 헬스케어 섹터가 유리합니다.', action: '배당주 확대' },
+                    'trough': { icon: '🌊', title: '경기 저점', content: '장기 투자자에게 매수 기회가 될 수 있습니다.', action: '저점 매수'  }
+                };
+
+                const cycle = cycleMessages[marketData.market_cycle];
+                if (cycle) {
+                    recommendations.push({
+                        type: marketData.market_cycle === 'expansion' ? 'positive' : 'warning',
+                        icon: cycle.icon,
+                        title: cycle.title,
+                        content: cycle.content,
+                        action: cycle.action
+                    });
+                }
+            }
+
+            // 추천이 없으면 기본 메시지
+            if (recommendations.length === 0) {
+                recommendations.push({
+                    type: 'positive',
+                    icon: '✨',
+                    title: '포트폴리오 양호',
+                    content: '현재 포트폴리오가 잘 구성되어 있습니다. 정기적인 리밸런싱과 모니터링을 유지하세요.',
+                    action: '현 상태 유지'
+                });
+            }
+
+            // HTML 렌더링
+            container.innerHTML = recommendations.map(rec => `
+                <div class="ai-rec-card ${rec.type === 'warning' ? 'warning' : rec.type === 'danger' ? 'danger' : ''}">
+                    <div class="ai-rec-header">
+                        <span class="ai-rec-icon">${rec.icon}</span>
+                        <span class="ai-rec-title">${rec.title}</span>
+                    </div>
+                    <div class="ai-rec-content">${rec.content}</div>
+                    <span class="ai-rec-action">${rec.action}</span>
+                </div>
+            `).join('');
+        }
+
+        // 시장 데이터 로드 후 모든 분석 렌더링
+        async function loadAndRenderMarketAnalysis() {
+            await fetchMarketData();
+            renderTechnicalAnalysis();
+            renderDividendTracking();
+            generateAIRecommendations();
+        }
+
+        // 페이지 로드 시 분석 데이터 로드
+        document.addEventListener('DOMContentLoaded', () => {
+            loadAndRenderMarketAnalysis();
+        });
+
+        // ============================================
+        // 🔧 PWA 서비스 워커 등록
+        // ============================================
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('sw.js')
+                    .then(registration => {
+                        console.log('SW registered:', registration.scope);
+                    })
+                    .catch(error => {
+                        console.log('SW registration failed:', error);
+                    });
+            });
+        }
+
+        // ============================================
+        // 🌓 다크/라이트 모드 토글
+        // ============================================
+        const THEME_KEY = 'spg_theme';
+
+        function initTheme() {
+            const savedTheme = localStorage.getItem(THEME_KEY) || 'dark';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+            updateThemeButton(savedTheme);
+        }
+
+        function toggleTheme() {
+            const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem(THEME_KEY, newTheme);
+            updateThemeButton(newTheme);
+        }
+
+        function updateThemeButton(theme) {
+            const icon = document.getElementById('themeIcon');
+            const btn = icon?.parentElement;
+            if (icon) {
+                icon.textContent = theme === 'dark' ? '☀️' : '🌙';
+            }
+            if (btn) {
+                btn.title = theme === 'dark' ? '라이트 모드로 전환' : '다크 모드로 전환';
+            }
+        }
+
+        // 테마 초기화
+        initTheme();
+
+        // ============================================
+        // 📲 PWA 설치 프롬프트
+        // ============================================
+        let deferredPrompt;
+
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            showInstallButton();
+        });
+
+        function showInstallButton() {
+            const installBtn = document.getElementById('installBtn');
+            if (installBtn) {
+                installBtn.style.display = 'inline-block';
+            }
+        }
+
+        function installApp() {
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                deferredPrompt.userChoice.then((choiceResult) => {
+                    if (choiceResult.outcome === 'accepted') {
+                        console.log('앱 설치됨');
+                    }
+                    deferredPrompt = null;
+                    const installBtn = document.getElementById('installBtn');
+                    if (installBtn) {
+                        installBtn.style.display = 'none';
+                    }
+                });
+            }
+        }
+
+        // ============================================
+        // 📊 차트 인터랙션 시스템
+        // ============================================
+
+        let modalChartInstance = null;
+        let chartDataStore = {};
+
+        // 차트 모달 열기
+        function openChartModal(chartType, title, data) {
+            const modal = document.getElementById('chartModal');
+            document.getElementById('chartModalTitle').textContent = title;
+
+            // 이전 차트 제거
+            if (modalChartInstance) {
+                modalChartInstance.destroy();
+                modalChartInstance = null;
+            }
+
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+
+            // 차트 데이터 저장
+            chartDataStore = { type: chartType, ...data };
+
+            // 차트 렌더링
+            setTimeout(() => {
+                renderModalChart(chartType, data);
+            }, 100);
+        }
+
+        // 차트 모달 닫기
+        function closeChartModal() {
+            const modal = document.getElementById('chartModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+
+            if (modalChartInstance) {
+                modalChartInstance.destroy();
+                modalChartInstance = null;
+            }
+        }
+
+        function closeChartModalOnOverlay(event) {
+            if (event.target.id === 'chartModal') {
+                closeChartModal();
+            }
+        }
+
+        // 모달 차트 렌더링
+        function renderModalChart(chartType, data) {
+            const ctx = document.getElementById('modalChartCanvas').getContext('2d');
+            const legendContainer = document.getElementById('modalChartLegend');
+            const detailContainer = document.getElementById('chartDetailData');
+
+            let chartConfig;
+            let legendHtml = '';
+            let detailHtml = '';
+
+            switch (chartType) {
+                case 'allocation':
+                    chartConfig = createAllocationModalChart(data);
+                    legendHtml = createAllocationLegend(data);
+                    detailHtml = createAllocationTable(data);
+                    break;
+                case 'sector':
+                    chartConfig = createSectorModalChart(data);
+                    legendHtml = createSectorLegend(data);
+                    detailHtml = createSectorTable(data);
+                    break;
+                case 'risk':
+                    chartConfig = createRiskModalChart(data);
+                    legendHtml = createRiskLegend(data);
+                    detailHtml = createRiskTable(data);
+                    break;
+                case 'seasons':
+                    chartConfig = createSeasonsModalChart(data);
+                    legendHtml = createSeasonsLegend(data);
+                    detailHtml = createSeasonsTable(data);
+                    break;
+                default:
+                    return;
+            }
+
+            modalChartInstance = new Chart(ctx, chartConfig);
+            legendContainer.innerHTML = legendHtml;
+            detailContainer.innerHTML = detailHtml;
+
+            // 인터랙티브 범례 이벤트 바인딩
+            bindLegendEvents();
+        }
+
+        // 자산 배분 모달 차트
+        function createAllocationModalChart(data) {
+            return {
+                type: 'doughnut',
+                data: {
+                    labels: data.labels,
+                    datasets: [{
+                        data: data.values,
+                        backgroundColor: data.colors,
+                        borderWidth: 2,
+                        borderColor: '#1a1a2e',
+                        hoverBorderWidth: 4,
+                        hoverBorderColor: '#fff'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    cutout: '55%',
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            backgroundColor: '#1e1e3f',
+                            titleColor: '#fff',
+                            bodyColor: '#fff',
+                            borderColor: 'rgba(74, 222, 128, 0.3)',
+                            borderWidth: 1,
+                            padding: 12,
+                            callbacks: {
+                                label: (ctx) => {
+                                    const total = ctx.dataset.data.reduce((a, b) => a + b, 0);
+                                    const percentage = ((ctx.raw / total) * 100).toFixed(1);
+                                    return `${ctx.label}: ${formatCurrency(ctx.raw)} (${percentage}%)`;
+                                }
+                            }
+                        }
+                    },
+                    animation: {
+                        animateRotate: true,
+                        animateScale: true
+                    },
+                    onClick: (event, elements) => {
+                        if (elements.length > 0) {
+                            const idx = elements[0].index;
+                            highlightChartSegment(idx);
+                        }
+                    }
+                }
+            };
+        }
+
+        // 섹터 모달 차트
+        function createSectorModalChart(data) {
+            return {
+                type: 'bar',
+                data: {
+                    labels: data.labels,
+                    datasets: [{
+                        label: '비중 %',
+                        data: data.weights,
+                        backgroundColor: data.colors.map(c => c + 'cc'),
+                        borderColor: data.colors,
+                        borderWidth: 2,
+                        borderRadius: 8,
+                        hoverBackgroundColor: data.colors
+                    }, {
+                        label: '수익률 %',
+                        data: data.returns,
+                        backgroundColor: data.returns.map(r => r >= 0 ? 'rgba(74, 222, 128, 0.7)' : 'rgba(239, 68, 68, 0.7)'),
+                        borderColor: data.returns.map(r => r >= 0 ? '#4ade80' : '#ef4444'),
+                        borderWidth: 2,
+                        borderRadius: 8
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                            labels: { color: '#fff', font: { size: 12 } }
+                        },
+                        tooltip: {
+                            backgroundColor: '#1e1e3f',
+                            titleColor: '#fff',
+                            bodyColor: '#fff',
+                            borderColor: 'rgba(74, 222, 128, 0.3)',
+                            borderWidth: 1,
+                            padding: 12
+                        }
+                    },
+                    scales: {
+                        x: {
+                            ticks: { color: '#fff', font: { size: 11 } },
+                            grid: { display: false }
+                        },
+                        y: {
+                            ticks: { color: 'rgba(255,255,255,0.6)', callback: v => v + '%' },
+                            grid: { color: 'rgba(255,255,255,0.1)' }
+                        }
+                    }
+                }
+            };
+        }
+
+        // 위험 기여도 모달 차트
+        function createRiskModalChart(data) {
+            return {
+                type: 'bar',
+                data: {
+                    labels: data.labels,
+                    datasets: [{
+                        label: '위험 기여도 %',
+                        data: data.riskContribution,
+                        backgroundColor: data.riskContribution.map((r, i) =>
+                            r > data.weights[i] ? 'rgba(239, 68, 68, 0.7)' : 'rgba(74, 222, 128, 0.7)'
+                        ),
+                        borderRadius: 8
+                    }, {
+                        label: '비중 %',
+                        data: data.weights,
+                        backgroundColor: 'rgba(255, 255, 255, 0.3)',
+                        borderRadius: 8
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    indexAxis: 'y',
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                            labels: { color: '#fff', font: { size: 12 } }
+                        },
+                        tooltip: {
+                            backgroundColor: '#1e1e3f',
+                            titleColor: '#fff',
+                            bodyColor: '#fff',
+                            borderColor: 'rgba(74, 222, 128, 0.3)',
+                            borderWidth: 1,
+                            padding: 12,
+                            callbacks: {
+                                afterLabel: (ctx) => {
+                                    const diff = data.riskContribution[ctx.dataIndex] - data.weights[ctx.dataIndex];
+                                    return diff > 0 ? `⚠️ 과중 위험: +${diff.toFixed(1)}%` : `✅ 적정 위험`;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            ticks: { color: 'rgba(255,255,255,0.6)', callback: v => v + '%' },
+                            grid: { color: 'rgba(255,255,255,0.1)' }
+                        },
+                        y: {
+                            ticks: { color: '#fff', font: { size: 11 } },
+                            grid: { display: false }
+                        }
+                    }
+                }
+            };
+        }
+
+        // 경제 계절 모달 차트
+        function createSeasonsModalChart(data) {
+            return {
+                type: 'radar',
+                data: {
+                    labels: ['성장 상승', '인플레이션 상승', '성장 하락', '인플레이션 하락'],
+                    datasets: [{
+                        label: '포트폴리오 노출도',
+                        data: data.values,
+                        backgroundColor: 'rgba(74, 222, 128, 0.3)',
+                        borderColor: '#4ade80',
+                        borderWidth: 3,
+                        pointBackgroundColor: '#4ade80',
+                        pointRadius: 6,
+                        pointHoverRadius: 10
+                    }, {
+                        label: '이상적 배분 (각 25%)',
+                        data: [25, 25, 25, 25],
+                        backgroundColor: 'rgba(255, 255, 255, 0.05)',
+                        borderColor: 'rgba(255, 255, 255, 0.5)',
+                        borderWidth: 2,
+                        borderDash: [5, 5],
+                        pointBackgroundColor: 'rgba(255, 255, 255, 0.5)',
+                        pointRadius: 4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                            labels: { color: '#fff', font: { size: 12 } }
+                        }
+                    },
+                    scales: {
+                        r: {
+                            beginAtZero: true,
+                            max: 100,
+                            ticks: { color: 'rgba(255,255,255,0.5)', font: { size: 10 } },
+                            grid: { color: 'rgba(255,255,255,0.15)' },
+                            pointLabels: { color: '#fff', font: { size: 12, weight: 'bold' } }
+                        }
+                    }
+                }
+            };
+        }
+
+        // 범례 생성 함수들
+        function createAllocationLegend(data) {
+            return data.labels.map((label, i) => `
+                <div class="legend-item" data-index="${i}">
+                    <div class="legend-color" style="background: ${data.colors[i]}"></div>
+                    <span class="legend-label">${label}</span>
+                    <span class="legend-value">${((data.values[i] / data.values.reduce((a, b) => a + b, 0)) * 100).toFixed(1)}%</span>
+                </div>
+            `).join('');
+        }
+
+        function createSectorLegend(data) {
+            return data.labels.map((label, i) => `
+                <div class="legend-item" data-index="${i}">
+                    <div class="legend-color" style="background: ${data.colors[i]}"></div>
+                    <span class="legend-label">${label}</span>
+                    <span class="legend-value">${data.weights[i]}%</span>
+                </div>
+            `).join('');
+        }
+
+        function createRiskLegend(data) {
+            return data.labels.map((label, i) => {
+                const isOverweight = data.riskContribution[i] > data.weights[i];
+                return `
+                    <div class="legend-item" data-index="${i}">
+                        <div class="legend-color" style="background: ${isOverweight ? '#ef4444' : '#4ade80'}"></div>
+                        <span class="legend-label">${label}</span>
+                        <span class="legend-value">${isOverweight ? '⚠️' : '✅'} ${data.riskContribution[i].toFixed(1)}%</span>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function createSeasonsLegend(data) {
+            const labels = ['성장 상승', '인플레이션 상승', '성장 하락', '인플레이션 하락'];
+            const colors = ['#4ade80', '#facc15', '#ef4444', '#60a5fa'];
+            return labels.map((label, i) => `
+                <div class="legend-item" data-index="${i}">
+                    <div class="legend-color" style="background: ${colors[i]}"></div>
+                    <span class="legend-label">${label}</span>
+                    <span class="legend-value">${data.values[i].toFixed(1)}%</span>
+                </div>
+            `).join('');
+        }
+
+        // 테이블 생성 함수들
+        function createAllocationTable(data) {
+            const total = data.values.reduce((a, b) => a + b, 0);
+            return `
+                <table class="chart-detail-table">
+                    <thead>
+                        <tr>
+                            <th>종목</th>
+                            <th>금액</th>
+                            <th>비중</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${data.labels.map((label, i) => `
+                            <tr onclick="showStockDetail('${label}')">
+                                <td><strong>${label}</strong></td>
+                                <td>${formatCurrency(data.values[i])}</td>
+                                <td>${((data.values[i] / total) * 100).toFixed(1)}%</td>
+                            </tr>
+                        `).join('')}
+                    </tbody>
+                </table>
+            `;
+        }
+
+        function createSectorTable(data) {
+            return `
+                <table class="chart-detail-table">
+                    <thead>
+                        <tr>
+                            <th>섹터</th>
+                            <th>비중</th>
+                            <th>수익률</th>
+                            <th>종목</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${data.labels.map((label, i) => `
+                            <tr>
+                                <td><strong>${label}</strong></td>
+                                <td>${data.weights[i]}%</td>
+                                <td style="color: ${data.returns[i] >= 0 ? '#4ade80' : '#ef4444'}">
+                                    ${data.returns[i] >= 0 ? '+' : ''}${data.returns[i]}%
+                                </td>
+                                <td style="font-size: 0.8rem; opacity: 0.8">${data.symbols[i].join(', ')}</td>
+                            </tr>
+                        `).join('')}
+                    </tbody>
+                </table>
+            `;
+        }
+
+        function createRiskTable(data) {
+            return `
+                <table class="chart-detail-table">
+                    <thead>
+                        <tr>
+                            <th>종목</th>
+                            <th>비중</th>
+                            <th>위험 기여도</th>
+                            <th>상태</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${data.labels.map((label, i) => {
+                            const diff = data.riskContribution[i] - data.weights[i];
+                            const isOverweight = diff > 0;
+                            return `
+                                <tr>
+                                    <td><strong>${label}</strong></td>
+                                    <td>${data.weights[i].toFixed(1)}%</td>
+                                    <td>${data.riskContribution[i].toFixed(1)}%</td>
+                                    <td style="color: ${isOverweight ? '#ef4444' : '#4ade80'}">
+                                        ${isOverweight ? '⚠️ 과중 +' + diff.toFixed(1) + '%' : '✅ 적정'}
+                                    </td>
+                                </tr>
+                            `;
+                        }).join('')}
+                    </tbody>
+                </table>
+            `;
+        }
+
+        function createSeasonsTable(data) {
+            const labels = ['성장 상승', '인플레이션 상승', '성장 하락', '인플레이션 하락'];
+            const descriptions = [
+                '경제 성장과 함께 주가 상승 환경',
+                '물가 상승으로 실물 자산 유리',
+                '경기 둔화로 방어주/채권 유리',
+                '디플레이션 환경에서 현금 가치 상승'
+            ];
+            return `
+                <table class="chart-detail-table">
+                    <thead>
+                        <tr>
+                            <th>경제 계절</th>
+                            <th>노출도</th>
+                            <th>이상적</th>
+                            <th>설명</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${labels.map((label, i) => {
+                            const diff = data.values[i] - 25;
+                            return `
+                                <tr>
+                                    <td><strong>${label}</strong></td>
+                                    <td style="color: ${Math.abs(diff) > 10 ? '#facc15' : '#4ade80'}">
+                                        ${data.values[i].toFixed(1)}%
+                                    </td>
+                                    <td>25%</td>
+                                    <td style="font-size: 0.8rem; opacity: 0.8">${descriptions[i]}</td>
+                                </tr>
+                            `;
+                        }).join('')}
+                    </tbody>
+                </table>
+            `;
+        }
+
+        // 범례 이벤트 바인딩
+        function bindLegendEvents() {
+            const legendItems = document.querySelectorAll('#modalChartLegend .legend-item');
+            legendItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    const index = parseInt(item.dataset.index);
+                    toggleChartDataset(index);
+                    item.classList.toggle('disabled');
+                });
+            });
+        }
+
+        // 데이터셋 토글
+        function toggleChartDataset(index) {
+            if (modalChartInstance) {
+                const meta = modalChartInstance.getDatasetMeta(0);
+                if (meta.data[index]) {
+                    meta.data[index].hidden = !meta.data[index].hidden;
+                    modalChartInstance.update();
+                }
+            }
+        }
+
+        // 차트 세그먼트 하이라이트
+        function highlightChartSegment(index) {
+            if (modalChartInstance) {
+                const tableRows = document.querySelectorAll('.chart-detail-table tbody tr');
+                tableRows.forEach((row, i) => {
+                    row.style.background = i === index ? 'rgba(74, 222, 128, 0.2)' : '';
+                });
+
+                // 범례 아이템 하이라이트
+                const legendItems = document.querySelectorAll('#modalChartLegend .legend-item');
+                legendItems.forEach((item, i) => {
+                    item.style.transform = i === index ? 'scale(1.1)' : '';
+                    item.style.background = i === index ? 'rgba(74, 222, 128, 0.3)' : '';
+                });
+
+                // 3초 후 하이라이트 제거
+                setTimeout(() => {
+                    tableRows.forEach(row => row.style.background = '');
+                    legendItems.forEach(item => {
+                        item.style.transform = '';
+                        item.style.background = '';
+                    });
+                }, 3000);
+            }
+        }
+
+        // ESC 키로 차트 모달 닫기
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeChartModal();
+            }
+        });
     </script>
 </body>
 </html>

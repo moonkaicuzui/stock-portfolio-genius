@@ -48,7 +48,7 @@ git push -u origin main
 ### 2.3 환경 변수 설정
 Render Dashboard → Environment:
 ```
-FINNHUB_API_KEY=d502bf1r01qsabpqmirgd502bf1r01qsabpqmis0
+FINNHUB_API_KEY=your_finnhub_api_key_here
 DATABASE_URL=sqlite:///./data/portfolio.db
 ```
 
