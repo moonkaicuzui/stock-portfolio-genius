@@ -730,6 +730,167 @@
         .taleb-block.fragile { background: #ef4444; }
         .taleb-block.robust { background: #eab308; }
         .taleb-block.antifragile { background: #22c55e; }
+
+        /* Insight Modal Styles */
+        .insight-modal-content {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            border-radius: 20px;
+            width: 100%;
+            max-width: 900px;
+            max-height: 90vh;
+            overflow-y: auto;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        .insight-trigger {
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .insight-trigger:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(74, 222, 128, 0.2);
+        }
+
+        .insight-trigger::after {
+            content: '클릭하여 상세보기 →';
+            position: absolute;
+            bottom: 10px;
+            right: 15px;
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .market-outlook-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        @media (max-width: 768px) {
+            .market-outlook-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .market-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .market-card .market-label {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 8px;
+        }
+
+        .market-card .market-value {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .market-card .market-status {
+            font-size: 0.75rem;
+            margin-top: 5px;
+            padding: 3px 8px;
+            border-radius: 10px;
+            display: inline-block;
+        }
+
+        .market-status.bullish { background: rgba(74, 222, 128, 0.2); color: #4ade80; }
+        .market-status.bearish { background: rgba(239, 68, 68, 0.2); color: #f87171; }
+        .market-status.neutral { background: rgba(251, 191, 36, 0.2); color: #fbbf24; }
+        .market-status.caution { background: rgba(245, 158, 11, 0.2); color: #f59e0b; }
+
+        .market-opinion-box {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(139, 92, 246, 0.1));
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .market-opinion-title {
+            font-size: 1.1rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .market-opinion-content {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .cycle-indicator {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .cycle-phase {
+            flex: 1;
+            height: 8px;
+            border-radius: 4px;
+            background: rgba(255, 255, 255, 0.1);
+            position: relative;
+        }
+
+        .cycle-phase.active {
+            background: linear-gradient(90deg, #4ade80, #22c55e);
+        }
+
+        .cycle-phase.expansion { background: #4ade80; }
+        .cycle-phase.peak { background: #fbbf24; }
+        .cycle-phase.contraction { background: #f87171; }
+        .cycle-phase.trough { background: #60a5fa; }
+
+        .cycle-label {
+            font-size: 0.7rem;
+            color: rgba(255, 255, 255, 0.5);
+            text-align: center;
+            margin-top: 5px;
+        }
+
+        .insight-summary-card {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .insight-mini {
+            flex: 1;
+            min-width: 200px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 12px 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .insight-mini-icon {
+            font-size: 1.5rem;
+        }
+
+        .insight-mini-text {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .insight-mini-count {
+            font-weight: bold;
+            color: #fbbf24;
+        }
     </style>
 </head>
 <body>
@@ -759,6 +920,21 @@
                 <button class="modal-close" onclick="closeStockModal()">&times;</button>
             </div>
             <div class="modal-body" id="modalBody">
+                <!-- Dynamic content -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Insight & Market Modal -->
+    <div id="insightModal" class="modal-overlay" onclick="closeInsightModalOnOverlay(event)">
+        <div class="insight-modal-content" onclick="event.stopPropagation()">
+            <div class="modal-header">
+                <div class="modal-title">
+                    🧠 투자 인사이트 & 시장 전망
+                </div>
+                <button class="modal-close" onclick="closeInsightModal()">&times;</button>
+            </div>
+            <div class="modal-body" id="insightModalBody">
                 <!-- Dynamic content -->
             </div>
         </div>
@@ -1402,16 +1578,14 @@
                         </div>
                     </div>
 
-                    <!-- 투자 인사이트 -->
-                    <div class="chart-container">
-                        <h3 class="section-title collapsible-header" onclick="toggleSection(this)">
-                            🧠 투자 인사이트
-                            <span class="section-subtitle">16권의 투자 명저 기반 분석</span>
+                    <!-- 투자 인사이트 & 시장 전망 (클릭하면 모달) -->
+                    <div class="chart-container insight-trigger" onclick="openInsightModal()">
+                        <h3 class="section-title">
+                            🧠 투자 인사이트 & 시장 전망
+                            <span class="section-subtitle">16권의 투자 명저 + 시장 분석</span>
                         </h3>
-                        <div class="collapsible-content">
-                            <div class="two-col-grid" style="margin-top: 15px;">
-                                ${generateInsights(data, bookMetrics)}
-                            </div>
+                        <div class="insight-summary-card" style="margin-top: 15px;">
+                            ${generateInsightSummary(data, bookMetrics)}
                         </div>
                     </div>
 
@@ -1532,6 +1706,111 @@
             renderPortfolioHistoryChart(data.portfolio_history);
         }
 
+        // ============================================
+        // 📈 시장 전망 데이터 생성
+        // ============================================
+
+        function generateMarketOutlook() {
+            // 시뮬레이션된 시장 데이터 (실제로는 API에서 가져와야 함)
+            const vix = 15 + Math.random() * 20; // 15-35
+            const cape = 25 + Math.random() * 15; // 25-40
+            const fearGreed = Math.floor(30 + Math.random() * 50); // 30-80
+            const yieldCurve = -0.5 + Math.random() * 1.5; // -0.5 to 1.0
+
+            // 경기 사이클 위치 (1-4: 확장, 정점, 수축, 저점)
+            const cyclePhases = ['expansion', 'peak', 'contraction', 'trough'];
+            const currentCycleIndex = Math.floor(Math.random() * 4);
+            const currentCycle = cyclePhases[currentCycleIndex];
+
+            // VIX 상태 판단
+            let vixStatus, vixClass;
+            if (vix < 15) { vixStatus = '낮은 변동성'; vixClass = 'bullish'; }
+            else if (vix < 20) { vixStatus = '정상 범위'; vixClass = 'neutral'; }
+            else if (vix < 30) { vixStatus = '주의 필요'; vixClass = 'caution'; }
+            else { vixStatus = '높은 공포'; vixClass = 'bearish'; }
+
+            // CAPE 상태 판단
+            let capeStatus, capeClass;
+            if (cape < 20) { capeStatus = '저평가'; capeClass = 'bullish'; }
+            else if (cape < 25) { capeStatus = '적정가'; capeClass = 'neutral'; }
+            else if (cape < 35) { capeStatus = '고평가'; capeClass = 'caution'; }
+            else { capeStatus = '과열'; capeClass = 'bearish'; }
+
+            // 공포탐욕 상태
+            let fgStatus, fgClass;
+            if (fearGreed < 25) { fgStatus = '극도의 공포'; fgClass = 'bearish'; }
+            else if (fearGreed < 45) { fgStatus = '공포'; fgClass = 'caution'; }
+            else if (fearGreed < 55) { fgStatus = '중립'; fgClass = 'neutral'; }
+            else if (fearGreed < 75) { fgStatus = '탐욕'; fgClass = 'caution'; }
+            else { fgStatus = '극도의 탐욕'; fgClass = 'bearish'; }
+
+            // 수익률 곡선 상태
+            let yieldStatus, yieldClass;
+            if (yieldCurve < 0) { yieldStatus = '역전 (경기침체 신호)'; yieldClass = 'bearish'; }
+            else if (yieldCurve < 0.5) { yieldStatus = '평탄화'; yieldClass = 'caution'; }
+            else { yieldStatus = '정상'; yieldClass = 'bullish'; }
+
+            // 경기 사이클 라벨
+            const cycleLabels = {
+                expansion: { label: '확장기', desc: '경제 성장, 기업 이익 증가' },
+                peak: { label: '정점', desc: '성장 둔화, 인플레이션 우려' },
+                contraction: { label: '수축기', desc: '경기 둔화, 방어적 포지션 권장' },
+                trough: { label: '저점', desc: '회복 시작, 매수 기회' }
+            };
+
+            return {
+                vix: { value: vix.toFixed(1), status: vixStatus, class: vixClass },
+                cape: { value: cape.toFixed(1), status: capeStatus, class: capeClass },
+                fearGreed: { value: fearGreed, status: fgStatus, class: fgClass },
+                yieldCurve: { value: (yieldCurve * 100).toFixed(0) + 'bp', status: yieldStatus, class: yieldClass },
+                cycle: { phase: currentCycle, ...cycleLabels[currentCycle], index: currentCycleIndex }
+            };
+        }
+
+        function generateMarketOpinion(marketData, bookMetrics) {
+            const opinions = [];
+
+            // VIX 기반 의견
+            if (marketData.vix.class === 'bearish') {
+                opinions.push(`현재 VIX가 ${marketData.vix.value}로 높은 수준입니다. 시장 변동성이 크므로 신규 매수보다는 현금 비중을 늘리거나 방어적 섹터로 전환을 고려하세요.`);
+            } else if (marketData.vix.class === 'bullish') {
+                opinions.push(`VIX가 ${marketData.vix.value}로 낮은 수준입니다. 시장이 안정적이나, 낮은 변동성 시기에 옵션 전략(풋 매수)으로 하방 리스크를 헤지하는 것도 고려해볼만 합니다.`);
+            }
+
+            // CAPE 기반 의견
+            if (marketData.cape.class === 'bearish' || marketData.cape.class === 'caution') {
+                opinions.push(`S&P 500 CAPE 비율이 ${marketData.cape.value}로 역사적 평균(16-17) 대비 높습니다. 장기 수익률이 낮을 수 있으므로 가치주나 해외 시장 분산을 권장합니다.`);
+            }
+
+            // 공포탐욕 지수 기반 의견
+            if (marketData.fearGreed.class === 'bearish' && marketData.fearGreed.value < 30) {
+                opinions.push(`공포탐욕 지수가 ${marketData.fearGreed.value}로 극도의 공포 상태입니다. 워런 버핏의 "다른 사람들이 두려워할 때 탐욕스러워져라" 격언처럼 장기 투자자에게는 매수 기회일 수 있습니다.`);
+            } else if (marketData.fearGreed.value > 70) {
+                opinions.push(`공포탐욕 지수가 ${marketData.fearGreed.value}로 극도의 탐욕 상태입니다. 시장 과열 신호이므로 신규 매수는 신중하게, 일부 차익 실현을 고려하세요.`);
+            }
+
+            // 수익률 곡선 기반 의견
+            if (marketData.yieldCurve.class === 'bearish') {
+                opinions.push(`수익률 곡선이 역전되었습니다. 역사적으로 경기침체 선행 지표이므로 방어적 포트폴리오 구성과 현금 비중 확대를 권장합니다.`);
+            }
+
+            // 경기 사이클 기반 의견
+            const cycleAdvice = {
+                expansion: '확장기에는 경기민감주(기술, 소비재)가 유리합니다. 성장주 비중을 유지하되, 사이클 후반에 대비하세요.',
+                peak: '정점 근처에서는 방어적 섹터(유틸리티, 헬스케어, 필수소비재)로의 점진적 전환을 고려하세요.',
+                contraction: '수축기에는 현금, 채권, 방어주 비중을 높이세요. 고품질 배당주가 상대적으로 안전합니다.',
+                trough: '저점에서는 다음 사이클을 위한 매수 기회입니다. 우량 성장주와 경기민감주를 저점에 매집하세요.'
+            };
+            opinions.push(cycleAdvice[marketData.cycle.phase]);
+
+            // 포트폴리오 상태 기반 조언
+            if (bookMetrics.avgMarginOfSafety < 0 && marketData.cape.class !== 'bullish') {
+                opinions.push(`현재 포트폴리오의 안전마진이 음수이고 시장도 고평가 상태입니다. 신규 매수보다는 기존 포지션 점검과 손절/익절 계획 수립을 권장합니다.`);
+            }
+
+            return opinions;
+        }
+
         function generateInsights(data, bookMetrics) {
             const insights = [];
 
@@ -1596,6 +1875,37 @@
                 content: `극단적 시장 충격에 대비하세요. 레버리지를 낮추고 옵션성(업사이드 잠재력)이 있는 포지션을 유지하세요.`
             });
 
+            return insights;
+        }
+
+        function generateInsightSummary(data, bookMetrics) {
+            const insights = generateInsights(data, bookMetrics);
+            const warnings = insights.filter(i => i.type === 'warning').length;
+            const positives = insights.filter(i => i.type === 'success').length;
+
+            const marketData = generateMarketOutlook();
+
+            return `
+                <div class="insight-mini">
+                    <span class="insight-mini-icon">⚠️</span>
+                    <span class="insight-mini-text">주의사항 <span class="insight-mini-count">${warnings}개</span></span>
+                </div>
+                <div class="insight-mini">
+                    <span class="insight-mini-icon">✅</span>
+                    <span class="insight-mini-text">긍정 신호 <span class="insight-mini-count">${positives}개</span></span>
+                </div>
+                <div class="insight-mini">
+                    <span class="insight-mini-icon">📊</span>
+                    <span class="insight-mini-text">VIX <span class="insight-mini-count">${marketData.vix.value}</span></span>
+                </div>
+                <div class="insight-mini">
+                    <span class="insight-mini-icon">🌡️</span>
+                    <span class="insight-mini-text">경기 사이클 <span class="insight-mini-count">${marketData.cycle.label}</span></span>
+                </div>
+            `;
+        }
+
+        function renderInsightsHTML(insights) {
             return insights.map(i => `
                 <div class="insight-card ${i.type === 'warning' ? 'warning' : ''}">
                     <div class="insight-title">${i.icon} ${i.title}</div>
@@ -1858,10 +2168,147 @@
             }
         }
 
+        // ============================================
+        // 🧠 인사이트 & 시장 전망 모달
+        // ============================================
+
+        function openInsightModal() {
+            if (!globalData) return;
+            const modal = document.getElementById('insightModal');
+            const bookMetrics = globalData.bookMetrics;
+            const insights = generateInsights(globalData, bookMetrics);
+            const marketData = generateMarketOutlook();
+            const marketOpinions = generateMarketOpinion(marketData, bookMetrics);
+
+            document.getElementById('insightModalBody').innerHTML = `
+                <!-- 시장 전망 섹션 -->
+                <div class="modal-section">
+                    <div class="modal-section-title">📈 시장 전망 지표</div>
+                    <div class="market-outlook-grid">
+                        <div class="market-card">
+                            <div class="market-label">VIX (공포지수)</div>
+                            <div class="market-value">${marketData.vix.value}</div>
+                            <div class="market-status ${marketData.vix.class}">${marketData.vix.status}</div>
+                        </div>
+                        <div class="market-card">
+                            <div class="market-label">S&P 500 CAPE</div>
+                            <div class="market-value">${marketData.cape.value}</div>
+                            <div class="market-status ${marketData.cape.class}">${marketData.cape.status}</div>
+                        </div>
+                        <div class="market-card">
+                            <div class="market-label">공포탐욕 지수</div>
+                            <div class="market-value">${marketData.fearGreed.value}</div>
+                            <div class="market-status ${marketData.fearGreed.class}">${marketData.fearGreed.status}</div>
+                        </div>
+                        <div class="market-card">
+                            <div class="market-label">수익률 곡선</div>
+                            <div class="market-value">${marketData.yieldCurve.value}</div>
+                            <div class="market-status ${marketData.yieldCurve.class}">${marketData.yieldCurve.status}</div>
+                        </div>
+                    </div>
+
+                    <!-- 경기 사이클 인디케이터 -->
+                    <div style="background: rgba(255,255,255,0.05); border-radius: 12px; padding: 15px; margin-top: 10px;">
+                        <div style="font-weight: bold; margin-bottom: 10px;">🔄 경기 사이클 위치: <span style="color: #4ade80;">${marketData.cycle.label}</span></div>
+                        <div class="cycle-indicator">
+                            <div style="text-align: center; flex: 1;">
+                                <div class="cycle-phase ${marketData.cycle.phase === 'expansion' ? 'expansion' : ''}" style="height: 20px;"></div>
+                                <div class="cycle-label">확장기</div>
+                            </div>
+                            <div style="text-align: center; flex: 1;">
+                                <div class="cycle-phase ${marketData.cycle.phase === 'peak' ? 'peak' : ''}" style="height: 20px;"></div>
+                                <div class="cycle-label">정점</div>
+                            </div>
+                            <div style="text-align: center; flex: 1;">
+                                <div class="cycle-phase ${marketData.cycle.phase === 'contraction' ? 'contraction' : ''}" style="height: 20px;"></div>
+                                <div class="cycle-label">수축기</div>
+                            </div>
+                            <div style="text-align: center; flex: 1;">
+                                <div class="cycle-phase ${marketData.cycle.phase === 'trough' ? 'trough' : ''}" style="height: 20px;"></div>
+                                <div class="cycle-label">저점</div>
+                            </div>
+                        </div>
+                        <div style="margin-top: 10px; color: rgba(255,255,255,0.7); font-size: 0.9rem;">${marketData.cycle.desc}</div>
+                    </div>
+                </div>
+
+                <!-- 시장 의견 섹션 -->
+                <div class="modal-section">
+                    <div class="modal-section-title">💬 시장 의견 및 권고사항</div>
+                    <div class="market-opinion-box">
+                        <div class="market-opinion-title">🎯 종합 시장 분석</div>
+                        <div class="market-opinion-content">
+                            ${marketOpinions.map(opinion => `<p style="margin-bottom: 12px;">• ${opinion}</p>`).join('')}
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 포트폴리오 인사이트 섹션 -->
+                <div class="modal-section">
+                    <div class="modal-section-title">🧠 포트폴리오 인사이트 <span class="book-ref">16권의 투자 명저 기반</span></div>
+                    <div class="two-col-grid">
+                        ${renderInsightsHTML(insights)}
+                    </div>
+                </div>
+
+                <!-- 섹터 로테이션 추천 -->
+                <div class="modal-section">
+                    <div class="modal-section-title">🔄 경기 사이클별 섹터 추천</div>
+                    <div class="metric-grid">
+                        <div class="metric-card ${marketData.cycle.phase === 'expansion' ? 'highlight' : ''}" style="${marketData.cycle.phase === 'expansion' ? 'border: 2px solid #4ade80;' : ''}">
+                            <div class="metric-label">확장기 추천 섹터</div>
+                            <div class="metric-value" style="font-size: 1rem;">기술, 소비재, 산업재</div>
+                            <div class="metric-desc">경제 성장과 함께 수혜 받는 성장주 중심</div>
+                        </div>
+                        <div class="metric-card ${marketData.cycle.phase === 'peak' ? 'highlight' : ''}" style="${marketData.cycle.phase === 'peak' ? 'border: 2px solid #fbbf24;' : ''}">
+                            <div class="metric-label">정점 추천 섹터</div>
+                            <div class="metric-value" style="font-size: 1rem;">에너지, 소재, 금융</div>
+                            <div class="metric-desc">인플레이션 헤지 및 이익 실현</div>
+                        </div>
+                        <div class="metric-card ${marketData.cycle.phase === 'contraction' ? 'highlight' : ''}" style="${marketData.cycle.phase === 'contraction' ? 'border: 2px solid #f87171;' : ''}">
+                            <div class="metric-label">수축기 추천 섹터</div>
+                            <div class="metric-value" style="font-size: 1rem;">헬스케어, 유틸리티, 필수소비재</div>
+                            <div class="metric-desc">방어적 섹터로 하락장 방어</div>
+                        </div>
+                        <div class="metric-card ${marketData.cycle.phase === 'trough' ? 'highlight' : ''}" style="${marketData.cycle.phase === 'trough' ? 'border: 2px solid #60a5fa;' : ''}">
+                            <div class="metric-label">저점 추천 섹터</div>
+                            <div class="metric-value" style="font-size: 1rem;">금융, 부동산, 소비재</div>
+                            <div class="metric-desc">회복 수혜 섹터 선취매</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 투자 체크리스트 -->
+                <div class="recommendation-box">
+                    <div class="recommendation-title">📋 현재 시장 상황 투자 체크리스트</div>
+                    <ul class="recommendation-list">
+                        <li>포트폴리오 리밸런싱 필요 여부 점검</li>
+                        <li>현금 비중 적정성 확인 (권장: ${marketData.vix.class === 'bearish' ? '20-30%' : marketData.cycle.phase === 'peak' ? '15-20%' : '5-15%'})</li>
+                        <li>경기 사이클(${marketData.cycle.label})에 맞는 섹터 비중 점검</li>
+                        <li>개별 종목 손절/익절 라인 재확인</li>
+                        <li>분산 투자 적정성 점검 (종목 수, 섹터 분산)</li>
+                    </ul>
+                </div>
+            `;
+
+            modal.classList.add('active');
+        }
+
+        function closeInsightModal() {
+            document.getElementById('insightModal').classList.remove('active');
+        }
+
+        function closeInsightModalOnOverlay(event) {
+            if (event.target === document.getElementById('insightModal')) {
+                closeInsightModal();
+            }
+        }
+
         // ESC key to close modal
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') {
                 closeStockModal();
+                closeInsightModal();
             }
         });
 
