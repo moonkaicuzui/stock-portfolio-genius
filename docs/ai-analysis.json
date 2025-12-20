@@ -1,8 +1,8 @@
 {
-  "generated_at": "2025-12-20T14:18:34.690866",
+  "generated_at": "2025-12-20T09:21:11.447127",
   "rule_based": {
     "type": "rule_based",
-    "timestamp": "2025-12-20T14:18:34.643003",
+    "timestamp": "2025-12-20T09:21:11.230064",
     "portfolio_metrics": {
       "total_value": 120331.36,
       "total_cost": 125818.63,
@@ -18,23 +18,18 @@
       "leverage_pct": 2.6
     },
     "market_conditions": {
-      "vix": 15.5,
-      "fear_greed": 55,
-      "market_cycle": "expansion"
+      "vix": 14.91,
+      "fear_greed": 45,
+      "market_cycle": "peak"
     },
     "technical_signals": [
       {
-        "symbol": "NVDA",
-        "signal": "MACD 상승 크로스",
-        "action": "bullish"
-      },
-      {
-        "symbol": "AMZN",
+        "symbol": "GOOGL",
         "signal": "MACD 상승 크로스",
         "action": "bullish"
       }
     ],
-    "score": 55,
+    "score": 59,
     "winners": [
       {
         "symbol": "MU",
