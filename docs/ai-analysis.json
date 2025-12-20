@@ -1,8 +1,8 @@
 {
-  "generated_at": "2025-12-20T09:21:11.447127",
+  "generated_at": "2025-12-20T15:29:50.653488",
   "rule_based": {
     "type": "rule_based",
-    "timestamp": "2025-12-20T09:21:11.230064",
+    "timestamp": "2025-12-20T15:29:14.209545",
     "portfolio_metrics": {
       "total_value": 120331.36,
       "total_cost": 125818.63,
@@ -18,18 +18,23 @@
       "leverage_pct": 2.6
     },
     "market_conditions": {
-      "vix": 14.91,
-      "fear_greed": 45,
-      "market_cycle": "peak"
+      "vix": 15.5,
+      "fear_greed": 55,
+      "market_cycle": "expansion"
     },
     "technical_signals": [
       {
-        "symbol": "GOOGL",
+        "symbol": "NVDA",
+        "signal": "MACD 상승 크로스",
+        "action": "bullish"
+      },
+      {
+        "symbol": "AMZN",
         "signal": "MACD 상승 크로스",
         "action": "bullish"
       }
     ],
-    "score": 59,
+    "score": 55,
     "winners": [
       {
         "symbol": "MU",
@@ -218,15 +223,31 @@
     ]
   },
   "ai_insights": {
-    "ai_provider": "none",
-    "market_insight": "AI 분석을 사용할 수 없습니다. API 키를 설정하거나 Ollama를 실행해주세요.",
-    "portfolio_insight": "규칙 기반 분석 결과를 참고하세요.",
-    "action_items": [],
+    "market_insight": "현재 시장 상황은 불확실성과 위험성이 높아지고 있지만, 일부 종목이 상승하고 있는 모습을 보입니다.",
+    "portfolio_insight": "포트폴리오의 강점으로는 MU가 +8.07% 수익을 기록한 점을 들 수 있습니다. 그러나 약점으로는 SMR, SMCI, SOXL이 각각 -17.33%, -12.49%, -12.06% 손실을 기록한 점을 들 수 있습니다.",
+    "action_items": [
+      {
+        "priority": "high",
+        "action": "NVDA와 AMZN의 MACD 상승 크로스를 확인하고 포트폴리오에 추가 투자 고려",
+        "reason": "벤저민 그레이엄의 '현명한 투자자' 원칙에 따라, 기술적 신호가 강력한 종목을 포착하는 것이 중요합니다."
+      },
+      {
+        "priority": "medium",
+        "action": "레버리지 ETF 비중 2.6%를 줄이기 위해 포트폴리오 재조정",
+        "reason": "피터 린치의 '전설로 떠나는 월가의 영웅'에서 레버리지 투자에 대한 위험성을 강조하였습니다."
+      },
+      {
+        "priority": "low",
+        "action": "포트폴리오의 섹터 집중을 줄이기 위해 포트폴리오 재구성",
+        "reason": "워런 버핏의 '투자에 대한 생각'에서 섹터 집중을 피하는 것이 중요하다고 강조하였습니다."
+      }
+    ],
     "book_wisdom": {
-      "book": "현명한 투자자",
-      "author": "벤저민 그레이엄",
-      "quote": "투자의 핵심은 안전마진을 확보하는 것입니다."
+      "book": "원칙",
+      "author": "레이 달리오",
+      "quote": "투자에는 원칙이 필요합니다. 투자에 대한 생각과 행동은 모두 원칙에 따라야 합니다."
     },
-    "risk_warning": "AI 인사이트 없이 규칙 기반 데이터만 제공됩니다."
+    "risk_warning": "주의해야 할 리스크는 레버리지 ETF 비중의 높은 위험성과 섹터 집중의 잠재적 손실입니다.",
+    "ai_provider": "ollama"
   }
 }

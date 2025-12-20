@@ -2,62 +2,27 @@
 """
 포트폴리오 분석 시스템
 - 규칙 기반 분석: 항상 실행 (계산, 수치, 신호)
-- AI 분석: 규칙 결과를 바탕으로 인사이트 제공 (Groq → Gemini → Ollama 폴백)
+- AI 분석: Groq API 사용
 """
 
 import json
 import os
-import requests
 from datetime import datetime
 from pathlib import Path
 from typing import Optional, Dict, Any
 
 # ============================================================
-# Provider 설정
+# Groq 설정
 # ============================================================
 
-PROVIDERS = {
-    "groq": {
-        "available": False,
-        "model": "llama-3.1-70b-versatile",
-        "env_key": "GROQ_API_KEY"
-    },
-    "gemini": {
-        "available": False,
-        "model": "gemini-1.5-flash",
-        "env_key": "GEMINI_API_KEY"
-    },
-    "ollama": {
-        "available": False,
-        "model": "llama3.1:8b",
-        "url": "http://localhost:11434"
-    }
-}
+GROQ_AVAILABLE = False
+GROQ_MODEL = "llama-3.1-70b-versatile"
 
-# Groq 라이브러리 확인
 try:
     from groq import Groq
-    PROVIDERS["groq"]["available"] = True
+    GROQ_AVAILABLE = True
 except ImportError:
     pass
-
-# Google Generative AI 라이브러리 확인
-try:
-    import google.generativeai as genai
-    PROVIDERS["gemini"]["available"] = True
-except ImportError:
-    pass
-
-# Ollama 연결 확인 (로컬)
-def check_ollama():
-    try:
-        response = requests.get("http://localhost:11434/api/tags", timeout=2)
-        if response.status_code == 200:
-            PROVIDERS["ollama"]["available"] = True
-            return True
-    except:
-        pass
-    return False
 
 
 # ============================================================
@@ -339,7 +304,7 @@ JSON만 출력하세요."""
 def analyze_with_groq(prompt: str) -> Optional[Dict]:
     """Groq API 분석"""
     api_key = os.environ.get('GROQ_API_KEY')
-    if not api_key or not PROVIDERS["groq"]["available"]:
+    if not api_key or not GROQ_AVAILABLE:
         return None
 
     try:
@@ -349,7 +314,7 @@ def analyze_with_groq(prompt: str) -> Optional[Dict]:
                 {"role": "system", "content": "당신은 전문 투자 분석가입니다. 항상 유효한 JSON으로만 응답합니다."},
                 {"role": "user", "content": prompt}
             ],
-            model=PROVIDERS["groq"]["model"],
+            model=GROQ_MODEL,
             temperature=0.3,
             max_tokens=1500
         )
@@ -359,48 +324,6 @@ def analyze_with_groq(prompt: str) -> Optional[Dict]:
     except Exception as e:
         print(f"Groq 오류: {e}")
         return None
-
-
-def analyze_with_gemini(prompt: str) -> Optional[Dict]:
-    """Gemini API 분석"""
-    api_key = os.environ.get('GEMINI_API_KEY')
-    if not api_key or not PROVIDERS["gemini"]["available"]:
-        return None
-
-    try:
-        genai.configure(api_key=api_key)
-        model = genai.GenerativeModel(PROVIDERS["gemini"]["model"])
-        response = model.generate_content(prompt)
-
-        text = response.text
-        return parse_ai_response(text, "gemini")
-    except Exception as e:
-        print(f"Gemini 오류: {e}")
-        return None
-
-
-def analyze_with_ollama(prompt: str) -> Optional[Dict]:
-    """Ollama 로컬 분석"""
-    if not PROVIDERS["ollama"]["available"]:
-        return None
-
-    try:
-        response = requests.post(
-            f"{PROVIDERS['ollama']['url']}/api/generate",
-            json={
-                "model": PROVIDERS["ollama"]["model"],
-                "prompt": prompt,
-                "stream": False
-            },
-            timeout=120
-        )
-
-        if response.status_code == 200:
-            text = response.json().get('response', '')
-            return parse_ai_response(text, "ollama")
-    except Exception as e:
-        print(f"Ollama 오류: {e}")
-    return None
 
 
 def parse_ai_response(text: str, provider: str) -> Optional[Dict]:
@@ -445,34 +368,20 @@ def run_analysis() -> Dict:
     print(f"   점수: {rule_analysis['score']}")
     print(f"   총 수익률: {rule_analysis['portfolio_metrics']['total_return_pct']:.1f}%")
 
-    # 2단계: AI 분석 (폴백 체인)
-    print("\n🤖 AI 분석 시도...")
-    check_ollama()  # Ollama 상태 확인
+    # 2단계: AI 분석 (Groq)
+    print("\n🤖 AI 분석 시도 (Groq)...")
 
     prompt = create_ai_prompt(rule_analysis)
-    ai_analysis = None
+    ai_analysis = analyze_with_groq(prompt)
 
-    # Provider 순서: Groq → Gemini → Ollama
-    providers = [
-        ("Groq", analyze_with_groq),
-        ("Gemini", analyze_with_gemini),
-        ("Ollama", analyze_with_ollama)
-    ]
-
-    for name, analyzer in providers:
-        print(f"   {name} 시도 중...")
-        ai_analysis = analyzer(prompt)
-        if ai_analysis:
-            print(f"   ✅ {name} 성공!")
-            break
-        else:
-            print(f"   ⏭️ {name} 실패, 다음 시도...")
+    if ai_analysis:
+        print("   ✅ Groq 분석 성공!")
 
     if not ai_analysis:
         print("   ℹ️ AI 분석 불가, 규칙 기반 결과만 사용")
         ai_analysis = {
             "ai_provider": "none",
-            "market_insight": "AI 분석을 사용할 수 없습니다. API 키를 설정하거나 Ollama를 실행해주세요.",
+            "market_insight": "AI 분석을 사용할 수 없습니다. GROQ_API_KEY를 설정해주세요.",
             "portfolio_insight": "규칙 기반 분석 결과를 참고하세요.",
             "action_items": [],
             "book_wisdom": {

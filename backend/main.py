@@ -15,6 +15,7 @@ from core.config import settings
 from models import init_db, get_db
 from services.market_data import get_market_data_manager
 from services.price_collector import get_price_collector
+from services.ai_analysis import analyze_portfolio, get_provider_status
 from api.portfolio import router as portfolio_router
 
 # Configure logging
@@ -322,6 +323,28 @@ async def trigger_collection():
     collector = get_price_collector()
     await collector.collect_prices()
     return {"message": "Price collection triggered", "stats": collector.get_stats()}
+
+
+# ============ AI Analysis API ============
+
+@app.get("/api/ai/status")
+async def get_ai_status():
+    """AI Provider 상태 조회"""
+    return get_provider_status()
+
+
+@app.post("/api/ai/analyze")
+async def analyze_portfolio_endpoint(portfolio_data: dict):
+    """포트폴리오 AI 분석"""
+    try:
+        result = await analyze_portfolio(portfolio_data)
+        return result
+    except Exception as e:
+        logger.error(f"AI analysis error: {e}")
+        return {
+            "success": False,
+            "error": str(e)
+        }
 
 
 # ============ Run Server ============

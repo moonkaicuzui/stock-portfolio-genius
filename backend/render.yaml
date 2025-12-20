@@ -11,8 +11,8 @@ services:
     envVars:
       - key: FINNHUB_API_KEY
         sync: false  # Set in Render dashboard
-      - key: OLLAMA_BASE_URL
-        value: ""  # Ollama not available on cloud
+      - key: GROQ_API_KEY
+        sync: false  # Set in Render dashboard
       - key: DATABASE_URL
         fromDatabase:
           name: portfolio-db
