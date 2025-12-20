@@ -1324,6 +1324,9 @@
 
         async function loadDashboard() {
             try {
+                // 시장 데이터 먼저 로드
+                await fetchMarketData();
+
                 const response = await fetch('data.json');
                 if (!response.ok) throw new Error('데이터를 찾을 수 없습니다');
                 const data = await response.json();
@@ -1707,20 +1710,46 @@
         }
 
         // ============================================
-        // 📈 시장 전망 데이터 생성
+        // 📈 시장 전망 데이터 (실시간 API 연동)
         // ============================================
 
-        function generateMarketOutlook() {
-            // 시뮬레이션된 시장 데이터 (실제로는 API에서 가져와야 함)
-            const vix = 15 + Math.random() * 20; // 15-35
-            const cape = 25 + Math.random() * 15; // 25-40
-            const fearGreed = Math.floor(30 + Math.random() * 50); // 30-80
-            const yieldCurve = -0.5 + Math.random() * 1.5; // -0.5 to 1.0
+        // 전역 시장 데이터 캐시
+        let globalMarketData = null;
 
-            // 경기 사이클 위치 (1-4: 확장, 정점, 수축, 저점)
-            const cyclePhases = ['expansion', 'peak', 'contraction', 'trough'];
-            const currentCycleIndex = Math.floor(Math.random() * 4);
-            const currentCycle = cyclePhases[currentCycleIndex];
+        async function fetchMarketData() {
+            try {
+                const response = await fetch('market-data.json');
+                if (response.ok) {
+                    globalMarketData = await response.json();
+                    console.log('시장 데이터 로드 완료:', globalMarketData.last_updated);
+                    return globalMarketData;
+                }
+            } catch (error) {
+                console.warn('시장 데이터 로드 실패, 기본값 사용:', error);
+            }
+            return null;
+        }
+
+        function generateMarketOutlook() {
+            // 실제 시장 데이터 사용 (없으면 기본값)
+            const data = globalMarketData;
+
+            let vix, cape, fearGreed, yieldCurve, currentCycle;
+
+            if (data) {
+                vix = data.vix?.value || 20;
+                cape = data.cape?.value || 30;
+                fearGreed = data.fear_greed?.value || 50;
+                yieldCurve = data.yield_curve?.value || 0.5;
+                currentCycle = data.market_cycle || 'expansion';
+            } else {
+                // 데이터 없을 때 기본값
+                vix = 20;
+                cape = 30;
+                fearGreed = 50;
+                yieldCurve = 0.5;
+                currentCycle = 'expansion';
+            }
 
             // VIX 상태 판단
             let vixStatus, vixClass;
@@ -1758,12 +1787,17 @@
                 trough: { label: '저점', desc: '회복 시작, 매수 기회' }
             };
 
+            const cycleInfo = cycleLabels[currentCycle] || cycleLabels.expansion;
+
             return {
-                vix: { value: vix.toFixed(1), status: vixStatus, class: vixClass },
-                cape: { value: cape.toFixed(1), status: capeStatus, class: capeClass },
+                vix: { value: vix.toFixed ? vix.toFixed(1) : vix, status: vixStatus, class: vixClass },
+                cape: { value: cape.toFixed ? cape.toFixed(1) : cape, status: capeStatus, class: capeClass },
                 fearGreed: { value: fearGreed, status: fgStatus, class: fgClass },
                 yieldCurve: { value: (yieldCurve * 100).toFixed(0) + 'bp', status: yieldStatus, class: yieldClass },
-                cycle: { phase: currentCycle, ...cycleLabels[currentCycle], index: currentCycleIndex }
+                cycle: { phase: currentCycle, ...cycleInfo },
+                lastUpdated: data?.last_updated || null,
+                dataQuality: data?.data_quality || null,
+                indices: data?.indices || null
             };
         }
 
@@ -2180,10 +2214,26 @@
             const marketData = generateMarketOutlook();
             const marketOpinions = generateMarketOpinion(marketData, bookMetrics);
 
+            // 데이터 업데이트 시간 표시
+            const lastUpdated = marketData.lastUpdated
+                ? new Date(marketData.lastUpdated).toLocaleString('ko-KR')
+                : '데이터 로드 대기 중';
+            const dataQuality = marketData.dataQuality;
+            const qualityStatus = dataQuality && Object.values(dataQuality).every(v => v)
+                ? '✅ 실시간 데이터'
+                : '⏳ 일부 데이터 업데이트 대기';
+
             document.getElementById('insightModalBody').innerHTML = `
+                <!-- 데이터 상태 표시 -->
+                <div style="background: rgba(59, 130, 246, 0.1); border-radius: 8px; padding: 10px 15px; margin-bottom: 20px; font-size: 0.85rem;">
+                    <span style="color: rgba(255,255,255,0.6);">📡 데이터 업데이트:</span>
+                    <span style="color: #4ade80;">${lastUpdated}</span>
+                    <span style="margin-left: 15px;">${qualityStatus}</span>
+                </div>
+
                 <!-- 시장 전망 섹션 -->
                 <div class="modal-section">
-                    <div class="modal-section-title">📈 시장 전망 지표</div>
+                    <div class="modal-section-title">📈 시장 전망 지표 <span class="book-ref">실시간 API 연동</span></div>
                     <div class="market-outlook-grid">
                         <div class="market-card">
                             <div class="market-label">VIX (공포지수)</div>

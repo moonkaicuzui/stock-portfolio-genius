@@ -1,0 +1,45 @@
+{
+  "last_updated": "2024-12-20T12:00:00",
+  "vix": {
+    "value": 15.5,
+    "source": "초기값 (GitHub Actions에서 자동 업데이트 예정)",
+    "success": false
+  },
+  "fear_greed": {
+    "value": 55,
+    "rating": "Neutral",
+    "source": "초기값 (GitHub Actions에서 자동 업데이트 예정)",
+    "success": false
+  },
+  "cape": {
+    "value": 32.5,
+    "source": "초기값 (GitHub Actions에서 자동 업데이트 예정)",
+    "success": false
+  },
+  "yield_curve": {
+    "value": 0.25,
+    "ten_year": 4.5,
+    "two_year": 4.25,
+    "source": "초기값 (GitHub Actions에서 자동 업데이트 예정)",
+    "success": false
+  },
+  "sp500_pe": {
+    "value": 25.0,
+    "source": "초기값 (GitHub Actions에서 자동 업데이트 예정)",
+    "success": false
+  },
+  "indices": {
+    "sp500": {"value": 5900, "change_pct": 0.5, "success": false},
+    "nasdaq": {"value": 19500, "change_pct": 0.7, "success": false},
+    "dow": {"value": 43000, "change_pct": 0.3, "success": false},
+    "kospi": {"value": 2450, "change_pct": -0.2, "success": false},
+    "kosdaq": {"value": 720, "change_pct": -0.1, "success": false}
+  },
+  "market_cycle": "expansion",
+  "data_quality": {
+    "vix": false,
+    "fear_greed": false,
+    "cape": false,
+    "yield_curve": false
+  }
+}
