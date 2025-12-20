@@ -101,7 +101,7 @@ class AIPortfolioManager:
             "learning_log": [],
             "strategy": {
                 "name": "복합 가치성장 전략",
-                "description": "16권의 투자 고전을 기반으로 한 복합 투자 전략"
+                "description": "가치투자와 성장투자를 결합한 복합 투자 전략"
             }
         }
 

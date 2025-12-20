@@ -2286,7 +2286,7 @@
                 <div style="text-align: center; padding: 50px;">
                     <h2>포트폴리오 지니어스에 오신 것을 환영합니다</h2>
                     <p style="margin: 20px 0; color: rgba(255,255,255,0.6);">
-                        16권의 투자 명저 기반 고급 대시보드<br>
+                        가치투자 포트폴리오 분석 대시보드<br>
                         GitHub Actions가 자동으로 데이터를 업데이트합니다.
                     </p>
                 </div>
@@ -2407,7 +2407,6 @@
                     <div class="chart-container insight-trigger" onclick="openInsightModal()">
                         <h3 class="section-title">
                             🧠 투자 인사이트 & 시장 전망
-                            <span class="section-subtitle">16권의 투자 명저 + 시장 분석</span>
                         </h3>
                         <div class="insight-summary-card" style="margin-top: 15px;">
                             ${generateInsightSummary(data, bookMetrics)}
@@ -2566,22 +2565,10 @@
                         </div>
                     </div>
 
-                    <!-- 적용된 투자 방법론 -->
-                    <div class="analysis-panel">
-                        <h3 class="section-title collapsible-header" onclick="toggleSection(this)">
-                            📚 적용된 투자 방법론 (16권)
-                        </h3>
-                        <div class="collapsible-content">
-                            <div class="four-col-grid" style="margin-top: 15px;">
-                                ${renderBookReferences()}
-                            </div>
-                        </div>
-                    </div>
                 </main>
 
                 <footer>
-                    <p>주식 포트폴리오 지니어스 | 16권의 투자 명저 기반 고급 분석</p>
-                    <p>그레이엄 • 린치 • 그린블라트 • 오닐 • 마코위츠 • 달리오 • 막스 • 피셔 • 멍거 • 탈렙</p>
+                    <p>주식 포트폴리오 지니어스 | 가치투자 포트폴리오 분석</p>
                 </footer>
             `;
 
@@ -2899,35 +2886,6 @@
                 <div class="insight-card ${i.type === 'warning' ? 'warning' : ''}">
                     <div class="insight-title">${i.icon} ${i.title}</div>
                     <div class="insight-content">${i.content}</div>
-                </div>
-            `).join('');
-        }
-
-        function renderBookReferences() {
-            const books = [
-                { title: '현명한 투자자', author: 'B. 그레이엄', metric: '안전마진, 그레이엄 넘버' },
-                { title: '증권분석', author: '그레이엄 & 도드', metric: '순순자산가치, 기본적 분석' },
-                { title: '월가의 영웅', author: '피터 린치', metric: 'PEG 비율, 주식 분류' },
-                { title: '시장을 이기는 작은 책', author: '조엘 그린블라트', metric: '마법 공식 (ROC + EY)' },
-                { title: '주식시장에서 돈버는 법', author: '윌리엄 오닐', metric: 'CAN SLIM 점수' },
-                { title: '포트폴리오 선택', author: '해리 마코위츠', metric: '샤프 비율, 분산화' },
-                { title: '행운의 공식', author: '윌리엄 파운드스톤', metric: '켈리 기준 %' },
-                { title: '원칙 (올웨더)', author: '레이 달리오', metric: '리스크 패리티, 경제 시즌' },
-                { title: '투자에 대한 생각', author: '하워드 막스', metric: '위험 점수, 시장 사이클' },
-                { title: '위대한 기업에 투자하라', author: '필립 피셔', metric: '정성적 체크리스트' },
-                { title: '가난한 찰리의 연감', author: '찰리 멍거', metric: '멘탈 모델, 역발상' },
-                { title: '랜덤워크 투자수업', author: '버튼 말키엘', metric: '효율적 시장, 분산' },
-                { title: '보글의 투자 원칙', author: '존 보글', metric: '인덱스 투자, 비용 효율' },
-                { title: '블랙 스완', author: '나심 탈렙', metric: '테일 리스크, 안티프래질' },
-                { title: '안전마진', author: '세스 클라만', metric: '극단적 가치투자' },
-                { title: '새로운 시장의 마법사들', author: '잭 슈웨거', metric: '드러켄밀러 탑다운' }
-            ];
-
-            return books.map(b => `
-                <div class="analysis-panel" style="padding: 12px; margin-bottom: 0;">
-                    <div style="font-weight: bold; font-size: 0.85rem; color: #4ade80;">${b.title}</div>
-                    <div style="font-size: 0.75rem; color: rgba(255,255,255,0.5);">${b.author}</div>
-                    <div style="font-size: 0.75rem; margin-top: 5px;">${b.metric}</div>
                 </div>
             `).join('');
         }
@@ -3250,7 +3208,7 @@
 
                 <!-- 포트폴리오 인사이트 섹션 -->
                 <div class="modal-section">
-                    <div class="modal-section-title">🧠 포트폴리오 인사이트 <span class="book-ref">16권의 투자 명저 기반</span></div>
+                    <div class="modal-section-title">🧠 포트폴리오 인사이트</div>
                     <div class="two-col-grid">
                         ${renderInsightsHTML(insights)}
                     </div>

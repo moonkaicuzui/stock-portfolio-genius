@@ -248,10 +248,7 @@ def create_ai_prompt(rule_analysis: Dict) -> str:
     winners_text = "\n".join([f"  - {w['symbol']}: +{w['gain_loss_pct']}%" for w in winners[:3]]) or "  - 없음"
     losers_text = "\n".join([f"  - {l['symbol']}: {l['gain_loss_pct']}%" for l in losers[:3]]) or "  - 없음"
 
-    prompt = f"""당신은 16권의 투자 명저를 읽은 전문 투자 어드바이저입니다.
-참고 서적: 벤저민 그레이엄(현명한 투자자), 피터 린치(전설로 떠나는 월가의 영웅),
-워런 버핏, 하워드 막스(투자에 대한 생각), 레이 달리오(원칙), 찰리 멍거 등
-
+    prompt = f"""당신은 전문 투자 분석가입니다.
 아래 포트폴리오 분석 데이터를 보고, 투자자에게 도움이 되는 인사이트를 제공해주세요.
 
 ## 포트폴리오 현황
@@ -282,13 +279,8 @@ def create_ai_prompt(rule_analysis: Dict) -> str:
   "market_insight": "현재 시장 상황에 대한 해석과 조언 (2-3문장)",
   "portfolio_insight": "이 포트폴리오의 강점과 약점 분석 (2-3문장)",
   "action_items": [
-    {{"priority": "high/medium/low", "action": "구체적인 행동 제안", "reason": "투자 명저의 원칙 기반 이유"}}
+    {{"priority": "high/medium/low", "action": "구체적인 행동 제안", "reason": "이유"}}
   ],
-  "book_wisdom": {{
-    "book": "적용한 책 제목",
-    "author": "저자",
-    "quote": "관련 인사이트나 인용구"
-  }},
   "risk_warning": "주의해야 할 리스크 (1-2문장)"
 }}
 
@@ -384,11 +376,6 @@ def run_analysis() -> Dict:
             "market_insight": "AI 분석을 사용할 수 없습니다. GROQ_API_KEY를 설정해주세요.",
             "portfolio_insight": "규칙 기반 분석 결과를 참고하세요.",
             "action_items": [],
-            "book_wisdom": {
-                "book": "현명한 투자자",
-                "author": "벤저민 그레이엄",
-                "quote": "투자의 핵심은 안전마진을 확보하는 것입니다."
-            },
             "risk_warning": "AI 인사이트 없이 규칙 기반 데이터만 제공됩니다."
         }
 
