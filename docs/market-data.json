@@ -1,45 +1,65 @@
 {
-  "last_updated": "2024-12-20T12:00:00",
+  "last_updated": "2025-12-20T03:54:14.780100",
   "vix": {
-    "value": 15.5,
-    "source": "초기값 (GitHub Actions에서 자동 업데이트 예정)",
-    "success": false
+    "value": 14.91,
+    "source": "Yahoo Finance",
+    "success": true
   },
   "fear_greed": {
-    "value": 55,
-    "rating": "Neutral",
-    "source": "초기값 (GitHub Actions에서 자동 업데이트 예정)",
-    "success": false
+    "value": 45,
+    "rating": "neutral",
+    "source": "CNN",
+    "success": true
   },
   "cape": {
-    "value": 32.5,
-    "source": "초기값 (GitHub Actions에서 자동 업데이트 예정)",
+    "value": 30.0,
+    "source": "기본값",
     "success": false
   },
   "yield_curve": {
-    "value": 0.25,
-    "ten_year": 4.5,
-    "two_year": 4.25,
-    "source": "초기값 (GitHub Actions에서 자동 업데이트 예정)",
-    "success": false
+    "value": 0.63,
+    "ten_year": 4.15,
+    "two_year": 3.52,
+    "source": "Yahoo Finance",
+    "success": true
   },
   "sp500_pe": {
-    "value": 25.0,
-    "source": "초기값 (GitHub Actions에서 자동 업데이트 예정)",
-    "success": false
+    "value": 27.45,
+    "source": "Yahoo Finance",
+    "success": true
   },
   "indices": {
-    "sp500": {"value": 5900, "change_pct": 0.5, "success": false},
-    "nasdaq": {"value": 19500, "change_pct": 0.7, "success": false},
-    "dow": {"value": 43000, "change_pct": 0.3, "success": false},
-    "kospi": {"value": 2450, "change_pct": -0.2, "success": false},
-    "kosdaq": {"value": 720, "change_pct": -0.1, "success": false}
+    "sp500": {
+      "value": 6834.5,
+      "change_pct": 0.88,
+      "success": true
+    },
+    "nasdaq": {
+      "value": 23307.62,
+      "change_pct": 1.31,
+      "success": true
+    },
+    "dow": {
+      "value": 48134.89,
+      "change_pct": 0.38,
+      "success": true
+    },
+    "kospi": {
+      "value": 4020.55,
+      "change_pct": 0.65,
+      "success": true
+    },
+    "kosdaq": {
+      "value": 915.27,
+      "change_pct": 1.55,
+      "success": true
+    }
   },
-  "market_cycle": "expansion",
+  "market_cycle": "peak",
   "data_quality": {
-    "vix": false,
-    "fear_greed": false,
+    "vix": true,
+    "fear_greed": true,
     "cape": false,
-    "yield_curve": false
+    "yield_curve": true
   }
 }
