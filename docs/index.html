@@ -1770,7 +1770,7 @@
 
             // 보안 인증: 해시 비교
             const inputHash = await sha256(id + ':' + pw);
-            const expectedHash = '2c70e12b7a0646f92279f427c7b38e7334d8e5389cff167a1dc30e73f826b683';
+            const expectedHash = 'e4acc42dde011aa4d88a63572dd8b545f79cc995c9de630d40edaf983bda0820';
 
             if (inputHash === expectedHash) {
                 const token = await sha256(id + pw + Date.now() + Math.random());
