@@ -67,7 +67,7 @@ jobs:
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action Bot"
 
-        git add data/portfolio.json data/history.json data/screener.json data/ai_history.json docs/data.json docs/screener.json docs/ai_data.json
+        git add data/portfolio.json data/history.json data/screener.json docs/data.json docs/screener.json docs/ai_data.json 2>/dev/null || true
 
         # 변경사항이 있을 때만 커밋
         if git diff --staged --quiet; then
