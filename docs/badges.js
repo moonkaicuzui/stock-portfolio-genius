@@ -196,6 +196,22 @@ const BadgeSystem = {
             category: 'analyst',
             points: 25
         },
+        first_analysis: {
+            id: 'first_analysis',
+            name: '첫 분석 저장',
+            icon: '💾',
+            description: '첫 번째 종목 분석을 저장함',
+            category: 'analyst',
+            points: 30
+        },
+        analyst_junior: {
+            id: 'analyst_junior',
+            name: '주니어 애널리스트',
+            icon: '📊',
+            description: '5개 이상 종목 분석 저장',
+            category: 'analyst',
+            points: 50
+        },
         curriculum_starter: {
             id: 'curriculum_starter',
             name: '학습 시작',

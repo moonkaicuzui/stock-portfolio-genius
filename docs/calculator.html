@@ -409,6 +409,205 @@
         :root[data-theme="light"] footer {
             color: rgba(0, 0, 0, 0.5);
         }
+
+        /* Save Analysis Button */
+        .save-analysis-btn {
+            width: 100%;
+            margin-top: 20px;
+            padding: 14px 24px;
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+            border: none;
+            border-radius: 12px;
+            color: #fff;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .save-analysis-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
+        }
+
+        .save-analysis-btn:disabled {
+            background: #6b7280;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* Saved Analyses Section */
+        .saved-section {
+            margin-top: 60px;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .saved-section h2 {
+            margin-bottom: 25px;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .saved-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .saved-card {
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            padding: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s;
+        }
+
+        .saved-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .saved-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+
+        .saved-card-symbol {
+            font-size: 1.3rem;
+            font-weight: bold;
+        }
+
+        .saved-card-method {
+            font-size: 0.75rem;
+            padding: 4px 10px;
+            background: rgba(74, 222, 128, 0.2);
+            color: #4ade80;
+            border-radius: 12px;
+        }
+
+        .saved-card-values {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .saved-value-item {
+            text-align: center;
+            padding: 10px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+        }
+
+        .saved-value-label {
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 5px;
+        }
+
+        .saved-value-num {
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .saved-value-num.positive { color: #4ade80; }
+        .saved-value-num.negative { color: #f87171; }
+
+        .saved-card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .saved-card-date {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .saved-card-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .saved-action-btn {
+            padding: 6px 12px;
+            border: none;
+            border-radius: 8px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .saved-action-btn.portfolio {
+            background: linear-gradient(135deg, #4ade80, #22c55e);
+            color: #000;
+        }
+
+        .saved-action-btn.delete {
+            background: rgba(248, 113, 113, 0.2);
+            color: #f87171;
+        }
+
+        .saved-action-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .empty-saved {
+            text-align: center;
+            padding: 40px;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .empty-saved-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+
+        /* Toast Notification */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            padding: 16px 24px;
+            background: linear-gradient(135deg, #4ade80, #22c55e);
+            color: #000;
+            border-radius: 12px;
+            font-weight: 600;
+            box-shadow: 0 10px 30px rgba(74, 222, 128, 0.3);
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 0.3s;
+            z-index: 1000;
+        }
+
+        .toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        :root[data-theme="light"] .saved-section {
+            background: rgba(255, 255, 255, 0.9);
+            border-color: rgba(0, 0, 0, 0.1);
+        }
+
+        :root[data-theme="light"] .saved-card {
+            background: #fff;
+            border-color: rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        :root[data-theme="light"] .saved-value-item {
+            background: rgba(0, 0, 0, 0.05);
+        }
     </style>
 </head>
 <body>
@@ -470,6 +669,14 @@
         <div id="dcf-calc" class="calculator-container">
             <div class="calc-panel">
                 <h2 class="panel-title">💰 DCF 현금흐름할인모델</h2>
+
+                <div class="input-group">
+                    <label class="input-label">
+                        종목명 / 심볼
+                        <span class="hint">분석할 종목 (예: 삼성전자, AAPL)</span>
+                    </label>
+                    <input type="text" class="input-field" id="dcf-symbol" placeholder="예: 삼성전자" value="">
+                </div>
 
                 <div class="input-group">
                     <label class="input-label">
@@ -551,6 +758,9 @@
                             <div class="comparison-value" id="dcf-verdict">-</div>
                         </div>
                     </div>
+                    <button class="save-analysis-btn" onclick="saveAnalysis('dcf')" id="dcf-save-btn" style="display: none;">
+                        💾 분석 저장하기
+                    </button>
                 </div>
 
                 <div class="info-card">
@@ -568,6 +778,14 @@
         <div id="graham-calc" class="calculator-container hidden">
             <div class="calc-panel">
                 <h2 class="panel-title">📕 그레이엄 내재가치 공식</h2>
+
+                <div class="input-group">
+                    <label class="input-label">
+                        종목명 / 심볼
+                        <span class="hint">분석할 종목 (예: 삼성전자, AAPL)</span>
+                    </label>
+                    <input type="text" class="input-field" id="graham-symbol" placeholder="예: 삼성전자" value="">
+                </div>
 
                 <div class="input-group">
                     <label class="input-label">
@@ -637,6 +855,9 @@
                             <div class="comparison-value" id="graham-verdict">-</div>
                         </div>
                     </div>
+                    <button class="save-analysis-btn" onclick="saveAnalysis('graham')" id="graham-save-btn" style="display: none;">
+                        💾 분석 저장하기
+                    </button>
                 </div>
 
                 <div class="info-card">
@@ -654,6 +875,14 @@
         <div id="peg-calc" class="calculator-container hidden">
             <div class="calc-panel">
                 <h2 class="panel-title">📈 피터 린치 PEG 밸류에이션</h2>
+
+                <div class="input-group">
+                    <label class="input-label">
+                        종목명 / 심볼
+                        <span class="hint">분석할 종목 (예: 삼성전자, AAPL)</span>
+                    </label>
+                    <input type="text" class="input-field" id="peg-symbol" placeholder="예: 삼성전자" value="">
+                </div>
 
                 <div class="input-group">
                     <label class="input-label">
@@ -722,6 +951,9 @@
                             <div class="comparison-value" id="peg-verdict">-</div>
                         </div>
                     </div>
+                    <button class="save-analysis-btn" onclick="saveAnalysis('peg')" id="peg-save-btn" style="display: none;">
+                        💾 분석 저장하기
+                    </button>
                 </div>
 
                 <div class="info-card">
@@ -739,6 +971,14 @@
         <div id="ddm-calc" class="calculator-container hidden">
             <div class="calc-panel">
                 <h2 class="panel-title">💵 배당할인모델 (DDM)</h2>
+
+                <div class="input-group">
+                    <label class="input-label">
+                        종목명 / 심볼
+                        <span class="hint">분석할 종목 (예: 삼성전자, AAPL)</span>
+                    </label>
+                    <input type="text" class="input-field" id="ddm-symbol" placeholder="예: 삼성전자" value="">
+                </div>
 
                 <div class="input-group">
                     <label class="input-label">
@@ -808,6 +1048,9 @@
                             <div class="comparison-value" id="ddm-verdict">-</div>
                         </div>
                     </div>
+                    <button class="save-analysis-btn" onclick="saveAnalysis('ddm')" id="ddm-save-btn" style="display: none;">
+                        💾 분석 저장하기
+                    </button>
                 </div>
 
                 <div class="info-card">
@@ -820,7 +1063,18 @@
                 </div>
             </div>
         </div>
+
+        <!-- Saved Analyses Section -->
+        <div class="saved-section" id="saved-section">
+            <h2>📋 저장된 분석 <span id="saved-count"></span></h2>
+            <div class="saved-list" id="saved-list">
+                <!-- Dynamically populated -->
+            </div>
+        </div>
     </main>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast"></div>
 
     <footer>
         <p>주식 포트폴리오 지니어스 - 내재가치 계산기</p>
@@ -832,6 +1086,10 @@
     <script>
         // 현재 활성화된 계산기
         let currentCalc = 'dcf';
+
+        // 저장된 분석 관리
+        const WATCHLIST_KEY = 'spg_watchlist';
+        let lastCalculation = null; // 마지막 계산 결과 저장
 
         function showCalculator(calcType) {
             // 탭 업데이트
@@ -898,6 +1156,16 @@
             document.getElementById('dcf-verdict').textContent = verdict.text;
             document.getElementById('dcf-verdict').className = 'comparison-value ' + verdict.class;
 
+            // 결과 저장 및 버튼 표시
+            lastCalculation = {
+                method: 'dcf',
+                intrinsicValue: intrinsicValue,
+                currentPrice: currentPrice,
+                margin: margin,
+                verdict: verdict.text
+            };
+            document.getElementById('dcf-save-btn').style.display = 'block';
+
             // 배지 획득
             if (typeof BadgeSystem !== 'undefined') {
                 BadgeSystem.earnBadge('calculator_user');
@@ -925,6 +1193,16 @@
             document.getElementById('graham-margin').className = 'comparison-value ' + verdict.class;
             document.getElementById('graham-verdict').textContent = verdict.text;
             document.getElementById('graham-verdict').className = 'comparison-value ' + verdict.class;
+
+            // 결과 저장 및 버튼 표시
+            lastCalculation = {
+                method: 'graham',
+                intrinsicValue: intrinsicValue,
+                currentPrice: currentPrice,
+                margin: margin,
+                verdict: verdict.text
+            };
+            document.getElementById('graham-save-btn').style.display = 'block';
 
             // 배지 획득
             if (typeof BadgeSystem !== 'undefined') {
@@ -961,6 +1239,17 @@
             document.getElementById('peg-fair-price').textContent = formatNumber(fairPrice);
             document.getElementById('peg-verdict').textContent = verdict.text;
             document.getElementById('peg-verdict').className = 'comparison-value ' + verdict.class;
+
+            // 결과 저장 및 버튼 표시
+            const margin = ((fairPrice - price) / price) * 100;
+            lastCalculation = {
+                method: 'peg',
+                intrinsicValue: fairPrice,
+                currentPrice: price,
+                margin: margin,
+                verdict: verdict.text
+            };
+            document.getElementById('peg-save-btn').style.display = 'block';
 
             // 배지 획득
             if (typeof BadgeSystem !== 'undefined') {
@@ -1001,10 +1290,202 @@
             document.getElementById('ddm-verdict').textContent = verdict.text;
             document.getElementById('ddm-verdict').className = 'comparison-value ' + verdict.class;
 
+            // 결과 저장 및 버튼 표시
+            lastCalculation = {
+                method: 'ddm',
+                intrinsicValue: intrinsicValue,
+                currentPrice: currentPrice,
+                margin: margin,
+                verdict: verdict.text
+            };
+            document.getElementById('ddm-save-btn').style.display = 'block';
+
             // 배지 획득
             if (typeof BadgeSystem !== 'undefined') {
                 BadgeSystem.earnBadge('calculator_user');
             }
+        }
+
+        // ========== 분석 저장 기능 ==========
+
+        function getWatchlist() {
+            try {
+                return JSON.parse(localStorage.getItem(WATCHLIST_KEY)) || [];
+            } catch (e) {
+                console.warn('Watchlist load error:', e);
+                return [];
+            }
+        }
+
+        function saveWatchlist(list) {
+            try {
+                localStorage.setItem(WATCHLIST_KEY, JSON.stringify(list));
+            } catch (e) {
+                console.warn('Watchlist save error:', e);
+            }
+        }
+
+        function saveAnalysis(method) {
+            const symbolInput = document.getElementById(method + '-symbol');
+            const symbol = symbolInput?.value?.trim();
+
+            if (!symbol) {
+                showToast('⚠️ 종목명을 입력해주세요', 'warning');
+                symbolInput?.focus();
+                return;
+            }
+
+            if (!lastCalculation || lastCalculation.method !== method) {
+                showToast('⚠️ 먼저 계산을 실행해주세요', 'warning');
+                return;
+            }
+
+            const analysis = {
+                id: Date.now(),
+                symbol: symbol,
+                method: method,
+                methodName: getMethodName(method),
+                intrinsicValue: lastCalculation.intrinsicValue,
+                currentPrice: lastCalculation.currentPrice,
+                margin: lastCalculation.margin,
+                verdict: lastCalculation.verdict,
+                date: new Date().toISOString()
+            };
+
+            const watchlist = getWatchlist();
+
+            // 같은 종목+방법 조합이 있으면 업데이트
+            const existingIdx = watchlist.findIndex(
+                w => w.symbol === symbol && w.method === method
+            );
+
+            if (existingIdx >= 0) {
+                watchlist[existingIdx] = analysis;
+                showToast('✅ 분석이 업데이트되었습니다!');
+            } else {
+                watchlist.unshift(analysis);
+                showToast('✅ 분석이 저장되었습니다!');
+            }
+
+            saveWatchlist(watchlist);
+            renderSavedList();
+
+            // 배지 획득
+            if (typeof BadgeSystem !== 'undefined') {
+                BadgeSystem.earnBadge('first_analysis');
+                if (watchlist.length >= 5) {
+                    BadgeSystem.earnBadge('analyst_junior');
+                }
+            }
+        }
+
+        function deleteAnalysis(id) {
+            if (!confirm('이 분석을 삭제하시겠습니까?')) return;
+
+            const watchlist = getWatchlist().filter(w => w.id !== id);
+            saveWatchlist(watchlist);
+            renderSavedList();
+            showToast('🗑️ 분석이 삭제되었습니다');
+        }
+
+        function goToPortfolio(symbol) {
+            // 포트폴리오 페이지로 이동하면서 검색 파라미터 전달
+            localStorage.setItem('spg_search_symbol', symbol);
+            window.location.href = 'index.html';
+        }
+
+        function getMethodName(method) {
+            const names = {
+                dcf: 'DCF 모델',
+                graham: '그레이엄',
+                peg: 'PEG',
+                ddm: 'DDM'
+            };
+            return names[method] || method;
+        }
+
+        function renderSavedList() {
+            const watchlist = getWatchlist();
+            const container = document.getElementById('saved-list');
+            const countEl = document.getElementById('saved-count');
+            const section = document.getElementById('saved-section');
+
+            if (countEl) {
+                countEl.textContent = watchlist.length > 0 ? `(${watchlist.length}개)` : '';
+            }
+
+            if (watchlist.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-saved">
+                        <div class="empty-saved-icon">📊</div>
+                        <p>저장된 분석이 없습니다</p>
+                        <p style="font-size: 0.9rem; margin-top: 10px;">
+                            종목을 분석하고 저장하면 여기에 표시됩니다
+                        </p>
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = watchlist.map(item => {
+                const marginClass = item.margin >= 0 ? 'positive' : 'negative';
+                const date = new Date(item.date).toLocaleDateString('ko-KR', {
+                    year: 'numeric',
+                    month: 'short',
+                    day: 'numeric'
+                });
+
+                return `
+                    <div class="saved-card">
+                        <div class="saved-card-header">
+                            <div class="saved-card-symbol">${item.symbol}</div>
+                            <div class="saved-card-method">${item.methodName}</div>
+                        </div>
+                        <div class="saved-card-values">
+                            <div class="saved-value-item">
+                                <div class="saved-value-label">내재가치</div>
+                                <div class="saved-value-num">₩${formatNumber(item.intrinsicValue)}</div>
+                            </div>
+                            <div class="saved-value-item">
+                                <div class="saved-value-label">현재가</div>
+                                <div class="saved-value-num">₩${formatNumber(item.currentPrice)}</div>
+                            </div>
+                            <div class="saved-value-item">
+                                <div class="saved-value-label">괴리율</div>
+                                <div class="saved-value-num ${marginClass}">${item.margin > 0 ? '+' : ''}${item.margin.toFixed(1)}%</div>
+                            </div>
+                            <div class="saved-value-item">
+                                <div class="saved-value-label">판단</div>
+                                <div class="saved-value-num">${item.verdict}</div>
+                            </div>
+                        </div>
+                        <div class="saved-card-footer">
+                            <div class="saved-card-date">${date}</div>
+                            <div class="saved-card-actions">
+                                <button class="saved-action-btn portfolio" onclick="goToPortfolio('${item.symbol}')" title="포트폴리오에서 보기">
+                                    📊 포트폴리오
+                                </button>
+                                <button class="saved-action-btn delete" onclick="deleteAnalysis(${item.id})" title="삭제">
+                                    🗑️
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function showToast(message, type = 'success') {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.style.background = type === 'warning'
+                ? 'linear-gradient(135deg, #f59e0b, #d97706)'
+                : 'linear-gradient(135deg, #4ade80, #22c55e)';
+            toast.classList.add('show');
+
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
         }
 
         // Theme Toggle
@@ -1033,6 +1514,7 @@
 
         // 초기화
         initTheme();
+        renderSavedList();
         if (typeof BadgeSystem !== 'undefined') {
             BadgeSystem.init();
         }
