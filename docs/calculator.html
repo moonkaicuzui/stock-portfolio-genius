@@ -1,0 +1,1039 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>내재가치 계산기 - 주식 포트폴리오 지니어스</title>
+    <meta name="theme-color" content="#4ade80">
+    <link rel="manifest" href="manifest.json">
+    <script src="badges.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Noto Sans KR', sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            min-height: 100vh;
+            color: #fff;
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+        }
+
+        .nav-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 8px;
+            transition: all 0.2s;
+            font-size: 0.9rem;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: #fff;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .header-buttons {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .theme-toggle {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #fff;
+            padding: 8px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            transition: all 0.2s;
+        }
+
+        .theme-toggle:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .page-title {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .page-subtitle {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 1.1rem;
+        }
+
+        .calculator-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .calc-tab {
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            padding: 15px 25px;
+            color: #fff;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+            min-width: 140px;
+        }
+
+        .calc-tab:hover {
+            background: rgba(74, 222, 128, 0.1);
+            border-color: rgba(74, 222, 128, 0.5);
+        }
+
+        .calc-tab.active {
+            background: rgba(74, 222, 128, 0.2);
+            border-color: #4ade80;
+        }
+
+        .calc-tab-icon {
+            font-size: 1.5rem;
+        }
+
+        .calc-tab-name {
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        .calc-tab-author {
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .calculator-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        @media (max-width: 900px) {
+            .calculator-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .calc-panel {
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            padding: 30px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .panel-title {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        .input-label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .input-label .hint {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.5);
+            display: block;
+            margin-top: 3px;
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 14px 16px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            color: #fff;
+            font-size: 1rem;
+            transition: all 0.2s;
+        }
+
+        .input-field:focus {
+            outline: none;
+            border-color: #4ade80;
+            background: rgba(74, 222, 128, 0.1);
+        }
+
+        .input-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .calculate-btn {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #4ade80, #22c55e);
+            border: none;
+            border-radius: 12px;
+            color: #000;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin-top: 10px;
+        }
+
+        .calculate-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(74, 222, 128, 0.3);
+        }
+
+        .result-panel {
+            background: rgba(74, 222, 128, 0.1);
+            border: 2px solid rgba(74, 222, 128, 0.3);
+            border-radius: 16px;
+            padding: 25px;
+        }
+
+        .result-title {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 10px;
+        }
+
+        .result-value {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #4ade80;
+            margin-bottom: 15px;
+        }
+
+        .result-comparison {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .comparison-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 12px 20px;
+            border-radius: 10px;
+            flex: 1;
+            min-width: 120px;
+        }
+
+        .comparison-label {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .comparison-value {
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        .comparison-value.undervalued {
+            color: #4ade80;
+        }
+
+        .comparison-value.overvalued {
+            color: #ef4444;
+        }
+
+        .comparison-value.fair {
+            color: #facc15;
+        }
+
+        .formula-box {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .formula-title {
+            font-size: 0.9rem;
+            color: #4ade80;
+            margin-bottom: 10px;
+        }
+
+        .formula-text {
+            font-family: 'Courier New', monospace;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .info-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .info-card h4 {
+            color: #4ade80;
+            margin-bottom: 10px;
+            font-size: 1rem;
+        }
+
+        .info-card p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.9rem;
+        }
+
+        /* Light Theme */
+        :root[data-theme="light"] body {
+            background: linear-gradient(135deg, #f0f0f0 0%, #e0e0e0 100%);
+            color: #1a1a2e;
+        }
+
+        :root[data-theme="light"] header {
+            background: rgba(255, 255, 255, 0.9);
+            border-color: rgba(0, 0, 0, 0.1);
+        }
+
+        :root[data-theme="light"] .nav-links a {
+            color: rgba(0, 0, 0, 0.6);
+        }
+
+        :root[data-theme="light"] .nav-links a:hover,
+        :root[data-theme="light"] .nav-links a.active {
+            color: #1a1a2e;
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        :root[data-theme="light"] .theme-toggle {
+            background: rgba(0, 0, 0, 0.1);
+            border-color: rgba(0, 0, 0, 0.2);
+            color: #1a1a2e;
+        }
+
+        :root[data-theme="light"] .calc-panel {
+            background: rgba(255, 255, 255, 0.9);
+            border-color: rgba(0, 0, 0, 0.1);
+        }
+
+        :root[data-theme="light"] .calc-tab {
+            background: rgba(0, 0, 0, 0.05);
+            border-color: rgba(0, 0, 0, 0.2);
+            color: #1a1a2e;
+        }
+
+        :root[data-theme="light"] .input-field {
+            background: rgba(0, 0, 0, 0.05);
+            border-color: rgba(0, 0, 0, 0.2);
+            color: #1a1a2e;
+        }
+
+        :root[data-theme="light"] .formula-box {
+            background: rgba(0, 0, 0, 0.05);
+        }
+
+        :root[data-theme="light"] .formula-text {
+            color: rgba(0, 0, 0, 0.8);
+        }
+
+        :root[data-theme="light"] .info-card {
+            background: rgba(0, 0, 0, 0.05);
+        }
+
+        :root[data-theme="light"] .info-card p {
+            color: rgba(0, 0, 0, 0.7);
+        }
+
+        :root[data-theme="light"] footer {
+            color: rgba(0, 0, 0, 0.5);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="logo">🧮 내재가치 계산기</div>
+            <nav class="nav-links">
+                <a href="index.html">📊 포트폴리오</a>
+                <a href="battle.html">🤖 AI 대결</a>
+                <a href="screener.html">🔍 스크리너</a>
+                <a href="ideas.html">💡 아이디어</a>
+                <a href="history.html">📜 거래내역</a>
+                <a href="manage.html">⚙️ 관리</a>
+                <a href="guide.html">📖 가이드</a>
+                <a href="quiz.html">🧠 퀴즈</a>
+                <a href="glossary.html">📚 용어집</a>
+                <a href="calculator.html" class="active">🧮 계산기</a>
+            </nav>
+            <div class="header-buttons">
+                <button class="theme-toggle" onclick="toggleTheme()" title="테마 전환">
+                    <span id="themeIcon">☀️</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="page-header">
+            <h1 class="page-title">🧮 내재가치 계산기</h1>
+            <p class="page-subtitle">가치투자 대가들의 공식으로 주식의 적정 가치를 계산하세요</p>
+        </div>
+
+        <div class="calculator-tabs">
+            <button class="calc-tab active" onclick="showCalculator('dcf')">
+                <span class="calc-tab-icon">💰</span>
+                <span class="calc-tab-name">DCF 모델</span>
+                <span class="calc-tab-author">현금흐름할인</span>
+            </button>
+            <button class="calc-tab" onclick="showCalculator('graham')">
+                <span class="calc-tab-icon">📕</span>
+                <span class="calc-tab-name">그레이엄 공식</span>
+                <span class="calc-tab-author">Benjamin Graham</span>
+            </button>
+            <button class="calc-tab" onclick="showCalculator('peg')">
+                <span class="calc-tab-icon">📈</span>
+                <span class="calc-tab-name">PEG 밸류에이션</span>
+                <span class="calc-tab-author">Peter Lynch</span>
+            </button>
+            <button class="calc-tab" onclick="showCalculator('ddm')">
+                <span class="calc-tab-icon">💵</span>
+                <span class="calc-tab-name">배당할인모델</span>
+                <span class="calc-tab-author">Gordon Growth</span>
+            </button>
+        </div>
+
+        <!-- DCF Calculator -->
+        <div id="dcf-calc" class="calculator-container">
+            <div class="calc-panel">
+                <h2 class="panel-title">💰 DCF 현금흐름할인모델</h2>
+
+                <div class="input-group">
+                    <label class="input-label">
+                        현재 잉여현금흐름 (FCF)
+                        <span class="hint">최근 연간 FCF (억원 또는 백만달러)</span>
+                    </label>
+                    <input type="number" class="input-field" id="dcf-fcf" placeholder="예: 1000" value="1000">
+                </div>
+
+                <div class="input-row">
+                    <div class="input-group">
+                        <label class="input-label">
+                            성장률 (%)
+                            <span class="hint">향후 5년 예상 성장률</span>
+                        </label>
+                        <input type="number" class="input-field" id="dcf-growth" placeholder="예: 15" value="15">
+                    </div>
+                    <div class="input-group">
+                        <label class="input-label">
+                            영구 성장률 (%)
+                            <span class="hint">5년 이후 장기 성장률</span>
+                        </label>
+                        <input type="number" class="input-field" id="dcf-terminal-growth" placeholder="예: 2" value="2">
+                    </div>
+                </div>
+
+                <div class="input-row">
+                    <div class="input-group">
+                        <label class="input-label">
+                            할인율 (%)
+                            <span class="hint">WACC 또는 요구수익률</span>
+                        </label>
+                        <input type="number" class="input-field" id="dcf-discount" placeholder="예: 10" value="10">
+                    </div>
+                    <div class="input-group">
+                        <label class="input-label">
+                            발행주식수 (백만주)
+                            <span class="hint">총 발행 주식 수</span>
+                        </label>
+                        <input type="number" class="input-field" id="dcf-shares" placeholder="예: 100" value="100">
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label class="input-label">
+                        현재 주가
+                        <span class="hint">비교를 위한 현재 시장 가격</span>
+                    </label>
+                    <input type="number" class="input-field" id="dcf-price" placeholder="예: 50000" value="50000">
+                </div>
+
+                <button class="calculate-btn" onclick="calculateDCF()">📊 내재가치 계산</button>
+
+                <div class="formula-box">
+                    <div class="formula-title">📐 DCF 공식</div>
+                    <div class="formula-text">
+                        내재가치 = Σ(FCF × (1+g)ⁿ / (1+r)ⁿ) + 터미널가치<br>
+                        터미널가치 = FCF₅ × (1+g∞) / (r - g∞)
+                    </div>
+                </div>
+            </div>
+
+            <div class="calc-panel">
+                <h2 class="panel-title">📊 계산 결과</h2>
+                <div id="dcf-result" class="result-panel">
+                    <div class="result-title">주당 내재가치</div>
+                    <div class="result-value">-</div>
+                    <div class="result-comparison">
+                        <div class="comparison-item">
+                            <div class="comparison-label">현재 주가</div>
+                            <div class="comparison-value" id="dcf-current-price">-</div>
+                        </div>
+                        <div class="comparison-item">
+                            <div class="comparison-label">괴리율</div>
+                            <div class="comparison-value" id="dcf-margin">-</div>
+                        </div>
+                        <div class="comparison-item">
+                            <div class="comparison-label">투자 판단</div>
+                            <div class="comparison-value" id="dcf-verdict">-</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="info-card">
+                    <h4>💡 DCF 모델 이해하기</h4>
+                    <p>
+                        DCF(Discounted Cash Flow)는 기업이 미래에 창출할 현금흐름을 현재 가치로 할인하여
+                        기업의 내재가치를 계산하는 방법입니다. 워런 버핏이 가장 선호하는 가치평가 방법으로,
+                        "기업의 가치는 남은 수명 동안 창출할 현금의 할인된 현재 가치"라고 정의합니다.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Graham Calculator -->
+        <div id="graham-calc" class="calculator-container hidden">
+            <div class="calc-panel">
+                <h2 class="panel-title">📕 그레이엄 내재가치 공식</h2>
+
+                <div class="input-group">
+                    <label class="input-label">
+                        주당순이익 (EPS)
+                        <span class="hint">최근 12개월 기준</span>
+                    </label>
+                    <input type="number" class="input-field" id="graham-eps" placeholder="예: 5000" value="5000">
+                </div>
+
+                <div class="input-row">
+                    <div class="input-group">
+                        <label class="input-label">
+                            예상 성장률 (%)
+                            <span class="hint">향후 7-10년 연평균 성장률</span>
+                        </label>
+                        <input type="number" class="input-field" id="graham-growth" placeholder="예: 10" value="10">
+                    </div>
+                    <div class="input-group">
+                        <label class="input-label">
+                            AAA 채권 수익률 (%)
+                            <span class="hint">현재 우량 회사채 금리</span>
+                        </label>
+                        <input type="number" class="input-field" id="graham-bond" placeholder="예: 4.4" value="4.4">
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label class="input-label">
+                        현재 주가
+                        <span class="hint">비교를 위한 현재 시장 가격</span>
+                    </label>
+                    <input type="number" class="input-field" id="graham-price" placeholder="예: 80000" value="80000">
+                </div>
+
+                <button class="calculate-btn" onclick="calculateGraham()">📊 내재가치 계산</button>
+
+                <div class="formula-box">
+                    <div class="formula-title">📐 그레이엄 공식 (수정판)</div>
+                    <div class="formula-text">
+                        V = EPS × (8.5 + 2g) × 4.4 / Y<br><br>
+                        V = 내재가치<br>
+                        EPS = 주당순이익<br>
+                        g = 7-10년 예상 성장률<br>
+                        8.5 = 성장률 0%일 때 적정 PER<br>
+                        4.4 = 1962년 AAA 채권 수익률<br>
+                        Y = 현재 AAA 채권 수익률
+                    </div>
+                </div>
+            </div>
+
+            <div class="calc-panel">
+                <h2 class="panel-title">📊 계산 결과</h2>
+                <div id="graham-result" class="result-panel">
+                    <div class="result-title">그레이엄 내재가치</div>
+                    <div class="result-value">-</div>
+                    <div class="result-comparison">
+                        <div class="comparison-item">
+                            <div class="comparison-label">현재 주가</div>
+                            <div class="comparison-value" id="graham-current-price">-</div>
+                        </div>
+                        <div class="comparison-item">
+                            <div class="comparison-label">안전마진</div>
+                            <div class="comparison-value" id="graham-margin">-</div>
+                        </div>
+                        <div class="comparison-item">
+                            <div class="comparison-label">투자 판단</div>
+                            <div class="comparison-value" id="graham-verdict">-</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="info-card">
+                    <h4>💡 그레이엄 공식 이해하기</h4>
+                    <p>
+                        벤저민 그레이엄이 《현명한 투자자》에서 제시한 내재가치 공식입니다.
+                        성장률과 이익을 기반으로 적정 PER을 계산하고, 금리 환경을 반영합니다.
+                        그레이엄은 내재가치 대비 최소 33% 할인된 가격(안전마진)에서 매수할 것을 권장했습니다.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- PEG Calculator -->
+        <div id="peg-calc" class="calculator-container hidden">
+            <div class="calc-panel">
+                <h2 class="panel-title">📈 피터 린치 PEG 밸류에이션</h2>
+
+                <div class="input-group">
+                    <label class="input-label">
+                        현재 주가
+                        <span class="hint">현재 시장 가격</span>
+                    </label>
+                    <input type="number" class="input-field" id="peg-price" placeholder="예: 100000" value="100000">
+                </div>
+
+                <div class="input-row">
+                    <div class="input-group">
+                        <label class="input-label">
+                            주당순이익 (EPS)
+                            <span class="hint">최근 12개월 기준</span>
+                        </label>
+                        <input type="number" class="input-field" id="peg-eps" placeholder="예: 5000" value="5000">
+                    </div>
+                    <div class="input-group">
+                        <label class="input-label">
+                            이익 성장률 (%)
+                            <span class="hint">향후 예상 연간 성장률</span>
+                        </label>
+                        <input type="number" class="input-field" id="peg-growth" placeholder="예: 20" value="20">
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label class="input-label">
+                        배당수익률 (%) - 선택사항
+                        <span class="hint">배당 지급 시 입력 (PEGY 계산)</span>
+                    </label>
+                    <input type="number" class="input-field" id="peg-dividend" placeholder="예: 2" value="0">
+                </div>
+
+                <button class="calculate-btn" onclick="calculatePEG()">📊 PEG 계산</button>
+
+                <div class="formula-box">
+                    <div class="formula-title">📐 PEG 공식</div>
+                    <div class="formula-text">
+                        PER = 주가 / EPS<br>
+                        PEG = PER / 성장률<br>
+                        PEGY = PER / (성장률 + 배당수익률)<br><br>
+                        PEG < 1: 저평가 (매력적)<br>
+                        PEG = 1: 적정가<br>
+                        PEG > 1: 고평가
+                    </div>
+                </div>
+            </div>
+
+            <div class="calc-panel">
+                <h2 class="panel-title">📊 계산 결과</h2>
+                <div id="peg-result" class="result-panel">
+                    <div class="result-title">PEG 비율</div>
+                    <div class="result-value">-</div>
+                    <div class="result-comparison">
+                        <div class="comparison-item">
+                            <div class="comparison-label">현재 PER</div>
+                            <div class="comparison-value" id="peg-per">-</div>
+                        </div>
+                        <div class="comparison-item">
+                            <div class="comparison-label">적정 주가</div>
+                            <div class="comparison-value" id="peg-fair-price">-</div>
+                        </div>
+                        <div class="comparison-item">
+                            <div class="comparison-label">투자 판단</div>
+                            <div class="comparison-value" id="peg-verdict">-</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="info-card">
+                    <h4>💡 PEG 이해하기</h4>
+                    <p>
+                        피터 린치가 《전설로 떠나는 월가의 영웅》에서 소개한 밸류에이션 방법입니다.
+                        PER만으로는 성장주를 제대로 평가할 수 없기에, 성장률을 반영한 PEG를 사용합니다.
+                        린치는 PEG 1 미만의 주식을 "성장률 대비 저평가된 주식"으로 보고 선호했습니다.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- DDM Calculator -->
+        <div id="ddm-calc" class="calculator-container hidden">
+            <div class="calc-panel">
+                <h2 class="panel-title">💵 배당할인모델 (DDM)</h2>
+
+                <div class="input-group">
+                    <label class="input-label">
+                        현재 주당배당금 (DPS)
+                        <span class="hint">최근 연간 배당금</span>
+                    </label>
+                    <input type="number" class="input-field" id="ddm-dividend" placeholder="예: 2000" value="2000">
+                </div>
+
+                <div class="input-row">
+                    <div class="input-group">
+                        <label class="input-label">
+                            배당 성장률 (%)
+                            <span class="hint">예상 연간 배당 성장률</span>
+                        </label>
+                        <input type="number" class="input-field" id="ddm-growth" placeholder="예: 5" value="5">
+                    </div>
+                    <div class="input-group">
+                        <label class="input-label">
+                            요구수익률 (%)
+                            <span class="hint">투자자 기대수익률</span>
+                        </label>
+                        <input type="number" class="input-field" id="ddm-required" placeholder="예: 10" value="10">
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label class="input-label">
+                        현재 주가
+                        <span class="hint">비교를 위한 현재 시장 가격</span>
+                    </label>
+                    <input type="number" class="input-field" id="ddm-price" placeholder="예: 50000" value="50000">
+                </div>
+
+                <button class="calculate-btn" onclick="calculateDDM()">📊 내재가치 계산</button>
+
+                <div class="formula-box">
+                    <div class="formula-title">📐 고든 성장 모델</div>
+                    <div class="formula-text">
+                        V = D₁ / (r - g)<br><br>
+                        V = 주식의 내재가치<br>
+                        D₁ = 내년 예상 배당금 = D₀ × (1 + g)<br>
+                        r = 요구수익률<br>
+                        g = 배당 성장률 (r > g 조건)<br><br>
+                        ※ 성장률이 요구수익률보다 높으면<br>
+                        모델이 적용되지 않습니다.
+                    </div>
+                </div>
+            </div>
+
+            <div class="calc-panel">
+                <h2 class="panel-title">📊 계산 결과</h2>
+                <div id="ddm-result" class="result-panel">
+                    <div class="result-title">배당할인 내재가치</div>
+                    <div class="result-value">-</div>
+                    <div class="result-comparison">
+                        <div class="comparison-item">
+                            <div class="comparison-label">현재 주가</div>
+                            <div class="comparison-value" id="ddm-current-price">-</div>
+                        </div>
+                        <div class="comparison-item">
+                            <div class="comparison-label">배당수익률</div>
+                            <div class="comparison-value" id="ddm-yield">-</div>
+                        </div>
+                        <div class="comparison-item">
+                            <div class="comparison-label">투자 판단</div>
+                            <div class="comparison-value" id="ddm-verdict">-</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="info-card">
+                    <h4>💡 배당할인모델 이해하기</h4>
+                    <p>
+                        배당할인모델(DDM)은 미래 배당금의 현재가치 합으로 주식 가치를 계산합니다.
+                        안정적으로 배당을 지급하고 성장하는 기업(유틸리티, 금융, 필수소비재)에 적합합니다.
+                        고든 성장 모델은 배당이 일정하게 성장한다는 가정 하에 간단히 계산할 수 있습니다.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>주식 포트폴리오 지니어스 - 내재가치 계산기</p>
+        <p style="margin-top: 10px; font-size: 0.8rem;">
+            ⚠️ 이 계산기는 교육 목적으로 제공됩니다. 실제 투자 결정 시에는 더 깊은 분석이 필요합니다.
+        </p>
+    </footer>
+
+    <script>
+        // 현재 활성화된 계산기
+        let currentCalc = 'dcf';
+
+        function showCalculator(calcType) {
+            // 탭 업데이트
+            document.querySelectorAll('.calc-tab').forEach(tab => tab.classList.remove('active'));
+            event.target.closest('.calc-tab').classList.add('active');
+
+            // 계산기 표시
+            document.querySelectorAll('.calculator-container').forEach(calc => calc.classList.add('hidden'));
+            document.getElementById(calcType + '-calc').classList.remove('hidden');
+
+            currentCalc = calcType;
+        }
+
+        function formatNumber(num) {
+            return num.toLocaleString('ko-KR', { maximumFractionDigits: 0 });
+        }
+
+        function formatPercent(num) {
+            return num.toFixed(1) + '%';
+        }
+
+        function getVerdict(margin) {
+            if (margin > 30) return { text: '강력 매수', class: 'undervalued' };
+            if (margin > 15) return { text: '매수 검토', class: 'undervalued' };
+            if (margin > -10) return { text: '적정가', class: 'fair' };
+            if (margin > -25) return { text: '고평가', class: 'overvalued' };
+            return { text: '매도 검토', class: 'overvalued' };
+        }
+
+        // DCF 계산
+        function calculateDCF() {
+            const fcf = parseFloat(document.getElementById('dcf-fcf').value);
+            const growth = parseFloat(document.getElementById('dcf-growth').value) / 100;
+            const terminalGrowth = parseFloat(document.getElementById('dcf-terminal-growth').value) / 100;
+            const discount = parseFloat(document.getElementById('dcf-discount').value) / 100;
+            const shares = parseFloat(document.getElementById('dcf-shares').value);
+            const currentPrice = parseFloat(document.getElementById('dcf-price').value);
+
+            // 5년 FCF 현재가치 계산
+            let pvFCF = 0;
+            let lastFCF = fcf;
+            for (let i = 1; i <= 5; i++) {
+                lastFCF = fcf * Math.pow(1 + growth, i);
+                pvFCF += lastFCF / Math.pow(1 + discount, i);
+            }
+
+            // 터미널 가치
+            const terminalValue = (lastFCF * (1 + terminalGrowth)) / (discount - terminalGrowth);
+            const pvTerminal = terminalValue / Math.pow(1 + discount, 5);
+
+            // 총 기업가치 및 주당 가치
+            const enterpriseValue = pvFCF + pvTerminal;
+            const intrinsicValue = enterpriseValue / shares;
+
+            // 마진 계산
+            const margin = ((intrinsicValue - currentPrice) / currentPrice) * 100;
+            const verdict = getVerdict(margin);
+
+            // 결과 표시
+            document.querySelector('#dcf-result .result-value').textContent = formatNumber(intrinsicValue);
+            document.getElementById('dcf-current-price').textContent = formatNumber(currentPrice);
+            document.getElementById('dcf-margin').textContent = formatPercent(margin);
+            document.getElementById('dcf-margin').className = 'comparison-value ' + verdict.class;
+            document.getElementById('dcf-verdict').textContent = verdict.text;
+            document.getElementById('dcf-verdict').className = 'comparison-value ' + verdict.class;
+
+            // 배지 획득
+            if (typeof BadgeSystem !== 'undefined') {
+                BadgeSystem.earnBadge('calculator_user');
+            }
+        }
+
+        // 그레이엄 공식 계산
+        function calculateGraham() {
+            const eps = parseFloat(document.getElementById('graham-eps').value);
+            const growth = parseFloat(document.getElementById('graham-growth').value);
+            const bond = parseFloat(document.getElementById('graham-bond').value);
+            const currentPrice = parseFloat(document.getElementById('graham-price').value);
+
+            // 그레이엄 공식: V = EPS × (8.5 + 2g) × 4.4 / Y
+            const intrinsicValue = eps * (8.5 + 2 * growth) * (4.4 / bond);
+
+            // 안전마진 계산
+            const margin = ((intrinsicValue - currentPrice) / currentPrice) * 100;
+            const verdict = getVerdict(margin);
+
+            // 결과 표시
+            document.querySelector('#graham-result .result-value').textContent = formatNumber(intrinsicValue);
+            document.getElementById('graham-current-price').textContent = formatNumber(currentPrice);
+            document.getElementById('graham-margin').textContent = formatPercent(margin);
+            document.getElementById('graham-margin').className = 'comparison-value ' + verdict.class;
+            document.getElementById('graham-verdict').textContent = verdict.text;
+            document.getElementById('graham-verdict').className = 'comparison-value ' + verdict.class;
+
+            // 배지 획득
+            if (typeof BadgeSystem !== 'undefined') {
+                BadgeSystem.earnBadge('calculator_user');
+                BadgeSystem.earnBadge('graham_disciple');
+            }
+        }
+
+        // PEG 계산
+        function calculatePEG() {
+            const price = parseFloat(document.getElementById('peg-price').value);
+            const eps = parseFloat(document.getElementById('peg-eps').value);
+            const growth = parseFloat(document.getElementById('peg-growth').value);
+            const dividend = parseFloat(document.getElementById('peg-dividend').value) || 0;
+
+            const per = price / eps;
+            const peg = per / growth;
+            const pegy = dividend > 0 ? per / (growth + dividend) : peg;
+
+            // 적정 주가 (PEG = 1 기준)
+            const fairPrice = eps * growth;
+
+            // 판단
+            let verdict;
+            if (peg < 0.75) verdict = { text: '강력 매수', class: 'undervalued' };
+            else if (peg < 1) verdict = { text: '저평가', class: 'undervalued' };
+            else if (peg < 1.25) verdict = { text: '적정가', class: 'fair' };
+            else if (peg < 1.5) verdict = { text: '고평가', class: 'overvalued' };
+            else verdict = { text: '매우 고평가', class: 'overvalued' };
+
+            // 결과 표시
+            document.querySelector('#peg-result .result-value').textContent = peg.toFixed(2);
+            document.getElementById('peg-per').textContent = per.toFixed(1);
+            document.getElementById('peg-fair-price').textContent = formatNumber(fairPrice);
+            document.getElementById('peg-verdict').textContent = verdict.text;
+            document.getElementById('peg-verdict').className = 'comparison-value ' + verdict.class;
+
+            // 배지 획득
+            if (typeof BadgeSystem !== 'undefined') {
+                BadgeSystem.earnBadge('calculator_user');
+                BadgeSystem.earnBadge('lynch_learner');
+            }
+        }
+
+        // DDM 계산
+        function calculateDDM() {
+            const dividend = parseFloat(document.getElementById('ddm-dividend').value);
+            const growth = parseFloat(document.getElementById('ddm-growth').value) / 100;
+            const required = parseFloat(document.getElementById('ddm-required').value) / 100;
+            const currentPrice = parseFloat(document.getElementById('ddm-price').value);
+
+            if (growth >= required) {
+                document.querySelector('#ddm-result .result-value').textContent = '계산 불가';
+                document.getElementById('ddm-current-price').textContent = formatNumber(currentPrice);
+                document.getElementById('ddm-yield').textContent = formatPercent((dividend / currentPrice) * 100);
+                document.getElementById('ddm-verdict').textContent = '성장률 > 할인율';
+                document.getElementById('ddm-verdict').className = 'comparison-value fair';
+                return;
+            }
+
+            // 고든 성장 모델: V = D1 / (r - g)
+            const d1 = dividend * (1 + growth);
+            const intrinsicValue = d1 / (required - growth);
+
+            // 마진 계산
+            const margin = ((intrinsicValue - currentPrice) / currentPrice) * 100;
+            const verdict = getVerdict(margin);
+            const dividendYield = (dividend / currentPrice) * 100;
+
+            // 결과 표시
+            document.querySelector('#ddm-result .result-value').textContent = formatNumber(intrinsicValue);
+            document.getElementById('ddm-current-price').textContent = formatNumber(currentPrice);
+            document.getElementById('ddm-yield').textContent = formatPercent(dividendYield);
+            document.getElementById('ddm-verdict').textContent = verdict.text;
+            document.getElementById('ddm-verdict').className = 'comparison-value ' + verdict.class;
+
+            // 배지 획득
+            if (typeof BadgeSystem !== 'undefined') {
+                BadgeSystem.earnBadge('calculator_user');
+            }
+        }
+
+        // Theme Toggle
+        const THEME_KEY = 'spg_theme';
+
+        function initTheme() {
+            const savedTheme = localStorage.getItem(THEME_KEY) || 'dark';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+            updateThemeButton(savedTheme);
+        }
+
+        function toggleTheme() {
+            const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem(THEME_KEY, newTheme);
+            updateThemeButton(newTheme);
+        }
+
+        function updateThemeButton(theme) {
+            const icon = document.getElementById('themeIcon');
+            if (icon) {
+                icon.textContent = theme === 'dark' ? '☀️' : '🌙';
+            }
+        }
+
+        // 초기화
+        initTheme();
+        if (typeof BadgeSystem !== 'undefined') {
+            BadgeSystem.init();
+        }
+    </script>
+</body>
+</html>

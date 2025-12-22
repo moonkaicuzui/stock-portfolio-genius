@@ -488,6 +488,8 @@
                 <a href="guide.html">📖 가이드</a>
                 <a href="quiz.html" class="active">🧠 퀴즈</a>
                 <a href="glossary.html">📚 용어집</a>
+                <a href="calculator.html">🧮 계산기</a>
+                <a href="badges.html">🏆 배지</a>
             </nav>
             <div class="header-buttons">
                 <button class="theme-toggle" onclick="toggleTheme()" title="테마 전환">
@@ -954,6 +956,21 @@
 
             document.getElementById('resultIcon').textContent = icon;
             document.getElementById('resultMessage').textContent = message;
+
+            // 배지 시스템: 퀴즈 완료 배지
+            if (typeof BadgeSystem !== 'undefined') {
+                BadgeSystem.earnBadge('quiz_beginner');
+
+                // 퀴즈 완료 횟수 추적
+                let quizCount = parseInt(localStorage.getItem('spg_quiz_count') || '0');
+                quizCount++;
+                localStorage.setItem('spg_quiz_count', quizCount.toString());
+
+                // 5회 완료 시 퀴즈 마스터 배지
+                if (quizCount >= 5) {
+                    BadgeSystem.earnBadge('quiz_master');
+                }
+            }
         }
 
         // Theme Toggle
@@ -983,6 +1000,12 @@
         // 페이지 로드 시 테마 초기화 및 퀴즈 시작
         initTheme();
         showCategorySelection();
+
+        // 배지 시스템 초기화
+        if (typeof BadgeSystem !== 'undefined') {
+            BadgeSystem.init();
+        }
     </script>
+    <script src="badges.js"></script>
 </body>
 </html>

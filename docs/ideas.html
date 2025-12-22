@@ -485,6 +485,8 @@
                 <a href="guide.html">📖 가이드</a>
                 <a href="quiz.html">🧠 퀴즈</a>
                 <a href="glossary.html">📚 용어집</a>
+                <a href="calculator.html">🧮 계산기</a>
+                <a href="badges.html">🏆 배지</a>
             </nav>
             <div class="header-buttons">
                 <button class="theme-toggle" onclick="toggleTheme()" title="테마 전환">
@@ -1135,6 +1137,13 @@
 
         initTheme();
         init();
+
+        // 배지 시스템: 아이디어 탐색 배지
+        if (typeof BadgeSystem !== 'undefined') {
+            BadgeSystem.init();
+            BadgeSystem.earnBadge('idea_explorer');
+        }
     </script>
+    <script src="badges.js"></script>
 </body>
 </html>

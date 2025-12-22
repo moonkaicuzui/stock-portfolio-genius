@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>나의 배지 - 주식 포트폴리오 지니어스</title>
+    <meta name="theme-color" content="#4ade80">
+    <link rel="manifest" href="manifest.json">
+    <script src="badges.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Noto Sans KR', sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            min-height: 100vh;
+            color: #fff;
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+        }
+
+        .nav-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 8px;
+            transition: all 0.2s;
+            font-size: 0.9rem;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: #fff;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .header-buttons {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .theme-toggle {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #fff;
+            padding: 8px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            transition: all 0.2s;
+        }
+
+        .theme-toggle:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .page-title {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .page-subtitle {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 1.1rem;
+        }
+
+        .profile-section {
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 40px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .profile-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .profile-info {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .profile-avatar {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #4ade80, #22c55e);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+        }
+
+        .profile-details h2 {
+            font-size: 1.8rem;
+            margin-bottom: 5px;
+        }
+
+        .profile-level {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #4ade80;
+        }
+
+        .profile-stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #4ade80;
+        }
+
+        .stat-label {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+            margin-top: 5px;
+        }
+
+        .progress-section {
+            margin-top: 30px;
+        }
+
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .progress-bar-container {
+            height: 12px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #4ade80, #22c55e);
+            border-radius: 6px;
+            transition: width 0.5s ease;
+        }
+
+        .category-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .category-tab {
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            padding: 12px 20px;
+            color: #fff;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .category-tab:hover {
+            background: rgba(74, 222, 128, 0.1);
+            border-color: rgba(74, 222, 128, 0.5);
+        }
+
+        .category-tab.active {
+            background: rgba(74, 222, 128, 0.2);
+            border-color: #4ade80;
+        }
+
+        .badges-section {
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            padding: 30px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .badges-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 20px;
+        }
+
+        .badge-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 25px 20px;
+            text-align: center;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .badge-card.earned {
+            border-color: #4ade80;
+            box-shadow: 0 0 20px rgba(74, 222, 128, 0.2);
+        }
+
+        .badge-card.locked {
+            opacity: 0.5;
+            filter: grayscale(0.8);
+        }
+
+        .badge-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .badge-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+
+        .badge-name {
+            font-weight: bold;
+            font-size: 1rem;
+            margin-bottom: 8px;
+        }
+
+        .badge-desc {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 10px;
+            line-height: 1.4;
+        }
+
+        .badge-points {
+            display: inline-block;
+            background: rgba(250, 204, 21, 0.2);
+            color: #facc15;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .badge-earned-date {
+            font-size: 0.75rem;
+            color: #4ade80;
+            margin-top: 10px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .profile-stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .badges-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .profile-header {
+                flex-direction: column;
+                text-align: center;
+            }
+            .profile-info {
+                flex-direction: column;
+            }
+        }
+
+        /* Light Theme */
+        :root[data-theme="light"] body {
+            background: linear-gradient(135deg, #f0f0f0 0%, #e0e0e0 100%);
+            color: #1a1a2e;
+        }
+
+        :root[data-theme="light"] header {
+            background: rgba(255, 255, 255, 0.9);
+            border-color: rgba(0, 0, 0, 0.1);
+        }
+
+        :root[data-theme="light"] .nav-links a {
+            color: rgba(0, 0, 0, 0.6);
+        }
+
+        :root[data-theme="light"] .nav-links a:hover,
+        :root[data-theme="light"] .nav-links a.active {
+            color: #1a1a2e;
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        :root[data-theme="light"] .theme-toggle {
+            background: rgba(0, 0, 0, 0.1);
+            border-color: rgba(0, 0, 0, 0.2);
+            color: #1a1a2e;
+        }
+
+        :root[data-theme="light"] .profile-section,
+        :root[data-theme="light"] .badges-section {
+            background: rgba(255, 255, 255, 0.9);
+            border-color: rgba(0, 0, 0, 0.1);
+        }
+
+        :root[data-theme="light"] .stat-card,
+        :root[data-theme="light"] .badge-card,
+        :root[data-theme="light"] .category-tab {
+            background: rgba(0, 0, 0, 0.05);
+        }
+
+        :root[data-theme="light"] .category-tab {
+            border-color: rgba(0, 0, 0, 0.2);
+            color: #1a1a2e;
+        }
+
+        :root[data-theme="light"] .badge-desc {
+            color: rgba(0, 0, 0, 0.6);
+        }
+
+        :root[data-theme="light"] footer {
+            color: rgba(0, 0, 0, 0.5);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="logo">🏆 나의 배지</div>
+            <nav class="nav-links">
+                <a href="index.html">📊 포트폴리오</a>
+                <a href="battle.html">🤖 AI 대결</a>
+                <a href="screener.html">🔍 스크리너</a>
+                <a href="ideas.html">💡 아이디어</a>
+                <a href="history.html">📜 거래내역</a>
+                <a href="manage.html">⚙️ 관리</a>
+                <a href="guide.html">📖 가이드</a>
+                <a href="quiz.html">🧠 퀴즈</a>
+                <a href="glossary.html">📚 용어집</a>
+                <a href="calculator.html">🧮 계산기</a>
+                <a href="badges.html" class="active">🏆 배지</a>
+            </nav>
+            <div class="header-buttons">
+                <button class="theme-toggle" onclick="toggleTheme()" title="테마 전환">
+                    <span id="themeIcon">☀️</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="page-header">
+            <h1 class="page-title">🏆 나의 투자 학습 배지</h1>
+            <p class="page-subtitle">투자 학습 여정에서 획득한 배지를 확인하세요</p>
+        </div>
+
+        <div class="profile-section" id="profileSection">
+            <!-- 프로필 정보가 여기에 렌더링됩니다 -->
+        </div>
+
+        <div class="category-tabs" id="categoryTabs">
+            <!-- 카테고리 탭이 여기에 렌더링됩니다 -->
+        </div>
+
+        <div class="badges-section">
+            <div class="badges-grid" id="badgesGrid">
+                <!-- 배지가 여기에 렌더링됩니다 -->
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>주식 포트폴리오 지니어스 - 투자 학습 배지 시스템</p>
+    </footer>
+
+    <script>
+        let currentFilter = 'all';
+
+        function renderProfile() {
+            const level = BadgeSystem.getLevel();
+            const points = BadgeSystem.getTotalPoints();
+            const badgeCount = BadgeSystem.getBadgeCount();
+            const totalBadges = BadgeSystem.getTotalBadgeCount();
+            const progress = level.nextAt ? ((points / level.nextAt) * 100) : 100;
+
+            // 카테고리별 통계
+            const earned = BadgeSystem.getEarnedBadges();
+            const categoryStats = {};
+            Object.keys(BadgeSystem.categories).forEach(cat => {
+                const catBadges = Object.values(BadgeSystem.badges).filter(b => b.category === cat);
+                const earnedCount = catBadges.filter(b => earned[b.id]).length;
+                categoryStats[cat] = { earned: earnedCount, total: catBadges.length };
+            });
+
+            document.getElementById('profileSection').innerHTML = `
+                <div class="profile-header">
+                    <div class="profile-info">
+                        <div class="profile-avatar">${level.icon}</div>
+                        <div class="profile-details">
+                            <h2>${level.name}</h2>
+                            <div class="profile-level">
+                                <span>레벨 ${level.level}</span>
+                                <span>•</span>
+                                <span>${points} 포인트</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="profile-stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-value">${badgeCount}</div>
+                        <div class="stat-label">획득 배지</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">${totalBadges}</div>
+                        <div class="stat-label">전체 배지</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">${points}</div>
+                        <div class="stat-label">총 포인트</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">${((badgeCount / totalBadges) * 100).toFixed(0)}%</div>
+                        <div class="stat-label">달성률</div>
+                    </div>
+                </div>
+
+                ${level.nextAt ? `
+                    <div class="progress-section">
+                        <div class="progress-header">
+                            <span>다음 레벨까지</span>
+                            <span>${points}/${level.nextAt}</span>
+                        </div>
+                        <div class="progress-bar-container">
+                            <div class="progress-bar-fill" style="width: ${progress}%"></div>
+                        </div>
+                    </div>
+                ` : `
+                    <div class="progress-section" style="text-align: center; padding: 20px;">
+                        <span style="color: #facc15; font-size: 1.2rem;">🎉 최고 레벨 달성! 투자 마스터입니다!</span>
+                    </div>
+                `}
+            `;
+        }
+
+        function renderCategoryTabs() {
+            const cats = BadgeSystem.categories;
+            let html = `
+                <button class="category-tab ${currentFilter === 'all' ? 'active' : ''}" onclick="filterBadges('all')">
+                    📚 전체
+                </button>
+            `;
+
+            Object.entries(cats).forEach(([key, cat]) => {
+                html += `
+                    <button class="category-tab ${currentFilter === key ? 'active' : ''}" onclick="filterBadges('${key}')">
+                        ${cat.icon} ${cat.name}
+                    </button>
+                `;
+            });
+
+            document.getElementById('categoryTabs').innerHTML = html;
+        }
+
+        function renderBadges() {
+            const earned = BadgeSystem.getEarnedBadges();
+            const badges = Object.values(BadgeSystem.badges);
+            const filtered = currentFilter === 'all'
+                ? badges
+                : badges.filter(b => b.category === currentFilter);
+
+            let html = '';
+            filtered.forEach(badge => {
+                const isEarned = !!earned[badge.id];
+                const earnedAt = isEarned ? new Date(earned[badge.id].earnedAt).toLocaleDateString('ko-KR') : null;
+
+                html += `
+                    <div class="badge-card ${isEarned ? 'earned' : 'locked'}">
+                        <div class="badge-icon">${isEarned ? badge.icon : '🔒'}</div>
+                        <div class="badge-name">${badge.name}</div>
+                        <div class="badge-desc">${badge.description}</div>
+                        <div class="badge-points">${badge.points} 포인트</div>
+                        ${isEarned ? `<div class="badge-earned-date">✓ ${earnedAt} 획득</div>` : ''}
+                    </div>
+                `;
+            });
+
+            document.getElementById('badgesGrid').innerHTML = html;
+        }
+
+        function filterBadges(category) {
+            currentFilter = category;
+            renderCategoryTabs();
+            renderBadges();
+        }
+
+        // Theme Toggle
+        const THEME_KEY = 'spg_theme';
+
+        function initTheme() {
+            const savedTheme = localStorage.getItem(THEME_KEY) || 'dark';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+            updateThemeButton(savedTheme);
+        }
+
+        function toggleTheme() {
+            const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem(THEME_KEY, newTheme);
+            updateThemeButton(newTheme);
+        }
+
+        function updateThemeButton(theme) {
+            const icon = document.getElementById('themeIcon');
+            if (icon) {
+                icon.textContent = theme === 'dark' ? '☀️' : '🌙';
+            }
+        }
+
+        // 초기화
+        initTheme();
+        BadgeSystem.init();
+        renderProfile();
+        renderCategoryTabs();
+        renderBadges();
+    </script>
+</body>
+</html>

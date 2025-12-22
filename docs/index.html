@@ -16,6 +16,7 @@
     <link rel="apple-touch-icon" href="icons/icon-192.svg">
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="badges.js"></script>
     <style>
         * {
             margin: 0;
@@ -2558,6 +2559,8 @@
                             <a href="guide.html">📖 가이드</a>
                             <a href="quiz.html">🧠 퀴즈</a>
                             <a href="glossary.html">📚 용어집</a>
+                            <a href="calculator.html">🧮 계산기</a>
+                            <a href="badges.html">🏆 배지</a>
                         </nav>
                         <div style="display: flex; align-items: center; gap: 10px;">
                             <div class="last-updated">업데이트: ${formatDate(last_updated)}</div>
@@ -2642,6 +2645,15 @@
                     <!-- 🏆 투자 뱃지 시스템 -->
                     <div class="badges-container">
                         ${generateBadges(data, bookMetrics)}
+                    </div>
+
+                    <!-- 🎖️ 업적 프로필 위젯 -->
+                    <div class="chart-container" style="margin-top: 20px;">
+                        <h3 class="section-title" style="margin-bottom: 15px;">
+                            🏆 나의 투자 학습 현황
+                            <a href="badges.html" style="font-size: 0.8rem; color: #4ade80; margin-left: 10px; text-decoration: none;">전체 보기 →</a>
+                        </h3>
+                        <div id="badgeWidget"></div>
                     </div>
 
                     <!-- 투자 인사이트 & 시장 전망 (클릭하면 모달) -->
@@ -2826,6 +2838,23 @@
 
             // 첫 방문 사용자를 위한 온보딩 튜토리얼 체크
             checkOnboarding();
+
+            // 배지 시스템 초기화 및 배지 획득
+            if (typeof BadgeSystem !== 'undefined') {
+                BadgeSystem.init();
+                BadgeSystem.earnBadge('portfolio_viewer');
+                BadgeSystem.earnBadge('sector_analyst');
+                renderBadgeWidget();
+            }
+        }
+
+        // 배지 위젯 렌더링
+        function renderBadgeWidget() {
+            const widgetHtml = BadgeSystem.renderProfileWidget();
+            const badgeContainer = document.getElementById('badgeWidget');
+            if (badgeContainer) {
+                badgeContainer.innerHTML = widgetHtml;
+            }
         }
 
         // ============================================
