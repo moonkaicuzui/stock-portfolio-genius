@@ -302,6 +302,89 @@
             .form-row { grid-template-columns: 1fr; }
             .stats-grid { grid-template-columns: repeat(2, 1fr); }
         }
+
+        /* Theme Toggle */
+        .theme-toggle {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #fff;
+            padding: 8px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            transition: all 0.2s;
+        }
+
+        .theme-toggle:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        :root[data-theme="light"] .theme-toggle {
+            background: rgba(0, 0, 0, 0.1);
+            border-color: rgba(0, 0, 0, 0.2);
+            color: #1a1a2e;
+        }
+
+        /* Light Theme */
+        :root[data-theme="light"] body {
+            background: #f0f0f0;
+            color: #1a1a2e;
+        }
+
+        :root[data-theme="light"] .card,
+        :root[data-theme="light"] .stat-card {
+            background: #ffffff;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        :root[data-theme="light"] .stat-card {
+            background: #f5f5f5;
+        }
+
+        :root[data-theme="light"] .form-group input,
+        :root[data-theme="light"] .form-group select {
+            background: #ffffff;
+            border-color: rgba(0, 0, 0, 0.2);
+            color: #1a1a2e;
+        }
+
+        :root[data-theme="light"] .nav-links a {
+            color: rgba(0, 0, 0, 0.6);
+        }
+
+        :root[data-theme="light"] .nav-links a:hover,
+        :root[data-theme="light"] .nav-links a.active {
+            color: #1a1a2e;
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        :root[data-theme="light"] th,
+        :root[data-theme="light"] td {
+            border-color: rgba(0, 0, 0, 0.1);
+        }
+
+        :root[data-theme="light"] th {
+            color: rgba(0, 0, 0, 0.6);
+        }
+
+        :root[data-theme="light"] .filter-btn {
+            border-color: rgba(0, 0, 0, 0.2);
+            color: rgba(0, 0, 0, 0.6);
+        }
+
+        :root[data-theme="light"] .timeline-content {
+            background: #f5f5f5;
+        }
+
+        :root[data-theme="light"] .timeline::before {
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .header-buttons {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
     </style>
 </head>
 <body>
@@ -309,14 +392,20 @@
         <header>
             <h1>📋 거래 내역</h1>
             <nav class="nav-links">
-                <a href="index.html">포트폴리오</a>
-                <a href="battle.html">AI 대결</a>
-                <a href="screener.html">스크리너</a>
-                <a href="ideas.html">투자아이디어</a>
-                <a href="history.html" class="active">거래내역</a>
-                <a href="manage.html">관리</a>
-                <a href="guide.html">가이드</a>
+                <a href="index.html">📊 포트폴리오</a>
+                <a href="battle.html">🤖 AI 대결</a>
+                <a href="screener.html">🔍 스크리너</a>
+                <a href="ideas.html">💡 아이디어</a>
+                <a href="history.html" class="active">📜 거래내역</a>
+                <a href="manage.html">⚙️ 관리</a>
+                <a href="guide.html">📖 가이드</a>
+                <a href="quiz.html">🧠 퀴즈</a>
             </nav>
+            <div class="header-buttons">
+                <button class="theme-toggle" onclick="toggleTheme()" title="테마 전환">
+                    <span id="themeIcon">☀️</span>
+                </button>
+            </div>
         </header>
 
         <!-- Stats -->
@@ -750,6 +839,31 @@
             setTimeout(() => toast.classList.remove('active'), 3000);
         }
 
+        // Theme Toggle
+        const THEME_KEY = 'spg_theme';
+
+        function initTheme() {
+            const savedTheme = localStorage.getItem(THEME_KEY) || 'dark';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+            updateThemeButton(savedTheme);
+        }
+
+        function toggleTheme() {
+            const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem(THEME_KEY, newTheme);
+            updateThemeButton(newTheme);
+        }
+
+        function updateThemeButton(theme) {
+            const icon = document.getElementById('themeIcon');
+            if (icon) {
+                icon.textContent = theme === 'dark' ? '☀️' : '🌙';
+            }
+        }
+
+        initTheme();
         init();
     </script>
 </body>

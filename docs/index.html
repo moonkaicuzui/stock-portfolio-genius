@@ -834,23 +834,66 @@
         /* Navigation */
         .nav-links {
             display: flex;
-            gap: 10px;
+            gap: 8px;
             flex-wrap: wrap;
         }
 
         .nav-links a {
-            color: rgba(255, 255, 255, 0.6);
+            color: rgba(255, 255, 255, 0.7);
             text-decoration: none;
-            padding: 8px 16px;
-            border-radius: 8px;
+            padding: 10px 16px;
+            border-radius: 10px;
             transition: all 0.2s;
             font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            border: 1px solid transparent;
         }
 
-        .nav-links a:hover,
-        .nav-links a.active {
+        .nav-links a:hover {
             color: #fff;
             background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-1px);
+        }
+
+        .nav-links a.active {
+            color: #fff;
+            background: linear-gradient(135deg, rgba(74, 222, 128, 0.3), rgba(59, 130, 246, 0.2));
+            border-color: rgba(74, 222, 128, 0.5);
+            font-weight: 600;
+        }
+
+        /* Hero Card for main metric */
+        .summary-card.hero {
+            grid-column: 1 / -1;
+            background: linear-gradient(135deg, rgba(74, 222, 128, 0.15), rgba(59, 130, 246, 0.1));
+            border: 2px solid rgba(74, 222, 128, 0.4);
+            text-align: center;
+            padding: 30px;
+        }
+
+        .summary-card.hero .value {
+            font-size: 2.8rem;
+            background: linear-gradient(135deg, #4ade80, #22c55e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .summary-card.hero .change {
+            font-size: 1.3rem;
+            margin-top: 10px;
+        }
+
+        .summary-card.hero.negative-return {
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.15), rgba(251, 146, 60, 0.1));
+            border-color: rgba(239, 68, 68, 0.4);
+        }
+
+        .summary-card.hero.negative-return .value {
+            background: linear-gradient(135deg, #f87171, #ef4444);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         /* Insight Cards */
@@ -1771,7 +1814,7 @@
 
             // 보안 인증: 해시 비교
             const inputHash = await sha256(id + ':' + pw);
-            const expectedHash = 'e4acc42dde011aa4d88a63572dd8b545f79cc995c9de630d40edaf983bda0820';
+            const expectedHash = '512f7a6fdeab460f602438a72f603fd88aa4b11c51dc0a6bb90a3c4ac197487e';
 
             if (inputHash === expectedHash) {
                 const token = await sha256(id + pw + Date.now() + Math.random());
@@ -2310,13 +2353,13 @@
                     <div class="header-content">
                         <div class="logo">📈 주식 포트폴리오 지니어스</div>
                         <nav class="nav-links">
-                            <a href="index.html" class="active">포트폴리오</a>
-                            <a href="battle.html">AI 대결</a>
-                            <a href="screener.html">스크리너</a>
-                            <a href="ideas.html">투자아이디어</a>
-                            <a href="history.html">거래내역</a>
-                            <a href="manage.html">관리</a>
-                            <a href="guide.html">가이드</a>
+                            <a href="index.html" class="active">📊 포트폴리오</a>
+                            <a href="battle.html">🤖 AI 대결</a>
+                            <a href="screener.html">🔍 스크리너</a>
+                            <a href="ideas.html">💡 아이디어</a>
+                            <a href="history.html">📜 거래내역</a>
+                            <a href="manage.html">⚙️ 관리</a>
+                            <a href="guide.html">📖 가이드</a>
                             <a href="quiz.html">🧠 퀴즈</a>
                         </nav>
                         <div style="display: flex; align-items: center; gap: 10px;">
@@ -2335,11 +2378,11 @@
                 <main>
                     <!-- 요약 카드 -->
                     <div class="summary-grid">
-                        <div class="summary-card highlight">
-                            <div class="label">총 포트폴리오 가치</div>
+                        <div class="summary-card hero ${summary.total_gain_loss < 0 ? 'negative-return' : ''}">
+                            <div class="label">💰 총 포트폴리오 가치</div>
                             <div class="value">${formatCurrency(summary.total_value)}</div>
                             <div class="change ${gainClass}">
-                                ${formatCurrency(summary.total_gain_loss)} (${formatPercent(summary.total_gain_loss_pct)})
+                                ${summary.total_gain_loss >= 0 ? '📈' : '📉'} ${formatCurrency(summary.total_gain_loss)} (${formatPercent(summary.total_gain_loss_pct)})
                             </div>
                         </div>
 

@@ -266,6 +266,74 @@
             color: rgba(255, 255, 255, 0.5);
             font-size: 0.9rem;
         }
+
+        /* Theme Toggle */
+        .theme-toggle {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #fff;
+            padding: 8px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            transition: all 0.2s;
+        }
+
+        .theme-toggle:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        :root[data-theme="light"] .theme-toggle {
+            background: rgba(0, 0, 0, 0.1);
+            border-color: rgba(0, 0, 0, 0.2);
+            color: #1a1a2e;
+        }
+
+        /* Light Theme */
+        :root[data-theme="light"] body {
+            background: linear-gradient(135deg, #f0f0f0 0%, #e0e0e0 100%);
+            color: #1a1a2e;
+        }
+
+        :root[data-theme="light"] header {
+            background: rgba(255, 255, 255, 0.9);
+            border-color: rgba(0, 0, 0, 0.1);
+        }
+
+        :root[data-theme="light"] .quiz-container {
+            background: rgba(255, 255, 255, 0.9);
+            border-color: rgba(0, 0, 0, 0.1);
+        }
+
+        :root[data-theme="light"] .nav-links a {
+            color: rgba(0, 0, 0, 0.6);
+        }
+
+        :root[data-theme="light"] .nav-links a:hover,
+        :root[data-theme="light"] .nav-links a.active {
+            color: #1a1a2e;
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        :root[data-theme="light"] .answer-btn {
+            background: rgba(0, 0, 0, 0.05);
+            border-color: rgba(0, 0, 0, 0.2);
+            color: #1a1a2e;
+        }
+
+        :root[data-theme="light"] .answer-btn:hover {
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        :root[data-theme="light"] footer {
+            color: rgba(0, 0, 0, 0.5);
+        }
+
+        .header-buttons {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
     </style>
 </head>
 <body>
@@ -273,11 +341,20 @@
         <div class="header-content">
             <div class="logo">📈 투자 퀴즈</div>
             <nav class="nav-links">
-                <a href="index.html">포트폴리오</a>
-                <a href="battle.html">AI 대결</a>
-                <a href="screener.html">스크리너</a>
-                <a href="quiz.html" class="active">퀴즈</a>
+                <a href="index.html">📊 포트폴리오</a>
+                <a href="battle.html">🤖 AI 대결</a>
+                <a href="screener.html">🔍 스크리너</a>
+                <a href="ideas.html">💡 아이디어</a>
+                <a href="history.html">📜 거래내역</a>
+                <a href="manage.html">⚙️ 관리</a>
+                <a href="guide.html">📖 가이드</a>
+                <a href="quiz.html" class="active">🧠 퀴즈</a>
             </nav>
+            <div class="header-buttons">
+                <button class="theme-toggle" onclick="toggleTheme()" title="테마 전환">
+                    <span id="themeIcon">☀️</span>
+                </button>
+            </div>
         </div>
     </header>
 
@@ -537,7 +614,32 @@
             document.getElementById('resultMessage').textContent = message;
         }
 
-        // 페이지 로드 시 퀴즈 시작
+        // Theme Toggle
+        const THEME_KEY = 'spg_theme';
+
+        function initTheme() {
+            const savedTheme = localStorage.getItem(THEME_KEY) || 'dark';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+            updateThemeButton(savedTheme);
+        }
+
+        function toggleTheme() {
+            const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem(THEME_KEY, newTheme);
+            updateThemeButton(newTheme);
+        }
+
+        function updateThemeButton(theme) {
+            const icon = document.getElementById('themeIcon');
+            if (icon) {
+                icon.textContent = theme === 'dark' ? '☀️' : '🌙';
+            }
+        }
+
+        // 페이지 로드 시 테마 초기화 및 퀴즈 시작
+        initTheme();
         startQuiz();
     </script>
 </body>
