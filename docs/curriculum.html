@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>학습 경로 - 주식 포트폴리오 지니어스</title>
+    <style>
+        :root {
+            --primary: #4ade80;
+            --secondary: #3b82f6;
+            --warning: #f59e0b;
+            --bg-dark: #1a1a2e;
+            --bg-card: rgba(255, 255, 255, 0.08);
+            --text-primary: #f1f5f9;
+            --text-secondary: #94a3b8;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: var(--text-primary);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container { max-width: 1000px; margin: 0 auto; }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        h1 { font-size: 1.8rem; }
+
+        .nav-links {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            padding: 8px 14px;
+            border-radius: 8px;
+            transition: all 0.2s;
+            font-size: 0.9rem;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: #fff;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .header-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .theme-toggle {
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            padding: 8px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.2rem;
+        }
+
+        /* Progress Overview */
+        .progress-overview {
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 30px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .progress-title {
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .overall-progress {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            height: 24px;
+            overflow: hidden;
+            margin-bottom: 15px;
+        }
+
+        .overall-progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 20px;
+            transition: width 0.5s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .progress-stats {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+
+        /* Week Cards */
+        .curriculum-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .week-card {
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 24px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s;
+        }
+
+        .week-card:hover {
+            transform: translateY(-2px);
+            border-color: var(--primary);
+        }
+
+        .week-card.completed {
+            border-color: var(--primary);
+            background: rgba(74, 222, 128, 0.1);
+        }
+
+        .week-card.current {
+            border-color: var(--secondary);
+            background: rgba(59, 130, 246, 0.1);
+        }
+
+        .week-card.locked {
+            opacity: 0.6;
+        }
+
+        .week-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .week-badge {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .week-number {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: #fff;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        .week-card.completed .week-number {
+            background: var(--primary);
+        }
+
+        .week-card.locked .week-number {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .week-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .week-status {
+            font-size: 1.5rem;
+        }
+
+        .week-description {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .lessons-list {
+            display: grid;
+            gap: 12px;
+        }
+
+        .lesson-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.2s;
+        }
+
+        .lesson-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateX(5px);
+        }
+
+        .lesson-item.completed {
+            background: rgba(74, 222, 128, 0.1);
+        }
+
+        .lesson-icon {
+            font-size: 1.3rem;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+        }
+
+        .lesson-info {
+            flex: 1;
+        }
+
+        .lesson-title {
+            font-weight: 500;
+            margin-bottom: 2px;
+        }
+
+        .lesson-meta {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        .lesson-check {
+            font-size: 1.2rem;
+        }
+
+        .week-progress {
+            margin-top: 16px;
+            padding-top: 16px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .week-progress-bar {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            height: 8px;
+            overflow: hidden;
+        }
+
+        .week-progress-fill {
+            height: 100%;
+            background: var(--primary);
+            border-radius: 10px;
+            transition: width 0.3s ease;
+        }
+
+        .week-progress-text {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 8px;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        /* Recommended Next */
+        .next-action {
+            background: linear-gradient(135deg, rgba(74, 222, 128, 0.2), rgba(59, 130, 246, 0.2));
+            border: 2px solid var(--primary);
+            border-radius: 16px;
+            padding: 24px;
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .next-action h3 {
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+
+        .next-action p {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+        }
+
+        .next-action-btn {
+            display: inline-block;
+            background: var(--primary);
+            color: #1a1a2e;
+            padding: 12px 30px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.2s;
+        }
+
+        .next-action-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 20px rgba(74, 222, 128, 0.3);
+        }
+
+        /* Light Theme */
+        :root[data-theme="light"] {
+            --bg-dark: #f8fafc;
+            --bg-card: rgba(0, 0, 0, 0.05);
+            --text-primary: #1e293b;
+            --text-secondary: #64748b;
+        }
+
+        :root[data-theme="light"] body {
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+        }
+
+        :root[data-theme="light"] .nav-links a {
+            color: rgba(0, 0, 0, 0.6);
+        }
+
+        :root[data-theme="light"] .nav-links a:hover,
+        :root[data-theme="light"] .nav-links a.active {
+            color: #1a1a2e;
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        :root[data-theme="light"] .week-card {
+            border-color: rgba(0, 0, 0, 0.1);
+        }
+
+        :root[data-theme="light"] .lesson-item {
+            background: rgba(0, 0, 0, 0.03);
+        }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .week-header { flex-direction: column; align-items: flex-start; gap: 10px; }
+            .progress-stats { justify-content: space-around; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📚 학습 경로</h1>
+            <nav class="nav-links">
+                <a href="index.html">📊 포트폴리오</a>
+                <a href="guide.html">📖 가이드</a>
+                <a href="quiz.html">🧠 퀴즈</a>
+                <a href="glossary.html">📚 용어집</a>
+                <a href="calculator.html">🧮 계산기</a>
+                <a href="curriculum.html" class="active">🎯 커리큘럼</a>
+                <a href="badges.html">🏆 배지</a>
+            </nav>
+            <div class="header-buttons">
+                <button class="theme-toggle" onclick="toggleTheme()" title="테마 전환">
+                    <span id="themeIcon">☀️</span>
+                </button>
+            </div>
+        </header>
+
+        <!-- Progress Overview -->
+        <div class="progress-overview">
+            <div class="progress-header">
+                <div class="progress-title">
+                    <span>🎓</span>
+                    <span>나의 학습 진행률</span>
+                </div>
+            </div>
+            <div class="overall-progress">
+                <div class="overall-progress-bar" id="overallProgressBar" style="width: 0%">
+                    <span id="progressPercent">0%</span>
+                </div>
+            </div>
+            <div class="progress-stats">
+                <div class="stat-item">
+                    <div class="stat-value" id="completedLessons">0</div>
+                    <div class="stat-label">완료한 학습</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" id="totalLessons">0</div>
+                    <div class="stat-label">전체 학습</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" id="earnedBadges">0</div>
+                    <div class="stat-label">획득 배지</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" id="currentLevel">입문자</div>
+                    <div class="stat-label">현재 레벨</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Curriculum Grid -->
+        <div class="curriculum-grid" id="curriculumGrid">
+            <!-- Week cards will be rendered here -->
+        </div>
+
+        <!-- Next Action -->
+        <div class="next-action" id="nextAction">
+            <h3>🚀 다음 추천 학습</h3>
+            <p id="nextActionText">로딩 중...</p>
+            <a href="#" class="next-action-btn" id="nextActionBtn">학습 시작하기</a>
+        </div>
+    </div>
+
+    <script>
+        // Curriculum Data
+        const curriculum = [
+            {
+                week: 1,
+                title: "투자 기초 다지기",
+                description: "투자의 기본 개념과 핵심 용어를 학습합니다. 주식 시장의 기초를 이해하고 투자를 시작하기 위한 첫 걸음을 내딛습니다.",
+                lessons: [
+                    { id: 'glossary_basic', title: '기초 투자 용어 10개', type: 'glossary', icon: '📚', duration: '10분', link: 'glossary.html' },
+                    { id: 'guide_intro', title: '가이드: 투자 원칙 개요', type: 'guide', icon: '📖', duration: '15분', link: 'guide.html' },
+                    { id: 'quiz_basic', title: '기초 퀴즈', type: 'quiz', icon: '🧠', duration: '5분', link: 'quiz.html' },
+                    { id: 'portfolio_view', title: '포트폴리오 살펴보기', type: 'practice', icon: '📊', duration: '5분', link: 'index.html' }
+                ]
+            },
+            {
+                week: 2,
+                title: "가치투자 입문",
+                description: "워렌 버핏과 벤저민 그레이엄의 가치투자 철학을 배웁니다. 내재가치의 개념과 안전마진을 이해합니다.",
+                lessons: [
+                    { id: 'glossary_value', title: '가치투자 핵심 용어', type: 'glossary', icon: '📚', duration: '10분', link: 'glossary.html' },
+                    { id: 'guide_value', title: '가이드: 그레이엄의 투자 원칙', type: 'guide', icon: '📖', duration: '20분', link: 'guide.html#graham' },
+                    { id: 'calc_graham', title: '그레이엄 공식 계산기 실습', type: 'calculator', icon: '🧮', duration: '10분', link: 'calculator.html' },
+                    { id: 'quiz_value', title: '가치투자 퀴즈', type: 'quiz', icon: '🧠', duration: '5분', link: 'quiz.html' }
+                ]
+            },
+            {
+                week: 3,
+                title: "성장투자 전략",
+                description: "피터 린치와 필립 피셔의 성장주 투자 철학을 배웁니다. PEG 비율과 성장 가능성 분석법을 익힙니다.",
+                lessons: [
+                    { id: 'glossary_growth', title: '성장투자 관련 용어', type: 'glossary', icon: '📚', duration: '10분', link: 'glossary.html' },
+                    { id: 'guide_lynch', title: '가이드: 피터 린치의 투자법', type: 'guide', icon: '📖', duration: '20분', link: 'guide.html#lynch' },
+                    { id: 'calc_peg', title: 'PEG 계산기 실습', type: 'calculator', icon: '🧮', duration: '10분', link: 'calculator.html' },
+                    { id: 'screener_use', title: '스크리너로 성장주 찾기', type: 'practice', icon: '🔍', duration: '15분', link: 'screener.html' },
+                    { id: 'quiz_growth', title: '성장투자 퀴즈', type: 'quiz', icon: '🧠', duration: '5분', link: 'quiz.html' }
+                ]
+            },
+            {
+                week: 4,
+                title: "리스크 관리",
+                description: "탈레브와 마코위츠의 리스크 관리 철학을 배웁니다. 분산투자와 포트폴리오 구성 전략을 익힙니다.",
+                lessons: [
+                    { id: 'glossary_risk', title: '리스크 관리 용어', type: 'glossary', icon: '📚', duration: '10분', link: 'glossary.html' },
+                    { id: 'guide_risk', title: '가이드: 분산투자 원칙', type: 'guide', icon: '📖', duration: '15분', link: 'guide.html#risk' },
+                    { id: 'portfolio_sector', title: '섹터별 분석 실습', type: 'practice', icon: '📊', duration: '10분', link: 'index.html' },
+                    { id: 'quiz_risk', title: '리스크 관리 퀴즈', type: 'quiz', icon: '🧠', duration: '5분', link: 'quiz.html' }
+                ]
+            },
+            {
+                week: 5,
+                title: "고급 가치평가",
+                description: "DCF와 DDM 등 전문 가치평가 방법을 학습합니다. 실제 기업 분석에 적용하는 방법을 익힙니다.",
+                lessons: [
+                    { id: 'glossary_advanced', title: '고급 투자 용어', type: 'glossary', icon: '📚', duration: '15분', link: 'glossary.html' },
+                    { id: 'calc_dcf', title: 'DCF 계산기 마스터', type: 'calculator', icon: '🧮', duration: '20분', link: 'calculator.html' },
+                    { id: 'calc_ddm', title: 'DDM 계산기 실습', type: 'calculator', icon: '🧮', duration: '15분', link: 'calculator.html' },
+                    { id: 'ideas_explore', title: '아이디어 분석 실습', type: 'practice', icon: '💡', duration: '15분', link: 'ideas.html' }
+                ]
+            },
+            {
+                week: 6,
+                title: "실전 투자 도전",
+                description: "배운 내용을 종합하여 실전 투자에 도전합니다. AI 대결을 통해 투자 실력을 검증합니다.",
+                lessons: [
+                    { id: 'battle_challenge', title: 'AI 투자자와 대결', type: 'game', icon: '🤖', duration: '20분', link: 'battle.html' },
+                    { id: 'quiz_all', title: '종합 테스트', type: 'quiz', icon: '🧠', duration: '15분', link: 'quiz.html' },
+                    { id: 'portfolio_manage', title: '포트폴리오 최적화', type: 'practice', icon: '⚙️', duration: '20분', link: 'manage.html' },
+                    { id: 'history_review', title: '거래 내역 분석', type: 'practice', icon: '📜', duration: '10분', link: 'history.html' }
+                ]
+            }
+        ];
+
+        // Storage Keys
+        const PROGRESS_KEY = 'spg_curriculum_progress';
+        const BADGE_KEY = 'spg_badges';
+        const STATS_KEY = 'spg_badge_stats';
+
+        // Load progress
+        function loadProgress() {
+            try {
+                return JSON.parse(localStorage.getItem(PROGRESS_KEY)) || {};
+            } catch {
+                return {};
+            }
+        }
+
+        // Save progress
+        function saveProgress(progress) {
+            try {
+                localStorage.setItem(PROGRESS_KEY, JSON.stringify(progress));
+            } catch (e) {
+                console.error('Failed to save progress:', e);
+            }
+        }
+
+        // Check if lesson is completed based on various indicators
+        function isLessonCompleted(lessonId, type) {
+            const progress = loadProgress();
+            if (progress[lessonId]) return true;
+
+            // Check based on type
+            const badges = JSON.parse(localStorage.getItem(BADGE_KEY) || '[]');
+
+            switch(type) {
+                case 'glossary':
+                    return badges.includes('glossary_explorer');
+                case 'guide':
+                    return badges.includes('guide_reader');
+                case 'quiz':
+                    return badges.includes('quiz_beginner');
+                case 'calculator':
+                    return badges.includes('calculator_user');
+                case 'practice':
+                    if (lessonId === 'portfolio_view') return badges.includes('portfolio_viewer');
+                    if (lessonId === 'screener_use') return badges.includes('screener_user');
+                    if (lessonId === 'battle_challenge') return badges.includes('battle_participant');
+                    if (lessonId === 'history_review') return badges.includes('history_checker');
+                    if (lessonId === 'ideas_explore') return badges.includes('idea_explorer');
+                    break;
+                case 'game':
+                    return badges.includes('battle_participant');
+            }
+
+            return false;
+        }
+
+        // Mark lesson as completed
+        function markLessonComplete(lessonId) {
+            const progress = loadProgress();
+            progress[lessonId] = { completedAt: new Date().toISOString() };
+            saveProgress(progress);
+            renderCurriculum();
+        }
+
+        // Calculate week progress
+        function calculateWeekProgress(week) {
+            const completedCount = week.lessons.filter(l => isLessonCompleted(l.id, l.type)).length;
+            return {
+                completed: completedCount,
+                total: week.lessons.length,
+                percent: Math.round((completedCount / week.lessons.length) * 100)
+            };
+        }
+
+        // Calculate overall progress
+        function calculateOverallProgress() {
+            let totalCompleted = 0;
+            let totalLessons = 0;
+
+            curriculum.forEach(week => {
+                const progress = calculateWeekProgress(week);
+                totalCompleted += progress.completed;
+                totalLessons += progress.total;
+            });
+
+            return {
+                completed: totalCompleted,
+                total: totalLessons,
+                percent: totalLessons > 0 ? Math.round((totalCompleted / totalLessons) * 100) : 0
+            };
+        }
+
+        // Get badge count
+        function getBadgeCount() {
+            try {
+                const badges = JSON.parse(localStorage.getItem(BADGE_KEY) || '[]');
+                return badges.length;
+            } catch {
+                return 0;
+            }
+        }
+
+        // Get current level
+        function getCurrentLevel() {
+            try {
+                const stats = JSON.parse(localStorage.getItem(STATS_KEY) || '{}');
+                const points = stats.totalPoints || 0;
+
+                if (points >= 500) return '투자 마스터';
+                if (points >= 300) return '고급 투자자';
+                if (points >= 150) return '중급 투자자';
+                if (points >= 50) return '초보 투자자';
+                return '입문자';
+            } catch {
+                return '입문자';
+            }
+        }
+
+        // Find next recommended lesson
+        function findNextLesson() {
+            for (const week of curriculum) {
+                for (const lesson of week.lessons) {
+                    if (!isLessonCompleted(lesson.id, lesson.type)) {
+                        return { week: week.week, lesson };
+                    }
+                }
+            }
+            return null;
+        }
+
+        // Render curriculum
+        function renderCurriculum() {
+            const grid = document.getElementById('curriculumGrid');
+            const overall = calculateOverallProgress();
+
+            // Update overall progress
+            document.getElementById('overallProgressBar').style.width = overall.percent + '%';
+            document.getElementById('progressPercent').textContent = overall.percent + '%';
+            document.getElementById('completedLessons').textContent = overall.completed;
+            document.getElementById('totalLessons').textContent = overall.total;
+            document.getElementById('earnedBadges').textContent = getBadgeCount();
+            document.getElementById('currentLevel').textContent = getCurrentLevel();
+
+            // Render weeks
+            grid.innerHTML = curriculum.map((week, index) => {
+                const weekProgress = calculateWeekProgress(week);
+                const isCompleted = weekProgress.percent === 100;
+                const prevWeekCompleted = index === 0 || calculateWeekProgress(curriculum[index - 1]).percent === 100;
+                const isCurrent = !isCompleted && prevWeekCompleted;
+                const isLocked = !prevWeekCompleted && !isCompleted;
+
+                let statusIcon = '🔒';
+                if (isCompleted) statusIcon = '✅';
+                else if (isCurrent) statusIcon = '📍';
+
+                const cardClass = isCompleted ? 'completed' : (isCurrent ? 'current' : (isLocked ? 'locked' : ''));
+
+                return `
+                    <div class="week-card ${cardClass}">
+                        <div class="week-header">
+                            <div class="week-badge">
+                                <span class="week-number">${week.week}주차</span>
+                                <span class="week-title">${week.title}</span>
+                            </div>
+                            <span class="week-status">${statusIcon}</span>
+                        </div>
+                        <p class="week-description">${week.description}</p>
+                        <div class="lessons-list">
+                            ${week.lessons.map(lesson => {
+                                const completed = isLessonCompleted(lesson.id, lesson.type);
+                                return `
+                                    <a href="${isLocked ? '#' : lesson.link}"
+                                       class="lesson-item ${completed ? 'completed' : ''}"
+                                       onclick="${isLocked ? 'return false;' : `markLessonComplete('${lesson.id}')`}">
+                                        <span class="lesson-icon">${lesson.icon}</span>
+                                        <div class="lesson-info">
+                                            <div class="lesson-title">${lesson.title}</div>
+                                            <div class="lesson-meta">${lesson.duration}</div>
+                                        </div>
+                                        <span class="lesson-check">${completed ? '✅' : (isLocked ? '🔒' : '⭕')}</span>
+                                    </a>
+                                `;
+                            }).join('')}
+                        </div>
+                        <div class="week-progress">
+                            <div class="week-progress-bar">
+                                <div class="week-progress-fill" style="width: ${weekProgress.percent}%"></div>
+                            </div>
+                            <div class="week-progress-text">
+                                <span>${weekProgress.completed}/${weekProgress.total} 완료</span>
+                                <span>${weekProgress.percent}%</span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            // Update next action
+            const nextLesson = findNextLesson();
+            const nextAction = document.getElementById('nextAction');
+
+            if (nextLesson) {
+                document.getElementById('nextActionText').textContent =
+                    `${nextLesson.week}주차 - ${nextLesson.lesson.title}`;
+                document.getElementById('nextActionBtn').href = nextLesson.lesson.link;
+                document.getElementById('nextActionBtn').onclick = () => markLessonComplete(nextLesson.lesson.id);
+            } else {
+                document.getElementById('nextActionText').textContent = '모든 학습을 완료했습니다! 🎉';
+                document.getElementById('nextActionBtn').textContent = '배지 확인하기';
+                document.getElementById('nextActionBtn').href = 'badges.html';
+            }
+        }
+
+        // Theme Toggle
+        const THEME_KEY = 'spg_theme';
+
+        function initTheme() {
+            const savedTheme = localStorage.getItem(THEME_KEY) || 'dark';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+            updateThemeButton(savedTheme);
+        }
+
+        function toggleTheme() {
+            const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem(THEME_KEY, newTheme);
+            updateThemeButton(newTheme);
+        }
+
+        function updateThemeButton(theme) {
+            const icon = document.getElementById('themeIcon');
+            if (icon) {
+                icon.textContent = theme === 'dark' ? '☀️' : '🌙';
+            }
+        }
+
+        // Initialize
+        initTheme();
+        renderCurriculum();
+
+        // Badge system integration
+        if (typeof BadgeSystem !== 'undefined') {
+            BadgeSystem.init();
+        }
+    </script>
+    <script src="badges.js"></script>
+</body>
+</html>

@@ -1,8 +1,12 @@
 // ============================================
 // 🏆 업적/배지 시스템
+// Version 2.0 - 데이터 무결성 및 접근성 강화
 // ============================================
 
 const BadgeSystem = {
+    // 시스템 버전 (데이터 마이그레이션용)
+    VERSION: '2.0',
+    VERSION_KEY: 'spg_badge_version',
     // 배지 정의
     badges: {
         // 🌱 입문자 배지
@@ -191,6 +195,38 @@ const BadgeSystem = {
             description: '내재가치 계산기 사용',
             category: 'analyst',
             points: 25
+        },
+        curriculum_starter: {
+            id: 'curriculum_starter',
+            name: '학습 시작',
+            icon: '🎯',
+            description: '커리큘럼 첫 학습 완료',
+            category: 'beginner',
+            points: 15
+        },
+        curriculum_week1: {
+            id: 'curriculum_week1',
+            name: '1주차 완료',
+            icon: '1️⃣',
+            description: '1주차 커리큘럼 완료',
+            category: 'value',
+            points: 50
+        },
+        curriculum_master: {
+            id: 'curriculum_master',
+            name: '커리큘럼 마스터',
+            icon: '🎓',
+            description: '전체 커리큘럼 완료',
+            category: 'special',
+            points: 200
+        },
+        social_sharer: {
+            id: 'social_sharer',
+            name: '공유왕',
+            icon: '📢',
+            description: '배지를 소셜 미디어에 공유',
+            category: 'special',
+            points: 30
         }
     },
 
@@ -208,32 +244,91 @@ const BadgeSystem = {
     STORAGE_KEY: 'spg_badges',
     STATS_KEY: 'spg_badge_stats',
 
-    // 획득한 배지 가져오기
+    // 버전 체크 및 마이그레이션
+    checkVersion() {
+        try {
+            const savedVersion = localStorage.getItem(this.VERSION_KEY);
+            if (savedVersion !== this.VERSION) {
+                this.migrateData(savedVersion);
+                localStorage.setItem(this.VERSION_KEY, this.VERSION);
+            }
+        } catch (e) {
+            console.warn('Version check failed:', e);
+        }
+    },
+
+    // 데이터 마이그레이션
+    migrateData(fromVersion) {
+        console.log(`Migrating badge data from ${fromVersion || 'v1'} to ${this.VERSION}`);
+        // 필요시 마이그레이션 로직 추가
+    },
+
+    // 획득한 배지 가져오기 (try-catch 추가)
     getEarnedBadges() {
-        const saved = localStorage.getItem(this.STORAGE_KEY);
-        return saved ? JSON.parse(saved) : {};
+        try {
+            const saved = localStorage.getItem(this.STORAGE_KEY);
+            if (!saved) return {};
+            const parsed = JSON.parse(saved);
+            return typeof parsed === 'object' && parsed !== null ? parsed : {};
+        } catch (e) {
+            console.warn('Failed to load badges:', e);
+            return {};
+        }
     },
 
-    // 배지 저장
+    // 배지 저장 (try-catch 추가)
     saveEarnedBadges(badges) {
-        localStorage.setItem(this.STORAGE_KEY, JSON.stringify(badges));
+        try {
+            if (typeof badges !== 'object' || badges === null) {
+                throw new Error('Invalid badge data');
+            }
+            localStorage.setItem(this.STORAGE_KEY, JSON.stringify(badges));
+            return true;
+        } catch (e) {
+            console.error('Failed to save badges:', e);
+            return false;
+        }
     },
 
-    // 통계 가져오기
+    // 통계 가져오기 (try-catch 추가)
     getStats() {
-        const saved = localStorage.getItem(this.STATS_KEY);
-        return saved ? JSON.parse(saved) : {
+        try {
+            const saved = localStorage.getItem(this.STATS_KEY);
+            if (!saved) {
+                return this.getDefaultStats();
+            }
+            const parsed = JSON.parse(saved);
+            return { ...this.getDefaultStats(), ...parsed };
+        } catch (e) {
+            console.warn('Failed to load stats:', e);
+            return this.getDefaultStats();
+        }
+    },
+
+    // 기본 통계
+    getDefaultStats() {
+        return {
             totalPoints: 0,
             badgeCount: 0,
             loginDays: [],
             quizScores: [],
-            lastLogin: null
+            lastLogin: null,
+            version: this.VERSION
         };
     },
 
-    // 통계 저장
+    // 통계 저장 (try-catch 추가)
     saveStats(stats) {
-        localStorage.setItem(this.STATS_KEY, JSON.stringify(stats));
+        try {
+            if (typeof stats !== 'object' || stats === null) {
+                throw new Error('Invalid stats data');
+            }
+            localStorage.setItem(this.STATS_KEY, JSON.stringify(stats));
+            return true;
+        } catch (e) {
+            console.error('Failed to save stats:', e);
+            return false;
+        }
     },
 
     // 배지 획득
@@ -432,10 +527,80 @@ const BadgeSystem = {
 
     // 초기화
     init() {
+        this.checkVersion();
         this.checkTimeBadges();
         this.checkLoginStreak();
         this.earnBadge('first_login');
         this.injectStyles();
+    },
+
+    // 배지 공유하기 (소셜)
+    shareBadge(badgeId, platform = 'twitter') {
+        const badge = this.badges[badgeId];
+        if (!badge) return;
+
+        const text = `🏆 "${badge.name}" 배지를 획득했습니다! ${badge.icon}\n${badge.description}\n\n#주식투자 #가치투자 #포트폴리오지니어스`;
+        const url = window.location.origin + '/badges.html';
+
+        let shareUrl = '';
+        switch(platform) {
+            case 'twitter':
+                shareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`;
+                break;
+            case 'facebook':
+                shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}&quote=${encodeURIComponent(text)}`;
+                break;
+            case 'kakao':
+                // 카카오톡은 SDK 필요, 대신 클립보드 복사
+                this.copyToClipboard(text + '\n' + url);
+                alert('내용이 클립보드에 복사되었습니다. 카카오톡에 붙여넣기 하세요!');
+                this.earnBadge('social_sharer');
+                return;
+        }
+
+        if (shareUrl) {
+            window.open(shareUrl, '_blank', 'width=600,height=400');
+            this.earnBadge('social_sharer');
+        }
+    },
+
+    // 클립보드 복사
+    copyToClipboard(text) {
+        if (navigator.clipboard) {
+            navigator.clipboard.writeText(text);
+        } else {
+            const textarea = document.createElement('textarea');
+            textarea.value = text;
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textarea);
+        }
+    },
+
+    // 리더보드 데이터 생성 (로컬 시뮬레이션)
+    getLeaderboard() {
+        const myStats = this.getStats();
+        const myLevel = this.getLevel();
+
+        // 시뮬레이션된 리더보드 (실제 서버 연동 시 API 호출로 대체)
+        const leaderboard = [
+            { rank: 1, name: '투자의신', level: '투자 마스터', points: 850, icon: '👑' },
+            { rank: 2, name: '가치투자왕', level: '고급 투자자', points: 620, icon: '💎' },
+            { rank: 3, name: '워렌버핏Jr', level: '고급 투자자', points: 480, icon: '🥈' },
+            { rank: 4, name: '분석맨', level: '중급 투자자', points: 320, icon: '📊' },
+            { rank: 5, name: '주린이', level: '중급 투자자', points: 280, icon: '📈' }
+        ];
+
+        // 내 순위 계산
+        const myRank = leaderboard.filter(u => u.points > myStats.totalPoints).length + 1;
+
+        return {
+            leaderboard,
+            myRank,
+            myPoints: myStats.totalPoints,
+            myLevel: myLevel.name
+        };
     },
 
     // CSS 스타일 주입
