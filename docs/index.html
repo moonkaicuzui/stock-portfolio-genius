@@ -1713,6 +1713,202 @@
         :root[data-theme="light"] .legend-label {
             color: #1a1a2e;
         }
+
+        /* 온보딩 튜토리얼 스타일 */
+        .onboarding-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            z-index: 10000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .onboarding-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .onboarding-card {
+            background: linear-gradient(135deg, #1e1e3f 0%, #2d2d5a 100%);
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 600px;
+            width: 90%;
+            text-align: center;
+            border: 1px solid rgba(74, 222, 128, 0.3);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+            transform: translateY(20px);
+            transition: transform 0.3s ease;
+        }
+
+        .onboarding-overlay.active .onboarding-card {
+            transform: translateY(0);
+        }
+
+        .onboarding-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            animation: bounce 2s ease infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .onboarding-title {
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #4ade80;
+        }
+
+        .onboarding-description {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+
+        .onboarding-features {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-bottom: 30px;
+            text-align: left;
+        }
+
+        .onboarding-feature {
+            background: rgba(74, 222, 128, 0.1);
+            padding: 15px;
+            border-radius: 12px;
+            border: 1px solid rgba(74, 222, 128, 0.2);
+        }
+
+        .onboarding-feature-icon {
+            font-size: 1.5rem;
+            margin-bottom: 8px;
+        }
+
+        .onboarding-feature-title {
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #4ade80;
+        }
+
+        .onboarding-feature-desc {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .onboarding-progress {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 25px;
+        }
+
+        .onboarding-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .onboarding-dot.active {
+            background: #4ade80;
+            transform: scale(1.2);
+        }
+
+        .onboarding-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        .onboarding-btn {
+            padding: 12px 30px;
+            border-radius: 10px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: none;
+        }
+
+        .onboarding-btn.primary {
+            background: linear-gradient(135deg, #4ade80, #22c55e);
+            color: #000;
+            font-weight: bold;
+        }
+
+        .onboarding-btn.secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .onboarding-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(74, 222, 128, 0.3);
+        }
+
+        .onboarding-skip {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+        .onboarding-skip:hover {
+            color: #fff;
+        }
+
+        @media (max-width: 768px) {
+            .onboarding-features {
+                grid-template-columns: 1fr;
+            }
+            .onboarding-card {
+                padding: 25px;
+            }
+            .onboarding-title {
+                font-size: 1.4rem;
+            }
+        }
+
+        :root[data-theme="light"] .onboarding-card {
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            border-color: rgba(34, 197, 94, 0.3);
+        }
+
+        :root[data-theme="light"] .onboarding-description {
+            color: rgba(0, 0, 0, 0.7);
+        }
+
+        :root[data-theme="light"] .onboarding-feature {
+            background: rgba(34, 197, 94, 0.1);
+        }
+
+        :root[data-theme="light"] .onboarding-feature-desc {
+            color: rgba(0, 0, 0, 0.6);
+        }
+
+        :root[data-theme="light"] .onboarding-btn.secondary {
+            background: rgba(0, 0, 0, 0.05);
+            color: #1a1a2e;
+            border-color: rgba(0, 0, 0, 0.1);
+        }
     </style>
 </head>
 <body>
@@ -2361,6 +2557,7 @@
                             <a href="manage.html">⚙️ 관리</a>
                             <a href="guide.html">📖 가이드</a>
                             <a href="quiz.html">🧠 퀴즈</a>
+                            <a href="glossary.html">📚 용어집</a>
                         </nav>
                         <div style="display: flex; align-items: center; gap: 10px;">
                             <div class="last-updated">업데이트: ${formatDate(last_updated)}</div>
@@ -2626,6 +2823,9 @@
             renderTechnicalAnalysis();
             renderDividendTracking();
             generateAIRecommendations();
+
+            // 첫 방문 사용자를 위한 온보딩 튜토리얼 체크
+            checkOnboarding();
         }
 
         // ============================================
@@ -4666,10 +4866,164 @@
             }
         }
 
+        // ============================================
+        // 🎓 온보딩 튜토리얼 시스템
+        // ============================================
+
+        const onboardingSteps = [
+            {
+                icon: '👋',
+                title: '포트폴리오 지니어스에 오신 것을 환영합니다!',
+                description: '주식 투자를 배우고, 전문가들의 투자 철학을 익히며, 나만의 포트폴리오를 관리할 수 있는 종합 학습 플랫폼입니다.',
+                features: [
+                    { icon: '📊', title: '포트폴리오 분석', desc: '실시간 수익률과 리스크 분석' },
+                    { icon: '🤖', title: 'AI 대결', desc: '버핏, 린치 등 전설적 투자자와 경쟁' },
+                    { icon: '🔍', title: '스크리너', desc: '가치주, 성장주 탐색' },
+                    { icon: '📚', title: '학습 자료', desc: '용어집, 가이드, 퀴즈' }
+                ]
+            },
+            {
+                icon: '📈',
+                title: '포트폴리오 대시보드',
+                description: '메인 화면에서는 보유 종목의 수익률, 섹터 분산, 리스크 지표를 한눈에 볼 수 있습니다. 벤저민 그레이엄, 피터 린치, 레이 달리오 등 대가들의 분석 기법이 적용되어 있습니다.',
+                features: [
+                    { icon: '💰', title: '총 포트폴리오 가치', desc: '투자 원금 대비 수익률' },
+                    { icon: '📉', title: '샤프 비율', desc: '위험 대비 수익 효율성' },
+                    { icon: '🎯', title: 'PEG 비율', desc: '성장성 대비 저평가 분석' },
+                    { icon: '⚖️', title: '올웨더 분석', desc: '경제 사계절 대응력' }
+                ]
+            },
+            {
+                icon: '🎮',
+                title: '재미있게 배우기',
+                description: 'AI 투자자와의 대결, 투자 아이디어 예측, 퀴즈 도전 등 게이미피케이션 요소로 지루하지 않게 투자를 배울 수 있습니다.',
+                features: [
+                    { icon: '🏆', title: 'AI 포트폴리오 대결', desc: '워런 버핏 AI와 수익률 경쟁' },
+                    { icon: '💡', title: '아이디어 예측', desc: '매수/매도 의견 기록하고 검증' },
+                    { icon: '🧠', title: '투자 퀴즈', desc: '지식 테스트로 실력 점검' },
+                    { icon: '📜', title: '거래 내역', desc: '모든 매매 기록 분석' }
+                ]
+            },
+            {
+                icon: '🚀',
+                title: '지금 시작하세요!',
+                description: '왼쪽 상단의 네비게이션을 통해 각 기능을 탐색해 보세요. 처음이시라면 📖 가이드와 📚 용어집부터 시작하는 것을 추천드립니다.',
+                features: [
+                    { icon: '📖', title: '가이드', desc: '투자 원칙과 분석 방법 설명' },
+                    { icon: '📚', title: '용어집', desc: '50개 핵심 투자 용어 정리' },
+                    { icon: '🔍', title: '스크리너', desc: '종목 발굴 도구 체험' },
+                    { icon: '⚙️', title: '관리', desc: '포트폴리오 종목 편집' }
+                ]
+            }
+        ];
+
+        let currentOnboardingStep = 0;
+
+        function createOnboardingOverlay() {
+            const overlay = document.createElement('div');
+            overlay.id = 'onboardingOverlay';
+            overlay.className = 'onboarding-overlay';
+            overlay.innerHTML = `
+                <span class="onboarding-skip" onclick="skipOnboarding()">건너뛰기 ✕</span>
+                <div class="onboarding-card">
+                    <div class="onboarding-icon" id="onboardingIcon"></div>
+                    <div class="onboarding-title" id="onboardingTitle"></div>
+                    <div class="onboarding-description" id="onboardingDescription"></div>
+                    <div class="onboarding-features" id="onboardingFeatures"></div>
+                    <div class="onboarding-progress" id="onboardingProgress"></div>
+                    <div class="onboarding-buttons">
+                        <button class="onboarding-btn secondary" id="onboardingPrev" onclick="prevOnboardingStep()">이전</button>
+                        <button class="onboarding-btn primary" id="onboardingNext" onclick="nextOnboardingStep()">다음</button>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(overlay);
+        }
+
+        function showOnboarding() {
+            if (!document.getElementById('onboardingOverlay')) {
+                createOnboardingOverlay();
+            }
+            updateOnboardingStep();
+            document.getElementById('onboardingOverlay').classList.add('active');
+        }
+
+        function updateOnboardingStep() {
+            const step = onboardingSteps[currentOnboardingStep];
+            document.getElementById('onboardingIcon').textContent = step.icon;
+            document.getElementById('onboardingTitle').textContent = step.title;
+            document.getElementById('onboardingDescription').textContent = step.description;
+
+            document.getElementById('onboardingFeatures').innerHTML = step.features.map(f => `
+                <div class="onboarding-feature">
+                    <div class="onboarding-feature-icon">${f.icon}</div>
+                    <div class="onboarding-feature-title">${f.title}</div>
+                    <div class="onboarding-feature-desc">${f.desc}</div>
+                </div>
+            `).join('');
+
+            document.getElementById('onboardingProgress').innerHTML = onboardingSteps.map((_, i) =>
+                `<div class="onboarding-dot ${i === currentOnboardingStep ? 'active' : ''}"></div>`
+            ).join('');
+
+            const prevBtn = document.getElementById('onboardingPrev');
+            const nextBtn = document.getElementById('onboardingNext');
+
+            prevBtn.style.visibility = currentOnboardingStep === 0 ? 'hidden' : 'visible';
+            nextBtn.textContent = currentOnboardingStep === onboardingSteps.length - 1 ? '시작하기' : '다음';
+        }
+
+        function nextOnboardingStep() {
+            if (currentOnboardingStep < onboardingSteps.length - 1) {
+                currentOnboardingStep++;
+                updateOnboardingStep();
+            } else {
+                completeOnboarding();
+            }
+        }
+
+        function prevOnboardingStep() {
+            if (currentOnboardingStep > 0) {
+                currentOnboardingStep--;
+                updateOnboardingStep();
+            }
+        }
+
+        function skipOnboarding() {
+            completeOnboarding();
+        }
+
+        function completeOnboarding() {
+            localStorage.setItem('onboardingCompleted', 'true');
+            const overlay = document.getElementById('onboardingOverlay');
+            if (overlay) {
+                overlay.classList.remove('active');
+                setTimeout(() => overlay.remove(), 300);
+            }
+        }
+
+        function checkOnboarding() {
+            if (!localStorage.getItem('onboardingCompleted')) {
+                setTimeout(showOnboarding, 1000);
+            }
+        }
+
+        // 온보딩 리셋 함수 (테스트용)
+        function resetOnboarding() {
+            localStorage.removeItem('onboardingCompleted');
+            currentOnboardingStep = 0;
+            showOnboarding();
+        }
+
         // ESC 키로 차트 모달 닫기
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') {
                 closeChartModal();
+                // 온보딩도 ESC로 닫을 수 있게
+                const overlay = document.getElementById('onboardingOverlay');
+                if (overlay && overlay.classList.contains('active')) {
+                    skipOnboarding();
+                }
             }
         });
     </script>
