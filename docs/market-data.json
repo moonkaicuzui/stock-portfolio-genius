@@ -1,12 +1,12 @@
 {
-  "last_updated": "2025-12-23T03:58:29.892736",
+  "last_updated": "2025-12-23T09:26:57.838513",
   "vix": {
-    "value": 14.08,
+    "value": 14.09,
     "source": "Yahoo Finance",
     "success": true
   },
   "fear_greed": {
-    "value": 55,
+    "value": 57,
     "rating": "greed",
     "source": "CNN",
     "success": true
@@ -45,13 +45,13 @@
       "success": true
     },
     "kospi": {
-      "value": 4113.18,
-      "change_pct": 0.18,
+      "value": 4117.32,
+      "change_pct": 0.28,
       "success": true
     },
     "kosdaq": {
-      "value": 919.64,
-      "change_pct": -1.02,
+      "value": 919.56,
+      "change_pct": -1.03,
       "success": true
     }
   },
@@ -211,16 +211,16 @@
         "signal": "중립"
       },
       "macd": {
-        "macd": 0.31,
-        "signal": 0.25,
-        "histogram": 0.06
+        "macd": 0.37,
+        "signal": 0.3,
+        "histogram": 0.07
       },
       "macd_signal": "상승",
       "bollinger": {
-        "upper": 632.11,
-        "middle": 617.14,
-        "lower": 602.18,
-        "position": 56.9
+        "upper": 631.36,
+        "middle": 616.39,
+        "lower": 601.42,
+        "position": 59.4
       },
       "bb_signal": "중간",
       "success": true
@@ -267,7 +267,7 @@
       "success": true
     },
     "JNJ": {
-      "dividend_yield": 252.0,
+      "dividend_yield": 251.0,
       "dividend_rate": 5.2,
       "annual_dividend": 5.2,
       "ex_dividend_date": "2025-11-25",
@@ -285,7 +285,7 @@
       "success": true
     },
     "PG": {
-      "dividend_yield": 293.0,
+      "dividend_yield": 296.0,
       "dividend_rate": 4.23,
       "annual_dividend": 4.23,
       "ex_dividend_date": "2025-10-24",
@@ -294,7 +294,7 @@
       "success": true
     },
     "VZ": {
-      "dividend_yield": 693.0,
+      "dividend_yield": 690.0,
       "dividend_rate": 2.76,
       "annual_dividend": 2.76,
       "ex_dividend_date": "2026-01-12",
@@ -303,7 +303,7 @@
       "success": true
     },
     "T": {
-      "dividend_yield": 460.0,
+      "dividend_yield": 457.0,
       "dividend_rate": 1.11,
       "annual_dividend": 1.11,
       "ex_dividend_date": "2026-01-12",
@@ -312,7 +312,7 @@
       "success": true
     },
     "XOM": {
-      "dividend_yield": 353.0,
+      "dividend_yield": 349.0,
       "dividend_rate": 4.12,
       "annual_dividend": 4.12,
       "ex_dividend_date": "2025-11-14",
