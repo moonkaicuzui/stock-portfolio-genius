@@ -1,5 +1,5 @@
 {
-  "last_updated": "2025-12-22T23:17:59.380625",
+  "last_updated": "2025-12-23T01:23:58.973693",
   "initial_capital": 146031.04,
   "start_date": "2025-12-22",
   "summary": {
@@ -138,6 +138,11 @@
       "date": "2025-12-22",
       "total_value": 146031.04,
       "return_pct": 0.0
+    },
+    {
+      "date": "2025-12-23",
+      "total_value": 146895.34,
+      "return_pct": 0.59
     }
   ],
   "decisions": [
@@ -497,15 +502,27 @@
         "difference": "+0.41%p",
         "strategy": "장기 가치 투자 유지"
       }
+    },
+    {
+      "date": "2025-12-23T01:23:58.973724",
+      "action": "hold",
+      "symbol": "ALL",
+      "reasoning": "사용자 포트폴리오와 비슷한 수익률을 보이고 있습니다. 피터 린치의 관점에서 보유 종목들의 성장 스토리를 재점검하고 있습니다. 현재 전략을 유지하며 시장 기회를 모니터링합니다.",
+      "details": {
+        "ai_return": "0.59%",
+        "user_return": "0.18%",
+        "difference": "+0.41%p",
+        "strategy": "장기 가치 투자 유지"
+      }
     }
   ],
   "metrics": {
-    "win_rate": 0,
-    "avg_return": 0,
-    "sharpe_ratio": 0,
-    "max_drawdown": 0,
+    "win_rate": 50.0,
+    "avg_return": 0.3,
+    "sharpe_ratio": 1.0,
+    "max_drawdown": 0.0,
     "trade_count": 8,
-    "days_active": 0
+    "days_active": 1
   },
   "learning_log": [
     {
