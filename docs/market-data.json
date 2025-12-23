@@ -1,7 +1,7 @@
 {
-  "last_updated": "2025-12-22T21:25:01.287641",
+  "last_updated": "2025-12-23T03:58:29.892736",
   "vix": {
-    "value": 14.1,
+    "value": 14.08,
     "source": "Yahoo Finance",
     "success": true
   },
@@ -45,13 +45,13 @@
       "success": true
     },
     "kospi": {
-      "value": 4105.93,
-      "change_pct": 2.12,
+      "value": 4113.18,
+      "change_pct": 0.18,
       "success": true
     },
     "kosdaq": {
-      "value": 929.14,
-      "change_pct": 1.52,
+      "value": 919.64,
+      "change_pct": -1.02,
       "success": true
     }
   },
@@ -226,22 +226,22 @@
       "success": true
     },
     "SPY": {
-      "price": 684.72,
+      "price": 684.83,
       "rsi": {
         "value": 50.63,
         "signal": "중립"
       },
       "macd": {
-        "macd": 1.94,
-        "signal": 1.55,
+        "macd": 1.95,
+        "signal": 1.56,
         "histogram": 0.39
       },
       "macd_signal": "상승",
       "bollinger": {
-        "upper": 689.29,
-        "middle": 679.22,
+        "upper": 689.31,
+        "middle": 679.23,
         "lower": 669.15,
-        "position": 77.3
+        "position": 77.8
       },
       "bb_signal": "중간",
       "success": true
