@@ -1,5 +1,5 @@
 {
-  "last_updated": "2025-12-26T13:31:26.210452",
+  "last_updated": "2025-12-26T14:18:43.108315",
   "initial_capital": 146031.04,
   "start_date": "2025-12-22",
   "summary": {
@@ -161,19 +161,6 @@
     }
   ],
   "decisions": [
-    {
-      "date": "2025-12-22T09:37:00",
-      "action": "buy",
-      "symbol": "MSFT",
-      "shares": 30,
-      "price": 485.92,
-      "reasoning": "Microsoft는 클라우드(Azure)와 AI(Copilot)의 양대 성장 동력을 보유하고 있습니다. 존 보글의 인덱스 투자 관점에서 핵심 보유 종목입니다.",
-      "details": {
-        "bogle_index_weight": "높음",
-        "stability_score": 95,
-        "investment_amount": 14577.6
-      }
-    },
     {
       "date": "2025-12-22T03:40:45.824806",
       "action": "hold",
@@ -1361,6 +1348,18 @@
         "difference": "+0.12%p",
         "strategy": "장기 가치 투자 유지"
       }
+    },
+    {
+      "date": "2025-12-26T14:18:43.108337",
+      "action": "hold",
+      "symbol": "ALL",
+      "reasoning": "사용자 포트폴리오와 비슷한 수익률을 보이고 있습니다. 피터 린치의 관점에서 보유 종목들의 성장 스토리를 재점검하고 있습니다. 현재 전략을 유지하며 시장 기회를 모니터링합니다.",
+      "details": {
+        "ai_return": "2.03%",
+        "user_return": "1.91%",
+        "difference": "+0.12%p",
+        "strategy": "장기 가치 투자 유지"
+      }
     }
   ],
   "metrics": {
@@ -1368,7 +1367,7 @@
     "avg_return": 1.34,
     "sharpe_ratio": 1.53,
     "max_drawdown": 0.0,
-    "trade_count": 1,
+    "trade_count": 0,
     "days_active": 4
   },
   "learning_log": [
