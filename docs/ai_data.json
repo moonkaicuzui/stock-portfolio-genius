@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-01-06T23:18:40.630617",
+  "last_updated": "2026-01-07T01:26:02.988533",
   "initial_capital": 146031.04,
   "start_date": "2025-12-22",
   "summary": {
@@ -213,21 +213,14 @@
       "date": "2026-01-06",
       "total_value": 149440.44,
       "return_pct": 2.33
+    },
+    {
+      "date": "2026-01-07",
+      "total_value": 149748.34,
+      "return_pct": 2.55
     }
   ],
   "decisions": [
-    {
-      "date": "2026-01-02T12:37:00.906478",
-      "action": "hold",
-      "symbol": "ALL",
-      "reasoning": "사용자 포트폴리오와 비슷한 수익률을 보이고 있습니다. 피터 린치의 관점에서 보유 종목들의 성장 스토리를 재점검하고 있습니다. 현재 전략을 유지하며 시장 기회를 모니터링합니다.",
-      "details": {
-        "ai_return": "1.43%",
-        "user_return": "0.54%",
-        "difference": "+0.89%p",
-        "strategy": "장기 가치 투자 유지"
-      }
-    },
     {
       "date": "2026-01-02T13:31:26.623398",
       "action": "hold",
@@ -1415,15 +1408,27 @@
         "difference": "-1.77%p",
         "strategy": "장기 가치 투자 유지"
       }
+    },
+    {
+      "date": "2026-01-07T01:26:02.988569",
+      "action": "hold",
+      "symbol": "ALL",
+      "reasoning": "사용자 포트폴리오와 비슷한 수익률을 보이고 있습니다. 피터 린치의 관점에서 보유 종목들의 성장 스토리를 재점검하고 있습니다. 현재 전략을 유지하며 시장 기회를 모니터링합니다.",
+      "details": {
+        "ai_return": "2.55%",
+        "user_return": "4.32%",
+        "difference": "-1.77%p",
+        "strategy": "장기 가치 투자 유지"
+      }
     }
   ],
   "metrics": {
-    "win_rate": 93.8,
-    "avg_return": 1.8,
-    "sharpe_ratio": 2.83,
+    "win_rate": 94.1,
+    "avg_return": 1.85,
+    "sharpe_ratio": 2.87,
     "max_drawdown": 0.0,
     "trade_count": 0,
-    "days_active": 15
+    "days_active": 16
   },
   "learning_log": [
     {
