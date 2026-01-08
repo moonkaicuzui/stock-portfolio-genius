@@ -1,7 +1,7 @@
 {
-  "last_updated": "2026-01-07T21:27:09.383935",
+  "last_updated": "2026-01-08T04:00:38.623428",
   "vix": {
-    "value": 15.4,
+    "value": 15.38,
     "source": "Yahoo Finance",
     "success": true
   },
@@ -45,13 +45,13 @@
       "success": true
     },
     "kospi": {
-      "value": 4551.06,
-      "change_pct": 0.57,
+      "value": 4568.01,
+      "change_pct": 0.37,
       "success": true
     },
     "kosdaq": {
-      "value": 947.39,
-      "change_pct": -0.9,
+      "value": 944.37,
+      "change_pct": -0.32,
       "success": true
     }
   },
@@ -226,22 +226,22 @@
       "success": true
     },
     "SPY": {
-      "price": 689.6,
+      "price": 689.58,
       "rsi": {
         "value": 68.35,
         "signal": "중립"
       },
       "macd": {
-        "macd": 3.44,
-        "signal": 2.75,
+        "macd": 3.43,
+        "signal": 2.74,
         "histogram": 0.69
       },
       "macd_signal": "상승",
       "bollinger": {
-        "upper": 695.33,
-        "middle": 683.81,
+        "upper": 695.32,
+        "middle": 683.8,
         "lower": 672.28,
-        "position": 75.2
+        "position": 75.1
       },
       "bb_signal": "중간",
       "success": true
@@ -258,7 +258,7 @@
       "success": true
     },
     "MSFT": {
-      "dividend_yield": 76.0,
+      "dividend_yield": 75.0,
       "dividend_rate": 3.64,
       "annual_dividend": 3.64,
       "ex_dividend_date": "2026-02-19",
