@@ -1,7 +1,7 @@
 {
-  "last_updated": "2026-01-15T21:28:30.575043",
+  "last_updated": "2026-01-16T04:00:54.863436",
   "vix": {
-    "value": 15.79,
+    "value": 15.84,
     "source": "Yahoo Finance",
     "success": true
   },
@@ -24,7 +24,7 @@
     "success": true
   },
   "sp500_pe": {
-    "value": 28.02,
+    "value": 28.03,
     "source": "Yahoo Finance",
     "success": true
   },
@@ -45,13 +45,13 @@
       "success": true
     },
     "kospi": {
-      "value": 4797.55,
-      "change_pct": 1.58,
+      "value": 4851.95,
+      "change_pct": 1.13,
       "success": true
     },
     "kosdaq": {
-      "value": 951.16,
-      "change_pct": 0.95,
+      "value": 951.89,
+      "change_pct": 0.08,
       "success": true
     }
   },
@@ -226,22 +226,22 @@
       "success": true
     },
     "SPY": {
-      "price": 692.02,
+      "price": 692.24,
       "rsi": {
         "value": 58.06,
         "signal": "중립"
       },
       "macd": {
-        "macd": 3.71,
-        "signal": 2.97,
-        "histogram": 0.74
+        "macd": 3.73,
+        "signal": 2.98,
+        "histogram": 0.75
       },
       "macd_signal": "상승",
       "bollinger": {
-        "upper": 699.83,
-        "middle": 687.1,
-        "lower": 674.36,
-        "position": 69.3
+        "upper": 699.86,
+        "middle": 687.11,
+        "lower": 674.35,
+        "position": 70.1
       },
       "bb_signal": "중간",
       "success": true
@@ -258,7 +258,7 @@
       "success": true
     },
     "MSFT": {
-      "dividend_yield": 79.0,
+      "dividend_yield": 80.0,
       "dividend_rate": 3.64,
       "annual_dividend": 3.64,
       "ex_dividend_date": "2026-02-19",
@@ -267,7 +267,7 @@
       "success": true
     },
     "JNJ": {
-      "dividend_yield": 238.0,
+      "dividend_yield": 237.0,
       "dividend_rate": 5.2,
       "annual_dividend": 5.2,
       "ex_dividend_date": "2026-02-24",
@@ -276,7 +276,7 @@
       "success": true
     },
     "KO": {
-      "dividend_yield": 286.0,
+      "dividend_yield": 289.0,
       "dividend_rate": 2.04,
       "annual_dividend": 2.04,
       "ex_dividend_date": "2025-12-01",
@@ -285,7 +285,7 @@
       "success": true
     },
     "PG": {
-      "dividend_yield": 289.0,
+      "dividend_yield": 292.0,
       "dividend_rate": 4.23,
       "annual_dividend": 4.23,
       "ex_dividend_date": "2026-01-23",
@@ -294,7 +294,7 @@
       "success": true
     },
     "VZ": {
-      "dividend_yield": 693.0,
+      "dividend_yield": 701.0,
       "dividend_rate": 2.76,
       "annual_dividend": 2.76,
       "ex_dividend_date": "2026-01-12",
@@ -303,7 +303,7 @@
       "success": true
     },
     "T": {
-      "dividend_yield": 470.0,
+      "dividend_yield": 468.0,
       "dividend_rate": 1.11,
       "annual_dividend": 1.11,
       "ex_dividend_date": "2026-01-12",
@@ -312,7 +312,7 @@
       "success": true
     },
     "XOM": {
-      "dividend_yield": 316.0,
+      "dividend_yield": 319.0,
       "dividend_rate": 4.12,
       "annual_dividend": 4.12,
       "ex_dividend_date": "2025-11-14",
