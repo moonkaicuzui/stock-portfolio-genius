@@ -1,7 +1,7 @@
 {
-  "last_updated": "2026-01-19T09:35:59.010649",
+  "last_updated": "2026-01-19T21:26:44.567462",
   "vix": {
-    "value": 18.89,
+    "value": 18.84,
     "source": "Yahoo Finance",
     "success": true
   },
@@ -17,11 +17,11 @@
     "success": false
   },
   "yield_curve": {
-    "value": 0.67,
-    "ten_year": 4.23,
-    "two_year": 3.56,
-    "source": "Yahoo Finance",
-    "success": true
+    "value": 0.5,
+    "ten_year": 4.5,
+    "two_year": 4.0,
+    "source": "기본값",
+    "success": false
   },
   "sp500_pe": {
     "value": 28.0,
@@ -361,6 +361,6 @@
     "vix": true,
     "fear_greed": true,
     "cape": false,
-    "yield_curve": true
+    "yield_curve": false
   }
 }
