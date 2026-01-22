@@ -1,7 +1,7 @@
 {
-  "last_updated": "2026-01-22T09:34:40.586418",
+  "last_updated": "2026-01-22T21:30:50.484491",
   "vix": {
-    "value": 16.01,
+    "value": 15.64,
     "source": "Yahoo Finance",
     "success": true
   },
@@ -24,24 +24,24 @@
     "success": true
   },
   "sp500_pe": {
-    "value": 27.75,
+    "value": 27.89,
     "source": "Yahoo Finance",
     "success": true
   },
   "indices": {
     "sp500": {
-      "value": 6875.62,
-      "change_pct": 1.16,
+      "value": 6913.35,
+      "change_pct": 0.55,
       "success": true
     },
     "nasdaq": {
-      "value": 23224.82,
-      "change_pct": 1.18,
+      "value": 23436.02,
+      "change_pct": 0.91,
       "success": true
     },
     "dow": {
-      "value": 49077.23,
-      "change_pct": 1.21,
+      "value": 49384.01,
+      "change_pct": 0.63,
       "success": true
     },
     "kospi": {
@@ -58,72 +58,72 @@
   "market_cycle": "expansion",
   "technical_indicators": {
     "AAPL": {
-      "price": 247.65,
+      "price": 248.35,
       "rsi": {
-        "value": 72.56,
-        "signal": "과매수"
+        "value": 60.98,
+        "signal": "중립"
       },
       "macd": {
-        "macd": -5.81,
-        "signal": -4.65,
-        "histogram": -1.16
+        "macd": -6.19,
+        "signal": -4.95,
+        "histogram": -1.24
       },
       "macd_signal": "하락",
       "bollinger": {
-        "upper": 280.48,
-        "middle": 263.9,
-        "lower": 247.31,
-        "position": 1.0
+        "upper": 280.32,
+        "middle": 262.77,
+        "lower": 245.21,
+        "position": 8.9
       },
       "bb_signal": "하단 근처",
       "success": true
     },
     "MSFT": {
-      "price": 444.11,
+      "price": 451.14,
       "rsi": {
-        "value": 38.17,
+        "value": 37.43,
         "signal": "중립"
       },
       "macd": {
-        "macd": -8.78,
-        "signal": -7.02,
-        "histogram": -1.76
+        "macd": -9.28,
+        "signal": -7.42,
+        "histogram": -1.86
       },
       "macd_signal": "하락",
       "bollinger": {
-        "upper": 500.24,
-        "middle": 474.66,
-        "lower": 449.08,
-        "position": 0
+        "upper": 500.04,
+        "middle": 472.97,
+        "lower": 445.91,
+        "position": 9.7
       },
       "bb_signal": "하단 근처",
       "success": true
     },
     "GOOGL": {
-      "price": 328.38,
+      "price": 330.54,
       "rsi": {
-        "value": 62.86,
+        "value": 55.47,
         "signal": "중립"
       },
       "macd": {
-        "macd": 6.1,
-        "signal": 4.88,
-        "histogram": 1.22
+        "macd": 5.9,
+        "signal": 4.72,
+        "histogram": 1.18
       },
       "macd_signal": "상승",
       "bollinger": {
-        "upper": 338.59,
-        "middle": 321.55,
-        "lower": 304.51,
-        "position": 70.0
+        "upper": 339.16,
+        "middle": 322.59,
+        "lower": 306.02,
+        "position": 74.0
       },
       "bb_signal": "중간",
       "success": true
     },
     "NVDA": {
-      "price": 183.32,
+      "price": 184.84,
       "rsi": {
-        "value": 50.41,
+        "value": 49.07,
         "signal": "중립"
       },
       "macd": {
@@ -133,81 +133,81 @@
       },
       "macd_signal": "하락",
       "bollinger": {
-        "upper": 191.88,
-        "middle": 186.3,
-        "lower": 180.73,
-        "position": 23.2
+        "upper": 191.85,
+        "middle": 186.36,
+        "lower": 180.87,
+        "position": 36.2
       },
       "bb_signal": "중간",
       "success": true
     },
     "TSLA": {
-      "price": 431.44,
+      "price": 449.36,
       "rsi": {
-        "value": 42.48,
+        "value": 37.65,
         "signal": "중립"
       },
       "macd": {
-        "macd": -5.66,
-        "signal": -4.53,
-        "histogram": -1.13
+        "macd": -4.62,
+        "signal": -3.7,
+        "histogram": -0.92
       },
       "macd_signal": "하락",
       "bollinger": {
-        "upper": 488.45,
-        "middle": 449.79,
-        "lower": 411.12,
-        "position": 26.3
+        "upper": 482.11,
+        "middle": 447.82,
+        "lower": 413.52,
+        "position": 52.3
       },
       "bb_signal": "중간",
       "success": true
     },
     "AMZN": {
-      "price": 231.31,
+      "price": 234.34,
       "rsi": {
-        "value": 58.92,
+        "value": 55.14,
         "signal": "중립"
       },
       "macd": {
-        "macd": 1.49,
-        "signal": 1.19,
-        "histogram": 0.3
+        "macd": 1.17,
+        "signal": 0.94,
+        "histogram": 0.23
       },
       "macd_signal": "상승",
       "bollinger": {
-        "upper": 248.39,
-        "middle": 236.1,
-        "lower": 223.8,
-        "position": 30.5
+        "upper": 248.21,
+        "middle": 236.39,
+        "lower": 224.57,
+        "position": 41.3
       },
       "bb_signal": "중간",
       "success": true
     },
     "META": {
-      "price": 612.96,
+      "price": 647.63,
       "rsi": {
-        "value": 17.84,
+        "value": 12.35,
         "signal": "과매도"
       },
       "macd": {
-        "macd": -10.55,
-        "signal": -8.44,
-        "histogram": -2.11
+        "macd": -8.44,
+        "signal": -6.75,
+        "histogram": -1.69
       },
       "macd_signal": "하락",
       "bollinger": {
-        "upper": 685.01,
-        "middle": 645.32,
-        "lower": 605.63,
-        "position": 9.2
+        "upper": 683.64,
+        "middle": 644.62,
+        "lower": 605.61,
+        "position": 53.9
       },
-      "bb_signal": "하단 근처",
+      "bb_signal": "중간",
       "success": true
     },
     "QQQ": {
-      "price": 616.28,
+      "price": 620.76,
       "rsi": {
-        "value": 45.33,
+        "value": 38.36,
         "signal": "중립"
       },
       "macd": {
@@ -217,31 +217,31 @@
       },
       "macd_signal": "상승",
       "bollinger": {
-        "upper": 629.87,
-        "middle": 620.49,
-        "lower": 611.11,
-        "position": 27.6
+        "upper": 629.93,
+        "middle": 620.57,
+        "lower": 611.21,
+        "position": 51.0
       },
       "bb_signal": "중간",
       "success": true
     },
     "SPY": {
-      "price": 685.4,
+      "price": 688.98,
       "rsi": {
-        "value": 45.89,
+        "value": 38.0,
         "signal": "중립"
       },
       "macd": {
-        "macd": 1.81,
-        "signal": 1.45,
-        "histogram": 0.36
+        "macd": 1.68,
+        "signal": 1.34,
+        "histogram": 0.34
       },
       "macd_signal": "상승",
       "bollinger": {
-        "upper": 697.19,
-        "middle": 688.61,
-        "lower": 680.04,
-        "position": 31.3
+        "upper": 697.22,
+        "middle": 688.82,
+        "lower": 680.42,
+        "position": 51.0
       },
       "bb_signal": "중간",
       "success": true
