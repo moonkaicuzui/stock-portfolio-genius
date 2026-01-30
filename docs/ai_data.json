@@ -1,14 +1,14 @@
 {
-  "last_updated": "2026-01-30T21:25:49.536080",
+  "last_updated": "2026-01-30T22:21:55.926209",
   "initial_capital": 146031.04,
   "start_date": "2025-12-22",
   "summary": {
-    "total_value": 149036.44,
+    "total_value": 149031.94,
     "total_cost": 146031.04,
-    "total_gain_loss": 3005.4,
-    "total_gain_loss_pct": 2.06,
+    "total_gain_loss": 3000.9,
+    "total_gain_loss_pct": 2.05,
     "cash": 34153.94,
-    "invested": 114882.5,
+    "invested": 114878.0,
     "holdings_count": 8
   },
   "holdings": [
@@ -33,11 +33,11 @@
       "shares": 30,
       "avg_price": 307.16,
       "added_date": "2025-12-22",
-      "current_price": 338.23,
-      "market_value": 10146.9,
+      "current_price": 338.0,
+      "market_value": 10140.0,
       "cost_basis": 9214.8,
-      "gain_loss": 932.1,
-      "gain_loss_pct": 10.12,
+      "gain_loss": 925.2,
+      "gain_loss_pct": 10.04,
       "ai_score": 62.5,
       "reasoning": "AI/클라우드 성장, 막스 리스크 점수 낮음, 멍거 복리 효과 우수",
       "recommendation": "보유"
@@ -108,11 +108,11 @@
       "shares": 40,
       "avg_price": 288.95,
       "added_date": "2025-12-22",
-      "current_price": 330.5,
-      "market_value": 13220.0,
+      "current_price": 330.56,
+      "market_value": 13222.4,
       "cost_basis": 11558.0,
-      "gain_loss": 1662.0,
-      "gain_loss_pct": 14.38,
+      "gain_loss": 1664.4,
+      "gain_loss_pct": 14.4,
       "ai_score": 65.0,
       "reasoning": "반도체 제조 독점, 그레이엄 가치주, 탈레브 안티프래질",
       "recommendation": "보유"
@@ -336,18 +336,6 @@
     }
   ],
   "decisions": [
-    {
-      "date": "2026-01-26T08:29:22.238335",
-      "action": "hold",
-      "symbol": "ALL",
-      "reasoning": "AI 포트폴리오가 사용자 대비 6.01%p 뒤처지고 있습니다. 하워드 막스의 '2차적 사고'에 따라 현재 포지션을 재평가하고 있습니다. 단기 변동에 휘둘리지 않고 장기적 관점을 유지하되, 저평가 종목 발굴에 집중합니다.",
-      "details": {
-        "ai_return": "1.27%",
-        "user_return": "7.28%",
-        "difference": "-6.01%p",
-        "strategy": "장기 가치 투자 유지"
-      }
-    },
     {
       "date": "2026-01-26T09:31:54.792946",
       "action": "hold",
@@ -1533,6 +1521,18 @@
         "ai_return": "2.06%",
         "user_return": "6.29%",
         "difference": "-4.23%p",
+        "strategy": "장기 가치 투자 유지"
+      }
+    },
+    {
+      "date": "2026-01-30T22:21:55.926233",
+      "action": "hold",
+      "symbol": "ALL",
+      "reasoning": "사용자 포트폴리오와 비슷한 수익률을 보이고 있습니다. 피터 린치의 관점에서 보유 종목들의 성장 스토리를 재점검하고 있습니다. 현재 전략을 유지하며 시장 기회를 모니터링합니다.",
+      "details": {
+        "ai_return": "2.05%",
+        "user_return": "6.29%",
+        "difference": "-4.24%p",
         "strategy": "장기 가치 투자 유지"
       }
     }
