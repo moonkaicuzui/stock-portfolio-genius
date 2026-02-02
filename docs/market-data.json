@@ -1,9 +1,9 @@
 {
-  "last_updated": "2026-02-02T04:54:05.924900",
+  "last_updated": "2026-02-02T09:52:16.160658",
   "vix": {
-    "value": 17.44,
-    "source": "Yahoo Finance",
-    "success": true
+    "value": 20.0,
+    "source": "기본값",
+    "success": false
   },
   "fear_greed": {
     "value": 57,
@@ -45,13 +45,13 @@
       "success": true
     },
     "kospi": {
-      "value": 5036.84,
-      "change_pct": -3.59,
+      "value": 5224.36,
+      "change_pct": 0.06,
       "success": true
     },
     "kosdaq": {
-      "value": 1116.7,
-      "change_pct": -2.85,
+      "value": 1149.44,
+      "change_pct": -1.29,
       "success": true
     }
   },
@@ -358,7 +358,7 @@
     }
   },
   "data_quality": {
-    "vix": true,
+    "vix": false,
     "fear_greed": true,
     "cape": false,
     "yield_curve": true
