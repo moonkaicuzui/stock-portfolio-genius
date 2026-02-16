@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-02-16T09:55:59.190887",
+  "generated_at": "2026-02-16T21:36:09.290567",
   "rule_based": {
     "type": "rule_based",
-    "timestamp": "2026-02-16T09:55:58.983488",
+    "timestamp": "2026-02-16T21:36:09.101146",
     "portfolio_metrics": {
-      "total_value": 130501.92,
+      "total_value": 129543.92,
       "total_cost": 125818.63,
-      "total_return_pct": 3.72,
+      "total_return_pct": 2.96,
       "holdings_count": 12
     },
     "risk_metrics": {
@@ -18,7 +18,7 @@
       "leverage_pct": 4.0
     },
     "market_conditions": {
-      "vix": 20.42,
+      "vix": 21.2,
       "fear_greed": 36,
       "market_cycle": "contraction"
     },
@@ -90,6 +90,16 @@
     ],
     "losers": [
       {
+        "symbol": "SMR",
+        "name": "NuScale Power Corp.",
+        "shares": 200,
+        "avg_price": 19.1,
+        "current_price": 14.31,
+        "value": 2862.0,
+        "gain_loss_pct": -25.08,
+        "sector": "기타"
+      },
+      {
         "symbol": "AMZN",
         "name": "Amazon.com Inc.",
         "shares": 25,
@@ -128,16 +138,6 @@
         "value": 21136.05,
         "gain_loss_pct": -8.05,
         "sector": "기타"
-      },
-      {
-        "symbol": "GOOGL",
-        "name": "Alphabet Inc. Class A",
-        "shares": 10,
-        "avg_price": 318.0,
-        "current_price": 305.72,
-        "value": 3057.2,
-        "gain_loss_pct": -3.86,
-        "sector": "기타"
       }
     ],
     "holdings": [
@@ -146,9 +146,9 @@
         "name": "NuScale Power Corp.",
         "shares": 200,
         "avg_price": 19.1,
-        "current_price": 19.1,
-        "value": 3820.0,
-        "gain_loss_pct": 0.0,
+        "current_price": 14.31,
+        "value": 2862.0,
+        "gain_loss_pct": -25.08,
         "sector": "기타"
       },
       {
