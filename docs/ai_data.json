@@ -1,14 +1,14 @@
 {
-  "last_updated": "2026-02-20T18:42:15.142792",
+  "last_updated": "2026-02-20T19:35:32.106952",
   "initial_capital": 146031.04,
   "start_date": "2025-12-22",
   "summary": {
-    "total_value": 146577.14,
+    "total_value": 146468.64,
     "total_cost": 146031.04,
-    "total_gain_loss": 546.1,
-    "total_gain_loss_pct": 0.37,
+    "total_gain_loss": 437.6,
+    "total_gain_loss_pct": 0.3,
     "cash": 34153.94,
-    "invested": 112423.2,
+    "invested": 112314.7,
     "holdings_count": 8
   },
   "holdings": [
@@ -18,11 +18,11 @@
       "shares": 150,
       "avg_price": 180.99,
       "added_date": "2025-12-22",
-      "current_price": 189.35,
-      "market_value": 28402.5,
+      "current_price": 189.13,
+      "market_value": 28369.5,
       "cost_basis": 27148.5,
-      "gain_loss": 1254.0,
-      "gain_loss_pct": 4.62,
+      "gain_loss": 1221.0,
+      "gain_loss_pct": 4.5,
       "ai_score": 59.0,
       "reasoning": "AI 반도체 리더, 그레이엄 안전마진 확보, 린치 성장주 분류",
       "recommendation": "보유"
@@ -33,11 +33,11 @@
       "shares": 30,
       "avg_price": 307.16,
       "added_date": "2025-12-22",
-      "current_price": 315.44,
-      "market_value": 9463.2,
+      "current_price": 315.05,
+      "market_value": 9451.5,
       "cost_basis": 9214.8,
-      "gain_loss": 248.4,
-      "gain_loss_pct": 2.7,
+      "gain_loss": 236.7,
+      "gain_loss_pct": 2.57,
       "ai_score": 71.0,
       "reasoning": "AI/클라우드 성장, 막스 리스크 점수 낮음, 멍거 복리 효과 우수",
       "recommendation": "매수"
@@ -63,11 +63,11 @@
       "shares": 50,
       "avg_price": 340.36,
       "added_date": "2025-12-22",
-      "current_price": 334.47,
-      "market_value": 16723.5,
+      "current_price": 333.67,
+      "market_value": 16683.5,
       "cost_basis": 17018.0,
-      "gain_loss": -294.5,
-      "gain_loss_pct": -1.73,
+      "gain_loss": -334.5,
+      "gain_loss_pct": -1.97,
       "ai_score": 51.8,
       "reasoning": "반도체 인프라 핵심, 그린블랫 마법공식 고득점",
       "recommendation": "관망"
@@ -78,11 +78,11 @@
       "shares": 120,
       "avg_price": 84.09,
       "added_date": "2025-12-22",
-      "current_price": 79.31,
-      "market_value": 9517.2,
+      "current_price": 79.07,
+      "market_value": 9488.4,
       "cost_basis": 10090.8,
-      "gain_loss": -573.6,
-      "gain_loss_pct": -5.68,
+      "gain_loss": -602.4,
+      "gain_loss_pct": -5.97,
       "ai_score": 58.5,
       "reasoning": "데이터센터 성장, 오닐 CAN SLIM 충족, 린치 10배 후보",
       "recommendation": "보유"
@@ -93,11 +93,11 @@
       "shares": 20,
       "avg_price": 658.77,
       "added_date": "2025-12-22",
-      "current_price": 657.14,
-      "market_value": 13142.8,
+      "current_price": 656.17,
+      "market_value": 13123.4,
       "cost_basis": 13175.4,
-      "gain_loss": -32.6,
-      "gain_loss_pct": -0.25,
+      "gain_loss": -52.0,
+      "gain_loss_pct": -0.39,
       "ai_score": 69.5,
       "reasoning": "AI 광고 혁신, 멍거 경쟁우위 보유, 현금흐름 우수",
       "recommendation": "보유"
@@ -108,11 +108,11 @@
       "shares": 40,
       "avg_price": 288.95,
       "added_date": "2025-12-22",
-      "current_price": 370.77,
-      "market_value": 14830.8,
+      "current_price": 372.16,
+      "market_value": 14886.4,
       "cost_basis": 11558.0,
-      "gain_loss": 3272.8,
-      "gain_loss_pct": 28.32,
+      "gain_loss": 3328.4,
+      "gain_loss_pct": 28.8,
       "ai_score": 65.0,
       "reasoning": "반도체 제조 독점, 그레이엄 가치주, 탈레브 안티프래질",
       "recommendation": "보유"
@@ -123,11 +123,11 @@
       "shares": 30,
       "avg_price": 485.92,
       "added_date": "2025-12-22",
-      "current_price": 398.2,
-      "market_value": 11946.0,
+      "current_price": 397.16,
+      "market_value": 11914.8,
       "cost_basis": 14577.6,
-      "gain_loss": -2631.6,
-      "gain_loss_pct": -18.05,
+      "gain_loss": -2662.8,
+      "gain_loss_pct": -18.27,
       "ai_score": 67.5,
       "reasoning": "클라우드+AI 양대 성장, 보글 인덱스 핵심, 최고 안정성",
       "recommendation": "보유"
@@ -441,18 +441,6 @@
     }
   ],
   "decisions": [
-    {
-      "date": "2026-02-15T16:27:14.694664",
-      "action": "hold",
-      "symbol": "ALL",
-      "reasoning": "사용자 포트폴리오와 비슷한 수익률을 보이고 있습니다. 피터 린치의 관점에서 보유 종목들의 성장 스토리를 재점검하고 있습니다. 현재 전략을 유지하며 시장 기회를 모니터링합니다.",
-      "details": {
-        "ai_return": "-1.47%",
-        "user_return": "2.96%",
-        "difference": "-4.43%p",
-        "strategy": "장기 가치 투자 유지"
-      }
-    },
     {
       "date": "2026-02-15T17:23:20.815592",
       "action": "hold",
@@ -1638,6 +1626,18 @@
         "ai_return": "0.37%",
         "user_return": "4.98%",
         "difference": "-4.61%p",
+        "strategy": "장기 가치 투자 유지"
+      }
+    },
+    {
+      "date": "2026-02-20T19:35:32.106979",
+      "action": "hold",
+      "symbol": "ALL",
+      "reasoning": "사용자 포트폴리오와 비슷한 수익률을 보이고 있습니다. 피터 린치의 관점에서 보유 종목들의 성장 스토리를 재점검하고 있습니다. 현재 전략을 유지하며 시장 기회를 모니터링합니다.",
+      "details": {
+        "ai_return": "0.30%",
+        "user_return": "4.92%",
+        "difference": "-4.62%p",
         "strategy": "장기 가치 투자 유지"
       }
     }
