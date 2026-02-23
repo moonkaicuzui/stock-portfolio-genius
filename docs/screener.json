@@ -40,7 +40,7 @@
       },
       "grade": "B",
       "recommendation": "Hold",
-      "fetched_at": "2026-02-23T04:26:15.962633"
+      "fetched_at": "2026-02-23T06:04:17.059308"
     },
     {
       "symbol": "DIS",
@@ -82,7 +82,7 @@
       },
       "grade": "B",
       "recommendation": "Hold",
-      "fetched_at": "2026-02-23T04:26:21.521923"
+      "fetched_at": "2026-02-23T06:04:23.121147"
     },
     {
       "symbol": "PSX",
@@ -124,7 +124,7 @@
       },
       "grade": "B",
       "recommendation": "Hold",
-      "fetched_at": "2026-02-23T04:26:27.232531"
+      "fetched_at": "2026-02-23T06:04:28.969367"
     },
     {
       "symbol": "EOG",
@@ -166,7 +166,7 @@
       },
       "grade": "B",
       "recommendation": "Hold",
-      "fetched_at": "2026-02-23T04:26:26.990429"
+      "fetched_at": "2026-02-23T06:04:28.729840"
     },
     {
       "symbol": "MPC",
@@ -208,7 +208,7 @@
       },
       "grade": "B",
       "recommendation": "Hold",
-      "fetched_at": "2026-02-23T04:26:27.781691"
+      "fetched_at": "2026-02-23T06:04:29.534972"
     },
     {
       "symbol": "UNH",
@@ -250,7 +250,7 @@
       },
       "grade": "B",
       "recommendation": "Hold",
-      "fetched_at": "2026-02-23T04:26:15.522427"
+      "fetched_at": "2026-02-23T06:04:16.690883"
     },
     {
       "symbol": "COP",
@@ -292,7 +292,7 @@
       },
       "grade": "B",
       "recommendation": "Hold",
-      "fetched_at": "2026-02-23T04:26:26.304777"
+      "fetched_at": "2026-02-23T06:04:28.112224"
     },
     {
       "symbol": "C",
@@ -334,7 +334,7 @@
       },
       "grade": "B",
       "recommendation": "Hold",
-      "fetched_at": "2026-02-23T04:26:14.786579"
+      "fetched_at": "2026-02-23T06:04:15.990748"
     },
     {
       "symbol": "BAC",
@@ -376,7 +376,49 @@
       },
       "grade": "B",
       "recommendation": "Hold",
-      "fetched_at": "2026-02-23T04:26:12.391822"
+      "fetched_at": "2026-02-23T06:04:13.598512"
+    },
+    {
+      "symbol": "BMY",
+      "name": "Bristol-Myers Squibb Company",
+      "sector": "Healthcare",
+      "industry": "Drug Manufacturers - General",
+      "price": 60.66,
+      "market_cap": 123532492800,
+      "fundamentals": {
+        "trailing_pe": 17.53,
+        "forward_pe": 9.94,
+        "pb_ratio": 6.69,
+        "ps_ratio": 2.56,
+        "ev_ebitda": 8.37,
+        "earnings_yield": 5.7,
+        "revenue_growth": 1.3,
+        "earnings_growth": 1392.1,
+        "growth_tier": "hypergrowth"
+      },
+      "technicals": {
+        "sma_50": 55.65,
+        "sma_200": 48.14,
+        "rsi": 73.24,
+        "week_52_high": 63.33,
+        "week_52_low": 42.52,
+        "bollinger_position": 73.68,
+        "price_vs_sma50": 9.01,
+        "price_vs_sma200": 26.0
+      },
+      "scores": {
+        "per_score": 88.0,
+        "pbr_score": 10,
+        "psr_score": 60,
+        "ev_ebitda_score": 60,
+        "earnings_yield_score": 60,
+        "fundamental_score": 58.4,
+        "technical_score": 38.89,
+        "value_score": 52.55
+      },
+      "grade": "B",
+      "recommendation": "Hold",
+      "fetched_at": "2026-02-23T06:04:19.456653"
     },
     {
       "symbol": "WFC",
@@ -418,7 +460,7 @@
       },
       "grade": "B",
       "recommendation": "Hold",
-      "fetched_at": "2026-02-23T04:26:12.723932"
+      "fetched_at": "2026-02-23T06:04:13.934286"
     },
     {
       "symbol": "VLO",
@@ -460,7 +502,7 @@
       },
       "grade": "B",
       "recommendation": "Hold",
-      "fetched_at": "2026-02-23T04:26:27.546528"
+      "fetched_at": "2026-02-23T06:04:29.285028"
     },
     {
       "symbol": "CRM",
@@ -502,7 +544,7 @@
       },
       "grade": "B",
       "recommendation": "Hold",
-      "fetched_at": "2026-02-23T04:26:11.787831"
+      "fetched_at": "2026-02-23T06:04:12.945193"
     },
     {
       "symbol": "UPS",
@@ -544,49 +586,7 @@
       },
       "grade": "B",
       "recommendation": "Hold",
-      "fetched_at": "2026-02-23T04:26:23.692659"
-    },
-    {
-      "symbol": "BMY",
-      "name": "Bristol-Myers Squibb Company",
-      "sector": "Healthcare",
-      "industry": "Drug Manufacturers - General",
-      "price": 60.66,
-      "market_cap": 123532492800,
-      "fundamentals": {
-        "trailing_pe": 17.53,
-        "forward_pe": 10.0,
-        "pb_ratio": 6.69,
-        "ps_ratio": 2.56,
-        "ev_ebitda": 8.37,
-        "earnings_yield": 5.7,
-        "revenue_growth": 1.3,
-        "earnings_growth": 1392.1,
-        "growth_tier": "hypergrowth"
-      },
-      "technicals": {
-        "sma_50": 55.65,
-        "sma_200": 48.14,
-        "rsi": 73.24,
-        "week_52_high": 63.33,
-        "week_52_low": 42.52,
-        "bollinger_position": 73.68,
-        "price_vs_sma50": 9.01,
-        "price_vs_sma200": 26.0
-      },
-      "scores": {
-        "per_score": 74.0,
-        "pbr_score": 10,
-        "psr_score": 60,
-        "ev_ebitda_score": 60,
-        "earnings_yield_score": 60,
-        "fundamental_score": 54.2,
-        "technical_score": 38.89,
-        "value_score": 49.61
-      },
-      "grade": "C",
-      "recommendation": "Weak Hold",
-      "fetched_at": "2026-02-23T04:26:18.156818"
+      "fetched_at": "2026-02-23T06:04:25.553920"
     },
     {
       "symbol": "XOM",
@@ -628,7 +628,7 @@
       },
       "grade": "C",
       "recommendation": "Weak Hold",
-      "fetched_at": "2026-02-23T04:26:25.541110"
+      "fetched_at": "2026-02-23T06:04:27.410337"
     },
     {
       "symbol": "MS",
@@ -670,7 +670,7 @@
       },
       "grade": "C",
       "recommendation": "Weak Hold",
-      "fetched_at": "2026-02-23T04:26:13.344099"
+      "fetched_at": "2026-02-23T06:04:14.489718"
     },
     {
       "symbol": "GS",
@@ -712,7 +712,7 @@
       },
       "grade": "C",
       "recommendation": "Weak Hold",
-      "fetched_at": "2026-02-23T04:26:13.057300"
+      "fetched_at": "2026-02-23T06:04:14.208688"
     },
     {
       "symbol": "OXY",
@@ -754,7 +754,7 @@
       },
       "grade": "C",
       "recommendation": "Weak Hold",
-      "fetched_at": "2026-02-23T04:26:28.115379"
+      "fetched_at": "2026-02-23T06:04:29.853145"
     },
     {
       "symbol": "CVX",
@@ -796,7 +796,7 @@
       },
       "grade": "C",
       "recommendation": "Weak Hold",
-      "fetched_at": "2026-02-23T04:26:25.962712"
+      "fetched_at": "2026-02-23T06:04:27.765695"
     },
     {
       "symbol": "SLB",
@@ -838,7 +838,7 @@
       },
       "grade": "C",
       "recommendation": "Weak Hold",
-      "fetched_at": "2026-02-23T04:26:26.650376"
+      "fetched_at": "2026-02-23T06:04:28.414881"
     },
     {
       "symbol": "TMO",
@@ -880,7 +880,7 @@
       },
       "grade": "C",
       "recommendation": "Weak Hold",
-      "fetched_at": "2026-02-23T04:26:16.825152"
+      "fetched_at": "2026-02-23T06:04:18.027036"
     },
     {
       "symbol": "MRK",
@@ -922,7 +922,7 @@
       },
       "grade": "C",
       "recommendation": "Weak Hold",
-      "fetched_at": "2026-02-23T04:26:16.545976"
+      "fetched_at": "2026-02-23T06:04:17.731107"
     },
     {
       "symbol": "INTC",
@@ -964,7 +964,7 @@
       },
       "grade": "C",
       "recommendation": "Weak Hold",
-      "fetched_at": "2026-02-23T04:26:11.581796"
+      "fetched_at": "2026-02-23T06:04:12.737881"
     },
     {
       "symbol": "JPM",
@@ -1006,7 +1006,7 @@
       },
       "grade": "C",
       "recommendation": "Weak Hold",
-      "fetched_at": "2026-02-23T04:26:12.098703"
+      "fetched_at": "2026-02-23T06:04:13.278925"
     },
     {
       "symbol": "AMZN",
@@ -1017,7 +1017,7 @@
       "market_cap": 2255514238976,
       "fundamentals": {
         "trailing_pe": 29.34,
-        "forward_pe": 22.63,
+        "forward_pe": 22.61,
         "pb_ratio": 5.49,
         "ps_ratio": 3.15,
         "ev_ebitda": 15.86,
@@ -1048,7 +1048,7 @@
       },
       "grade": "D",
       "recommendation": "Avoid",
-      "fetched_at": "2026-02-23T04:26:10.513165"
+      "fetched_at": "2026-02-23T06:04:11.621833"
     },
     {
       "symbol": "PEP",
@@ -1090,7 +1090,7 @@
       },
       "grade": "D",
       "recommendation": "Avoid",
-      "fetched_at": "2026-02-23T04:26:19.383929"
+      "fetched_at": "2026-02-23T06:04:20.705956"
     },
     {
       "symbol": "META",
@@ -1132,7 +1132,7 @@
       },
       "grade": "D",
       "recommendation": "Avoid",
-      "fetched_at": "2026-02-23T04:26:10.689371"
+      "fetched_at": "2026-02-23T06:04:11.793116"
     },
     {
       "symbol": "KMI",
@@ -1174,7 +1174,7 @@
       },
       "grade": "D",
       "recommendation": "Avoid",
-      "fetched_at": "2026-02-23T04:26:28.373270"
+      "fetched_at": "2026-02-23T06:04:30.147713"
     },
     {
       "symbol": "DHR",
@@ -1196,7 +1196,7 @@
       },
       "technicals": {
         "sma_50": 226.85,
-        "sma_200": 209.08,
+        "sma_200": 209.09,
         "rsi": 38.97,
         "week_52_high": 242.8,
         "week_52_low": 171.0,
@@ -1216,7 +1216,7 @@
       },
       "grade": "D",
       "recommendation": "Avoid",
-      "fetched_at": "2026-02-23T04:26:17.417460"
+      "fetched_at": "2026-02-23T06:04:18.732789"
     },
     {
       "symbol": "AXP",
@@ -1258,7 +1258,7 @@
       },
       "grade": "D",
       "recommendation": "Avoid",
-      "fetched_at": "2026-02-23T04:26:14.199006"
+      "fetched_at": "2026-02-23T06:04:15.448739"
     },
     {
       "symbol": "JNJ",
@@ -1300,7 +1300,7 @@
       },
       "grade": "D",
       "recommendation": "Avoid",
-      "fetched_at": "2026-02-23T04:26:15.168541"
+      "fetched_at": "2026-02-23T06:04:16.353760"
     },
     {
       "symbol": "MSFT",
@@ -1342,7 +1342,7 @@
       },
       "grade": "D",
       "recommendation": "Avoid",
-      "fetched_at": "2026-02-23T04:26:10.134119"
+      "fetched_at": "2026-02-23T06:04:11.278162"
     },
     {
       "symbol": "GOOGL",
@@ -1353,7 +1353,7 @@
       "market_cap": 3810313371648,
       "fundamentals": {
         "trailing_pe": 29.16,
-        "forward_pe": 23.53,
+        "forward_pe": 23.48,
         "pb_ratio": 9.17,
         "ps_ratio": 9.46,
         "ev_ebitda": 24.97,
@@ -1384,7 +1384,7 @@
       },
       "grade": "D",
       "recommendation": "Avoid",
-      "fetched_at": "2026-02-23T04:26:10.339786"
+      "fetched_at": "2026-02-23T06:04:11.450782"
     },
     {
       "symbol": "ABT",
@@ -1426,7 +1426,7 @@
       },
       "grade": "D",
       "recommendation": "Avoid",
-      "fetched_at": "2026-02-23T04:26:17.126035"
+      "fetched_at": "2026-02-23T06:04:18.392553"
     },
     {
       "symbol": "HD",
@@ -1468,7 +1468,7 @@
       },
       "grade": "D",
       "recommendation": "Avoid",
-      "fetched_at": "2026-02-23T04:26:20.253826"
+      "fetched_at": "2026-02-23T06:04:21.672408"
     },
     {
       "symbol": "MMM",
@@ -1510,7 +1510,7 @@
       },
       "grade": "D",
       "recommendation": "Avoid",
-      "fetched_at": "2026-02-23T04:26:23.029700"
+      "fetched_at": "2026-02-23T06:04:24.847445"
     },
     {
       "symbol": "AMD",
@@ -1552,7 +1552,7 @@
       },
       "grade": "D",
       "recommendation": "Avoid",
-      "fetched_at": "2026-02-23T04:26:11.278312"
+      "fetched_at": "2026-02-23T06:04:12.462006"
     },
     {
       "symbol": "BLK",
@@ -1594,7 +1594,7 @@
       },
       "grade": "D",
       "recommendation": "Avoid",
-      "fetched_at": "2026-02-23T04:26:14.468992"
+      "fetched_at": "2026-02-23T06:04:15.706344"
     },
     {
       "symbol": "WMT",
@@ -1636,7 +1636,7 @@
       },
       "grade": "D",
       "recommendation": "Avoid",
-      "fetched_at": "2026-02-23T04:26:19.712261"
+      "fetched_at": "2026-02-23T06:04:21.048243"
     },
     {
       "symbol": "LMT",
@@ -1678,7 +1678,7 @@
       },
       "grade": "D",
       "recommendation": "Avoid",
-      "fetched_at": "2026-02-23T04:26:24.455950"
+      "fetched_at": "2026-02-23T06:04:26.308710"
     },
     {
       "symbol": "PG",
@@ -1686,7 +1686,7 @@
       "sector": "Consumer Defensive",
       "industry": "Household & Personal Products",
       "price": 160.78,
-      "market_cap": 376303222784,
+      "market_cap": 375699996672,
       "fundamentals": {
         "trailing_pe": 23.82,
         "forward_pe": 21.93,
@@ -1720,7 +1720,7 @@
       },
       "grade": "D",
       "recommendation": "Avoid",
-      "fetched_at": "2026-02-23T04:26:18.618769"
+      "fetched_at": "2026-02-23T06:04:19.844408"
     },
     {
       "symbol": "ABBV",
@@ -1762,7 +1762,7 @@
       },
       "grade": "D",
       "recommendation": "Avoid",
-      "fetched_at": "2026-02-23T04:26:16.196335"
+      "fetched_at": "2026-02-23T06:04:17.320894"
     },
     {
       "symbol": "V",
@@ -1804,7 +1804,7 @@
       },
       "grade": "D",
       "recommendation": "Avoid",
-      "fetched_at": "2026-02-23T04:26:13.589819"
+      "fetched_at": "2026-02-23T06:04:14.750274"
     },
     {
       "symbol": "AAPL",
@@ -1846,7 +1846,7 @@
       },
       "grade": "D",
       "recommendation": "Avoid",
-      "fetched_at": "2026-02-23T04:26:09.932831"
+      "fetched_at": "2026-02-23T06:04:10.931168"
     },
     {
       "symbol": "UNP",
@@ -1888,7 +1888,7 @@
       },
       "grade": "D",
       "recommendation": "Avoid",
-      "fetched_at": "2026-02-23T04:26:25.196140"
+      "fetched_at": "2026-02-23T06:04:26.991579"
     },
     {
       "symbol": "RTX",
@@ -1930,7 +1930,7 @@
       },
       "grade": "D",
       "recommendation": "Avoid",
-      "fetched_at": "2026-02-23T04:26:24.074344"
+      "fetched_at": "2026-02-23T06:04:25.939977"
     },
     {
       "symbol": "LLY",
@@ -1972,7 +1972,7 @@
       },
       "grade": "D",
       "recommendation": "Avoid",
-      "fetched_at": "2026-02-23T04:26:17.790855"
+      "fetched_at": "2026-02-23T06:04:19.089714"
     },
     {
       "symbol": "NKE",
@@ -2014,7 +2014,7 @@
       },
       "grade": "D",
       "recommendation": "Avoid",
-      "fetched_at": "2026-02-23T04:26:20.946899"
+      "fetched_at": "2026-02-23T06:04:22.463245"
     },
     {
       "symbol": "MCD",
@@ -2056,7 +2056,7 @@
       },
       "grade": "D",
       "recommendation": "Avoid",
-      "fetched_at": "2026-02-23T04:26:20.651201"
+      "fetched_at": "2026-02-23T06:04:22.109709"
     },
     {
       "symbol": "BA",
@@ -2098,7 +2098,7 @@
       },
       "grade": "D",
       "recommendation": "Avoid",
-      "fetched_at": "2026-02-23T04:26:22.299312"
+      "fetched_at": "2026-02-23T06:04:24.005915"
     },
     {
       "symbol": "HON",
@@ -2140,7 +2140,7 @@
       },
       "grade": "D",
       "recommendation": "Avoid",
-      "fetched_at": "2026-02-23T04:26:23.403081"
+      "fetched_at": "2026-02-23T06:04:25.257713"
     },
     {
       "symbol": "MA",
@@ -2182,7 +2182,7 @@
       },
       "grade": "D",
       "recommendation": "Avoid",
-      "fetched_at": "2026-02-23T04:26:13.871987"
+      "fetched_at": "2026-02-23T06:04:15.056246"
     },
     {
       "symbol": "KO",
@@ -2224,7 +2224,7 @@
       },
       "grade": "D",
       "recommendation": "Avoid",
-      "fetched_at": "2026-02-23T04:26:18.995617"
+      "fetched_at": "2026-02-23T06:04:20.282034"
     },
     {
       "symbol": "COST",
@@ -2266,7 +2266,7 @@
       },
       "grade": "D",
       "recommendation": "Avoid",
-      "fetched_at": "2026-02-23T04:26:19.957218"
+      "fetched_at": "2026-02-23T06:04:21.366905"
     },
     {
       "symbol": "SBUX",
@@ -2308,7 +2308,7 @@
       },
       "grade": "D",
       "recommendation": "Avoid",
-      "fetched_at": "2026-02-23T04:26:21.190162"
+      "fetched_at": "2026-02-23T06:04:22.712174"
     },
     {
       "symbol": "DE",
@@ -2350,7 +2350,7 @@
       },
       "grade": "D",
       "recommendation": "Avoid",
-      "fetched_at": "2026-02-23T04:26:24.827804"
+      "fetched_at": "2026-02-23T06:04:26.690123"
     },
     {
       "symbol": "CAT",
@@ -2392,7 +2392,7 @@
       },
       "grade": "D",
       "recommendation": "Avoid",
-      "fetched_at": "2026-02-23T04:26:21.910952"
+      "fetched_at": "2026-02-23T06:04:23.557734"
     },
     {
       "symbol": "NVDA",
@@ -2403,7 +2403,7 @@
       "market_cap": 4621547864064,
       "fundamentals": {
         "trailing_pe": 46.99,
-        "forward_pe": 24.46,
+        "forward_pe": 24.41,
         "pb_ratio": 38.8,
         "ps_ratio": 24.7,
         "ev_ebitda": 40.49,
@@ -2434,7 +2434,7 @@
       },
       "grade": "D",
       "recommendation": "Avoid",
-      "fetched_at": "2026-02-23T04:26:10.875723"
+      "fetched_at": "2026-02-23T06:04:12.028708"
     },
     {
       "symbol": "TSLA",
@@ -2476,7 +2476,7 @@
       },
       "grade": "D",
       "recommendation": "Avoid",
-      "fetched_at": "2026-02-23T04:26:11.107861"
+      "fetched_at": "2026-02-23T06:04:12.248326"
     },
     {
       "symbol": "GE",
@@ -2518,27 +2518,27 @@
       },
       "grade": "D",
       "recommendation": "Avoid",
-      "fetched_at": "2026-02-23T04:26:22.671192"
+      "fetched_at": "2026-02-23T06:04:24.406908"
     }
   ],
   "statistics": {
     "total_analyzed": 60,
     "successful": 60,
     "failed": 0,
-    "avg_score": 37.67,
+    "avg_score": 37.72,
     "max_score": 59.2,
     "min_score": 18.88,
     "grade_distribution": {
       "A+": 0,
       "A": 0,
       "B+": 0,
-      "B": 13,
-      "C": 11,
+      "B": 14,
+      "C": 10,
       "D": 36
     }
   },
   "failed_symbols": [],
-  "last_updated": "2026-02-23T04:26:28.373421",
+  "last_updated": "2026-02-23T06:04:30.147889",
   "screening_criteria": {
     "min_score": 0,
     "symbols_count": 60
