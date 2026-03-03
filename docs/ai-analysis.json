@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-03-03T09:42:33.184273",
+  "generated_at": "2026-03-03T21:40:00.446137",
   "rule_based": {
     "type": "rule_based",
-    "timestamp": "2026-03-03T09:42:32.980567",
+    "timestamp": "2026-03-03T21:40:00.278529",
     "portfolio_metrics": {
-      "total_value": 128795.02,
+      "total_value": 124646.41,
       "total_cost": 125818.63,
-      "total_return_pct": 2.37,
+      "total_return_pct": -0.93,
       "holdings_count": 12
     },
     "risk_metrics": {
@@ -15,30 +15,24 @@
       },
       "max_sector": "기타",
       "max_sector_pct": 100.0,
-      "leverage_pct": 3.9
+      "leverage_pct": 3.4
     },
     "market_conditions": {
-      "vix": 25.25,
-      "fear_greed": 34,
-      "market_cycle": "trough"
+      "vix": 23.57,
+      "fear_greed": 31,
+      "market_cycle": "contraction"
     },
-    "technical_signals": [
-      {
-        "symbol": "NVDA",
-        "signal": "MACD 상승 크로스",
-        "action": "bullish"
-      }
-    ],
-    "score": 59,
+    "technical_signals": [],
+    "score": 55,
     "winners": [
       {
         "symbol": "MU",
         "name": "Micron Technology Inc.",
         "shares": 10,
         "avg_price": 230.0,
-        "current_price": 412.67,
-        "value": 4126.7,
-        "gain_loss_pct": 79.42,
+        "current_price": 379.68,
+        "value": 3796.8,
+        "gain_loss_pct": 65.08,
         "sector": "기타"
       },
       {
@@ -46,9 +40,9 @@
         "name": "Teradyne Inc.",
         "shares": 20,
         "avg_price": 191.73,
-        "current_price": 325.83,
-        "value": 6516.6,
-        "gain_loss_pct": 69.94,
+        "current_price": 304.22,
+        "value": 6084.4,
+        "gain_loss_pct": 58.67,
         "sector": "기타"
       },
       {
@@ -56,9 +50,9 @@
         "name": "Direxion Daily Semiconductor Bull 3X",
         "shares": 80,
         "avg_price": 43.87,
-        "current_price": 62.76,
-        "value": 5020.8,
-        "gain_loss_pct": 43.06,
+        "current_price": 53.42,
+        "value": 4273.6,
+        "gain_loss_pct": 21.77,
         "sector": "기타"
       },
       {
@@ -66,9 +60,9 @@
         "name": "Taiwan Semiconductor (TSMC)",
         "shares": 27,
         "avg_price": 298.69,
-        "current_price": 369.11,
-        "value": 9965.97,
-        "gain_loss_pct": 23.58,
+        "current_price": 353.13,
+        "value": 9534.51,
+        "gain_loss_pct": 18.23,
         "sector": "기타"
       },
       {
@@ -76,9 +70,9 @@
         "name": "NVIDIA Corporation",
         "shares": 220,
         "avg_price": 178.25,
-        "current_price": 182.48,
-        "value": 40145.6,
-        "gain_loss_pct": 2.37,
+        "current_price": 180.05,
+        "value": 39611.0,
+        "gain_loss_pct": 1.01,
         "sector": "기타"
       }
     ],
@@ -88,9 +82,9 @@
         "name": "NuScale Power Corp.",
         "shares": 200,
         "avg_price": 19.1,
-        "current_price": 13.05,
-        "value": 2610.0,
-        "gain_loss_pct": -31.68,
+        "current_price": 12.53,
+        "value": 2506.0,
+        "gain_loss_pct": -34.4,
         "sector": "기타"
       },
       {
@@ -98,19 +92,9 @@
         "name": "Marvell Technology Inc.",
         "shares": 100,
         "avg_price": 90.62,
-        "current_price": 80.86,
-        "value": 8086.0,
-        "gain_loss_pct": -10.77,
-        "sector": "기타"
-      },
-      {
-        "symbol": "AMZN",
-        "name": "Amazon.com Inc.",
-        "shares": 25,
-        "avg_price": 232.41,
-        "current_price": 208.39,
-        "value": 5209.75,
-        "gain_loss_pct": -10.34,
+        "current_price": 77.51,
+        "value": 7751.0,
+        "gain_loss_pct": -14.47,
         "sector": "기타"
       },
       {
@@ -118,9 +102,19 @@
         "name": "Broadcom Inc.",
         "shares": 65,
         "avg_price": 353.63,
-        "current_price": 318.82,
-        "value": 20723.3,
-        "gain_loss_pct": -9.84,
+        "current_price": 313.84,
+        "value": 20399.6,
+        "gain_loss_pct": -11.25,
+        "sector": "기타"
+      },
+      {
+        "symbol": "AMZN",
+        "name": "Amazon.com Inc.",
+        "shares": 25,
+        "avg_price": 232.41,
+        "current_price": 208.73,
+        "value": 5218.25,
+        "gain_loss_pct": -10.19,
         "sector": "기타"
       },
       {
@@ -128,9 +122,9 @@
         "name": "Super Micro Computer Inc.",
         "shares": 140,
         "avg_price": 33.56,
-        "current_price": 31.83,
-        "value": 4456.2,
-        "gain_loss_pct": -5.15,
+        "current_price": 30.68,
+        "value": 4295.2,
+        "gain_loss_pct": -8.58,
         "sector": "기타"
       }
     ],
@@ -140,9 +134,9 @@
         "name": "NuScale Power Corp.",
         "shares": 200,
         "avg_price": 19.1,
-        "current_price": 13.05,
-        "value": 2610.0,
-        "gain_loss_pct": -31.68,
+        "current_price": 12.53,
+        "value": 2506.0,
+        "gain_loss_pct": -34.4,
         "sector": "기타"
       },
       {
@@ -150,9 +144,9 @@
         "name": "Taiwan Semiconductor (TSMC)",
         "shares": 27,
         "avg_price": 298.69,
-        "current_price": 369.11,
-        "value": 9965.97,
-        "gain_loss_pct": 23.58,
+        "current_price": 353.13,
+        "value": 9534.51,
+        "gain_loss_pct": 18.23,
         "sector": "기타"
       },
       {
@@ -160,9 +154,9 @@
         "name": "Advanced Micro Devices",
         "shares": 95,
         "avg_price": 203.56,
-        "current_price": 198.62,
-        "value": 18868.9,
-        "gain_loss_pct": -2.43,
+        "current_price": 190.95,
+        "value": 18140.25,
+        "gain_loss_pct": -6.19,
         "sector": "기타"
       },
       {
@@ -170,9 +164,9 @@
         "name": "Amazon.com Inc.",
         "shares": 25,
         "avg_price": 232.41,
-        "current_price": 208.39,
-        "value": 5209.75,
-        "gain_loss_pct": -10.34,
+        "current_price": 208.73,
+        "value": 5218.25,
+        "gain_loss_pct": -10.19,
         "sector": "기타"
       },
       {
@@ -180,9 +174,9 @@
         "name": "Broadcom Inc.",
         "shares": 65,
         "avg_price": 353.63,
-        "current_price": 318.82,
-        "value": 20723.3,
-        "gain_loss_pct": -9.84,
+        "current_price": 313.84,
+        "value": 20399.6,
+        "gain_loss_pct": -11.25,
         "sector": "기타"
       },
       {
@@ -190,9 +184,9 @@
         "name": "Alphabet Inc. Class A",
         "shares": 10,
         "avg_price": 318.0,
-        "current_price": 306.52,
-        "value": 3065.2,
-        "gain_loss_pct": -3.61,
+        "current_price": 303.58,
+        "value": 3035.8,
+        "gain_loss_pct": -4.53,
         "sector": "기타"
       },
       {
@@ -200,9 +194,9 @@
         "name": "Marvell Technology Inc.",
         "shares": 100,
         "avg_price": 90.62,
-        "current_price": 80.86,
-        "value": 8086.0,
-        "gain_loss_pct": -10.77,
+        "current_price": 77.51,
+        "value": 7751.0,
+        "gain_loss_pct": -14.47,
         "sector": "기타"
       },
       {
@@ -210,9 +204,9 @@
         "name": "Micron Technology Inc.",
         "shares": 10,
         "avg_price": 230.0,
-        "current_price": 412.67,
-        "value": 4126.7,
-        "gain_loss_pct": 79.42,
+        "current_price": 379.68,
+        "value": 3796.8,
+        "gain_loss_pct": 65.08,
         "sector": "기타"
       },
       {
@@ -220,9 +214,9 @@
         "name": "NVIDIA Corporation",
         "shares": 220,
         "avg_price": 178.25,
-        "current_price": 182.48,
-        "value": 40145.6,
-        "gain_loss_pct": 2.37,
+        "current_price": 180.05,
+        "value": 39611.0,
+        "gain_loss_pct": 1.01,
         "sector": "기타"
       },
       {
@@ -230,9 +224,9 @@
         "name": "Super Micro Computer Inc.",
         "shares": 140,
         "avg_price": 33.56,
-        "current_price": 31.83,
-        "value": 4456.2,
-        "gain_loss_pct": -5.15,
+        "current_price": 30.68,
+        "value": 4295.2,
+        "gain_loss_pct": -8.58,
         "sector": "기타"
       },
       {
@@ -240,9 +234,9 @@
         "name": "Teradyne Inc.",
         "shares": 20,
         "avg_price": 191.73,
-        "current_price": 325.83,
-        "value": 6516.6,
-        "gain_loss_pct": 69.94,
+        "current_price": 304.22,
+        "value": 6084.4,
+        "gain_loss_pct": 58.67,
         "sector": "기타"
       },
       {
@@ -250,9 +244,9 @@
         "name": "Direxion Daily Semiconductor Bull 3X",
         "shares": 80,
         "avg_price": 43.87,
-        "current_price": 62.76,
-        "value": 5020.8,
-        "gain_loss_pct": 43.06,
+        "current_price": 53.42,
+        "value": 4273.6,
+        "gain_loss_pct": 21.77,
         "sector": "기타"
       }
     ]
