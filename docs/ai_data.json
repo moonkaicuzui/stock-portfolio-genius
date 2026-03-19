@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-03-18T23:28:28.545313",
+  "last_updated": "2026-03-19T02:00:09.272036",
   "initial_capital": 146031.04,
   "start_date": "2025-12-22",
   "summary": {
@@ -568,21 +568,14 @@
       "date": "2026-03-18",
       "total_value": 144614.04,
       "return_pct": -0.97
+    },
+    {
+      "date": "2026-03-19",
+      "total_value": 142800.44,
+      "return_pct": -2.21
     }
   ],
   "decisions": [
-    {
-      "date": "2026-03-13T15:39:51.177129",
-      "action": "hold",
-      "symbol": "ALL",
-      "reasoning": "사용자 포트폴리오와 비슷한 수익률을 보이고 있습니다. 피터 린치의 관점에서 보유 종목들의 성장 스토리를 재점검하고 있습니다. 현재 전략을 유지하며 시장 기회를 모니터링합니다.",
-      "details": {
-        "ai_return": "-1.77%",
-        "user_return": "0.52%",
-        "difference": "-2.29%p",
-        "strategy": "장기 가치 투자 유지"
-      }
-    },
     {
       "date": "2026-03-13T16:37:04.632591",
       "action": "hold",
@@ -1770,22 +1763,29 @@
         "difference": "-3.17%p",
         "strategy": "장기 가치 투자 유지"
       }
+    },
+    {
+      "date": "2026-03-19T02:00:09.272077",
+      "action": "hold",
+      "symbol": "ALL",
+      "reasoning": "사용자 포트폴리오와 비슷한 수익률을 보이고 있습니다. 피터 린치의 관점에서 보유 종목들의 성장 스토리를 재점검하고 있습니다. 현재 전략을 유지하며 시장 기회를 모니터링합니다.",
+      "details": {
+        "ai_return": "-2.21%",
+        "user_return": "0.96%",
+        "difference": "-3.17%p",
+        "strategy": "장기 가치 투자 유지"
+      }
     }
   ],
   "metrics": {
-    "win_rate": 59.8,
-    "avg_return": 0.55,
-    "sharpe_ratio": 0.36,
+    "win_rate": 59.1,
+    "avg_return": 0.52,
+    "sharpe_ratio": 0.33,
     "max_drawdown": -3.0,
     "trade_count": 0,
-    "days_active": 86
+    "days_active": 87
   },
   "learning_log": [
-    {
-      "date": "2026-03-16",
-      "lesson": "SMR의 -38.22% 손실 관찰. ",
-      "adjustment": "유사 패턴 종목 투자시 주의 필요"
-    },
     {
       "date": "2026-03-16",
       "lesson": "SMR의 -38.22% 손실 관찰. ",
@@ -2028,6 +2028,11 @@
     },
     {
       "date": "2026-03-18",
+      "lesson": "SMR의 -37.02% 손실 관찰. ",
+      "adjustment": "유사 패턴 종목 투자시 주의 필요"
+    },
+    {
+      "date": "2026-03-19",
       "lesson": "SMR의 -37.02% 손실 관찰. ",
       "adjustment": "유사 패턴 종목 투자시 주의 필요"
     }
