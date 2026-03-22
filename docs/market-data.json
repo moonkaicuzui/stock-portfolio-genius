@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-03-22T09:34:22.147253",
+  "last_updated": "2026-03-22T21:33:03.792087",
   "vix": {
     "value": 26.78,
     "source": "Yahoo Finance",
@@ -79,7 +79,7 @@
       "success": true
     },
     "MSFT": {
-      "price": 381.87,
+      "price": 381.85,
       "rsi": {
         "value": 24.64,
         "signal": "과매도"
@@ -93,7 +93,7 @@
       "bollinger": {
         "upper": 414.97,
         "middle": 398.77,
-        "lower": 382.57,
+        "lower": 382.56,
         "position": 0
       },
       "bb_signal": "하단 근처",
@@ -121,22 +121,22 @@
       "success": true
     },
     "NVDA": {
-      "price": 172.7,
+      "price": 172.93,
       "rsi": {
         "value": 35.01,
         "signal": "중립"
       },
       "macd": {
-        "macd": -2.09,
-        "signal": -1.67,
-        "histogram": -0.42
+        "macd": -2.07,
+        "signal": -1.66,
+        "histogram": -0.41
       },
       "macd_signal": "하락",
       "bollinger": {
-        "upper": 193.64,
-        "middle": 183.12,
-        "lower": 172.59,
-        "position": 0.5
+        "upper": 193.61,
+        "middle": 183.13,
+        "lower": 172.64,
+        "position": 1.4
       },
       "bb_signal": "하단 근처",
       "success": true
