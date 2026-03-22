@@ -1,14 +1,14 @@
 {
-  "last_updated": "2026-03-22T16:27:15.606171",
+  "last_updated": "2026-03-22T17:23:04.031219",
   "initial_capital": 146031.04,
   "start_date": "2025-12-22",
   "summary": {
-    "total_value": 139877.34,
+    "total_value": 139911.24,
     "total_cost": 146031.04,
-    "total_gain_loss": -6153.7,
-    "total_gain_loss_pct": -4.21,
+    "total_gain_loss": -6119.8,
+    "total_gain_loss_pct": -4.19,
     "cash": 34153.94,
-    "invested": 105723.4,
+    "invested": 105757.3,
     "holdings_count": 8
   },
   "holdings": [
@@ -18,11 +18,11 @@
       "shares": 150,
       "avg_price": 180.99,
       "added_date": "2025-12-22",
-      "current_price": 172.7,
-      "market_value": 25905.0,
+      "current_price": 172.93,
+      "market_value": 25939.5,
       "cost_basis": 27148.5,
-      "gain_loss": -1243.5,
-      "gain_loss_pct": -4.58,
+      "gain_loss": -1209.0,
+      "gain_loss_pct": -4.45,
       "ai_score": 59.0,
       "reasoning": "AI 반도체 리더, 그레이엄 안전마진 확보, 린치 성장주 분류",
       "recommendation": "보유"
@@ -123,11 +123,11 @@
       "shares": 30,
       "avg_price": 485.92,
       "added_date": "2025-12-22",
-      "current_price": 381.87,
-      "market_value": 11456.1,
+      "current_price": 381.85,
+      "market_value": 11455.5,
       "cost_basis": 14577.6,
-      "gain_loss": -3121.5,
-      "gain_loss_pct": -21.41,
+      "gain_loss": -3122.1,
+      "gain_loss_pct": -21.42,
       "ai_score": 67.5,
       "reasoning": "클라우드+AI 양대 성장, 보글 인덱스 핵심, 최고 안정성",
       "recommendation": "보유"
@@ -591,18 +591,6 @@
     }
   ],
   "decisions": [
-    {
-      "date": "2026-03-17T17:56:00.225624",
-      "action": "hold",
-      "symbol": "ALL",
-      "reasoning": "사용자 포트폴리오와 비슷한 수익률을 보이고 있습니다. 피터 린치의 관점에서 보유 종목들의 성장 스토리를 재점검하고 있습니다. 현재 전략을 유지하며 시장 기회를 모니터링합니다.",
-      "details": {
-        "ai_return": "-0.86%",
-        "user_return": "2.14%",
-        "difference": "-3.00%p",
-        "strategy": "장기 가치 투자 유지"
-      }
-    },
     {
       "date": "2026-03-17T18:59:59.822493",
       "action": "hold",
@@ -1790,6 +1778,18 @@
         "difference": "-1.51%p",
         "strategy": "장기 가치 투자 유지"
       }
+    },
+    {
+      "date": "2026-03-22T17:23:04.031249",
+      "action": "hold",
+      "symbol": "ALL",
+      "reasoning": "사용자 포트폴리오와 비슷한 수익률을 보이고 있습니다. 피터 린치의 관점에서 보유 종목들의 성장 스토리를 재점검하고 있습니다. 현재 전략을 유지하며 시장 기회를 모니터링합니다.",
+      "details": {
+        "ai_return": "-4.19%",
+        "user_return": "-2.66%",
+        "difference": "-1.53%p",
+        "strategy": "장기 가치 투자 유지"
+      }
     }
   ],
   "metrics": {
@@ -1902,12 +1902,12 @@
       "adjustment": "유사 패턴 종목 투자시 주의 필요"
     },
     {
-      "date": "2026-03-21",
+      "date": "2026-03-22",
       "lesson": "SMR의 -40.10% 손실 관찰. ",
       "adjustment": "유사 패턴 종목 투자시 주의 필요"
     },
     {
-      "date": "2026-03-21",
+      "date": "2026-03-22",
       "lesson": "SMCI의 -38.83% 손실 관찰. ",
       "adjustment": "유사 패턴 종목 투자시 주의 필요"
     },
