@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-03-30T23:32:23.113441",
+  "last_updated": "2026-03-31T02:06:14.983606",
   "initial_capital": 146031.04,
   "start_date": "2025-12-22",
   "summary": {
@@ -628,21 +628,14 @@
       "date": "2026-03-30",
       "total_value": 136192.44,
       "return_pct": -6.74
+    },
+    {
+      "date": "2026-03-31",
+      "total_value": 134536.54,
+      "return_pct": -7.87
     }
   ],
   "decisions": [
-    {
-      "date": "2026-03-25T14:56:04.183922",
-      "action": "hold",
-      "symbol": "ALL",
-      "reasoning": "사용자 포트폴리오와 비슷한 수익률을 보이고 있습니다. 피터 린치의 관점에서 보유 종목들의 성장 스토리를 재점검하고 있습니다. 현재 전략을 유지하며 시장 기회를 모니터링합니다.",
-      "details": {
-        "ai_return": "-1.89%",
-        "user_return": "2.78%",
-        "difference": "-4.67%p",
-        "strategy": "장기 가치 투자 유지"
-      }
-    },
     {
       "date": "2026-03-25T16:09:04.531946",
       "action": "hold",
@@ -1830,27 +1823,29 @@
         "difference": "-0.15%p",
         "strategy": "장기 가치 투자 유지"
       }
+    },
+    {
+      "date": "2026-03-31T02:06:14.983648",
+      "action": "hold",
+      "symbol": "ALL",
+      "reasoning": "사용자 포트폴리오와 비슷한 수익률을 보이고 있습니다. 피터 린치의 관점에서 보유 종목들의 성장 스토리를 재점검하고 있습니다. 현재 전략을 유지하며 시장 기회를 모니터링합니다.",
+      "details": {
+        "ai_return": "-7.87%",
+        "user_return": "-7.72%",
+        "difference": "-0.15%p",
+        "strategy": "장기 가치 투자 유지"
+      }
     }
   ],
   "metrics": {
-    "win_rate": 52.5,
-    "avg_return": -0.02,
-    "sharpe_ratio": -0.01,
-    "max_drawdown": -6.74,
+    "win_rate": 52.0,
+    "avg_return": -0.1,
+    "sharpe_ratio": -0.04,
+    "max_drawdown": -7.87,
     "trade_count": 0,
-    "days_active": 98
+    "days_active": 99
   },
   "learning_log": [
-    {
-      "date": "2026-03-29",
-      "lesson": "SMR의 -46.07% 손실 관찰. ",
-      "adjustment": "유사 패턴 종목 투자시 주의 필요"
-    },
-    {
-      "date": "2026-03-29",
-      "lesson": "SMCI의 -34.54% 손실 관찰. ",
-      "adjustment": "유사 패턴 종목 투자시 주의 필요"
-    },
     {
       "date": "2026-03-29",
       "lesson": "SMR의 -46.07% 손실 관찰. ",
@@ -2088,6 +2083,16 @@
     },
     {
       "date": "2026-03-30",
+      "lesson": "SMCI의 -37.25% 손실 관찰. ",
+      "adjustment": "유사 패턴 종목 투자시 주의 필요"
+    },
+    {
+      "date": "2026-03-31",
+      "lesson": "SMR의 -46.34% 손실 관찰. ",
+      "adjustment": "유사 패턴 종목 투자시 주의 필요"
+    },
+    {
+      "date": "2026-03-31",
       "lesson": "SMCI의 -37.25% 손실 관찰. ",
       "adjustment": "유사 패턴 종목 투자시 주의 필요"
     }
