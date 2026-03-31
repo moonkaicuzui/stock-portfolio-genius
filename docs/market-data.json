@@ -1,12 +1,12 @@
 {
-  "last_updated": "2026-03-31T05:05:29.017470",
+  "last_updated": "2026-03-31T10:06:07.250779",
   "vix": {
-    "value": 30.61,
+    "value": 28.88,
     "source": "Yahoo Finance",
     "success": true
   },
   "fear_greed": {
-    "value": 8,
+    "value": 13,
     "rating": "extreme fear",
     "source": "CNN",
     "success": true
@@ -45,13 +45,13 @@
       "success": true
     },
     "kospi": {
-      "value": 5105.27,
-      "change_pct": -3.26,
+      "value": 5052.46,
+      "change_pct": -4.26,
       "success": true
     },
     "kosdaq": {
-      "value": 1065.75,
-      "change_pct": -3.73,
+      "value": 1052.39,
+      "change_pct": -4.94,
       "success": true
     }
   },
@@ -211,15 +211,15 @@
         "signal": "중립"
       },
       "macd": {
-        "macd": -10.49,
-        "signal": -8.39,
-        "histogram": -2.1
+        "macd": -10.29,
+        "signal": -8.23,
+        "histogram": -2.06
       },
       "macd_signal": "하락",
       "bollinger": {
-        "upper": 622.4,
-        "middle": 593.17,
-        "lower": 563.93,
+        "upper": 621.33,
+        "middle": 592.64,
+        "lower": 563.94,
         "position": 0
       },
       "bb_signal": "하단 근처",
