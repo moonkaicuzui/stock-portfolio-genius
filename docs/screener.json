@@ -1,74 +1,32 @@
 {
   "screener_results": [
     {
-      "symbol": "EOG",
-      "name": "EOG Resources, Inc.",
-      "sector": "Energy",
-      "industry": "Oil & Gas E&P",
-      "price": 132.95,
-      "market_cap": 71326539776,
-      "fundamentals": {
-        "trailing_pe": 14.58,
-        "forward_pe": 9.54,
-        "pb_ratio": 2.4,
-        "ps_ratio": 3.15,
-        "ev_ebitda": 6.55,
-        "earnings_yield": 6.86,
-        "revenue_growth": 0,
-        "earnings_growth": -41.7,
-        "growth_tier": "declining"
-      },
-      "technicals": {
-        "sma_50": 131.52,
-        "sma_200": 115.31,
-        "rsi": 39.32,
-        "week_52_high": 151.87,
-        "week_52_low": 101.59,
-        "bollinger_position": 28.99,
-        "price_vs_sma50": 1.08,
-        "price_vs_sma200": 15.3
-      },
-      "scores": {
-        "per_score": 86.0,
-        "pbr_score": 40,
-        "psr_score": 40,
-        "ev_ebitda_score": 80,
-        "earnings_yield_score": 60,
-        "fundamental_score": 64.8,
-        "technical_score": 61.01,
-        "value_score": 63.66
-      },
-      "grade": "B+",
-      "recommendation": "Moderate Buy",
-      "fetched_at": "2026-04-22T18:00:26.934944"
-    },
-    {
       "symbol": "PSX",
       "name": "Phillips 66",
       "sector": "Energy",
       "industry": "Oil & Gas Refining & Marketing",
-      "price": 160.61,
-      "market_cap": 64401813504,
+      "price": 160.94,
+      "market_cap": 64534138880,
       "fundamentals": {
-        "trailing_pe": 14.89,
-        "forward_pe": 10.68,
-        "pb_ratio": 2.21,
+        "trailing_pe": 14.92,
+        "forward_pe": 10.7,
+        "pb_ratio": 2.22,
         "ps_ratio": 0.49,
         "ev_ebitda": 12.81,
-        "earnings_yield": 6.72,
+        "earnings_yield": 6.7,
         "revenue_growth": 1.3,
         "earnings_growth": 242728.4,
         "growth_tier": "hypergrowth"
       },
       "technicals": {
-        "sma_50": 166.01,
+        "sma_50": 166.02,
         "sma_200": 140.13,
-        "rsi": 31.01,
+        "rsi": 31.58,
         "week_52_high": 190.61,
         "week_52_low": 101.54,
-        "bollinger_position": 29.37,
-        "price_vs_sma50": -3.25,
-        "price_vs_sma200": 14.61
+        "bollinger_position": 30.08,
+        "price_vs_sma50": -3.06,
+        "price_vs_sma200": 14.85
       },
       "scores": {
         "per_score": 80.0,
@@ -82,35 +40,35 @@
       },
       "grade": "B+",
       "recommendation": "Moderate Buy",
-      "fetched_at": "2026-04-22T18:00:27.395052"
+      "fetched_at": "2026-04-22T19:26:07.117288"
     },
     {
       "symbol": "PFE",
       "name": "Pfizer, Inc.",
       "sector": "Healthcare",
       "industry": "Drug Manufacturers - General",
-      "price": 26.83,
-      "market_cap": 152618598400,
+      "price": 26.86,
+      "market_cap": 152846139392,
       "fundamentals": {
-        "trailing_pe": 19.73,
-        "forward_pe": 9.54,
-        "pb_ratio": 1.76,
+        "trailing_pe": 19.76,
+        "forward_pe": 9.55,
+        "pb_ratio": 1.77,
         "ps_ratio": 2.44,
         "ev_ebitda": 8.15,
-        "earnings_yield": 5.07,
+        "earnings_yield": 5.06,
         "revenue_growth": -1.2,
         "earnings_growth": 0,
         "growth_tier": "declining"
       },
       "technicals": {
-        "sma_50": 27.24,
+        "sma_50": 27.25,
         "sma_200": 25.15,
-        "rsi": 29.52,
+        "rsi": 29.77,
         "week_52_high": 28.75,
         "week_52_low": 21.97,
-        "bollinger_position": 14.45,
-        "price_vs_sma50": -1.52,
-        "price_vs_sma200": 6.7
+        "bollinger_position": 16.14,
+        "price_vs_sma50": -1.4,
+        "price_vs_sma200": 6.83
       },
       "scores": {
         "per_score": 72.0,
@@ -124,22 +82,64 @@
       },
       "grade": "B+",
       "recommendation": "Moderate Buy",
-      "fetched_at": "2026-04-22T18:00:09.284590"
+      "fetched_at": "2026-04-22T19:25:45.934049"
+    },
+    {
+      "symbol": "EOG",
+      "name": "EOG Resources, Inc.",
+      "sector": "Energy",
+      "industry": "Oil & Gas E&P",
+      "price": 133.44,
+      "market_cap": 71589429248,
+      "fundamentals": {
+        "trailing_pe": 14.63,
+        "forward_pe": 9.57,
+        "pb_ratio": 2.4,
+        "ps_ratio": 3.16,
+        "ev_ebitda": 6.55,
+        "earnings_yield": 6.83,
+        "revenue_growth": 0,
+        "earnings_growth": -41.7,
+        "growth_tier": "declining"
+      },
+      "technicals": {
+        "sma_50": 131.53,
+        "sma_200": 115.32,
+        "rsi": 40.3,
+        "week_52_high": 151.87,
+        "week_52_low": 101.59,
+        "bollinger_position": 30.86,
+        "price_vs_sma50": 1.45,
+        "price_vs_sma200": 15.72
+      },
+      "scores": {
+        "per_score": 86.0,
+        "pbr_score": 40,
+        "psr_score": 40,
+        "ev_ebitda_score": 80,
+        "earnings_yield_score": 60,
+        "fundamental_score": 64.8,
+        "technical_score": 56.02,
+        "value_score": 62.17
+      },
+      "grade": "B+",
+      "recommendation": "Moderate Buy",
+      "fetched_at": "2026-04-22T19:26:06.608555"
     },
     {
       "symbol": "MPC",
       "name": "Marathon Petroleum Corporation",
       "sector": "Energy",
       "industry": "Oil & Gas Refining & Marketing",
-      "price": 221.23,
-      "market_cap": 65205362688,
+      "price": 221.36,
+      "market_cap": 65243680768,
       "fundamentals": {
-        "trailing_pe": 16.73,
-        "forward_pe": 11.27,
+        "trailing_pe": 16.74,
+        "forward_pe": 11.28,
         "pb_ratio": 3.77,
         "ps_ratio": 0.49,
         "ev_ebitda": 10.81,
-        "earnings_yield": 5.98,
+        "earnings_yield": 5.97,
         "revenue_growth": -1.2,
         "earnings_growth": 350.7,
         "growth_tier": "hypergrowth"
@@ -147,12 +147,12 @@
       "technicals": {
         "sma_50": 221.35,
         "sma_200": 189.98,
-        "rsi": 35.64,
+        "rsi": 35.78,
         "week_52_high": 255.77,
         "week_52_low": 132.0,
-        "bollinger_position": 26.71,
-        "price_vs_sma50": -0.05,
-        "price_vs_sma200": 16.45
+        "bollinger_position": 26.96,
+        "price_vs_sma50": 0.0,
+        "price_vs_sma200": 16.52
       },
       "scores": {
         "per_score": 74.0,
@@ -166,35 +166,35 @@
       },
       "grade": "B",
       "recommendation": "Hold",
-      "fetched_at": "2026-04-22T18:00:28.317103"
+      "fetched_at": "2026-04-22T19:26:08.161995"
     },
     {
       "symbol": "COP",
       "name": "ConocoPhillips",
       "sector": "Energy",
       "industry": "Oil & Gas E&P",
-      "price": 122.66,
-      "market_cap": 149932130304,
+      "price": 123.11,
+      "market_cap": 150482173952,
       "fundamentals": {
-        "trailing_pe": 19.32,
-        "forward_pe": 14.86,
-        "pb_ratio": 2.33,
-        "ps_ratio": 2.49,
+        "trailing_pe": 19.39,
+        "forward_pe": 14.92,
+        "pb_ratio": 2.34,
+        "ps_ratio": 2.5,
         "ev_ebitda": 6.8,
-        "earnings_yield": 5.18,
+        "earnings_yield": 5.16,
         "revenue_growth": -6.8,
         "earnings_growth": -39.0,
         "growth_tier": "declining"
       },
       "technicals": {
-        "sma_50": 119.99,
+        "sma_50": 120.0,
         "sma_200": 99.3,
-        "rsi": 41.45,
+        "rsi": 42.22,
         "week_52_high": 135.87,
         "week_52_low": 84.28,
-        "bollinger_position": 37.19,
-        "price_vs_sma50": 2.23,
-        "price_vs_sma200": 23.53
+        "bollinger_position": 39.01,
+        "price_vs_sma50": 2.59,
+        "price_vs_sma200": 23.98
       },
       "scores": {
         "per_score": 66.0,
@@ -208,22 +208,22 @@
       },
       "grade": "B",
       "recommendation": "Hold",
-      "fetched_at": "2026-04-22T18:00:25.982592"
+      "fetched_at": "2026-04-22T19:26:05.433963"
     },
     {
       "symbol": "BMY",
       "name": "Bristol-Myers Squibb Company",
       "sector": "Healthcare",
       "industry": "Drug Manufacturers - General",
-      "price": 58.89,
-      "market_cap": 120237801472,
+      "price": 58.92,
+      "market_cap": 120299044864,
       "fundamentals": {
-        "trailing_pe": 17.02,
-        "forward_pe": 9.59,
+        "trailing_pe": 17.03,
+        "forward_pe": 9.6,
         "pb_ratio": 6.49,
-        "ps_ratio": 2.49,
+        "ps_ratio": 2.5,
         "ev_ebitda": 8.24,
-        "earnings_yield": 5.88,
+        "earnings_yield": 5.87,
         "revenue_growth": 1.3,
         "earnings_growth": 1392.1,
         "growth_tier": "hypergrowth"
@@ -231,12 +231,12 @@
       "technicals": {
         "sma_50": 59.32,
         "sma_200": 50.59,
-        "rsi": 39.89,
+        "rsi": 40.0,
         "week_52_high": 62.89,
         "week_52_low": 42.52,
-        "bollinger_position": 47.01,
-        "price_vs_sma50": -0.72,
-        "price_vs_sma200": 16.4
+        "bollinger_position": 47.86,
+        "price_vs_sma50": -0.67,
+        "price_vs_sma200": 16.46
       },
       "scores": {
         "per_score": 88.0,
@@ -250,77 +250,35 @@
       },
       "grade": "B",
       "recommendation": "Hold",
-      "fetched_at": "2026-04-22T18:00:13.067601"
-    },
-    {
-      "symbol": "XOM",
-      "name": "Exxon Mobil Corporation",
-      "sector": "Energy",
-      "industry": "Oil & Gas Integrated",
-      "price": 149.05,
-      "market_cap": 619535204352,
-      "fundamentals": {
-        "trailing_pe": 22.21,
-        "forward_pe": 14.84,
-        "pb_ratio": 2.4,
-        "ps_ratio": 1.91,
-        "ev_ebitda": 11.2,
-        "earnings_yield": 4.5,
-        "revenue_growth": -1.3,
-        "earnings_growth": -11.0,
-        "growth_tier": "declining"
-      },
-      "technicals": {
-        "sma_50": 154.64,
-        "sma_200": 125.34,
-        "rsi": 30.18,
-        "week_52_high": 176.41,
-        "week_52_low": 101.19,
-        "bollinger_position": 24.33,
-        "price_vs_sma50": -3.62,
-        "price_vs_sma200": 18.92
-      },
-      "scores": {
-        "per_score": 52.0,
-        "pbr_score": 40,
-        "psr_score": 80,
-        "ev_ebitda_score": 40,
-        "earnings_yield_score": 40,
-        "fundamental_score": 49.6,
-        "technical_score": 63.34,
-        "value_score": 53.72
-      },
-      "grade": "B",
-      "recommendation": "Hold",
-      "fetched_at": "2026-04-22T18:00:24.950495"
+      "fetched_at": "2026-04-22T19:25:50.392005"
     },
     {
       "symbol": "VLO",
       "name": "Valero Energy Corporation",
       "sector": "Energy",
       "industry": "Oil & Gas Refining & Marketing",
-      "price": 234.18,
-      "market_cap": 70025961472,
+      "price": 234.47,
+      "market_cap": 70112681984,
       "fundamentals": {
-        "trailing_pe": 30.98,
-        "forward_pe": 13.23,
+        "trailing_pe": 31.01,
+        "forward_pe": 13.25,
         "pb_ratio": 2.95,
         "ps_ratio": 0.6,
         "ev_ebitda": 10.49,
-        "earnings_yield": 3.23,
+        "earnings_yield": 3.22,
         "revenue_growth": -2.1,
         "earnings_growth": 317.9,
         "growth_tier": "hypergrowth"
       },
       "technicals": {
         "sma_50": 226.28,
-        "sma_200": 178.51,
-        "rsi": 45.2,
+        "sma_200": 178.52,
+        "rsi": 45.41,
         "week_52_high": 258.43,
         "week_52_low": 110.0,
-        "bollinger_position": 31.2,
-        "price_vs_sma50": 3.49,
-        "price_vs_sma200": 31.18
+        "bollinger_position": 32.05,
+        "price_vs_sma50": 3.62,
+        "price_vs_sma200": 31.34
       },
       "scores": {
         "per_score": 62.0,
@@ -334,35 +292,35 @@
       },
       "grade": "B",
       "recommendation": "Hold",
-      "fetched_at": "2026-04-22T18:00:27.929524"
+      "fetched_at": "2026-04-22T19:26:07.700844"
     },
     {
       "symbol": "OXY",
       "name": "Occidental Petroleum Corporatio",
       "sector": "Energy",
       "industry": "Oil & Gas E&P",
-      "price": 56.72,
-      "market_cap": 56243990528,
+      "price": 57.09,
+      "market_cap": 56615878656,
       "fundamentals": {
-        "trailing_pe": 42.01,
-        "forward_pe": 15.88,
-        "pb_ratio": 2.02,
-        "ps_ratio": 2.6,
+        "trailing_pe": 42.29,
+        "forward_pe": 15.98,
+        "pb_ratio": 2.03,
+        "ps_ratio": 2.62,
         "ev_ebitda": 7.62,
-        "earnings_yield": 2.38,
+        "earnings_yield": 2.36,
         "revenue_growth": 148.9,
         "earnings_growth": 0,
         "growth_tier": "hypergrowth"
       },
       "technicals": {
-        "sma_50": 55.97,
+        "sma_50": 55.98,
         "sma_200": 46.29,
-        "rsi": 32.77,
+        "rsi": 34.31,
         "week_52_high": 67.45,
         "week_52_low": 38.72,
-        "bollinger_position": 29.49,
-        "price_vs_sma50": 1.33,
-        "price_vs_sma200": 22.52
+        "bollinger_position": 31.73,
+        "price_vs_sma50": 1.99,
+        "price_vs_sma200": 23.33
       },
       "scores": {
         "per_score": 48.0,
@@ -376,22 +334,22 @@
       },
       "grade": "B",
       "recommendation": "Hold",
-      "fetched_at": "2026-04-22T18:00:28.852415"
+      "fetched_at": "2026-04-22T19:26:08.798909"
     },
     {
       "symbol": "MRK",
       "name": "Merck & Company, Inc.",
       "sector": "Healthcare",
       "industry": "Drug Manufacturers - General",
-      "price": 112.68,
-      "market_cap": 278589112320,
+      "price": 112.86,
+      "market_cap": 279034167296,
       "fundamentals": {
-        "trailing_pe": 15.48,
-        "forward_pe": 11.6,
-        "pb_ratio": 5.3,
+        "trailing_pe": 15.5,
+        "forward_pe": 11.62,
+        "pb_ratio": 5.31,
         "ps_ratio": 4.29,
         "ev_ebitda": 10.8,
-        "earnings_yield": 6.46,
+        "earnings_yield": 6.45,
         "revenue_growth": 5.0,
         "earnings_growth": -19.3,
         "growth_tier": "declining"
@@ -399,12 +357,12 @@
       "technicals": {
         "sma_50": 118.39,
         "sma_200": 97.69,
-        "rsi": 32.62,
+        "rsi": 33.14,
         "week_52_high": 125.14,
         "week_52_low": 73.31,
         "bollinger_position": 0,
-        "price_vs_sma50": -4.82,
-        "price_vs_sma200": 15.35
+        "price_vs_sma50": -4.67,
+        "price_vs_sma200": 15.53
       },
       "scores": {
         "per_score": 66.0,
@@ -418,18 +376,60 @@
       },
       "grade": "B",
       "recommendation": "Hold",
-      "fetched_at": "2026-04-22T18:00:10.304576"
+      "fetched_at": "2026-04-22T19:25:47.159863"
+    },
+    {
+      "symbol": "XOM",
+      "name": "Exxon Mobil Corporation",
+      "sector": "Energy",
+      "industry": "Oil & Gas Integrated",
+      "price": 149.7,
+      "market_cap": 622236925952,
+      "fundamentals": {
+        "trailing_pe": 22.31,
+        "forward_pe": 14.91,
+        "pb_ratio": 2.41,
+        "ps_ratio": 1.92,
+        "ev_ebitda": 11.2,
+        "earnings_yield": 4.48,
+        "revenue_growth": -1.3,
+        "earnings_growth": -11.0,
+        "growth_tier": "declining"
+      },
+      "technicals": {
+        "sma_50": 154.65,
+        "sma_200": 125.34,
+        "rsi": 31.68,
+        "week_52_high": 176.41,
+        "week_52_low": 101.19,
+        "bollinger_position": 26.13,
+        "price_vs_sma50": -3.2,
+        "price_vs_sma200": 19.43
+      },
+      "scores": {
+        "per_score": 52.0,
+        "pbr_score": 40,
+        "psr_score": 80,
+        "ev_ebitda_score": 40,
+        "earnings_yield_score": 20,
+        "fundamental_score": 46.6,
+        "technical_score": 63.35,
+        "value_score": 51.62
+      },
+      "grade": "B",
+      "recommendation": "Hold",
+      "fetched_at": "2026-04-22T19:26:04.137082"
     },
     {
       "symbol": "UPS",
       "name": "United Parcel Service, Inc.",
       "sector": "Industrials",
       "industry": "Integrated Freight & Logistics",
-      "price": 105.8,
-      "market_cap": 89895395328,
+      "price": 105.89,
+      "market_cap": 89971859456,
       "fundamentals": {
-        "trailing_pe": 16.13,
-        "forward_pe": 13.36,
+        "trailing_pe": 16.14,
+        "forward_pe": 13.37,
         "pb_ratio": 5.54,
         "ps_ratio": 1.01,
         "ev_ebitda": 9.25,
@@ -439,14 +439,14 @@
         "growth_tier": "stable"
       },
       "technicals": {
-        "sma_50": 105.0,
+        "sma_50": 105.01,
         "sma_200": 95.26,
-        "rsi": 81.43,
+        "rsi": 82.02,
         "week_52_high": 122.41,
         "week_52_low": 82.0,
-        "bollinger_position": 81.94,
-        "price_vs_sma50": 0.76,
-        "price_vs_sma200": 11.06
+        "bollinger_position": 82.45,
+        "price_vs_sma50": 0.84,
+        "price_vs_sma200": 11.15
       },
       "scores": {
         "per_score": 68.0,
@@ -460,18 +460,18 @@
       },
       "grade": "B",
       "recommendation": "Hold",
-      "fetched_at": "2026-04-22T18:00:21.793223"
+      "fetched_at": "2026-04-22T19:26:01.014374"
     },
     {
       "symbol": "DIS",
       "name": "Walt Disney Company (The)",
       "sector": "Communication Services",
       "industry": "Entertainment",
-      "price": 104.67,
-      "market_cap": 185620414464,
+      "price": 104.57,
+      "market_cap": 185451937792,
       "fundamentals": {
-        "trailing_pe": 15.42,
-        "forward_pe": 14.27,
+        "trailing_pe": 15.4,
+        "forward_pe": 14.26,
         "pb_ratio": 1.71,
         "ps_ratio": 1.94,
         "ev_ebitda": 11.98,
@@ -483,12 +483,12 @@
       "technicals": {
         "sma_50": 101.5,
         "sma_200": 109.85,
-        "rsi": 76.98,
+        "rsi": 76.83,
         "week_52_high": 124.69,
         "week_52_low": 86.77,
-        "bollinger_position": 81.08,
-        "price_vs_sma50": 3.12,
-        "price_vs_sma200": -4.71
+        "bollinger_position": 80.58,
+        "price_vs_sma50": 3.03,
+        "price_vs_sma200": -4.8
       },
       "scores": {
         "per_score": 68.0,
@@ -502,35 +502,35 @@
       },
       "grade": "B",
       "recommendation": "Hold",
-      "fetched_at": "2026-04-22T18:00:18.458937"
+      "fetched_at": "2026-04-22T19:25:57.127265"
     },
     {
       "symbol": "WFC",
       "name": "Wells Fargo & Company",
       "sector": "Financial Services",
       "industry": "Banks - Diversified",
-      "price": 81.0,
-      "market_cap": 249071337472,
+      "price": 80.46,
+      "market_cap": 247380099072,
       "fundamentals": {
-        "trailing_pe": 12.52,
-        "forward_pe": 10.27,
-        "pb_ratio": 1.52,
-        "ps_ratio": 3.07,
+        "trailing_pe": 12.43,
+        "forward_pe": 10.2,
+        "pb_ratio": 1.51,
+        "ps_ratio": 3.05,
         "ev_ebitda": 0,
-        "earnings_yield": 7.99,
+        "earnings_yield": 8.04,
         "revenue_growth": 5.7,
         "earnings_growth": 15.1,
         "growth_tier": "moderate_growth"
       },
       "technicals": {
-        "sma_50": 81.9,
+        "sma_50": 81.89,
         "sma_200": 83.91,
-        "rsi": 51.3,
+        "rsi": 49.66,
         "week_52_high": 97.76,
         "week_52_low": 67.44,
-        "bollinger_position": 45.28,
-        "price_vs_sma50": -1.1,
-        "price_vs_sma200": -3.47
+        "bollinger_position": 40.2,
+        "price_vs_sma50": -1.75,
+        "price_vs_sma200": -4.12
       },
       "scores": {
         "per_score": 80.0,
@@ -544,7 +544,7 @@
       },
       "grade": "B",
       "recommendation": "Hold",
-      "fetched_at": "2026-04-22T18:00:04.383875"
+      "fetched_at": "2026-04-22T19:25:39.986775"
     },
     {
       "symbol": "CVX",
@@ -552,7 +552,7 @@
       "sector": "Energy",
       "industry": "Oil & Gas Integrated",
       "price": 187.21,
-      "market_cap": 372903378944,
+      "market_cap": 372913307648,
       "fundamentals": {
         "trailing_pe": 28.28,
         "forward_pe": 16.42,
@@ -566,13 +566,13 @@
       },
       "technicals": {
         "sma_50": 192.05,
-        "sma_200": 163.05,
-        "rsi": 37.1,
+        "sma_200": 163.06,
+        "rsi": 37.11,
         "week_52_high": 214.71,
         "week_52_low": 133.77,
-        "bollinger_position": 28.44,
+        "bollinger_position": 28.45,
         "price_vs_sma50": -2.52,
-        "price_vs_sma200": 14.81
+        "price_vs_sma200": 14.82
       },
       "scores": {
         "per_score": 46.0,
@@ -586,35 +586,35 @@
       },
       "grade": "B",
       "recommendation": "Hold",
-      "fetched_at": "2026-04-22T18:00:25.532938"
+      "fetched_at": "2026-04-22T19:26:04.829806"
     },
     {
       "symbol": "C",
       "name": "Citigroup, Inc.",
       "sector": "Financial Services",
       "industry": "Banks - Diversified",
-      "price": 130.01,
-      "market_cap": 227446472704,
+      "price": 129.58,
+      "market_cap": 226694250496,
       "fundamentals": {
-        "trailing_pe": 16.07,
-        "forward_pe": 10.5,
-        "pb_ratio": 1.16,
-        "ps_ratio": 2.89,
+        "trailing_pe": 16.02,
+        "forward_pe": 10.46,
+        "pb_ratio": 1.15,
+        "ps_ratio": 2.88,
         "ev_ebitda": 0,
-        "earnings_yield": 6.22,
+        "earnings_yield": 6.24,
         "revenue_growth": 16.9,
         "earnings_growth": 56.1,
         "growth_tier": "hypergrowth"
       },
       "technicals": {
         "sma_50": 115.48,
-        "sma_200": 105.32,
-        "rsi": 77.13,
+        "sma_200": 105.31,
+        "rsi": 75.93,
         "week_52_high": 135.29,
         "week_52_low": 65.78,
-        "bollinger_position": 74.34,
-        "price_vs_sma50": 12.58,
-        "price_vs_sma200": 23.45
+        "bollinger_position": 73.18,
+        "price_vs_sma50": 12.21,
+        "price_vs_sma200": 23.04
       },
       "scores": {
         "per_score": 74.0,
@@ -628,35 +628,35 @@
       },
       "grade": "B",
       "recommendation": "Hold",
-      "fetched_at": "2026-04-22T18:00:07.733753"
+      "fetched_at": "2026-04-22T19:25:43.953305"
     },
     {
       "symbol": "BAC",
       "name": "Bank of America Corporation",
       "sector": "Financial Services",
       "industry": "Banks - Diversified",
-      "price": 53.15,
-      "market_cap": 379776565248,
+      "price": 53.03,
+      "market_cap": 378901233664,
       "fundamentals": {
-        "trailing_pe": 13.22,
-        "forward_pe": 10.55,
+        "trailing_pe": 13.19,
+        "forward_pe": 10.52,
         "pb_ratio": 1.37,
-        "ps_ratio": 3.47,
+        "ps_ratio": 3.46,
         "ev_ebitda": 0,
-        "earnings_yield": 7.56,
+        "earnings_yield": 7.58,
         "revenue_growth": 11.8,
         "earnings_growth": 23.3,
         "growth_tier": "high_growth"
       },
       "technicals": {
         "sma_50": 50.4,
-        "sma_200": 50.79,
-        "rsi": 76.05,
+        "sma_200": 50.78,
+        "rsi": 74.82,
         "week_52_high": 57.55,
         "week_52_low": 38.6,
-        "bollinger_position": 69.63,
-        "price_vs_sma50": 5.45,
-        "price_vs_sma200": 4.65
+        "bollinger_position": 68.46,
+        "price_vs_sma50": 5.21,
+        "price_vs_sma200": 4.41
       },
       "scores": {
         "per_score": 80.0,
@@ -670,35 +670,35 @@
       },
       "grade": "C",
       "recommendation": "Weak Hold",
-      "fetched_at": "2026-04-22T18:00:03.921305"
+      "fetched_at": "2026-04-22T19:25:39.414872"
     },
     {
       "symbol": "LMT",
       "name": "Lockheed Martin Corporation",
       "sector": "Industrials",
       "industry": "Aerospace & Defense",
-      "price": 554.34,
-      "market_cap": 127754371072,
+      "price": 555.18,
+      "market_cap": 127947956224,
       "fundamentals": {
-        "trailing_pe": 25.77,
-        "forward_pe": 17.31,
-        "pb_ratio": 18.89,
+        "trailing_pe": 25.81,
+        "forward_pe": 17.34,
+        "pb_ratio": 18.92,
         "ps_ratio": 1.7,
         "ev_ebitda": 18.14,
-        "earnings_yield": 3.88,
+        "earnings_yield": 3.87,
         "revenue_growth": 9.1,
         "earnings_growth": 161.0,
         "growth_tier": "hypergrowth"
       },
       "technicals": {
-        "sma_50": 632.14,
+        "sma_50": 632.16,
         "sma_200": 518.0,
-        "rsi": 23.03,
+        "rsi": 23.2,
         "week_52_high": 692.0,
         "week_52_low": 410.11,
         "bollinger_position": 0,
-        "price_vs_sma50": -12.31,
-        "price_vs_sma200": 7.02
+        "price_vs_sma50": -12.18,
+        "price_vs_sma200": 7.18
       },
       "scores": {
         "per_score": 54.0,
@@ -712,19 +712,19 @@
       },
       "grade": "C",
       "recommendation": "Weak Hold",
-      "fetched_at": "2026-04-22T18:00:23.107574"
+      "fetched_at": "2026-04-22T19:26:02.270468"
     },
     {
       "symbol": "PG",
       "name": "Procter & Gamble Company (The)",
       "sector": "Consumer Defensive",
       "industry": "Household & Personal Products",
-      "price": 142.62,
-      "market_cap": 333264912384,
+      "price": 142.73,
+      "market_cap": 333521944576,
       "fundamentals": {
-        "trailing_pe": 21.13,
-        "forward_pe": 19.72,
-        "pb_ratio": 6.34,
+        "trailing_pe": 21.15,
+        "forward_pe": 19.78,
+        "pb_ratio": 6.35,
         "ps_ratio": 3.91,
         "ev_ebitda": 14.44,
         "earnings_yield": 4.73,
@@ -735,12 +735,12 @@
       "technicals": {
         "sma_50": 151.19,
         "sma_200": 149.79,
-        "rsi": 46.66,
+        "rsi": 46.93,
         "week_52_high": 170.99,
         "week_52_low": 137.62,
-        "bollinger_position": 27.76,
-        "price_vs_sma50": -5.67,
-        "price_vs_sma200": -4.79
+        "bollinger_position": 29.58,
+        "price_vs_sma50": -5.6,
+        "price_vs_sma200": -4.71
       },
       "scores": {
         "per_score": 46.0,
@@ -754,35 +754,35 @@
       },
       "grade": "C",
       "recommendation": "Weak Hold",
-      "fetched_at": "2026-04-22T18:00:13.572389"
+      "fetched_at": "2026-04-22T19:25:51.116151"
     },
     {
       "symbol": "ABT",
       "name": "Abbott Laboratories",
       "sector": "Healthcare",
       "industry": "Medical Devices",
-      "price": 92.01,
-      "market_cap": 159884214272,
+      "price": 91.69,
+      "market_cap": 159328157696,
       "fundamentals": {
-        "trailing_pe": 25.77,
-        "forward_pe": 15.17,
-        "pb_ratio": 3.07,
-        "ps_ratio": 3.54,
+        "trailing_pe": 25.68,
+        "forward_pe": 15.12,
+        "pb_ratio": 3.05,
+        "ps_ratio": 3.53,
         "ev_ebitda": 13.74,
-        "earnings_yield": 3.88,
+        "earnings_yield": 3.89,
         "revenue_growth": 7.8,
         "earnings_growth": -19.7,
         "growth_tier": "declining"
       },
       "technicals": {
-        "sma_50": 106.39,
+        "sma_50": 106.38,
         "sma_200": 120.59,
-        "rsi": 26.37,
+        "rsi": 25.97,
         "week_52_high": 139.06,
-        "week_52_low": 91.93,
+        "week_52_low": 91.67,
         "bollinger_position": 0,
-        "price_vs_sma50": -13.51,
-        "price_vs_sma200": -23.7
+        "price_vs_sma50": -13.81,
+        "price_vs_sma200": -23.97
       },
       "scores": {
         "per_score": 46.0,
@@ -791,27 +791,27 @@
         "ev_ebitda_score": 40,
         "earnings_yield_score": 20,
         "fundamental_score": 34.8,
-        "technical_score": 69.56,
-        "value_score": 45.23
+        "technical_score": 69.55,
+        "value_score": 45.22
       },
       "grade": "C",
       "recommendation": "Weak Hold",
-      "fetched_at": "2026-04-22T18:00:11.374510"
+      "fetched_at": "2026-04-22T19:25:48.416445"
     },
     {
       "symbol": "KMI",
       "name": "Kinder Morgan, Inc.",
       "sector": "Energy",
       "industry": "Oil & Gas Midstream",
-      "price": 31.78,
-      "market_cap": 70704750592,
+      "price": 31.99,
+      "market_cap": 71171956736,
       "fundamentals": {
-        "trailing_pe": 23.2,
-        "forward_pe": 21.66,
-        "pb_ratio": 2.27,
-        "ps_ratio": 4.17,
+        "trailing_pe": 23.35,
+        "forward_pe": 21.8,
+        "pb_ratio": 2.28,
+        "ps_ratio": 4.2,
         "ev_ebitda": 14.59,
-        "earnings_yield": 4.31,
+        "earnings_yield": 4.28,
         "revenue_growth": 13.1,
         "earnings_growth": 49.3,
         "growth_tier": "hypergrowth"
@@ -819,12 +819,12 @@
       "technicals": {
         "sma_50": 32.87,
         "sma_200": 28.46,
-        "rsi": 32.37,
+        "rsi": 36.64,
         "week_52_high": 34.73,
         "week_52_low": 25.6,
-        "bollinger_position": 21.61,
-        "price_vs_sma50": -3.31,
-        "price_vs_sma200": 11.68
+        "bollinger_position": 27.24,
+        "price_vs_sma50": -2.68,
+        "price_vs_sma200": 12.42
       },
       "scores": {
         "per_score": 40.0,
@@ -833,54 +833,12 @@
         "ev_ebitda_score": 40,
         "earnings_yield_score": 20,
         "fundamental_score": 37.0,
-        "technical_score": 61.37,
+        "technical_score": 61.38,
         "value_score": 44.31
       },
       "grade": "C",
       "recommendation": "Weak Hold",
-      "fetched_at": "2026-04-22T18:00:29.379336"
-    },
-    {
-      "symbol": "PEP",
-      "name": "Pepsico, Inc.",
-      "sector": "Consumer Defensive",
-      "industry": "Beverages - Non-Alcoholic",
-      "price": 153.91,
-      "market_cap": 210392711168,
-      "fundamentals": {
-        "trailing_pe": 24.16,
-        "forward_pe": 16.82,
-        "pb_ratio": 9.85,
-        "ps_ratio": 2.2,
-        "ev_ebitda": 13.57,
-        "earnings_yield": 4.14,
-        "revenue_growth": 8.5,
-        "earnings_growth": 27.8,
-        "growth_tier": "high_growth"
-      },
-      "technicals": {
-        "sma_50": 158.82,
-        "sma_200": 147.11,
-        "rsi": 48.26,
-        "week_52_high": 171.48,
-        "week_52_low": 127.6,
-        "bollinger_position": 31.93,
-        "price_vs_sma50": -3.09,
-        "price_vs_sma200": 4.63
-      },
-      "scores": {
-        "per_score": 52.0,
-        "pbr_score": 10,
-        "psr_score": 60,
-        "ev_ebitda_score": 40,
-        "earnings_yield_score": 20,
-        "fundamental_score": 37.6,
-        "technical_score": 59.49,
-        "value_score": 44.17
-      },
-      "grade": "C",
-      "recommendation": "Weak Hold",
-      "fetched_at": "2026-04-22T18:00:14.723514"
+      "fetched_at": "2026-04-22T19:26:09.349297"
     },
     {
       "symbol": "CRM",
@@ -922,35 +880,77 @@
       },
       "grade": "C",
       "recommendation": "Weak Hold",
-      "fetched_at": "2026-04-22T18:00:02.740272"
+      "fetched_at": "2026-04-22T19:25:38.293062"
+    },
+    {
+      "symbol": "PEP",
+      "name": "Pepsico, Inc.",
+      "sector": "Consumer Defensive",
+      "industry": "Beverages - Non-Alcoholic",
+      "price": 154.15,
+      "market_cap": 210713657344,
+      "fundamentals": {
+        "trailing_pe": 24.2,
+        "forward_pe": 16.84,
+        "pb_ratio": 9.86,
+        "ps_ratio": 2.21,
+        "ev_ebitda": 13.57,
+        "earnings_yield": 4.13,
+        "revenue_growth": 8.5,
+        "earnings_growth": 27.8,
+        "growth_tier": "high_growth"
+      },
+      "technicals": {
+        "sma_50": 158.82,
+        "sma_200": 147.11,
+        "rsi": 48.8,
+        "week_52_high": 171.48,
+        "week_52_low": 127.6,
+        "bollinger_position": 34.68,
+        "price_vs_sma50": -2.94,
+        "price_vs_sma200": 4.79
+      },
+      "scores": {
+        "per_score": 52.0,
+        "pbr_score": 10,
+        "psr_score": 60,
+        "ev_ebitda_score": 40,
+        "earnings_yield_score": 20,
+        "fundamental_score": 37.6,
+        "technical_score": 54.49,
+        "value_score": 42.67
+      },
+      "grade": "C",
+      "recommendation": "Weak Hold",
+      "fetched_at": "2026-04-22T19:25:52.602372"
     },
     {
       "symbol": "JNJ",
       "name": "Johnson & Johnson",
       "sector": "Healthcare",
       "industry": "Drug Manufacturers - General",
-      "price": 224.01,
-      "market_cap": 539853520896,
+      "price": 224.85,
+      "market_cap": 541889888256,
       "fundamentals": {
-        "trailing_pe": 20.29,
-        "forward_pe": 17.63,
-        "pb_ratio": 6.61,
-        "ps_ratio": 5.6,
+        "trailing_pe": 20.37,
+        "forward_pe": 17.7,
+        "pb_ratio": 6.64,
+        "ps_ratio": 5.62,
         "ev_ebitda": 16.84,
-        "earnings_yield": 4.93,
+        "earnings_yield": 4.91,
         "revenue_growth": 9.9,
         "earnings_growth": -52.9,
         "growth_tier": "declining"
       },
       "technicals": {
-        "sma_50": 240.37,
-        "sma_200": 202.21,
-        "rsi": 16.7,
+        "sma_50": 240.39,
+        "sma_200": 202.22,
+        "rsi": 17.17,
         "week_52_high": 251.71,
         "week_52_low": 146.12,
         "bollinger_position": 0,
-        "price_vs_sma50": -6.81,
-        "price_vs_sma200": 10.78
+        "price_vs_sma50": -6.46,
+        "price_vs_sma200": 11.2
       },
       "scores": {
         "per_score": 46.0,
@@ -964,15 +964,15 @@
       },
       "grade": "C",
       "recommendation": "Weak Hold",
-      "fetched_at": "2026-04-22T18:00:08.259217"
+      "fetched_at": "2026-04-22T19:25:44.628209"
     },
     {
       "symbol": "JPM",
       "name": "JP Morgan Chase & Co.",
       "sector": "Financial Services",
       "industry": "Banks - Diversified",
-      "price": 312.67,
-      "market_cap": 843281203200,
+      "price": 312.66,
+      "market_cap": 843254202368,
       "fundamentals": {
         "trailing_pe": 14.97,
         "forward_pe": 13.3,
@@ -987,11 +987,11 @@
       "technicals": {
         "sma_50": 298.02,
         "sma_200": 301.23,
-        "rsi": 70.7,
+        "rsi": 70.68,
         "week_52_high": 337.25,
         "week_52_low": 237.58,
-        "bollinger_position": 74.6,
-        "price_vs_sma50": 4.92,
+        "bollinger_position": 74.57,
+        "price_vs_sma50": 4.91,
         "price_vs_sma200": 3.8
       },
       "scores": {
@@ -1006,35 +1006,35 @@
       },
       "grade": "C",
       "recommendation": "Weak Hold",
-      "fetched_at": "2026-04-22T18:00:03.398752"
+      "fetched_at": "2026-04-22T19:25:38.813351"
     },
     {
       "symbol": "GS",
       "name": "Goldman Sachs Group, Inc. (The)",
       "sector": "Financial Services",
       "industry": "Capital Markets",
-      "price": 934.07,
-      "market_cap": 277188018176,
+      "price": 931.96,
+      "market_cap": 276561854464,
       "fundamentals": {
-        "trailing_pe": 17.06,
-        "forward_pe": 14.3,
-        "pb_ratio": 2.62,
-        "ps_ratio": 4.5,
+        "trailing_pe": 17.02,
+        "forward_pe": 14.26,
+        "pb_ratio": 2.61,
+        "ps_ratio": 4.49,
         "ev_ebitda": 0,
-        "earnings_yield": 5.86,
+        "earnings_yield": 5.88,
         "revenue_growth": 14.5,
         "earnings_growth": 24.3,
         "growth_tier": "high_growth"
       },
       "technicals": {
-        "sma_50": 869.18,
-        "sma_200": 817.4,
-        "rsi": 72.19,
+        "sma_50": 869.14,
+        "sma_200": 817.39,
+        "rsi": 71.84,
         "week_52_high": 984.7,
         "week_52_low": 523.42,
-        "bollinger_position": 82.67,
-        "price_vs_sma50": 7.47,
-        "price_vs_sma200": 14.27
+        "bollinger_position": 81.55,
+        "price_vs_sma50": 7.23,
+        "price_vs_sma200": 14.02
       },
       "scores": {
         "per_score": 72.0,
@@ -1048,22 +1048,22 @@
       },
       "grade": "C",
       "recommendation": "Weak Hold",
-      "fetched_at": "2026-04-22T18:00:04.818249"
+      "fetched_at": "2026-04-22T19:25:40.500486"
     },
     {
       "symbol": "RTX",
       "name": "RTX Corporation",
       "sector": "Industrials",
       "industry": "Aerospace & Defense",
-      "price": 180.36,
-      "market_cap": 242756026368,
+      "price": 180.4,
+      "market_cap": 242813747200,
       "fundamentals": {
-        "trailing_pe": 33.84,
-        "forward_pe": 23.93,
+        "trailing_pe": 33.85,
+        "forward_pe": 23.94,
         "pb_ratio": 3.71,
         "ps_ratio": 2.69,
         "ev_ebitda": 18.75,
-        "earnings_yield": 2.96,
+        "earnings_yield": 2.95,
         "revenue_growth": 8.7,
         "earnings_growth": 32.5,
         "growth_tier": "high_growth"
@@ -1071,12 +1071,12 @@
       "technicals": {
         "sma_50": 199.75,
         "sma_200": 176.92,
-        "rsi": 30.49,
+        "rsi": 30.52,
         "week_52_high": 214.5,
         "week_52_low": 117.28,
         "bollinger_position": 0,
-        "price_vs_sma50": -9.71,
-        "price_vs_sma200": 1.94
+        "price_vs_sma50": -9.69,
+        "price_vs_sma200": 1.97
       },
       "scores": {
         "per_score": 32.0,
@@ -1090,57 +1090,15 @@
       },
       "grade": "C",
       "recommendation": "Weak Hold",
-      "fetched_at": "2026-04-22T18:00:22.522799"
-    },
-    {
-      "symbol": "MMM",
-      "name": "3M Company",
-      "sector": "Industrials",
-      "industry": "Conglomerates",
-      "price": 145.26,
-      "market_cap": 75883266048,
-      "fundamentals": {
-        "trailing_pe": 27.93,
-        "forward_pe": 15.35,
-        "pb_ratio": 16.38,
-        "ps_ratio": 3.03,
-        "ev_ebitda": 13.82,
-        "earnings_yield": 3.58,
-        "revenue_growth": 1.3,
-        "earnings_growth": -39.7,
-        "growth_tier": "declining"
-      },
-      "technicals": {
-        "sma_50": 154.32,
-        "sma_200": 157.38,
-        "rsi": 50.02,
-        "week_52_high": 177.41,
-        "week_52_low": 134.85,
-        "bollinger_position": 31.61,
-        "price_vs_sma50": -5.87,
-        "price_vs_sma200": -7.7
-      },
-      "scores": {
-        "per_score": 46.0,
-        "pbr_score": 10,
-        "psr_score": 40,
-        "ev_ebitda_score": 40,
-        "earnings_yield_score": 20,
-        "fundamental_score": 32.8,
-        "technical_score": 52.02,
-        "value_score": 38.57
-      },
-      "grade": "D",
-      "recommendation": "Avoid",
-      "fetched_at": "2026-04-22T18:00:20.847895"
+      "fetched_at": "2026-04-22T19:26:01.658606"
     },
     {
       "symbol": "MS",
       "name": "Morgan Stanley",
       "sector": "Financial Services",
       "industry": "Capital Markets",
-      "price": 191.13,
-      "market_cap": 303495643136,
+      "price": 191.07,
+      "market_cap": 303392456704,
       "fundamentals": {
         "trailing_pe": 17.31,
         "forward_pe": 15.16,
@@ -1155,12 +1113,12 @@
       "technicals": {
         "sma_50": 169.89,
         "sma_200": 163.0,
-        "rsi": 82.76,
+        "rsi": 82.73,
         "week_52_high": 194.59,
         "week_52_low": 111.24,
-        "bollinger_position": 83.94,
-        "price_vs_sma50": 12.5,
-        "price_vs_sma200": 17.26
+        "bollinger_position": 83.82,
+        "price_vs_sma50": 12.46,
+        "price_vs_sma200": 17.22
       },
       "scores": {
         "per_score": 60.0,
@@ -1174,35 +1132,35 @@
       },
       "grade": "D",
       "recommendation": "Avoid",
-      "fetched_at": "2026-04-22T18:00:05.308886"
+      "fetched_at": "2026-04-22T19:25:41.038120"
     },
     {
       "symbol": "ABBV",
       "name": "AbbVie Inc.",
       "sector": "Healthcare",
       "industry": "Drug Manufacturers - General",
-      "price": 201.46,
-      "market_cap": 356326014976,
+      "price": 200.7,
+      "market_cap": 354990587904,
       "fundamentals": {
-        "trailing_pe": 84.64,
-        "forward_pe": 12.52,
-        "pb_ratio": -108.89,
-        "ps_ratio": 5.83,
+        "trailing_pe": 84.33,
+        "forward_pe": 12.48,
+        "pb_ratio": -108.49,
+        "ps_ratio": 5.8,
         "ev_ebitda": 14.56,
-        "earnings_yield": 1.18,
+        "earnings_yield": 1.19,
         "revenue_growth": 10.0,
         "earnings_growth": 0,
         "growth_tier": "moderate_growth"
       },
       "technicals": {
-        "sma_50": 216.4,
+        "sma_50": 216.39,
         "sma_200": 214.09,
-        "rsi": 33.3,
+        "rsi": 32.6,
         "week_52_high": 244.81,
         "week_52_low": 174.4,
-        "bollinger_position": 2.42,
-        "price_vs_sma50": -6.91,
-        "price_vs_sma200": -5.9
+        "bollinger_position": 0,
+        "price_vs_sma50": -7.25,
+        "price_vs_sma200": -6.25
       },
       "scores": {
         "per_score": 40.0,
@@ -1216,20 +1174,20 @@
       },
       "grade": "D",
       "recommendation": "Avoid",
-      "fetched_at": "2026-04-22T18:00:09.663258"
+      "fetched_at": "2026-04-22T19:25:46.466809"
     },
     {
       "symbol": "UNP",
       "name": "Union Pacific Corporation",
       "sector": "Industrials",
       "industry": "Railroads",
-      "price": 250.54,
-      "market_cap": 148740145152,
+      "price": 250.35,
+      "market_cap": 148645167104,
       "fundamentals": {
-        "trailing_pe": 20.91,
+        "trailing_pe": 20.9,
         "forward_pe": 18.44,
-        "pb_ratio": 8.05,
-        "ps_ratio": 6.07,
+        "pb_ratio": 8.04,
+        "ps_ratio": 6.06,
         "ev_ebitda": 14.5,
         "earnings_yield": 4.78,
         "revenue_growth": -0.6,
@@ -1239,12 +1197,12 @@
       "technicals": {
         "sma_50": 251.49,
         "sma_200": 231.89,
-        "rsi": 68.55,
+        "rsi": 67.92,
         "week_52_high": 268.14,
         "week_52_low": 206.63,
-        "bollinger_position": 69.27,
-        "price_vs_sma50": -0.38,
-        "price_vs_sma200": 8.04
+        "bollinger_position": 68.36,
+        "price_vs_sma50": -0.45,
+        "price_vs_sma200": 7.96
       },
       "scores": {
         "per_score": 48.0,
@@ -1258,22 +1216,22 @@
       },
       "grade": "D",
       "recommendation": "Avoid",
-      "fetched_at": "2026-04-22T18:00:24.260001"
+      "fetched_at": "2026-04-22T19:26:03.508382"
     },
     {
       "symbol": "SLB",
       "name": "SLB Limited",
       "sector": "Energy",
       "industry": "Oil & Gas Equipment & Services",
-      "price": 54.38,
-      "market_cap": 81639129088,
+      "price": 54.47,
+      "market_cap": 81774231552,
       "fundamentals": {
-        "trailing_pe": 23.14,
-        "forward_pe": 16.28,
-        "pb_ratio": 3.11,
+        "trailing_pe": 23.18,
+        "forward_pe": 16.31,
+        "pb_ratio": 3.12,
         "ps_ratio": 2.29,
         "ev_ebitda": 11.42,
-        "earnings_yield": 4.32,
+        "earnings_yield": 4.31,
         "revenue_growth": 5.0,
         "earnings_growth": -28.6,
         "growth_tier": "declining"
@@ -1281,12 +1239,12 @@
       "technicals": {
         "sma_50": 50.11,
         "sma_200": 40.35,
-        "rsi": 71.92,
+        "rsi": 72.17,
         "week_52_high": 54.84,
         "week_52_low": 31.64,
         "bollinger_position": 100,
-        "price_vs_sma50": 8.53,
-        "price_vs_sma200": 34.8
+        "price_vs_sma50": 8.7,
+        "price_vs_sma200": 35.02
       },
       "scores": {
         "per_score": 46.0,
@@ -1300,35 +1258,35 @@
       },
       "grade": "D",
       "recommendation": "Avoid",
-      "fetched_at": "2026-04-22T18:00:26.497764"
+      "fetched_at": "2026-04-22T19:26:06.033556"
     },
     {
       "symbol": "DHR",
       "name": "Danaher Corporation",
       "sector": "Healthcare",
       "industry": "Diagnostics & Research",
-      "price": 185.88,
-      "market_cap": 131539173376,
+      "price": 185.05,
+      "market_cap": 130972958720,
       "fundamentals": {
-        "trailing_pe": 36.02,
-        "forward_pe": 20.4,
-        "pb_ratio": 2.5,
-        "ps_ratio": 5.31,
+        "trailing_pe": 35.86,
+        "forward_pe": 20.3,
+        "pb_ratio": 2.49,
+        "ps_ratio": 5.29,
         "ev_ebitda": 18.95,
-        "earnings_yield": 2.78,
+        "earnings_yield": 2.79,
         "revenue_growth": 3.7,
         "earnings_growth": 9.8,
         "growth_tier": "moderate_growth"
       },
       "technicals": {
-        "sma_50": 197.65,
+        "sma_50": 197.63,
         "sma_200": 208.76,
-        "rsi": 43.76,
+        "rsi": 42.86,
         "week_52_high": 242.8,
         "week_52_low": 180.03,
-        "bollinger_position": 19.03,
-        "price_vs_sma50": -5.96,
-        "price_vs_sma200": -10.96
+        "bollinger_position": 15.11,
+        "price_vs_sma50": -6.37,
+        "price_vs_sma200": -11.36
       },
       "scores": {
         "per_score": 30.0,
@@ -1342,35 +1300,77 @@
       },
       "grade": "D",
       "recommendation": "Avoid",
-      "fetched_at": "2026-04-22T18:00:11.891266"
+      "fetched_at": "2026-04-22T19:25:49.104064"
+    },
+    {
+      "symbol": "MMM",
+      "name": "3M Company",
+      "sector": "Industrials",
+      "industry": "Conglomerates",
+      "price": 145.34,
+      "market_cap": 75925061632,
+      "fundamentals": {
+        "trailing_pe": 27.95,
+        "forward_pe": 15.38,
+        "pb_ratio": 22.9,
+        "ps_ratio": 3.03,
+        "ev_ebitda": 13.82,
+        "earnings_yield": 3.58,
+        "revenue_growth": 1.3,
+        "earnings_growth": -39.7,
+        "growth_tier": "declining"
+      },
+      "technicals": {
+        "sma_50": 154.32,
+        "sma_200": 157.38,
+        "rsi": 50.18,
+        "week_52_high": 177.41,
+        "week_52_low": 134.85,
+        "bollinger_position": 32.13,
+        "price_vs_sma50": -5.82,
+        "price_vs_sma200": -7.65
+      },
+      "scores": {
+        "per_score": 46.0,
+        "pbr_score": 0,
+        "psr_score": 40,
+        "ev_ebitda_score": 40,
+        "earnings_yield_score": 20,
+        "fundamental_score": 30.8,
+        "technical_score": 52.02,
+        "value_score": 37.17
+      },
+      "grade": "D",
+      "recommendation": "Avoid",
+      "fetched_at": "2026-04-22T19:25:59.842857"
     },
     {
       "symbol": "NKE",
       "name": "Nike, Inc.",
       "sector": "Consumer Cyclical",
       "industry": "Footwear & Accessories",
-      "price": 45.81,
-      "market_cap": 67846836224,
+      "price": 45.63,
+      "market_cap": 67565469696,
       "fundamentals": {
-        "trailing_pe": 30.14,
-        "forward_pe": 24.38,
-        "pb_ratio": 4.81,
-        "ps_ratio": 1.46,
+        "trailing_pe": 30.02,
+        "forward_pe": 24.28,
+        "pb_ratio": 4.79,
+        "ps_ratio": 1.45,
         "ev_ebitda": 18.59,
-        "earnings_yield": 3.32,
+        "earnings_yield": 3.33,
         "revenue_growth": 0.1,
         "earnings_growth": -34.8,
         "growth_tier": "declining"
       },
       "technicals": {
-        "sma_50": 53.94,
+        "sma_50": 53.93,
         "sma_200": 64.36,
-        "rsi": 56.47,
+        "rsi": 55.35,
         "week_52_high": 80.17,
         "week_52_low": 42.09,
-        "bollinger_position": 45.53,
-        "price_vs_sma50": -15.06,
-        "price_vs_sma200": -28.81
+        "bollinger_position": 44.27,
+        "price_vs_sma50": -15.4,
+        "price_vs_sma200": -29.1
       },
       "scores": {
         "per_score": 26.0,
@@ -1384,19 +1384,19 @@
       },
       "grade": "D",
       "recommendation": "Avoid",
-      "fetched_at": "2026-04-22T18:00:17.451908"
+      "fetched_at": "2026-04-22T19:25:55.893020"
     },
     {
       "symbol": "HON",
       "name": "Honeywell International Inc.",
       "sector": "Industrials",
       "industry": "Conglomerates",
-      "price": 220.23,
-      "market_cap": 139549425664,
+      "price": 220.31,
+      "market_cap": 139600117760,
       "fundamentals": {
-        "trailing_pe": 31.78,
-        "forward_pe": 19.2,
-        "pb_ratio": 10.06,
+        "trailing_pe": 31.79,
+        "forward_pe": 19.21,
+        "pb_ratio": 10.07,
         "ps_ratio": 3.73,
         "ev_ebitda": 19.49,
         "earnings_yield": 3.15,
@@ -1406,13 +1406,13 @@
       },
       "technicals": {
         "sma_50": 233.88,
-        "sma_200": 210.32,
-        "rsi": 40.79,
+        "sma_200": 210.33,
+        "rsi": 40.86,
         "week_52_high": 248.18,
         "week_52_low": 184.96,
-        "bollinger_position": 4.34,
-        "price_vs_sma50": -5.84,
-        "price_vs_sma200": 4.71
+        "bollinger_position": 4.68,
+        "price_vs_sma50": -5.8,
+        "price_vs_sma200": 4.75
       },
       "scores": {
         "per_score": 32.0,
@@ -1426,35 +1426,35 @@
       },
       "grade": "D",
       "recommendation": "Avoid",
-      "fetched_at": "2026-04-22T18:00:21.360287"
+      "fetched_at": "2026-04-22T19:26:00.473915"
     },
     {
       "symbol": "UNH",
       "name": "UnitedHealth Group Incorporated",
       "sector": "Healthcare",
       "industry": "Healthcare Plans",
-      "price": 353.11,
-      "market_cap": 320509411328,
+      "price": 354.1,
+      "market_cap": 321408008192,
       "fundamentals": {
-        "trailing_pe": 26.71,
-        "forward_pe": 17.1,
-        "pb_ratio": 3.4,
+        "trailing_pe": 26.79,
+        "forward_pe": 17.15,
+        "pb_ratio": 3.41,
         "ps_ratio": 0.72,
         "ev_ebitda": 17.41,
-        "earnings_yield": 3.74,
+        "earnings_yield": 3.73,
         "revenue_growth": 12.3,
         "earnings_growth": -99.9,
         "growth_tier": "declining"
       },
       "technicals": {
-        "sma_50": 289.57,
+        "sma_50": 289.59,
         "sma_200": 309.52,
-        "rsi": 93.78,
+        "rsi": 93.85,
         "week_52_high": 438.85,
         "week_52_low": 234.6,
-        "bollinger_position": 99.62,
-        "price_vs_sma50": 21.94,
-        "price_vs_sma200": 14.08
+        "bollinger_position": 100,
+        "price_vs_sma50": 22.28,
+        "price_vs_sma200": 14.4
       },
       "scores": {
         "per_score": 46.0,
@@ -1468,22 +1468,22 @@
       },
       "grade": "D",
       "recommendation": "Avoid",
-      "fetched_at": "2026-04-22T18:00:08.746266"
+      "fetched_at": "2026-04-22T19:25:45.248295"
     },
     {
       "symbol": "MCD",
       "name": "McDonald's Corporation",
       "sector": "Consumer Cyclical",
       "industry": "Restaurants",
-      "price": 300.51,
-      "market_cap": 213610823680,
+      "price": 300.68,
+      "market_cap": 213731655680,
       "fundamentals": {
-        "trailing_pe": 25.15,
-        "forward_pe": 20.96,
-        "pb_ratio": -119.3,
+        "trailing_pe": 25.16,
+        "forward_pe": 20.98,
+        "pb_ratio": -119.36,
         "ps_ratio": 7.95,
         "ev_ebitda": 18.4,
-        "earnings_yield": 3.98,
+        "earnings_yield": 3.97,
         "revenue_growth": 9.7,
         "earnings_growth": 8.2,
         "growth_tier": "moderate_growth"
@@ -1491,12 +1491,12 @@
       "technicals": {
         "sma_50": 318.04,
         "sma_200": 306.98,
-        "rsi": 41.01,
+        "rsi": 41.19,
         "week_52_high": 341.75,
         "week_52_low": 283.47,
         "bollinger_position": 0,
-        "price_vs_sma50": -5.51,
-        "price_vs_sma200": -2.11
+        "price_vs_sma50": -5.46,
+        "price_vs_sma200": -2.05
       },
       "scores": {
         "per_score": 40.0,
@@ -1510,18 +1510,18 @@
       },
       "grade": "D",
       "recommendation": "Avoid",
-      "fetched_at": "2026-04-22T18:00:16.931989"
+      "fetched_at": "2026-04-22T19:25:55.260702"
     },
     {
       "symbol": "KO",
       "name": "Coca-Cola Company (The)",
       "sector": "Consumer Defensive",
       "industry": "Beverages - Non-Alcoholic",
-      "price": 74.72,
-      "market_cap": 321606320128,
+      "price": 74.7,
+      "market_cap": 321520238592,
       "fundamentals": {
-        "trailing_pe": 24.58,
-        "forward_pe": 21.64,
+        "trailing_pe": 24.57,
+        "forward_pe": 21.63,
         "pb_ratio": 9.99,
         "ps_ratio": 6.71,
         "ev_ebitda": 22.11,
@@ -1533,12 +1533,12 @@
       "technicals": {
         "sma_50": 77.09,
         "sma_200": 70.89,
-        "rsi": 42.72,
+        "rsi": 42.6,
         "week_52_high": 82.0,
         "week_52_low": 65.35,
-        "bollinger_position": 15.92,
-        "price_vs_sma50": -3.08,
-        "price_vs_sma200": 5.4
+        "bollinger_position": 15.47,
+        "price_vs_sma50": -3.1,
+        "price_vs_sma200": 5.37
       },
       "scores": {
         "per_score": 40.0,
@@ -1552,35 +1552,35 @@
       },
       "grade": "D",
       "recommendation": "Avoid",
-      "fetched_at": "2026-04-22T18:00:14.164753"
+      "fetched_at": "2026-04-22T19:25:51.971017"
     },
     {
       "symbol": "HD",
       "name": "Home Depot, Inc. (The)",
       "sector": "Consumer Cyclical",
       "industry": "Home Improvement Retail",
-      "price": 339.67,
-      "market_cap": 338315739136,
+      "price": 339.09,
+      "market_cap": 337743020032,
       "fundamentals": {
-        "trailing_pe": 23.85,
-        "forward_pe": 20.84,
-        "pb_ratio": 26.4,
+        "trailing_pe": 23.81,
+        "forward_pe": 20.8,
+        "pb_ratio": 26.36,
         "ps_ratio": 2.05,
         "ev_ebitda": 16.28,
-        "earnings_yield": 4.19,
+        "earnings_yield": 4.2,
         "revenue_growth": -3.8,
         "earnings_growth": -14.2,
         "growth_tier": "declining"
       },
       "technicals": {
-        "sma_50": 350.2,
+        "sma_50": 350.19,
         "sma_200": 368.14,
-        "rsi": 56.32,
+        "rsi": 55.92,
         "week_52_high": 426.75,
         "week_52_low": 315.31,
-        "bollinger_position": 64.45,
-        "price_vs_sma50": -3.01,
-        "price_vs_sma200": -7.74
+        "bollinger_position": 62.96,
+        "price_vs_sma50": -3.17,
+        "price_vs_sma200": -7.89
       },
       "scores": {
         "per_score": 40.0,
@@ -1594,18 +1594,18 @@
       },
       "grade": "D",
       "recommendation": "Avoid",
-      "fetched_at": "2026-04-22T18:00:16.301256"
+      "fetched_at": "2026-04-22T19:25:54.513082"
     },
     {
       "symbol": "TMO",
       "name": "Thermo Fisher Scientific Inc",
       "sector": "Healthcare",
       "industry": "Diagnostics & Research",
-      "price": 516.33,
-      "market_cap": 191879266304,
+      "price": 517.25,
+      "market_cap": 192221118464,
       "fundamentals": {
-        "trailing_pe": 29.12,
-        "forward_pe": 19.02,
+        "trailing_pe": 29.17,
+        "forward_pe": 19.06,
         "pb_ratio": 3.64,
         "ps_ratio": 4.31,
         "ev_ebitda": 20.31,
@@ -1615,14 +1615,14 @@
         "growth_tier": "moderate_growth"
       },
       "technicals": {
-        "sma_50": 501.72,
-        "sma_200": 524.41,
-        "rsi": 60.78,
+        "sma_50": 501.74,
+        "sma_200": 524.42,
+        "rsi": 61.34,
         "week_52_high": 643.99,
         "week_52_low": 385.46,
-        "bollinger_position": 68.49,
-        "price_vs_sma50": 2.91,
-        "price_vs_sma200": -1.54
+        "bollinger_position": 69.72,
+        "price_vs_sma50": 3.09,
+        "price_vs_sma200": -1.37
       },
       "scores": {
         "per_score": 50.0,
@@ -1636,35 +1636,35 @@
       },
       "grade": "D",
       "recommendation": "Avoid",
-      "fetched_at": "2026-04-22T18:00:10.787197"
+      "fetched_at": "2026-04-22T19:25:47.650242"
     },
     {
       "symbol": "BLK",
       "name": "BlackRock, Inc.",
       "sector": "Financial Services",
       "industry": "Asset Management",
-      "price": 1057.13,
-      "market_cap": 164427628544,
+      "price": 1060.08,
+      "market_cap": 164887248896,
       "fundamentals": {
-        "trailing_pe": 26.61,
-        "forward_pe": 17.43,
-        "pb_ratio": 2.93,
-        "ps_ratio": 6.41,
+        "trailing_pe": 26.68,
+        "forward_pe": 17.48,
+        "pb_ratio": 2.94,
+        "ps_ratio": 6.43,
         "ev_ebitda": 16.45,
-        "earnings_yield": 3.76,
+        "earnings_yield": 3.75,
         "revenue_growth": 27.0,
         "earnings_growth": 45.9,
         "growth_tier": "hypergrowth"
       },
       "technicals": {
-        "sma_50": 1011.13,
-        "sma_200": 1074.0,
-        "rsi": 75.14,
+        "sma_50": 1011.19,
+        "sma_200": 1074.02,
+        "rsi": 75.5,
         "week_52_high": 1219.94,
         "week_52_low": 888.76,
-        "bollinger_position": 85.11,
-        "price_vs_sma50": 4.55,
-        "price_vs_sma200": -1.57
+        "bollinger_position": 86.61,
+        "price_vs_sma50": 4.84,
+        "price_vs_sma200": -1.3
       },
       "scores": {
         "per_score": 54.0,
@@ -1678,35 +1678,35 @@
       },
       "grade": "D",
       "recommendation": "Avoid",
-      "fetched_at": "2026-04-22T18:00:07.160999"
+      "fetched_at": "2026-04-22T19:25:43.439520"
     },
     {
       "symbol": "DE",
       "name": "Deere & Company",
       "sector": "Industrials",
       "industry": "Farm & Heavy Construction Machinery",
-      "price": 583.74,
-      "market_cap": 157672423424,
+      "price": 582.56,
+      "market_cap": 157353705472,
       "fundamentals": {
-        "trailing_pe": 32.91,
-        "forward_pe": 25.34,
-        "pb_ratio": 6.0,
+        "trailing_pe": 32.84,
+        "forward_pe": 25.29,
+        "pb_ratio": 5.98,
         "ps_ratio": 3.37,
         "ev_ebitda": 23.09,
-        "earnings_yield": 3.04,
+        "earnings_yield": 3.05,
         "revenue_growth": -11.1,
         "earnings_growth": -8.5,
         "growth_tier": "declining"
       },
       "technicals": {
-        "sma_50": 594.24,
-        "sma_200": 511.06,
-        "rsi": 55.5,
+        "sma_50": 594.22,
+        "sma_200": 511.05,
+        "rsi": 54.95,
         "week_52_high": 674.19,
         "week_52_low": 433.0,
-        "bollinger_position": 49.3,
-        "price_vs_sma50": -1.77,
-        "price_vs_sma200": 14.22
+        "bollinger_position": 47.55,
+        "price_vs_sma50": -1.96,
+        "price_vs_sma200": 13.99
       },
       "scores": {
         "per_score": 26.0,
@@ -1720,35 +1720,35 @@
       },
       "grade": "D",
       "recommendation": "Avoid",
-      "fetched_at": "2026-04-22T18:00:23.701765"
+      "fetched_at": "2026-04-22T19:26:02.864140"
     },
     {
       "symbol": "GE",
       "name": "GE Aerospace",
       "sector": "Industrials",
       "industry": "Aerospace & Defense",
-      "price": 273.23,
-      "market_cap": 285473570816,
+      "price": 274.57,
+      "market_cap": 286831837184,
       "fundamentals": {
-        "trailing_pe": 33.9,
-        "forward_pe": 31.68,
-        "pb_ratio": 15.34,
-        "ps_ratio": 5.91,
+        "trailing_pe": 34.06,
+        "forward_pe": 31.82,
+        "pb_ratio": 15.41,
+        "ps_ratio": 5.94,
         "ev_ebitda": 27.97,
-        "earnings_yield": 2.95,
+        "earnings_yield": 2.94,
         "revenue_growth": 24.7,
         "earnings_growth": -1.6,
         "growth_tier": "moderate_growth"
       },
       "technicals": {
-        "sma_50": 310.49,
-        "sma_200": 296.53,
-        "rsi": 41.49,
+        "sma_50": 310.51,
+        "sma_200": 296.54,
+        "rsi": 41.98,
         "week_52_high": 348.48,
         "week_52_low": 192.57,
-        "bollinger_position": 8.72,
-        "price_vs_sma50": -12.0,
-        "price_vs_sma200": -7.86
+        "bollinger_position": 10.76,
+        "price_vs_sma50": -11.58,
+        "price_vs_sma200": -7.41
       },
       "scores": {
         "per_score": 20.0,
@@ -1762,62 +1762,62 @@
       },
       "grade": "D",
       "recommendation": "Avoid",
-      "fetched_at": "2026-04-22T18:00:20.150703"
+      "fetched_at": "2026-04-22T19:25:59.180581"
     },
     {
-      "symbol": "V",
-      "name": "Visa Inc.",
-      "sector": "Financial Services",
-      "industry": "Credit Services",
-      "price": 309.13,
-      "market_cap": 596014858240,
+      "symbol": "META",
+      "name": "Meta Platforms, Inc.",
+      "sector": "Communication Services",
+      "industry": "Internet Content & Information",
+      "price": 675.41,
+      "market_cap": 1714501844992,
       "fundamentals": {
-        "trailing_pe": 29.0,
-        "forward_pe": 21.24,
-        "pb_ratio": 15.43,
-        "ps_ratio": 14.4,
-        "ev_ebitda": 20.57,
-        "earnings_yield": 3.45,
-        "revenue_growth": 14.6,
-        "earnings_growth": 17.4,
+        "trailing_pe": 28.77,
+        "forward_pe": 18.96,
+        "pb_ratio": 7.87,
+        "ps_ratio": 8.53,
+        "ev_ebitda": 16.64,
+        "earnings_yield": 3.48,
+        "revenue_growth": 23.8,
+        "earnings_growth": 10.7,
         "growth_tier": "high_growth"
       },
       "technicals": {
-        "sma_50": 311.09,
-        "sma_200": 332.96,
-        "rsi": 63.69,
-        "week_52_high": 375.51,
-        "week_52_low": 293.89,
-        "bollinger_position": 59.75,
-        "price_vs_sma50": -0.63,
-        "price_vs_sma200": -7.16
+        "sma_50": 629.72,
+        "sma_200": 679.61,
+        "rsi": 82.49,
+        "week_52_high": 796.25,
+        "week_52_low": 516.52,
+        "bollinger_position": 79.55,
+        "price_vs_sma50": 7.26,
+        "price_vs_sma200": -0.62
       },
       "scores": {
-        "per_score": 40.0,
+        "per_score": 52.0,
         "pbr_score": 10,
-        "psr_score": 10,
-        "ev_ebitda_score": 10,
+        "psr_score": 20,
+        "ev_ebitda_score": 20,
         "earnings_yield_score": 20,
-        "fundamental_score": 20.5,
-        "technical_score": 50.86,
-        "value_score": 29.61
+        "fundamental_score": 27.6,
+        "technical_score": 33.16,
+        "value_score": 29.27
       },
       "grade": "D",
       "recommendation": "Avoid",
-      "fetched_at": "2026-04-22T18:00:05.684770"
+      "fetched_at": "2026-04-22T19:25:35.789395"
     },
     {
       "symbol": "INTC",
       "name": "Intel Corporation",
       "sector": "Technology",
       "industry": "Semiconductors",
-      "price": 65.55,
-      "market_cap": 329127264256,
+      "price": 65.47,
+      "market_cap": 328751153152,
       "fundamentals": {
         "trailing_pe": 0,
-        "forward_pe": 58.61,
+        "forward_pe": 58.55,
         "pb_ratio": 2.86,
-        "ps_ratio": 6.23,
+        "ps_ratio": 6.22,
         "ev_ebitda": 27.92,
         "earnings_yield": 0,
         "revenue_growth": -4.1,
@@ -1827,12 +1827,12 @@
       "technicals": {
         "sma_50": 49.96,
         "sma_200": 37.94,
-        "rsi": 82.11,
+        "rsi": 81.89,
         "week_52_high": 70.33,
         "week_52_low": 18.97,
-        "bollinger_position": 73.55,
-        "price_vs_sma50": 31.21,
-        "price_vs_sma200": 72.78
+        "bollinger_position": 73.37,
+        "price_vs_sma50": 31.06,
+        "price_vs_sma200": 72.59
       },
       "scores": {
         "per_score": 35.0,
@@ -1846,35 +1846,35 @@
       },
       "grade": "D",
       "recommendation": "Avoid",
-      "fetched_at": "2026-04-22T18:00:02.334902"
+      "fetched_at": "2026-04-22T19:25:37.835370"
     },
     {
       "symbol": "AXP",
       "name": "American Express Company",
       "sector": "Financial Services",
       "industry": "Credit Services",
-      "price": 332.34,
-      "market_cap": 228189306880,
+      "price": 332.12,
+      "market_cap": 228038246400,
       "fundamentals": {
-        "trailing_pe": 21.62,
-        "forward_pe": 16.53,
+        "trailing_pe": 21.61,
+        "forward_pe": 16.52,
         "pb_ratio": 6.81,
-        "ps_ratio": 3.41,
+        "ps_ratio": 3.4,
         "ev_ebitda": 0,
-        "earnings_yield": 4.62,
+        "earnings_yield": 4.63,
         "revenue_growth": 10.6,
         "earnings_growth": 16.6,
         "growth_tier": "moderate_growth"
       },
       "technicals": {
-        "sma_50": 315.52,
+        "sma_50": 315.51,
         "sma_200": 334.3,
-        "rsi": 80.96,
+        "rsi": 80.88,
         "week_52_high": 387.49,
         "week_52_low": 257.21,
-        "bollinger_position": 83.84,
-        "price_vs_sma50": 5.33,
-        "price_vs_sma200": -0.59
+        "bollinger_position": 83.5,
+        "price_vs_sma50": 5.26,
+        "price_vs_sma200": -0.65
       },
       "scores": {
         "per_score": 50.0,
@@ -1888,17 +1888,17 @@
       },
       "grade": "D",
       "recommendation": "Avoid",
-      "fetched_at": "2026-04-22T18:00:06.713554"
+      "fetched_at": "2026-04-22T19:25:42.857380"
     },
     {
       "symbol": "COST",
       "name": "Costco Wholesale Corporation",
       "sector": "Consumer Defensive",
       "industry": "Discount Stores",
-      "price": 1004.23,
-      "market_cap": 445746970624,
+      "price": 1004.2,
+      "market_cap": 445733666816,
       "fundamentals": {
-        "trailing_pe": 52.28,
+        "trailing_pe": 52.27,
         "forward_pe": 44.68,
         "pb_ratio": 26.94,
         "ps_ratio": 1.56,
@@ -1911,10 +1911,10 @@
       "technicals": {
         "sma_50": 995.29,
         "sma_200": 947.81,
-        "rsi": 52.74,
+        "rsi": 52.73,
         "week_52_high": 1067.08,
         "week_52_low": 844.06,
-        "bollinger_position": 58.62,
+        "bollinger_position": 58.58,
         "price_vs_sma50": 0.9,
         "price_vs_sma200": 5.95
       },
@@ -1930,17 +1930,17 @@
       },
       "grade": "D",
       "recommendation": "Avoid",
-      "fetched_at": "2026-04-22T18:00:15.649263"
+      "fetched_at": "2026-04-22T19:25:53.882569"
     },
     {
       "symbol": "LLY",
       "name": "Eli Lilly and Company",
       "sector": "Healthcare",
       "industry": "Drug Manufacturers - General",
-      "price": 918.64,
-      "market_cap": 822200041472,
+      "price": 918.62,
+      "market_cap": 822182150144,
       "fundamentals": {
-        "trailing_pe": 40.05,
+        "trailing_pe": 40.04,
         "forward_pe": 21.8,
         "pb_ratio": 30.98,
         "ps_ratio": 12.61,
@@ -1956,8 +1956,8 @@
         "rsi": 39.41,
         "week_52_high": 1133.95,
         "week_52_low": 623.78,
-        "bollinger_position": 46.93,
-        "price_vs_sma50": -4.86,
+        "bollinger_position": 46.91,
+        "price_vs_sma50": -4.87,
         "price_vs_sma200": 1.45
       },
       "scores": {
@@ -1972,61 +1972,61 @@
       },
       "grade": "D",
       "recommendation": "Avoid",
-      "fetched_at": "2026-04-22T18:00:12.475491"
+      "fetched_at": "2026-04-22T19:25:49.736511"
     },
     {
-      "symbol": "META",
-      "name": "Meta Platforms, Inc.",
-      "sector": "Communication Services",
-      "industry": "Internet Content & Information",
-      "price": 676.48,
-      "market_cap": 1717217918976,
+      "symbol": "V",
+      "name": "Visa Inc.",
+      "sector": "Financial Services",
+      "industry": "Credit Services",
+      "price": 310.5,
+      "market_cap": 598656286720,
       "fundamentals": {
-        "trailing_pe": 28.81,
-        "forward_pe": 18.99,
-        "pb_ratio": 7.88,
-        "ps_ratio": 8.54,
-        "ev_ebitda": 16.64,
-        "earnings_yield": 3.47,
-        "revenue_growth": 23.8,
-        "earnings_growth": 10.7,
+        "trailing_pe": 29.13,
+        "forward_pe": 21.34,
+        "pb_ratio": 15.5,
+        "ps_ratio": 14.46,
+        "ev_ebitda": 20.57,
+        "earnings_yield": 3.43,
+        "revenue_growth": 14.6,
+        "earnings_growth": 17.4,
         "growth_tier": "high_growth"
       },
       "technicals": {
-        "sma_50": 629.74,
-        "sma_200": 679.61,
-        "rsi": 82.62,
-        "week_52_high": 796.25,
-        "week_52_low": 516.52,
-        "bollinger_position": 80.01,
-        "price_vs_sma50": 7.42,
-        "price_vs_sma200": -0.46
+        "sma_50": 311.11,
+        "sma_200": 332.96,
+        "rsi": 65.56,
+        "week_52_high": 375.51,
+        "week_52_low": 293.89,
+        "bollinger_position": 65.15,
+        "price_vs_sma50": -0.2,
+        "price_vs_sma200": -6.75
       },
       "scores": {
-        "per_score": 52.0,
+        "per_score": 40.0,
         "pbr_score": 10,
-        "psr_score": 20,
-        "ev_ebitda_score": 20,
+        "psr_score": 10,
+        "ev_ebitda_score": 10,
         "earnings_yield_score": 20,
-        "fundamental_score": 27.6,
-        "technical_score": 28.17,
-        "value_score": 27.77
+        "fundamental_score": 20.5,
+        "technical_score": 43.36,
+        "value_score": 27.36
       },
       "grade": "D",
       "recommendation": "Avoid",
-      "fetched_at": "2026-04-22T18:00:00.830938"
+      "fetched_at": "2026-04-22T19:25:41.619874"
     },
     {
       "symbol": "WMT",
       "name": "Walmart Inc.",
       "sector": "Consumer Defensive",
       "industry": "Discount Stores",
-      "price": 129.99,
-      "market_cap": 1036332695552,
+      "price": 129.79,
+      "market_cap": 1034738073600,
       "fundamentals": {
-        "trailing_pe": 47.62,
-        "forward_pe": 39.6,
-        "pb_ratio": 10.4,
+        "trailing_pe": 47.54,
+        "forward_pe": 39.54,
+        "pb_ratio": 10.38,
         "ps_ratio": 1.45,
         "ev_ebitda": 24.93,
         "earnings_yield": 2.1,
@@ -2035,14 +2035,14 @@
         "growth_tier": "declining"
       },
       "technicals": {
-        "sma_50": 125.48,
+        "sma_50": 125.47,
         "sma_200": 110.83,
-        "rsi": 61.15,
+        "rsi": 60.81,
         "week_52_high": 134.69,
         "week_52_low": 91.89,
-        "bollinger_position": 96.87,
-        "price_vs_sma50": 3.6,
-        "price_vs_sma200": 17.28
+        "bollinger_position": 95.17,
+        "price_vs_sma50": 3.44,
+        "price_vs_sma200": 17.1
       },
       "scores": {
         "per_score": 20.0,
@@ -2056,35 +2056,35 @@
       },
       "grade": "D",
       "recommendation": "Avoid",
-      "fetched_at": "2026-04-22T18:00:15.226970"
+      "fetched_at": "2026-04-22T19:25:53.293462"
     },
     {
       "symbol": "MSFT",
       "name": "Microsoft Corporation",
       "sector": "Technology",
       "industry": "Software - Infrastructure",
-      "price": 431.16,
-      "market_cap": 3204543938560,
+      "price": 431.91,
+      "market_cap": 3210006757376,
       "fundamentals": {
-        "trailing_pe": 26.96,
-        "forward_pe": 22.81,
-        "pb_ratio": 8.19,
-        "ps_ratio": 10.49,
+        "trailing_pe": 27.01,
+        "forward_pe": 22.84,
+        "pb_ratio": 8.21,
+        "ps_ratio": 10.51,
         "ev_ebitda": 18.16,
-        "earnings_yield": 3.71,
+        "earnings_yield": 3.7,
         "revenue_growth": 16.7,
         "earnings_growth": 59.8,
         "growth_tier": "hypergrowth"
       },
       "technicals": {
-        "sma_50": 393.46,
+        "sma_50": 393.47,
         "sma_200": 469.42,
-        "rsi": 88.38,
+        "rsi": 88.49,
         "week_52_high": 555.45,
         "week_52_low": 356.28,
-        "bollinger_position": 96.3,
-        "price_vs_sma50": 9.58,
-        "price_vs_sma200": -8.15
+        "bollinger_position": 96.9,
+        "price_vs_sma50": 9.77,
+        "price_vs_sma200": -7.99
       },
       "scores": {
         "per_score": 40.0,
@@ -2093,40 +2093,40 @@
         "ev_ebitda_score": 20,
         "earnings_yield_score": 20,
         "fundamental_score": 22.5,
-        "technical_score": 30.95,
-        "value_score": 25.03
+        "technical_score": 30.96,
+        "value_score": 25.04
       },
       "grade": "D",
       "recommendation": "Avoid",
-      "fetched_at": "2026-04-22T17:59:59.806229"
+      "fetched_at": "2026-04-22T19:25:34.700218"
     },
     {
       "symbol": "MA",
       "name": "Mastercard Incorporated",
       "sector": "Financial Services",
       "industry": "Credit Services",
-      "price": 506.49,
-      "market_cap": 452010868736,
+      "price": 509.11,
+      "market_cap": 454353420288,
       "fundamentals": {
-        "trailing_pe": 30.66,
-        "forward_pe": 22.34,
-        "pb_ratio": 58.53,
-        "ps_ratio": 13.78,
+        "trailing_pe": 30.82,
+        "forward_pe": 22.46,
+        "pb_ratio": 58.83,
+        "ps_ratio": 13.86,
         "ev_ebitda": 22.63,
-        "earnings_yield": 3.26,
+        "earnings_yield": 3.24,
         "revenue_growth": 17.6,
         "earnings_growth": 24.2,
         "growth_tier": "high_growth"
       },
       "technicals": {
-        "sma_50": 508.99,
-        "sma_200": 548.34,
-        "rsi": 61.24,
+        "sma_50": 509.05,
+        "sma_200": 548.35,
+        "rsi": 63.64,
         "week_52_high": 601.77,
         "week_52_low": 480.5,
-        "bollinger_position": 55.73,
-        "price_vs_sma50": -0.49,
-        "price_vs_sma200": -7.63
+        "bollinger_position": 61.8,
+        "price_vs_sma50": 0.01,
+        "price_vs_sma200": -7.16
       },
       "scores": {
         "per_score": 32.0,
@@ -2135,82 +2135,40 @@
         "ev_ebitda_score": 10,
         "earnings_yield_score": 20,
         "fundamental_score": 16.1,
-        "technical_score": 45.71,
-        "value_score": 24.98
+        "technical_score": 43.21,
+        "value_score": 24.23
       },
       "grade": "D",
       "recommendation": "Avoid",
-      "fetched_at": "2026-04-22T18:00:06.082526"
-    },
-    {
-      "symbol": "GOOGL",
-      "name": "Alphabet Inc.",
-      "sector": "Communication Services",
-      "industry": "Internet Content & Information",
-      "price": 337.66,
-      "market_cap": 4084673282048,
-      "fundamentals": {
-        "trailing_pe": 31.26,
-        "forward_pe": 25.05,
-        "pb_ratio": 9.83,
-        "ps_ratio": 10.14,
-        "ev_ebitda": 26.37,
-        "earnings_yield": 3.2,
-        "revenue_growth": 18.0,
-        "earnings_growth": 31.1,
-        "growth_tier": "high_growth"
-      },
-      "technicals": {
-        "sma_50": 308.37,
-        "sma_200": 274.6,
-        "rsi": 80.06,
-        "week_52_high": 349.0,
-        "week_52_low": 147.84,
-        "bollinger_position": 78.95,
-        "price_vs_sma50": 9.5,
-        "price_vs_sma200": 22.96
-      },
-      "scores": {
-        "per_score": 32.0,
-        "pbr_score": 10,
-        "psr_score": 10,
-        "ev_ebitda_score": 10,
-        "earnings_yield_score": 20,
-        "fundamental_score": 18.1,
-        "technical_score": 38.07,
-        "value_score": 24.09
-      },
-      "grade": "D",
-      "recommendation": "Avoid",
-      "fetched_at": "2026-04-22T18:00:00.228101"
+      "fetched_at": "2026-04-22T19:25:42.163286"
     },
     {
       "symbol": "AAPL",
       "name": "Apple Inc.",
       "sector": "Technology",
       "industry": "Consumer Electronics",
-      "price": 273.47,
-      "market_cap": 4019441631232,
+      "price": 272.74,
+      "market_cap": 4008712077312,
       "fundamentals": {
-        "trailing_pe": 34.57,
-        "forward_pe": 29.14,
-        "pb_ratio": 45.59,
-        "ps_ratio": 9.23,
+        "trailing_pe": 34.48,
+        "forward_pe": 29.06,
+        "pb_ratio": 45.47,
+        "ps_ratio": 9.2,
         "ev_ebitda": 25.71,
-        "earnings_yield": 2.89,
+        "earnings_yield": 2.9,
         "revenue_growth": 15.7,
         "earnings_growth": 18.3,
         "growth_tier": "high_growth"
       },
       "technicals": {
-        "sma_50": 260.25,
+        "sma_50": 260.23,
         "sma_200": 252.72,
-        "rsi": 67.25,
+        "rsi": 66.78,
         "week_52_high": 288.62,
         "week_52_low": 193.25,
-        "bollinger_position": 97.82,
-        "price_vs_sma50": 5.08,
-        "price_vs_sma200": 8.21
+        "bollinger_position": 95.88,
+        "price_vs_sma50": 4.81,
+        "price_vs_sma200": 7.92
       },
       "scores": {
         "per_score": 32.0,
@@ -2224,35 +2182,77 @@
       },
       "grade": "D",
       "recommendation": "Avoid",
-      "fetched_at": "2026-04-22T17:59:59.501930"
+      "fetched_at": "2026-04-22T19:25:34.255801"
+    },
+    {
+      "symbol": "GOOGL",
+      "name": "Alphabet Inc.",
+      "sector": "Communication Services",
+      "industry": "Internet Content & Information",
+      "price": 338.95,
+      "market_cap": 4100278452224,
+      "fundamentals": {
+        "trailing_pe": 31.38,
+        "forward_pe": 25.14,
+        "pb_ratio": 9.87,
+        "ps_ratio": 10.18,
+        "ev_ebitda": 26.37,
+        "earnings_yield": 3.19,
+        "revenue_growth": 18.0,
+        "earnings_growth": 31.1,
+        "growth_tier": "high_growth"
+      },
+      "technicals": {
+        "sma_50": 308.4,
+        "sma_200": 274.61,
+        "rsi": 80.43,
+        "week_52_high": 349.0,
+        "week_52_low": 147.84,
+        "bollinger_position": 80.22,
+        "price_vs_sma50": 9.91,
+        "price_vs_sma200": 23.43
+      },
+      "scores": {
+        "per_score": 32.0,
+        "pbr_score": 10,
+        "psr_score": 10,
+        "ev_ebitda_score": 10,
+        "earnings_yield_score": 20,
+        "fundamental_score": 18.1,
+        "technical_score": 33.08,
+        "value_score": 22.59
+      },
+      "grade": "D",
+      "recommendation": "Avoid",
+      "fetched_at": "2026-04-22T19:25:35.101719"
     },
     {
       "symbol": "AMZN",
       "name": "Amazon.com, Inc.",
       "sector": "Consumer Cyclical",
       "industry": "Internet Retail",
-      "price": 253.6,
-      "market_cap": 2727332020224,
+      "price": 254.6,
+      "market_cap": 2738032476160,
       "fundamentals": {
-        "trailing_pe": 35.37,
-        "forward_pe": 26.88,
-        "pb_ratio": 6.62,
-        "ps_ratio": 3.8,
+        "trailing_pe": 35.51,
+        "forward_pe": 26.98,
+        "pb_ratio": 6.65,
+        "ps_ratio": 3.82,
         "ev_ebitda": 18.79,
-        "earnings_yield": 2.83,
+        "earnings_yield": 2.82,
         "revenue_growth": 13.6,
         "earnings_growth": 5.0,
         "growth_tier": "moderate_growth"
       },
       "technicals": {
-        "sma_50": 216.45,
+        "sma_50": 216.47,
         "sma_200": 226.01,
-        "rsi": 92.83,
+        "rsi": 92.97,
         "week_52_high": 258.6,
         "week_52_low": 178.85,
-        "bollinger_position": 83.42,
-        "price_vs_sma50": 17.17,
-        "price_vs_sma200": 12.21
+        "bollinger_position": 84.52,
+        "price_vs_sma50": 17.62,
+        "price_vs_sma200": 12.65
       },
       "scores": {
         "per_score": 30.0,
@@ -2266,20 +2266,20 @@
       },
       "grade": "D",
       "recommendation": "Avoid",
-      "fetched_at": "2026-04-22T18:00:00.493322"
+      "fetched_at": "2026-04-22T19:25:35.420264"
     },
     {
       "symbol": "CAT",
       "name": "Caterpillar, Inc.",
       "sector": "Industrials",
       "industry": "Farm & Heavy Construction Machinery",
-      "price": 809.18,
-      "market_cap": 378679721984,
+      "price": 811.89,
+      "market_cap": 379947941888,
       "fundamentals": {
-        "trailing_pe": 43.02,
-        "forward_pe": 29.0,
-        "pb_ratio": 17.66,
-        "ps_ratio": 5.6,
+        "trailing_pe": 43.16,
+        "forward_pe": 29.1,
+        "pb_ratio": 17.72,
+        "ps_ratio": 5.62,
         "ev_ebitda": 29.16,
         "earnings_yield": 2.32,
         "revenue_growth": 18.0,
@@ -2287,14 +2287,14 @@
         "growth_tier": "stable"
       },
       "technicals": {
-        "sma_50": 737.53,
-        "sma_200": 573.3,
-        "rsi": 75.98,
+        "sma_50": 737.58,
+        "sma_200": 573.31,
+        "rsi": 76.39,
         "week_52_high": 820.2,
         "week_52_low": 295.18,
-        "bollinger_position": 83.5,
-        "price_vs_sma50": 9.72,
-        "price_vs_sma200": 41.15
+        "bollinger_position": 84.86,
+        "price_vs_sma50": 10.07,
+        "price_vs_sma200": 41.61
       },
       "scores": {
         "per_score": 28.0,
@@ -2308,77 +2308,35 @@
       },
       "grade": "D",
       "recommendation": "Avoid",
-      "fetched_at": "2026-04-22T18:00:19.067300"
-    },
-    {
-      "symbol": "SBUX",
-      "name": "Starbucks Corporation",
-      "sector": "Consumer Cyclical",
-      "industry": "Restaurants",
-      "price": 98.73,
-      "market_cap": 112483205120,
-      "fundamentals": {
-        "trailing_pe": 82.28,
-        "forward_pe": 33.91,
-        "pb_ratio": -13.41,
-        "ps_ratio": 2.98,
-        "ev_ebitda": 25.17,
-        "earnings_yield": 1.22,
-        "revenue_growth": 5.5,
-        "earnings_growth": -62.5,
-        "growth_tier": "declining"
-      },
-      "technicals": {
-        "sma_50": 96.07,
-        "sma_200": 89.05,
-        "rsi": 79.02,
-        "week_52_high": 104.82,
-        "week_52_low": 75.5,
-        "bollinger_position": 73.6,
-        "price_vs_sma50": 2.77,
-        "price_vs_sma200": 10.87
-      },
-      "scores": {
-        "per_score": 6.0,
-        "pbr_score": 0,
-        "psr_score": 60,
-        "ev_ebitda_score": 10,
-        "earnings_yield_score": 0,
-        "fundamental_score": 12.8,
-        "technical_score": 41.97,
-        "value_score": 21.55
-      },
-      "grade": "D",
-      "recommendation": "Avoid",
-      "fetched_at": "2026-04-22T18:00:17.820594"
+      "fetched_at": "2026-04-22T19:25:57.883904"
     },
     {
       "symbol": "NVDA",
       "name": "NVIDIA Corporation",
       "sector": "Technology",
       "industry": "Semiconductors",
-      "price": 202.27,
-      "market_cap": 4916174651392,
+      "price": 201.88,
+      "market_cap": 4906571792384,
       "fundamentals": {
-        "trailing_pe": 41.28,
-        "forward_pe": 18.0,
-        "pb_ratio": 31.25,
-        "ps_ratio": 22.77,
+        "trailing_pe": 41.2,
+        "forward_pe": 17.96,
+        "pb_ratio": 31.19,
+        "ps_ratio": 22.72,
         "ev_ebitda": 36.07,
-        "earnings_yield": 2.42,
+        "earnings_yield": 2.43,
         "revenue_growth": 73.2,
         "earnings_growth": 95.6,
         "growth_tier": "hypergrowth"
       },
       "technicals": {
-        "sma_50": 184.43,
+        "sma_50": 184.42,
         "sma_200": 182.4,
-        "rsi": 91.54,
+        "rsi": 91.44,
         "week_52_high": 212.19,
         "week_52_low": 102.02,
-        "bollinger_position": 84.79,
-        "price_vs_sma50": 9.67,
-        "price_vs_sma200": 10.89
+        "bollinger_position": 84.09,
+        "price_vs_sma50": 9.46,
+        "price_vs_sma200": 10.68
       },
       "scores": {
         "per_score": 48.0,
@@ -2392,35 +2350,77 @@
       },
       "grade": "D",
       "recommendation": "Avoid",
-      "fetched_at": "2026-04-22T18:00:01.213078"
+      "fetched_at": "2026-04-22T19:25:36.190307"
+    },
+    {
+      "symbol": "SBUX",
+      "name": "Starbucks Corporation",
+      "sector": "Consumer Cyclical",
+      "industry": "Restaurants",
+      "price": 99.33,
+      "market_cap": 113166671872,
+      "fundamentals": {
+        "trailing_pe": 82.78,
+        "forward_pe": 34.12,
+        "pb_ratio": -13.49,
+        "ps_ratio": 3.0,
+        "ev_ebitda": 25.17,
+        "earnings_yield": 1.21,
+        "revenue_growth": 5.5,
+        "earnings_growth": -62.5,
+        "growth_tier": "declining"
+      },
+      "technicals": {
+        "sma_50": 96.08,
+        "sma_200": 89.05,
+        "rsi": 79.87,
+        "week_52_high": 104.82,
+        "week_52_low": 75.5,
+        "bollinger_position": 76.86,
+        "price_vs_sma50": 3.38,
+        "price_vs_sma200": 11.54
+      },
+      "scores": {
+        "per_score": 6.0,
+        "pbr_score": 0,
+        "psr_score": 40,
+        "ev_ebitda_score": 10,
+        "earnings_yield_score": 0,
+        "fundamental_score": 9.8,
+        "technical_score": 36.97,
+        "value_score": 17.95
+      },
+      "grade": "D",
+      "recommendation": "Avoid",
+      "fetched_at": "2026-04-22T19:25:56.437546"
     },
     {
       "symbol": "AMD",
       "name": "Advanced Micro Devices, Inc.",
       "sector": "Technology",
       "industry": "Semiconductors",
-      "price": 300.27,
-      "market_cap": 489563455488,
+      "price": 303.21,
+      "market_cap": 494389493760,
       "fundamentals": {
-        "trailing_pe": 114.61,
-        "forward_pe": 27.35,
-        "pb_ratio": 7.77,
-        "ps_ratio": 14.13,
+        "trailing_pe": 115.74,
+        "forward_pe": 27.62,
+        "pb_ratio": 7.85,
+        "ps_ratio": 14.27,
         "ev_ebitda": 67.8,
-        "earnings_yield": 0.87,
+        "earnings_yield": 0.86,
         "revenue_growth": 34.1,
         "earnings_growth": 217.1,
         "growth_tier": "hypergrowth"
       },
       "technicals": {
-        "sma_50": 216.99,
-        "sma_200": 204.69,
-        "rsi": 96.45,
-        "week_52_high": 301.0,
+        "sma_50": 217.05,
+        "sma_200": 204.71,
+        "rsi": 96.56,
+        "week_52_high": 303.5,
         "week_52_low": 90.12,
-        "bollinger_position": 99.49,
-        "price_vs_sma50": 38.38,
-        "price_vs_sma200": 46.69
+        "bollinger_position": 100,
+        "price_vs_sma50": 39.7,
+        "price_vs_sma200": 48.12
       },
       "scores": {
         "per_score": 28.0,
@@ -2429,25 +2429,25 @@
         "ev_ebitda_score": 0,
         "earnings_yield_score": 0,
         "fundamental_score": 11.9,
-        "technical_score": 31.5,
+        "technical_score": 31.51,
         "value_score": 17.78
       },
       "grade": "D",
       "recommendation": "Avoid",
-      "fetched_at": "2026-04-22T18:00:01.882493"
+      "fetched_at": "2026-04-22T19:25:37.312803"
     },
     {
       "symbol": "TSLA",
       "name": "Tesla, Inc.",
       "sector": "Consumer Cyclical",
       "industry": "Auto Manufacturers",
-      "price": 389.02,
-      "market_cap": 1459776782336,
+      "price": 389.43,
+      "market_cap": 1461196554240,
       "fundamentals": {
-        "trailing_pe": 360.21,
-        "forward_pe": 141.34,
-        "pb_ratio": 17.77,
-        "ps_ratio": 15.39,
+        "trailing_pe": 360.56,
+        "forward_pe": 141.48,
+        "pb_ratio": 17.78,
+        "ps_ratio": 15.41,
         "ev_ebitda": 135.33,
         "earnings_yield": 0.28,
         "revenue_growth": -3.1,
@@ -2455,14 +2455,14 @@
         "growth_tier": "declining"
       },
       "technicals": {
-        "sma_50": 389.18,
+        "sma_50": 389.19,
         "sma_200": 400.08,
-        "rsi": 53.28,
+        "rsi": 53.44,
         "week_52_high": 498.83,
         "week_52_low": 244.43,
-        "bollinger_position": 76.71,
-        "price_vs_sma50": -0.04,
-        "price_vs_sma200": -2.76
+        "bollinger_position": 77.21,
+        "price_vs_sma50": 0.06,
+        "price_vs_sma200": -2.66
       },
       "scores": {
         "per_score": 0.0,
@@ -2476,35 +2476,35 @@
       },
       "grade": "D",
       "recommendation": "Avoid",
-      "fetched_at": "2026-04-22T18:00:01.581367"
+      "fetched_at": "2026-04-22T19:25:36.937963"
     },
     {
       "symbol": "BA",
       "name": "Boeing Company (The)",
       "sector": "Industrials",
       "industry": "Aerospace & Defense",
-      "price": 231.14,
-      "market_cap": 181640019968,
+      "price": 229.17,
+      "market_cap": 180091912192,
       "fundamentals": {
-        "trailing_pe": 93.2,
-        "forward_pe": 52.86,
-        "pb_ratio": 33.29,
-        "ps_ratio": 2.03,
+        "trailing_pe": 92.41,
+        "forward_pe": 52.41,
+        "pb_ratio": 33.01,
+        "ps_ratio": 2.01,
         "ev_ebitda": -61.72,
-        "earnings_yield": 1.07,
+        "earnings_yield": 1.08,
         "revenue_growth": 57.1,
         "earnings_growth": 0,
         "growth_tier": "hypergrowth"
       },
       "technicals": {
-        "sma_50": 218.84,
-        "sma_200": 219.54,
-        "rsi": 71.57,
+        "sma_50": 218.8,
+        "sma_200": 219.53,
+        "rsi": 70.52,
         "week_52_high": 254.35,
         "week_52_low": 169.0,
-        "bollinger_position": 88.17,
-        "price_vs_sma50": 5.62,
-        "price_vs_sma200": 5.28
+        "bollinger_position": 84.72,
+        "price_vs_sma50": 4.74,
+        "price_vs_sma200": 4.39
       },
       "scores": {
         "per_score": 0.0,
@@ -2518,15 +2518,15 @@
       },
       "grade": "D",
       "recommendation": "Avoid",
-      "fetched_at": "2026-04-22T18:00:19.643469"
+      "fetched_at": "2026-04-22T19:25:58.500266"
     }
   ],
   "statistics": {
     "total_analyzed": 60,
     "successful": 60,
     "failed": 0,
-    "avg_score": 38.56,
-    "max_score": 63.66,
+    "avg_score": 38.34,
+    "max_score": 63.44,
     "min_score": 13.78,
     "grade_distribution": {
       "A+": 0,
@@ -2538,7 +2538,7 @@
     }
   },
   "failed_symbols": [],
-  "last_updated": "2026-04-22T18:00:29.379550",
+  "last_updated": "2026-04-22T19:26:09.349536",
   "screening_criteria": {
     "min_score": 0,
     "symbols_count": 60
