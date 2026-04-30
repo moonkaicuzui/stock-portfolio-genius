@@ -40,7 +40,7 @@
       },
       "grade": "B+",
       "recommendation": "Moderate Buy",
-      "fetched_at": "2026-04-30T05:56:40.047976"
+      "fetched_at": "2026-04-30T08:21:18.349865"
     },
     {
       "symbol": "BMY",
@@ -82,7 +82,7 @@
       },
       "grade": "B+",
       "recommendation": "Moderate Buy",
-      "fetched_at": "2026-04-30T05:56:44.329202"
+      "fetched_at": "2026-04-30T08:21:20.596665"
     },
     {
       "symbol": "DIS",
@@ -124,7 +124,7 @@
       },
       "grade": "B",
       "recommendation": "Hold",
-      "fetched_at": "2026-04-30T05:56:50.706532"
+      "fetched_at": "2026-04-30T08:21:24.110001"
     },
     {
       "symbol": "EOG",
@@ -166,49 +166,7 @@
       },
       "grade": "B",
       "recommendation": "Hold",
-      "fetched_at": "2026-04-30T05:56:59.593443"
-    },
-    {
-      "symbol": "PSX",
-      "name": "Phillips 66",
-      "sector": "Energy",
-      "industry": "Oil & Gas Refining & Marketing",
-      "price": 173.49,
-      "market_cap": 69566472192,
-      "fundamentals": {
-        "trailing_pe": 16.08,
-        "forward_pe": 11.44,
-        "pb_ratio": 2.39,
-        "ps_ratio": 0.53,
-        "ev_ebitda": 13.16,
-        "earnings_yield": 6.22,
-        "revenue_growth": 1.3,
-        "earnings_growth": 242728.4,
-        "growth_tier": "hypergrowth"
-      },
-      "technicals": {
-        "sma_50": 166.78,
-        "sma_200": 141.06,
-        "rsi": 66.9,
-        "week_52_high": 190.61,
-        "week_52_low": 103.35,
-        "bollinger_position": 82.27,
-        "price_vs_sma50": 4.02,
-        "price_vs_sma200": 22.99
-      },
-      "scores": {
-        "per_score": 74.0,
-        "pbr_score": 40,
-        "psr_score": 100,
-        "ev_ebitda_score": 40,
-        "earnings_yield_score": 60,
-        "fundamental_score": 62.2,
-        "technical_score": 39.56,
-        "value_score": 55.41
-      },
-      "grade": "B",
-      "recommendation": "Hold",
-      "fetched_at": "2026-04-30T05:57:00.094194"
+      "fetched_at": "2026-04-30T08:21:29.470144"
     },
     {
       "symbol": "C",
@@ -250,7 +208,7 @@
       },
       "grade": "B",
       "recommendation": "Hold",
-      "fetched_at": "2026-04-30T05:56:38.242413"
+      "fetched_at": "2026-04-30T08:21:17.276251"
     },
     {
       "symbol": "MRK",
@@ -292,7 +250,7 @@
       },
       "grade": "B",
       "recommendation": "Hold",
-      "fetched_at": "2026-04-30T05:56:41.214298"
+      "fetched_at": "2026-04-30T08:21:18.954207"
     },
     {
       "symbol": "WFC",
@@ -334,7 +292,7 @@
       },
       "grade": "B",
       "recommendation": "Hold",
-      "fetched_at": "2026-04-30T05:56:34.405545"
+      "fetched_at": "2026-04-30T08:21:15.233658"
     },
     {
       "symbol": "UPS",
@@ -376,7 +334,7 @@
       },
       "grade": "B",
       "recommendation": "Hold",
-      "fetched_at": "2026-04-30T05:56:54.300701"
+      "fetched_at": "2026-04-30T08:21:26.284974"
     },
     {
       "symbol": "BAC",
@@ -418,7 +376,7 @@
       },
       "grade": "B",
       "recommendation": "Hold",
-      "fetched_at": "2026-04-30T05:56:33.735278"
+      "fetched_at": "2026-04-30T08:21:14.789483"
     },
     {
       "symbol": "COP",
@@ -460,7 +418,7 @@
       },
       "grade": "B",
       "recommendation": "Hold",
-      "fetched_at": "2026-04-30T05:56:58.538878"
+      "fetched_at": "2026-04-30T08:21:28.861482"
     },
     {
       "symbol": "MPC",
@@ -502,7 +460,7 @@
       },
       "grade": "B",
       "recommendation": "Hold",
-      "fetched_at": "2026-04-30T05:57:01.145259"
+      "fetched_at": "2026-04-30T08:21:30.283372"
     },
     {
       "symbol": "LMT",
@@ -544,7 +502,49 @@
       },
       "grade": "C",
       "recommendation": "Weak Hold",
-      "fetched_at": "2026-04-30T05:56:55.578446"
+      "fetched_at": "2026-04-30T08:21:27.027693"
+    },
+    {
+      "symbol": "PSX",
+      "name": "Phillips 66",
+      "sector": "Energy",
+      "industry": "Oil & Gas Refining & Marketing",
+      "price": 173.49,
+      "market_cap": 69566472192,
+      "fundamentals": {
+        "trailing_pe": 16.08,
+        "forward_pe": 11.44,
+        "pb_ratio": 2.39,
+        "ps_ratio": 0.52,
+        "ev_ebitda": 0,
+        "earnings_yield": 6.22,
+        "revenue_growth": 8.5,
+        "earnings_growth": -56.8,
+        "growth_tier": "declining"
+      },
+      "technicals": {
+        "sma_50": 166.78,
+        "sma_200": 141.06,
+        "rsi": 66.9,
+        "week_52_high": 190.61,
+        "week_52_low": 103.35,
+        "bollinger_position": 82.27,
+        "price_vs_sma50": 4.02,
+        "price_vs_sma200": 22.99
+      },
+      "scores": {
+        "per_score": 66.0,
+        "pbr_score": 40,
+        "psr_score": 100,
+        "ev_ebitda_score": 0,
+        "earnings_yield_score": 60,
+        "fundamental_score": 51.8,
+        "technical_score": 39.56,
+        "value_score": 48.13
+      },
+      "grade": "C",
+      "recommendation": "Weak Hold",
+      "fetched_at": "2026-04-30T08:21:29.709026"
     },
     {
       "symbol": "XOM",
@@ -586,7 +586,7 @@
       },
       "grade": "C",
       "recommendation": "Weak Hold",
-      "fetched_at": "2026-04-30T05:56:57.406242"
+      "fetched_at": "2026-04-30T08:21:28.127785"
     },
     {
       "symbol": "VLO",
@@ -628,7 +628,7 @@
       },
       "grade": "C",
       "recommendation": "Weak Hold",
-      "fetched_at": "2026-04-30T05:57:00.625705"
+      "fetched_at": "2026-04-30T08:21:30.043848"
     },
     {
       "symbol": "KMI",
@@ -670,7 +670,7 @@
       },
       "grade": "C",
       "recommendation": "Weak Hold",
-      "fetched_at": "2026-04-30T05:57:02.222061"
+      "fetched_at": "2026-04-30T08:21:30.834157"
     },
     {
       "symbol": "OXY",
@@ -712,7 +712,7 @@
       },
       "grade": "C",
       "recommendation": "Weak Hold",
-      "fetched_at": "2026-04-30T05:57:01.680048"
+      "fetched_at": "2026-04-30T08:21:30.591423"
     },
     {
       "symbol": "CRM",
@@ -754,7 +754,7 @@
       },
       "grade": "C",
       "recommendation": "Weak Hold",
-      "fetched_at": "2026-04-30T05:56:32.560705"
+      "fetched_at": "2026-04-30T08:21:13.931195"
     },
     {
       "symbol": "ABT",
@@ -796,7 +796,7 @@
       },
       "grade": "C",
       "recommendation": "Weak Hold",
-      "fetched_at": "2026-04-30T05:56:42.532723"
+      "fetched_at": "2026-04-30T08:21:19.571513"
     },
     {
       "symbol": "GS",
@@ -838,7 +838,7 @@
       },
       "grade": "C",
       "recommendation": "Weak Hold",
-      "fetched_at": "2026-04-30T05:56:34.945032"
+      "fetched_at": "2026-04-30T08:21:15.497991"
     },
     {
       "symbol": "CVX",
@@ -880,7 +880,7 @@
       },
       "grade": "C",
       "recommendation": "Weak Hold",
-      "fetched_at": "2026-04-30T05:56:57.995456"
+      "fetched_at": "2026-04-30T08:21:28.532340"
     },
     {
       "symbol": "JPM",
@@ -922,7 +922,7 @@
       },
       "grade": "C",
       "recommendation": "Weak Hold",
-      "fetched_at": "2026-04-30T05:56:33.115839"
+      "fetched_at": "2026-04-30T08:21:14.469334"
     },
     {
       "symbol": "MMM",
@@ -964,7 +964,7 @@
       },
       "grade": "C",
       "recommendation": "Weak Hold",
-      "fetched_at": "2026-04-30T05:56:53.113441"
+      "fetched_at": "2026-04-30T08:21:25.624485"
     },
     {
       "symbol": "MS",
@@ -1006,7 +1006,7 @@
       },
       "grade": "C",
       "recommendation": "Weak Hold",
-      "fetched_at": "2026-04-30T05:56:35.460909"
+      "fetched_at": "2026-04-30T08:21:15.840237"
     },
     {
       "symbol": "RTX",
@@ -1048,7 +1048,7 @@
       },
       "grade": "C",
       "recommendation": "Weak Hold",
-      "fetched_at": "2026-04-30T05:56:54.945862"
+      "fetched_at": "2026-04-30T08:21:26.650526"
     },
     {
       "symbol": "HD",
@@ -1090,7 +1090,7 @@
       },
       "grade": "C",
       "recommendation": "Weak Hold",
-      "fetched_at": "2026-04-30T05:56:48.399653"
+      "fetched_at": "2026-04-30T08:21:22.811850"
     },
     {
       "symbol": "PEP",
@@ -1132,7 +1132,7 @@
       },
       "grade": "C",
       "recommendation": "Weak Hold",
-      "fetched_at": "2026-04-30T05:56:46.499189"
+      "fetched_at": "2026-04-30T08:21:21.812250"
     },
     {
       "symbol": "HON",
@@ -1174,7 +1174,7 @@
       },
       "grade": "C",
       "recommendation": "Weak Hold",
-      "fetched_at": "2026-04-30T05:56:53.730899"
+      "fetched_at": "2026-04-30T08:21:26.008852"
     },
     {
       "symbol": "PG",
@@ -1216,7 +1216,7 @@
       },
       "grade": "C",
       "recommendation": "Weak Hold",
-      "fetched_at": "2026-04-30T05:56:44.985804"
+      "fetched_at": "2026-04-30T08:21:21.001259"
     },
     {
       "symbol": "TMO",
@@ -1258,7 +1258,7 @@
       },
       "grade": "C",
       "recommendation": "Weak Hold",
-      "fetched_at": "2026-04-30T05:56:41.970431"
+      "fetched_at": "2026-04-30T08:21:19.234200"
     },
     {
       "symbol": "DHR",
@@ -1300,7 +1300,7 @@
       },
       "grade": "C",
       "recommendation": "Weak Hold",
-      "fetched_at": "2026-04-30T05:56:43.097037"
+      "fetched_at": "2026-04-30T08:21:19.934337"
     },
     {
       "symbol": "MCD",
@@ -1342,7 +1342,7 @@
       },
       "grade": "C",
       "recommendation": "Weak Hold",
-      "fetched_at": "2026-04-30T05:56:49.007230"
+      "fetched_at": "2026-04-30T08:21:23.193425"
     },
     {
       "symbol": "NKE",
@@ -1384,7 +1384,7 @@
       },
       "grade": "D",
       "recommendation": "Avoid",
-      "fetched_at": "2026-04-30T05:56:49.573494"
+      "fetched_at": "2026-04-30T08:21:23.483559"
     },
     {
       "symbol": "SLB",
@@ -1426,7 +1426,7 @@
       },
       "grade": "D",
       "recommendation": "Avoid",
-      "fetched_at": "2026-04-30T05:56:59.099780"
+      "fetched_at": "2026-04-30T08:21:29.183960"
     },
     {
       "symbol": "JNJ",
@@ -1468,7 +1468,7 @@
       },
       "grade": "D",
       "recommendation": "Avoid",
-      "fetched_at": "2026-04-30T05:56:38.856438"
+      "fetched_at": "2026-04-30T08:21:17.678530"
     },
     {
       "symbol": "DE",
@@ -1510,7 +1510,7 @@
       },
       "grade": "D",
       "recommendation": "Avoid",
-      "fetched_at": "2026-04-30T05:56:56.147899"
+      "fetched_at": "2026-04-30T08:21:27.388215"
     },
     {
       "symbol": "BLK",
@@ -1552,7 +1552,7 @@
       },
       "grade": "D",
       "recommendation": "Avoid",
-      "fetched_at": "2026-04-30T05:56:37.704455"
+      "fetched_at": "2026-04-30T08:21:16.972962"
     },
     {
       "symbol": "UNH",
@@ -1594,7 +1594,7 @@
       },
       "grade": "D",
       "recommendation": "Avoid",
-      "fetched_at": "2026-04-30T05:56:39.424471"
+      "fetched_at": "2026-04-30T08:21:17.996999"
     },
     {
       "symbol": "AXP",
@@ -1636,7 +1636,7 @@
       },
       "grade": "D",
       "recommendation": "Avoid",
-      "fetched_at": "2026-04-30T05:56:37.201663"
+      "fetched_at": "2026-04-30T08:21:16.711438"
     },
     {
       "symbol": "UNP",
@@ -1678,7 +1678,7 @@
       },
       "grade": "D",
       "recommendation": "Avoid",
-      "fetched_at": "2026-04-30T05:56:56.772162"
+      "fetched_at": "2026-04-30T08:21:27.741167"
     },
     {
       "symbol": "LLY",
@@ -1720,49 +1720,7 @@
       },
       "grade": "D",
       "recommendation": "Avoid",
-      "fetched_at": "2026-04-30T05:56:43.720773"
-    },
-    {
-      "symbol": "ABBV",
-      "name": "AbbVie Inc.",
-      "sector": "Healthcare",
-      "industry": "Drug Manufacturers - General",
-      "price": 203.89,
-      "market_cap": 360632942592,
-      "fundamentals": {
-        "trailing_pe": 99.95,
-        "forward_pe": 12.68,
-        "pb_ratio": -110.21,
-        "ps_ratio": 5.9,
-        "ev_ebitda": 14.11,
-        "earnings_yield": 1.0,
-        "revenue_growth": 10.0,
-        "earnings_growth": 0,
-        "growth_tier": "moderate_growth"
-      },
-      "technicals": {
-        "sma_50": 213.84,
-        "sma_200": 214.44,
-        "rsi": 39.49,
-        "week_52_high": 244.81,
-        "week_52_low": 176.57,
-        "bollinger_position": 42.46,
-        "price_vs_sma50": -4.65,
-        "price_vs_sma200": -4.92
-      },
-      "scores": {
-        "per_score": 40.0,
-        "pbr_score": 0,
-        "psr_score": 20,
-        "ev_ebitda_score": 40,
-        "earnings_yield_score": 0,
-        "fundamental_score": 23.0,
-        "technical_score": 49.93,
-        "value_score": 31.08
-      },
-      "grade": "D",
-      "recommendation": "Avoid",
-      "fetched_at": "2026-04-30T05:56:40.565108"
+      "fetched_at": "2026-04-30T08:21:20.281308"
     },
     {
       "symbol": "META",
@@ -1804,7 +1762,7 @@
       },
       "grade": "D",
       "recommendation": "Avoid",
-      "fetched_at": "2026-04-30T05:56:30.421942"
+      "fetched_at": "2026-04-30T08:21:12.729201"
     },
     {
       "symbol": "GE",
@@ -1846,7 +1804,7 @@
       },
       "grade": "D",
       "recommendation": "Avoid",
-      "fetched_at": "2026-04-30T05:56:52.524865"
+      "fetched_at": "2026-04-30T08:21:25.251515"
     },
     {
       "symbol": "WMT",
@@ -1888,7 +1846,7 @@
       },
       "grade": "D",
       "recommendation": "Avoid",
-      "fetched_at": "2026-04-30T05:56:47.060030"
+      "fetched_at": "2026-04-30T08:21:22.164746"
     },
     {
       "symbol": "COST",
@@ -1930,7 +1888,7 @@
       },
       "grade": "D",
       "recommendation": "Avoid",
-      "fetched_at": "2026-04-30T05:56:47.627837"
+      "fetched_at": "2026-04-30T08:21:22.474467"
     },
     {
       "symbol": "KO",
@@ -1972,7 +1930,7 @@
       },
       "grade": "D",
       "recommendation": "Avoid",
-      "fetched_at": "2026-04-30T05:56:45.664231"
+      "fetched_at": "2026-04-30T08:21:21.477030"
     },
     {
       "symbol": "MSFT",
@@ -1982,8 +1940,8 @@
       "price": 424.46,
       "market_cap": 3154747064320,
       "fundamentals": {
-        "trailing_pe": 26.58,
-        "forward_pe": 22.42,
+        "trailing_pe": 26.6,
+        "forward_pe": 22.16,
         "pb_ratio": 8.07,
         "ps_ratio": 10.33,
         "ev_ebitda": 18.18,
@@ -2014,7 +1972,7 @@
       },
       "grade": "D",
       "recommendation": "Avoid",
-      "fetched_at": "2026-04-30T05:56:29.418561"
+      "fetched_at": "2026-04-30T08:21:12.128586"
     },
     {
       "symbol": "CAT",
@@ -2056,7 +2014,7 @@
       },
       "grade": "D",
       "recommendation": "Avoid",
-      "fetched_at": "2026-04-30T05:56:51.336850"
+      "fetched_at": "2026-04-30T08:21:24.510233"
     },
     {
       "symbol": "AAPL",
@@ -2098,7 +2056,7 @@
       },
       "grade": "D",
       "recommendation": "Avoid",
-      "fetched_at": "2026-04-30T05:56:29.033652"
+      "fetched_at": "2026-04-30T08:21:11.913865"
     },
     {
       "symbol": "GOOGL",
@@ -2140,7 +2098,7 @@
       },
       "grade": "D",
       "recommendation": "Avoid",
-      "fetched_at": "2026-04-30T05:56:29.720640"
+      "fetched_at": "2026-04-30T08:21:12.337791"
     },
     {
       "symbol": "AMZN",
@@ -2182,7 +2140,7 @@
       },
       "grade": "D",
       "recommendation": "Avoid",
-      "fetched_at": "2026-04-30T05:56:30.025342"
+      "fetched_at": "2026-04-30T08:21:12.515957"
     },
     {
       "symbol": "V",
@@ -2195,11 +2153,11 @@
         "trailing_pe": 29.14,
         "forward_pe": 22.87,
         "pb_ratio": 16.71,
-        "ps_ratio": 15.39,
-        "ev_ebitda": 20.52,
+        "ps_ratio": 14.8,
+        "ev_ebitda": 20.11,
         "earnings_yield": 3.43,
-        "revenue_growth": 14.6,
-        "earnings_growth": 17.4,
+        "revenue_growth": 17.1,
+        "earnings_growth": 26.7,
         "growth_tier": "high_growth"
       },
       "technicals": {
@@ -2224,7 +2182,7 @@
       },
       "grade": "D",
       "recommendation": "Avoid",
-      "fetched_at": "2026-04-30T05:56:35.978782"
+      "fetched_at": "2026-04-30T08:21:16.087408"
     },
     {
       "symbol": "INTC",
@@ -2266,7 +2224,7 @@
       },
       "grade": "D",
       "recommendation": "Avoid",
-      "fetched_at": "2026-04-30T05:56:32.121153"
+      "fetched_at": "2026-04-30T08:21:13.714557"
     },
     {
       "symbol": "MA",
@@ -2308,7 +2266,49 @@
       },
       "grade": "D",
       "recommendation": "Avoid",
-      "fetched_at": "2026-04-30T05:56:36.576774"
+      "fetched_at": "2026-04-30T08:21:16.343474"
+    },
+    {
+      "symbol": "ABBV",
+      "name": "AbbVie Inc.",
+      "sector": "Healthcare",
+      "industry": "Drug Manufacturers - General",
+      "price": 203.89,
+      "market_cap": 360632942592,
+      "fundamentals": {
+        "trailing_pe": 99.95,
+        "forward_pe": 12.64,
+        "pb_ratio": -110.21,
+        "ps_ratio": 5.74,
+        "ev_ebitda": 0,
+        "earnings_yield": 1.0,
+        "revenue_growth": 12.4,
+        "earnings_growth": -45.8,
+        "growth_tier": "declining"
+      },
+      "technicals": {
+        "sma_50": 213.84,
+        "sma_200": 214.44,
+        "rsi": 39.49,
+        "week_52_high": 244.81,
+        "week_52_low": 176.57,
+        "bollinger_position": 42.46,
+        "price_vs_sma50": -4.65,
+        "price_vs_sma200": -4.92
+      },
+      "scores": {
+        "per_score": 24.0,
+        "pbr_score": 0,
+        "psr_score": 20,
+        "ev_ebitda_score": 0,
+        "earnings_yield_score": 0,
+        "fundamental_score": 10.2,
+        "technical_score": 49.93,
+        "value_score": 22.12
+      },
+      "grade": "D",
+      "recommendation": "Avoid",
+      "fetched_at": "2026-04-30T08:21:18.593781"
     },
     {
       "symbol": "NVDA",
@@ -2350,7 +2350,7 @@
       },
       "grade": "D",
       "recommendation": "Avoid",
-      "fetched_at": "2026-04-30T05:56:30.708224"
+      "fetched_at": "2026-04-30T08:21:12.967420"
     },
     {
       "symbol": "BA",
@@ -2392,7 +2392,7 @@
       },
       "grade": "D",
       "recommendation": "Avoid",
-      "fetched_at": "2026-04-30T05:56:51.931552"
+      "fetched_at": "2026-04-30T08:21:24.905662"
     },
     {
       "symbol": "SBUX",
@@ -2405,12 +2405,12 @@
         "trailing_pe": 80.53,
         "forward_pe": 34.96,
         "pb_ratio": -14.33,
-        "ps_ratio": 3.19,
-        "ev_ebitda": 25.06,
+        "ps_ratio": 3.13,
+        "ev_ebitda": 26.5,
         "earnings_yield": 1.24,
-        "revenue_growth": 5.5,
-        "earnings_growth": -62.5,
-        "growth_tier": "declining"
+        "revenue_growth": 8.8,
+        "earnings_growth": 32.6,
+        "growth_tier": "high_growth"
       },
       "technicals": {
         "sma_50": 96.45,
@@ -2423,18 +2423,18 @@
         "price_vs_sma200": 18.24
       },
       "scores": {
-        "per_score": 6.0,
+        "per_score": 12.0,
         "pbr_score": 0,
         "psr_score": 40,
         "ev_ebitda_score": 10,
         "earnings_yield_score": 0,
-        "fundamental_score": 9.8,
+        "fundamental_score": 11.6,
         "technical_score": 32.02,
-        "value_score": 16.47
+        "value_score": 17.73
       },
       "grade": "D",
       "recommendation": "Avoid",
-      "fetched_at": "2026-04-30T05:56:50.132760"
+      "fetched_at": "2026-04-30T08:21:23.734539"
     },
     {
       "symbol": "AMD",
@@ -2476,7 +2476,7 @@
       },
       "grade": "D",
       "recommendation": "Avoid",
-      "fetched_at": "2026-04-30T05:56:31.575510"
+      "fetched_at": "2026-04-30T08:21:13.361730"
     },
     {
       "symbol": "TSLA",
@@ -2518,27 +2518,27 @@
       },
       "grade": "D",
       "recommendation": "Avoid",
-      "fetched_at": "2026-04-30T05:56:31.254722"
+      "fetched_at": "2026-04-30T08:21:13.183203"
     }
   ],
   "statistics": {
     "total_analyzed": 60,
     "successful": 60,
     "failed": 0,
-    "avg_score": 38.94,
+    "avg_score": 38.69,
     "max_score": 64.55,
     "min_score": 14.88,
     "grade_distribution": {
       "A+": 0,
       "A": 0,
       "B+": 2,
-      "B": 10,
-      "C": 20,
+      "B": 9,
+      "C": 21,
       "D": 28
     }
   },
   "failed_symbols": [],
-  "last_updated": "2026-04-30T05:57:02.222254",
+  "last_updated": "2026-04-30T08:21:30.834373",
   "screening_criteria": {
     "min_score": 0,
     "symbols_count": 60
