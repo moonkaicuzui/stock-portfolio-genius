@@ -1,14 +1,14 @@
 {
-  "last_updated": "2026-05-02T02:29:19.404308",
+  "last_updated": "2026-05-02T05:34:31.153541",
   "initial_capital": 146031.04,
   "start_date": "2025-12-22",
   "summary": {
-    "total_value": 167595.34,
+    "total_value": 167595.54,
     "total_cost": 146031.04,
-    "total_gain_loss": 21564.3,
+    "total_gain_loss": 21564.5,
     "total_gain_loss_pct": 14.77,
     "cash": 34153.94,
-    "invested": 133441.4,
+    "invested": 133441.6,
     "holdings_count": 8
   },
   "holdings": [
@@ -93,10 +93,10 @@
       "shares": 20,
       "avg_price": 658.77,
       "added_date": "2025-12-22",
-      "current_price": 608.74,
-      "market_value": 12174.8,
+      "current_price": 608.75,
+      "market_value": 12175.0,
       "cost_basis": 13175.4,
-      "gain_loss": -1000.6,
+      "gain_loss": -1000.4,
       "gain_loss_pct": -7.59,
       "ai_score": 71.0,
       "reasoning": "AI 광고 혁신, 멍거 경쟁우위 보유, 현금흐름 우수",
@@ -796,18 +796,6 @@
     }
   ],
   "decisions": [
-    {
-      "date": "2026-04-24T21:44:15.703800",
-      "action": "hold",
-      "symbol": "ALL",
-      "reasoning": "AI 포트폴리오가 사용자 대비 22.03%p 뒤처지고 있습니다. 하워드 막스의 '2차적 사고'에 따라 현재 포지션을 재평가하고 있습니다. 단기 변동에 휘둘리지 않고 장기적 관점을 유지하되, 저평가 종목 발굴에 집중합니다.",
-      "details": {
-        "ai_return": "16.06%",
-        "user_return": "38.09%",
-        "difference": "-22.03%p",
-        "strategy": "장기 가치 투자 유지"
-      }
-    },
     {
       "date": "2026-04-24T22:36:21.496780",
       "action": "hold",
@@ -1995,6 +1983,18 @@
         "difference": "-21.99%p",
         "strategy": "장기 가치 투자 유지"
       }
+    },
+    {
+      "date": "2026-05-02T05:34:31.153572",
+      "action": "hold",
+      "symbol": "ALL",
+      "reasoning": "AI 포트폴리오가 사용자 대비 21.99%p 뒤처지고 있습니다. 하워드 막스의 '2차적 사고'에 따라 현재 포지션을 재평가하고 있습니다. 단기 변동에 휘둘리지 않고 장기적 관점을 유지하되, 저평가 종목 발굴에 집중합니다.",
+      "details": {
+        "ai_return": "14.77%",
+        "user_return": "36.76%",
+        "difference": "-21.99%p",
+        "strategy": "장기 가치 투자 유지"
+      }
     }
   ],
   "metrics": {
@@ -2006,11 +2006,6 @@
     "days_active": 131
   },
   "learning_log": [
-    {
-      "date": "2026-04-27",
-      "lesson": "SMR의 -33.77% 손실 관찰. ",
-      "adjustment": "유사 패턴 종목 투자시 주의 필요"
-    },
     {
       "date": "2026-04-28",
       "lesson": "SMR의 -33.77% 손실 관찰. ",
@@ -2248,6 +2243,11 @@
     },
     {
       "date": "2026-05-01",
+      "lesson": "SMR의 -36.44% 손실 관찰. ",
+      "adjustment": "유사 패턴 종목 투자시 주의 필요"
+    },
+    {
+      "date": "2026-05-02",
       "lesson": "SMR의 -36.44% 손실 관찰. ",
       "adjustment": "유사 패턴 종목 투자시 주의 필요"
     },
