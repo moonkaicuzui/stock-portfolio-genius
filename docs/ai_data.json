@@ -1,14 +1,14 @@
 {
-  "last_updated": "2026-05-05T20:05:24.762423",
+  "last_updated": "2026-05-05T21:58:49.770515",
   "initial_capital": 146031.04,
   "start_date": "2025-12-22",
   "summary": {
-    "total_value": 168060.44,
+    "total_value": 168058.84,
     "total_cost": 146031.04,
-    "total_gain_loss": 22029.4,
-    "total_gain_loss_pct": 15.09,
+    "total_gain_loss": 22027.8,
+    "total_gain_loss_pct": 15.08,
     "cash": 34153.94,
-    "invested": 133906.5,
+    "invested": 133904.9,
     "holdings_count": 8
   },
   "holdings": [
@@ -33,11 +33,11 @@
       "shares": 30,
       "avg_price": 307.16,
       "added_date": "2025-12-22",
-      "current_price": 388.47,
-      "market_value": 11654.1,
+      "current_price": 388.43,
+      "market_value": 11652.9,
       "cost_basis": 9214.8,
-      "gain_loss": 2439.3,
-      "gain_loss_pct": 26.47,
+      "gain_loss": 2438.1,
+      "gain_loss_pct": 26.46,
       "ai_score": 68.5,
       "reasoning": "AI/클라우드 성장, 막스 리스크 점수 낮음, 멍거 복리 효과 우수",
       "recommendation": "보유"
@@ -48,11 +48,11 @@
       "shares": 40,
       "avg_price": 227.35,
       "added_date": "2025-12-22",
-      "current_price": 273.52,
-      "market_value": 10940.8,
+      "current_price": 273.55,
+      "market_value": 10942.0,
       "cost_basis": 9094.0,
-      "gain_loss": 1846.8,
-      "gain_loss_pct": 20.31,
+      "gain_loss": 1848.0,
+      "gain_loss_pct": 20.32,
       "ai_score": 56.5,
       "reasoning": "이커머스+클라우드 양대 성장축, 피터 린치 다각화 기업",
       "recommendation": "보유"
@@ -63,11 +63,11 @@
       "shares": 50,
       "avg_price": 340.36,
       "added_date": "2025-12-22",
-      "current_price": 427.45,
-      "market_value": 21372.5,
+      "current_price": 427.36,
+      "market_value": 21368.0,
       "cost_basis": 17018.0,
-      "gain_loss": 4354.5,
-      "gain_loss_pct": 25.59,
+      "gain_loss": 4350.0,
+      "gain_loss_pct": 25.56,
       "ai_score": 59.0,
       "reasoning": "반도체 인프라 핵심, 그린블랫 마법공식 고득점",
       "recommendation": "보유"
@@ -108,11 +108,11 @@
       "shares": 40,
       "avg_price": 288.95,
       "added_date": "2025-12-22",
-      "current_price": 394.36,
-      "market_value": 15774.4,
+      "current_price": 394.41,
+      "market_value": 15776.4,
       "cost_basis": 11558.0,
-      "gain_loss": 4216.4,
-      "gain_loss_pct": 36.48,
+      "gain_loss": 4218.4,
+      "gain_loss_pct": 36.5,
       "ai_score": 65.0,
       "reasoning": "반도체 제조 독점, 그레이엄 가치주, 탈레브 안티프래질",
       "recommendation": "보유"
@@ -123,11 +123,11 @@
       "shares": 30,
       "avg_price": 485.92,
       "added_date": "2025-12-22",
-      "current_price": 411.35,
-      "market_value": 12340.5,
+      "current_price": 411.38,
+      "market_value": 12341.4,
       "cost_basis": 14577.6,
-      "gain_loss": -2237.1,
-      "gain_loss_pct": -15.35,
+      "gain_loss": -2236.2,
+      "gain_loss_pct": -15.34,
       "ai_score": 67.5,
       "reasoning": "클라우드+AI 양대 성장, 보글 인덱스 핵심, 최고 안정성",
       "recommendation": "보유"
@@ -811,18 +811,6 @@
     }
   ],
   "decisions": [
-    {
-      "date": "2026-04-28T06:27:14.172853",
-      "action": "hold",
-      "symbol": "ALL",
-      "reasoning": "AI 포트폴리오가 사용자 대비 21.08%p 뒤처지고 있습니다. 하워드 막스의 '2차적 사고'에 따라 현재 포지션을 재평가하고 있습니다. 단기 변동에 휘둘리지 않고 장기적 관점을 유지하되, 저평가 종목 발굴에 집중합니다.",
-      "details": {
-        "ai_return": "16.42%",
-        "user_return": "37.50%",
-        "difference": "-21.08%p",
-        "strategy": "장기 가치 투자 유지"
-      }
-    },
     {
       "date": "2026-04-28T09:18:31.229755",
       "action": "hold",
@@ -2010,6 +1998,18 @@
         "difference": "-23.50%p",
         "strategy": "장기 가치 투자 유지"
       }
+    },
+    {
+      "date": "2026-05-05T21:58:49.770547",
+      "action": "hold",
+      "symbol": "ALL",
+      "reasoning": "AI 포트폴리오가 사용자 대비 23.49%p 뒤처지고 있습니다. 하워드 막스의 '2차적 사고'에 따라 현재 포지션을 재평가하고 있습니다. 단기 변동에 휘둘리지 않고 장기적 관점을 유지하되, 저평가 종목 발굴에 집중합니다.",
+      "details": {
+        "ai_return": "15.08%",
+        "user_return": "38.57%",
+        "difference": "-23.49%p",
+        "strategy": "장기 가치 투자 유지"
+      }
     }
   ],
   "metrics": {
@@ -2021,11 +2021,6 @@
     "days_active": 134
   },
   "learning_log": [
-    {
-      "date": "2026-05-02",
-      "lesson": "SMR의 -36.44% 손실 관찰. ",
-      "adjustment": "유사 패턴 종목 투자시 주의 필요"
-    },
     {
       "date": "2026-05-02",
       "lesson": "SMR의 -36.44% 손실 관찰. ",
@@ -2269,6 +2264,11 @@
     {
       "date": "2026-05-05",
       "lesson": "SMR의 -37.75% 손실 관찰. ",
+      "adjustment": "유사 패턴 종목 투자시 주의 필요"
+    },
+    {
+      "date": "2026-05-05",
+      "lesson": "SMR의 -37.85% 손실 관찰. ",
       "adjustment": "유사 패턴 종목 투자시 주의 필요"
     }
   ],
