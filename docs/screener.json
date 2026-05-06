@@ -1,48 +1,6 @@
 {
   "screener_results": [
     {
-      "symbol": "PFE",
-      "name": "Pfizer, Inc.",
-      "sector": "Healthcare",
-      "industry": "Drug Manufacturers - General",
-      "price": 26.45,
-      "market_cap": 150457024512,
-      "fundamentals": {
-        "trailing_pe": 19.45,
-        "forward_pe": 9.41,
-        "pb_ratio": 1.74,
-        "ps_ratio": 2.4,
-        "ev_ebitda": 7.93,
-        "earnings_yield": 5.14,
-        "revenue_growth": -1.2,
-        "earnings_growth": 0,
-        "growth_tier": "declining"
-      },
-      "technicals": {
-        "sma_50": 27.11,
-        "sma_200": 25.27,
-        "rsi": 38.86,
-        "week_52_high": 28.75,
-        "week_52_low": 21.97,
-        "bollinger_position": 20.85,
-        "price_vs_sma50": -2.43,
-        "price_vs_sma200": 4.69
-      },
-      "scores": {
-        "per_score": 72.0,
-        "pbr_score": 60,
-        "psr_score": 60,
-        "ev_ebitda_score": 80,
-        "earnings_yield_score": 40,
-        "fundamental_score": 64.6,
-        "technical_score": 59.32,
-        "value_score": 63.02
-      },
-      "grade": "B+",
-      "recommendation": "Moderate Buy",
-      "fetched_at": "2026-05-05T23:57:19.232226"
-    },
-    {
       "symbol": "UPS",
       "name": "United Parcel Service, Inc.",
       "sector": "Industrials",
@@ -54,7 +12,7 @@
         "forward_pe": 12.37,
         "pb_ratio": 5.13,
         "ps_ratio": 0.94,
-        "ev_ebitda": 8.79,
+        "ev_ebitda": 8.92,
         "earnings_yield": 6.3,
         "revenue_growth": -1.6,
         "earnings_growth": -27.2,
@@ -82,7 +40,7 @@
       },
       "grade": "B+",
       "recommendation": "Moderate Buy",
-      "fetched_at": "2026-05-05T23:57:33.063503"
+      "fetched_at": "2026-05-06T02:57:20.642425"
     },
     {
       "symbol": "DIS",
@@ -96,7 +54,7 @@
         "forward_pe": 13.71,
         "pb_ratio": 1.65,
         "ps_ratio": 1.86,
-        "ev_ebitda": 11.7,
+        "ev_ebitda": 11.63,
         "earnings_yield": 6.76,
         "revenue_growth": 5.2,
         "earnings_growth": -4.3,
@@ -107,7 +65,7 @@
         "sma_200": 109.05,
         "rsi": 41.49,
         "week_52_high": 124.69,
-        "week_52_low": 91.0,
+        "week_52_low": 92.19,
         "bollinger_position": 24.74,
         "price_vs_sma50": -0.34,
         "price_vs_sma200": -7.86
@@ -124,7 +82,49 @@
       },
       "grade": "B+",
       "recommendation": "Moderate Buy",
-      "fetched_at": "2026-05-05T23:57:29.277587"
+      "fetched_at": "2026-05-06T02:57:18.213189"
+    },
+    {
+      "symbol": "PFE",
+      "name": "Pfizer, Inc.",
+      "sector": "Healthcare",
+      "industry": "Drug Manufacturers - General",
+      "price": 26.45,
+      "market_cap": 150457024512,
+      "fundamentals": {
+        "trailing_pe": 20.19,
+        "forward_pe": 9.39,
+        "pb_ratio": 1.74,
+        "ps_ratio": 2.4,
+        "ev_ebitda": 7.93,
+        "earnings_yield": 4.95,
+        "revenue_growth": -1.2,
+        "earnings_growth": 0,
+        "growth_tier": "declining"
+      },
+      "technicals": {
+        "sma_50": 27.11,
+        "sma_200": 25.27,
+        "rsi": 38.86,
+        "week_52_high": 28.75,
+        "week_52_low": 21.97,
+        "bollinger_position": 20.85,
+        "price_vs_sma50": -2.43,
+        "price_vs_sma200": 4.69
+      },
+      "scores": {
+        "per_score": 58.0,
+        "pbr_score": 60,
+        "psr_score": 60,
+        "ev_ebitda_score": 80,
+        "earnings_yield_score": 40,
+        "fundamental_score": 60.4,
+        "technical_score": 59.32,
+        "value_score": 60.08
+      },
+      "grade": "B+",
+      "recommendation": "Moderate Buy",
+      "fetched_at": "2026-05-06T02:57:12.037374"
     },
     {
       "symbol": "BMY",
@@ -138,7 +138,7 @@
         "forward_pe": 9.27,
         "pb_ratio": 5.79,
         "ps_ratio": 2.4,
-        "ev_ebitda": 8.07,
+        "ev_ebitda": 8.03,
         "earnings_yield": 6.27,
         "revenue_growth": 2.6,
         "earnings_growth": 9.2,
@@ -166,7 +166,7 @@
       },
       "grade": "B",
       "recommendation": "Hold",
-      "fetched_at": "2026-05-05T23:57:23.332745"
+      "fetched_at": "2026-05-06T02:57:14.580835"
     },
     {
       "symbol": "EOG",
@@ -180,7 +180,7 @@
         "forward_pe": 9.98,
         "pb_ratio": 2.54,
         "ps_ratio": 3.33,
-        "ev_ebitda": 6.97,
+        "ev_ebitda": 6.93,
         "earnings_yield": 6.48,
         "revenue_growth": 0,
         "earnings_growth": -41.7,
@@ -208,7 +208,7 @@
       },
       "grade": "B",
       "recommendation": "Hold",
-      "fetched_at": "2026-05-05T23:57:38.624108"
+      "fetched_at": "2026-05-06T02:57:24.020116"
     },
     {
       "symbol": "COP",
@@ -218,11 +218,11 @@
       "price": 123.32,
       "market_cap": 150240018432,
       "fundamentals": {
-        "trailing_pe": 20.9,
+        "trailing_pe": 20.94,
         "forward_pe": 14.21,
         "pb_ratio": 2.33,
         "ps_ratio": 2.53,
-        "ev_ebitda": 7.25,
+        "ev_ebitda": 7.16,
         "earnings_yield": 4.78,
         "revenue_growth": -5.3,
         "earnings_growth": -20.2,
@@ -250,7 +250,7 @@
       },
       "grade": "B",
       "recommendation": "Hold",
-      "fetched_at": "2026-05-05T23:57:37.419136"
+      "fetched_at": "2026-05-06T02:57:23.298967"
     },
     {
       "symbol": "C",
@@ -275,7 +275,7 @@
         "sma_200": 106.64,
         "rsi": 41.62,
         "week_52_high": 135.29,
-        "week_52_low": 69.17,
+        "week_52_low": 69.65,
         "bollinger_position": 51.97,
         "price_vs_sma50": 9.14,
         "price_vs_sma200": 20.04
@@ -292,7 +292,7 @@
       },
       "grade": "B",
       "recommendation": "Hold",
-      "fetched_at": "2026-05-05T23:57:17.327523"
+      "fetched_at": "2026-05-06T02:57:10.951844"
     },
     {
       "symbol": "WFC",
@@ -334,7 +334,7 @@
       },
       "grade": "B",
       "recommendation": "Hold",
-      "fetched_at": "2026-05-05T23:57:13.338030"
+      "fetched_at": "2026-05-06T02:57:08.751882"
     },
     {
       "symbol": "VLO",
@@ -348,7 +348,7 @@
         "forward_pe": 13.41,
         "pb_ratio": 3.19,
         "ps_ratio": 0.64,
-        "ev_ebitda": 9.08,
+        "ev_ebitda": 9.14,
         "earnings_yield": 5.4,
         "revenue_growth": 6.6,
         "earnings_growth": 0,
@@ -376,7 +376,7 @@
       },
       "grade": "B",
       "recommendation": "Hold",
-      "fetched_at": "2026-05-05T23:57:39.753938"
+      "fetched_at": "2026-05-06T02:57:24.639809"
     },
     {
       "symbol": "BAC",
@@ -401,7 +401,7 @@
         "sma_200": 51.09,
         "rsi": 41.12,
         "week_52_high": 57.55,
-        "week_52_low": 40.56,
+        "week_52_low": 40.86,
         "bollinger_position": 53.1,
         "price_vs_sma50": 5.39,
         "price_vs_sma200": 3.98
@@ -418,7 +418,7 @@
       },
       "grade": "B",
       "recommendation": "Hold",
-      "fetched_at": "2026-05-05T23:57:12.724010"
+      "fetched_at": "2026-05-06T02:57:08.396678"
     },
     {
       "symbol": "PSX",
@@ -428,7 +428,7 @@
       "price": 180.26,
       "market_cap": 72272543744,
       "fundamentals": {
-        "trailing_pe": 17.81,
+        "trailing_pe": 17.83,
         "forward_pe": 11.55,
         "pb_ratio": 2.49,
         "ps_ratio": 0.54,
@@ -460,7 +460,7 @@
       },
       "grade": "B",
       "recommendation": "Hold",
-      "fetched_at": "2026-05-05T23:57:39.116087"
+      "fetched_at": "2026-05-06T02:57:24.320374"
     },
     {
       "symbol": "MPC",
@@ -470,12 +470,12 @@
       "price": 260.51,
       "market_cap": 76329435136,
       "fundamentals": {
-        "trailing_pe": 19.72,
+        "trailing_pe": 17.15,
         "forward_pe": 12.68,
         "pb_ratio": 4.44,
         "ps_ratio": 0.57,
         "ev_ebitda": 11.81,
-        "earnings_yield": 5.07,
+        "earnings_yield": 5.83,
         "revenue_growth": -1.2,
         "earnings_growth": 350.7,
         "growth_tier": "hypergrowth"
@@ -485,7 +485,7 @@
         "sma_200": 192.91,
         "rsi": 77.24,
         "week_52_high": 261.61,
-        "week_52_low": 141.91,
+        "week_52_low": 142.73,
         "bollinger_position": 100,
         "price_vs_sma50": 13.99,
         "price_vs_sma200": 35.04
@@ -495,14 +495,14 @@
         "pbr_score": 20,
         "psr_score": 100,
         "ev_ebitda_score": 40,
-        "earnings_yield_score": 40,
-        "fundamental_score": 55.2,
+        "earnings_yield_score": 60,
+        "fundamental_score": 58.2,
         "technical_score": 34.62,
-        "value_score": 49.03
+        "value_score": 51.13
       },
-      "grade": "C",
-      "recommendation": "Weak Hold",
-      "fetched_at": "2026-05-05T23:57:40.272866"
+      "grade": "B",
+      "recommendation": "Hold",
+      "fetched_at": "2026-05-06T02:57:24.886980"
     },
     {
       "symbol": "OXY",
@@ -516,7 +516,7 @@
         "forward_pe": 16.32,
         "pb_ratio": 2.11,
         "ps_ratio": 2.73,
-        "ev_ebitda": 7.97,
+        "ev_ebitda": 7.89,
         "earnings_yield": 2.28,
         "revenue_growth": 148.9,
         "earnings_growth": 0,
@@ -544,7 +544,7 @@
       },
       "grade": "C",
       "recommendation": "Weak Hold",
-      "fetched_at": "2026-05-05T23:57:40.869818"
+      "fetched_at": "2026-05-06T02:57:25.261702"
     },
     {
       "symbol": "LMT",
@@ -554,7 +554,7 @@
       "price": 508.93,
       "market_cap": 117340741632,
       "fundamentals": {
-        "trailing_pe": 24.62,
+        "trailing_pe": 24.63,
         "forward_pe": 15.85,
         "pb_ratio": 15.63,
         "ps_ratio": 1.56,
@@ -586,7 +586,7 @@
       },
       "grade": "C",
       "recommendation": "Weak Hold",
-      "fetched_at": "2026-05-05T23:57:34.400540"
+      "fetched_at": "2026-05-06T02:57:21.398156"
     },
     {
       "symbol": "ABT",
@@ -628,7 +628,7 @@
       },
       "grade": "C",
       "recommendation": "Weak Hold",
-      "fetched_at": "2026-05-05T23:57:21.595622"
+      "fetched_at": "2026-05-06T02:57:13.418995"
     },
     {
       "symbol": "JPM",
@@ -670,7 +670,7 @@
       },
       "grade": "C",
       "recommendation": "Weak Hold",
-      "fetched_at": "2026-05-05T23:57:12.110490"
+      "fetched_at": "2026-05-06T02:57:08.037194"
     },
     {
       "symbol": "GS",
@@ -695,7 +695,7 @@
         "sma_200": 827.65,
         "rsi": 55.67,
         "week_52_high": 984.7,
-        "week_52_low": 547.06,
+        "week_52_low": 547.74,
         "bollinger_position": 52.96,
         "price_vs_sma50": 5.58,
         "price_vs_sma200": 11.02
@@ -712,7 +712,7 @@
       },
       "grade": "C",
       "recommendation": "Weak Hold",
-      "fetched_at": "2026-05-05T23:57:13.833980"
+      "fetched_at": "2026-05-06T02:57:09.030726"
     },
     {
       "symbol": "XOM",
@@ -722,12 +722,12 @@
       "price": 154.88,
       "market_cap": 641969422336,
       "fundamentals": {
-        "trailing_pe": 26.12,
+        "trailing_pe": 26.03,
         "forward_pe": 15.29,
         "pb_ratio": 2.5,
         "ps_ratio": 1.97,
-        "ev_ebitda": 12.19,
-        "earnings_yield": 3.83,
+        "ev_ebitda": 12.28,
+        "earnings_yield": 3.84,
         "revenue_growth": 2.6,
         "earnings_growth": -43.4,
         "growth_tier": "declining"
@@ -754,7 +754,7 @@
       },
       "grade": "C",
       "recommendation": "Weak Hold",
-      "fetched_at": "2026-05-05T23:57:36.300408"
+      "fetched_at": "2026-05-06T02:57:22.532083"
     },
     {
       "symbol": "HD",
@@ -796,7 +796,7 @@
       },
       "grade": "C",
       "recommendation": "Weak Hold",
-      "fetched_at": "2026-05-05T23:57:26.984110"
+      "fetched_at": "2026-05-06T02:57:16.725153"
     },
     {
       "symbol": "NKE",
@@ -810,7 +810,7 @@
         "forward_pe": 23.33,
         "pb_ratio": 4.52,
         "ps_ratio": 1.37,
-        "ev_ebitda": 17.32,
+        "ev_ebitda": 17.31,
         "earnings_yield": 3.53,
         "revenue_growth": 0.1,
         "earnings_growth": -34.8,
@@ -838,7 +838,7 @@
       },
       "grade": "C",
       "recommendation": "Weak Hold",
-      "fetched_at": "2026-05-05T23:57:28.144938"
+      "fetched_at": "2026-05-06T02:57:17.444094"
     },
     {
       "symbol": "META",
@@ -852,7 +852,7 @@
         "forward_pe": 16.72,
         "pb_ratio": 7.05,
         "ps_ratio": 7.14,
-        "ev_ebitda": 14.23,
+        "ev_ebitda": 14.1,
         "earnings_yield": 4.55,
         "revenue_growth": 33.1,
         "earnings_growth": 62.4,
@@ -880,7 +880,7 @@
       },
       "grade": "C",
       "recommendation": "Weak Hold",
-      "fetched_at": "2026-05-05T23:57:09.332079"
+      "fetched_at": "2026-05-06T02:57:06.535980"
     },
     {
       "symbol": "MS",
@@ -890,7 +890,7 @@
       "price": 189.25,
       "market_cap": 300502548480,
       "fundamentals": {
-        "trailing_pe": 17.14,
+        "trailing_pe": 17.16,
         "forward_pe": 14.92,
         "pb_ratio": 2.94,
         "ps_ratio": 4.11,
@@ -905,7 +905,7 @@
         "sma_200": 164.39,
         "rsi": 47.56,
         "week_52_high": 194.59,
-        "week_52_low": 117.21,
+        "week_52_low": 118.2,
         "bollinger_position": 66.4,
         "price_vs_sma50": 10.08,
         "price_vs_sma200": 15.12
@@ -922,7 +922,7 @@
       },
       "grade": "C",
       "recommendation": "Weak Hold",
-      "fetched_at": "2026-05-05T23:57:14.504347"
+      "fetched_at": "2026-05-06T02:57:09.336353"
     },
     {
       "symbol": "DHR",
@@ -964,7 +964,7 @@
       },
       "grade": "C",
       "recommendation": "Weak Hold",
-      "fetched_at": "2026-05-05T23:57:22.160340"
+      "fetched_at": "2026-05-06T02:57:13.809960"
     },
     {
       "symbol": "CRM",
@@ -1006,7 +1006,7 @@
       },
       "grade": "C",
       "recommendation": "Weak Hold",
-      "fetched_at": "2026-05-05T23:57:11.531486"
+      "fetched_at": "2026-05-06T02:57:07.711151"
     },
     {
       "symbol": "MMM",
@@ -1016,12 +1016,12 @@
       "price": 142.82,
       "market_cap": 74490241024,
       "fundamentals": {
-        "trailing_pe": 27.47,
+        "trailing_pe": 27.57,
         "forward_pe": 15.11,
         "pb_ratio": 22.83,
         "ps_ratio": 2.98,
         "ev_ebitda": 13.12,
-        "earnings_yield": 3.64,
+        "earnings_yield": 3.63,
         "revenue_growth": 1.3,
         "earnings_growth": -39.7,
         "growth_tier": "declining"
@@ -1031,7 +1031,7 @@
         "sma_200": 156.93,
         "rsi": 34.44,
         "week_52_high": 177.41,
-        "week_52_low": 137.63,
+        "week_52_low": 137.7,
         "bollinger_position": 15.92,
         "price_vs_sma50": -4.73,
         "price_vs_sma200": -8.99
@@ -1048,7 +1048,7 @@
       },
       "grade": "C",
       "recommendation": "Weak Hold",
-      "fetched_at": "2026-05-05T23:57:31.879871"
+      "fetched_at": "2026-05-06T02:57:19.929331"
     },
     {
       "symbol": "KMI",
@@ -1090,7 +1090,7 @@
       },
       "grade": "C",
       "recommendation": "Weak Hold",
-      "fetched_at": "2026-05-05T23:57:41.376535"
+      "fetched_at": "2026-05-06T02:57:25.589505"
     },
     {
       "symbol": "PEP",
@@ -1132,7 +1132,7 @@
       },
       "grade": "C",
       "recommendation": "Weak Hold",
-      "fetched_at": "2026-05-05T23:57:25.177645"
+      "fetched_at": "2026-05-06T02:57:15.778503"
     },
     {
       "symbol": "MCD",
@@ -1142,7 +1142,7 @@
       "price": 285.17,
       "market_cap": 202706731008,
       "fundamentals": {
-        "trailing_pe": 23.84,
+        "trailing_pe": 23.86,
         "forward_pe": 19.86,
         "pb_ratio": -113.21,
         "ps_ratio": 7.54,
@@ -1174,7 +1174,7 @@
       },
       "grade": "C",
       "recommendation": "Weak Hold",
-      "fetched_at": "2026-05-05T23:57:27.590319"
+      "fetched_at": "2026-05-06T02:57:17.097615"
     },
     {
       "symbol": "RTX",
@@ -1184,7 +1184,7 @@
       "price": 172.87,
       "market_cap": 232801157120,
       "fundamentals": {
-        "trailing_pe": 32.43,
+        "trailing_pe": 32.49,
         "forward_pe": 22.9,
         "pb_ratio": 3.56,
         "ps_ratio": 2.58,
@@ -1216,7 +1216,7 @@
       },
       "grade": "C",
       "recommendation": "Weak Hold",
-      "fetched_at": "2026-05-05T23:57:33.714184"
+      "fetched_at": "2026-05-06T02:57:21.007438"
     },
     {
       "symbol": "HON",
@@ -1226,12 +1226,12 @@
       "price": 209.06,
       "market_cap": 132471521280,
       "fundamentals": {
-        "trailing_pe": 33.34,
+        "trailing_pe": 33.45,
         "forward_pe": 18.22,
         "pb_ratio": 9.75,
         "ps_ratio": 3.52,
-        "ev_ebitda": 18.68,
-        "earnings_yield": 3.0,
+        "ev_ebitda": 18.64,
+        "earnings_yield": 2.99,
         "revenue_growth": 2.4,
         "earnings_growth": -41.9,
         "growth_tier": "declining"
@@ -1258,7 +1258,7 @@
       },
       "grade": "C",
       "recommendation": "Weak Hold",
-      "fetched_at": "2026-05-05T23:57:32.554128"
+      "fetched_at": "2026-05-06T02:57:20.373862"
     },
     {
       "symbol": "TMO",
@@ -1268,12 +1268,12 @@
       "price": 466.76,
       "market_cap": 173458046976,
       "fundamentals": {
-        "trailing_pe": 25.67,
+        "trailing_pe": 25.65,
         "forward_pe": 17.06,
         "pb_ratio": 3.29,
         "ps_ratio": 3.84,
-        "ev_ebitda": 18.76,
-        "earnings_yield": 3.89,
+        "ev_ebitda": 18.9,
+        "earnings_yield": 3.9,
         "revenue_growth": 6.2,
         "earnings_growth": 11.3,
         "growth_tier": "moderate_growth"
@@ -1300,7 +1300,7 @@
       },
       "grade": "C",
       "recommendation": "Weak Hold",
-      "fetched_at": "2026-05-05T23:57:21.015373"
+      "fetched_at": "2026-05-06T02:57:13.071230"
     },
     {
       "symbol": "SLB",
@@ -1314,7 +1314,7 @@
         "forward_pe": 16.76,
         "pb_ratio": 3.06,
         "ps_ratio": 2.33,
-        "ev_ebitda": 12.32,
+        "ev_ebitda": 12.39,
         "earnings_yield": 4.05,
         "revenue_growth": 2.7,
         "earnings_growth": -13.8,
@@ -1342,7 +1342,7 @@
       },
       "grade": "C",
       "recommendation": "Weak Hold",
-      "fetched_at": "2026-05-05T23:57:38.090412"
+      "fetched_at": "2026-05-06T02:57:23.681953"
     },
     {
       "symbol": "MRK",
@@ -1384,7 +1384,7 @@
       },
       "grade": "D",
       "recommendation": "Avoid",
-      "fetched_at": "2026-05-05T23:57:20.505661"
+      "fetched_at": "2026-05-06T02:57:12.773153"
     },
     {
       "symbol": "CVX",
@@ -1395,10 +1395,10 @@
       "market_cap": 380849258496,
       "fundamentals": {
         "trailing_pe": 33.5,
-        "forward_pe": 16.02,
+        "forward_pe": 16.06,
         "pb_ratio": 2.05,
         "ps_ratio": 2.05,
-        "ev_ebitda": 11.25,
+        "ev_ebitda": 11.27,
         "earnings_yield": 2.98,
         "revenue_growth": 3.5,
         "earnings_growth": -44.4,
@@ -1426,7 +1426,7 @@
       },
       "grade": "D",
       "recommendation": "Avoid",
-      "fetched_at": "2026-05-05T23:57:36.851770"
+      "fetched_at": "2026-05-06T02:57:22.985124"
     },
     {
       "symbol": "AXP",
@@ -1451,7 +1451,7 @@
         "sma_200": 334.49,
         "rsi": 38.19,
         "week_52_high": 387.49,
-        "week_52_low": 273.61,
+        "week_52_low": 273.89,
         "bollinger_position": 25.83,
         "price_vs_sma50": 1.6,
         "price_vs_sma200": -5.54
@@ -1468,7 +1468,7 @@
       },
       "grade": "D",
       "recommendation": "Avoid",
-      "fetched_at": "2026-05-05T23:57:16.150394"
+      "fetched_at": "2026-05-06T02:57:10.292032"
     },
     {
       "symbol": "PG",
@@ -1510,49 +1510,7 @@
       },
       "grade": "D",
       "recommendation": "Avoid",
-      "fetched_at": "2026-05-05T23:57:23.961898"
-    },
-    {
-      "symbol": "UNH",
-      "name": "UnitedHealth Group Incorporated",
-      "sector": "Healthcare",
-      "industry": "Healthcare Plans",
-      "price": 363.87,
-      "market_cap": 330471538688,
-      "fundamentals": {
-        "trailing_pe": 27.48,
-        "forward_pe": 17.53,
-        "pb_ratio": 3.5,
-        "ps_ratio": 0.73,
-        "ev_ebitda": 17.67,
-        "earnings_yield": 3.64,
-        "revenue_growth": 2.0,
-        "earnings_growth": 0.7,
-        "growth_tier": "stable"
-      },
-      "technicals": {
-        "sma_50": 304.1,
-        "sma_200": 312.82,
-        "rsi": 85.45,
-        "week_52_high": 404.72,
-        "week_52_low": 234.6,
-        "bollinger_position": 74.0,
-        "price_vs_sma50": 19.65,
-        "price_vs_sma200": 16.32
-      },
-      "scores": {
-        "per_score": 48.0,
-        "pbr_score": 20,
-        "psr_score": 100,
-        "ev_ebitda_score": 20,
-        "earnings_yield_score": 20,
-        "fundamental_score": 40.4,
-        "technical_score": 29.3,
-        "value_score": 37.07
-      },
-      "grade": "D",
-      "recommendation": "Avoid",
-      "fetched_at": "2026-05-05T23:57:18.525108"
+      "fetched_at": "2026-05-06T02:57:15.039802"
     },
     {
       "symbol": "BLK",
@@ -1562,7 +1520,7 @@
       "price": 1048.91,
       "market_cap": 162963865600,
       "fundamentals": {
-        "trailing_pe": 26.37,
+        "trailing_pe": 26.39,
         "forward_pe": 17.29,
         "pb_ratio": 2.91,
         "ps_ratio": 6.36,
@@ -1577,7 +1535,7 @@
         "sma_200": 1073.04,
         "rsi": 50.09,
         "week_52_high": 1219.94,
-        "week_52_low": 906.57,
+        "week_52_low": 914.84,
         "bollinger_position": 59.07,
         "price_vs_sma50": 4.1,
         "price_vs_sma200": -2.25
@@ -1594,7 +1552,7 @@
       },
       "grade": "D",
       "recommendation": "Avoid",
-      "fetched_at": "2026-05-05T23:57:16.697509"
+      "fetched_at": "2026-05-06T02:57:10.632197"
     },
     {
       "symbol": "JNJ",
@@ -1604,7 +1562,7 @@
       "price": 225.55,
       "market_cap": 542947770368,
       "fundamentals": {
-        "trailing_pe": 26.14,
+        "trailing_pe": 26.11,
         "forward_pe": 17.75,
         "pb_ratio": 6.69,
         "ps_ratio": 5.63,
@@ -1636,7 +1594,7 @@
       },
       "grade": "D",
       "recommendation": "Avoid",
-      "fetched_at": "2026-05-05T23:57:17.986843"
+      "fetched_at": "2026-05-06T02:57:11.358649"
     },
     {
       "symbol": "UNP",
@@ -1678,7 +1636,49 @@
       },
       "grade": "D",
       "recommendation": "Avoid",
-      "fetched_at": "2026-05-05T23:57:35.650011"
+      "fetched_at": "2026-05-06T02:57:22.142258"
+    },
+    {
+      "symbol": "UNH",
+      "name": "UnitedHealth Group Incorporated",
+      "sector": "Healthcare",
+      "industry": "Healthcare Plans",
+      "price": 363.87,
+      "market_cap": 330471538688,
+      "fundamentals": {
+        "trailing_pe": 27.4,
+        "forward_pe": 17.53,
+        "pb_ratio": 3.5,
+        "ps_ratio": 0.73,
+        "ev_ebitda": 17.67,
+        "earnings_yield": 3.65,
+        "revenue_growth": 2.0,
+        "earnings_growth": 0.7,
+        "growth_tier": "stable"
+      },
+      "technicals": {
+        "sma_50": 304.1,
+        "sma_200": 312.82,
+        "rsi": 85.45,
+        "week_52_high": 395.52,
+        "week_52_low": 234.6,
+        "bollinger_position": 74.0,
+        "price_vs_sma50": 19.65,
+        "price_vs_sma200": 16.32
+      },
+      "scores": {
+        "per_score": 48.0,
+        "pbr_score": 20,
+        "psr_score": 100,
+        "ev_ebitda_score": 20,
+        "earnings_yield_score": 20,
+        "fundamental_score": 40.4,
+        "technical_score": 24.3,
+        "value_score": 35.57
+      },
+      "grade": "D",
+      "recommendation": "Avoid",
+      "fetched_at": "2026-05-06T02:57:11.674646"
     },
     {
       "symbol": "DE",
@@ -1688,11 +1688,11 @@
       "price": 575.79,
       "market_cap": 155525070848,
       "fundamentals": {
-        "trailing_pe": 32.42,
+        "trailing_pe": 32.48,
         "forward_pe": 25.02,
         "pb_ratio": 5.91,
         "ps_ratio": 3.33,
-        "ev_ebitda": 22.81,
+        "ev_ebitda": 22.73,
         "earnings_yield": 3.08,
         "revenue_growth": -11.1,
         "earnings_growth": -8.5,
@@ -1720,7 +1720,7 @@
       },
       "grade": "D",
       "recommendation": "Avoid",
-      "fetched_at": "2026-05-05T23:57:35.004400"
+      "fetched_at": "2026-05-06T02:57:21.771600"
     },
     {
       "symbol": "MA",
@@ -1730,12 +1730,12 @@
       "price": 497.08,
       "market_cap": 439211851776,
       "fundamentals": {
-        "trailing_pe": 28.8,
+        "trailing_pe": 28.73,
         "forward_pe": 21.82,
         "pb_ratio": 57.44,
         "ps_ratio": 12.94,
-        "ev_ebitda": 21.36,
-        "earnings_yield": 3.47,
+        "ev_ebitda": 21.05,
+        "earnings_yield": 3.48,
         "revenue_growth": 15.8,
         "earnings_growth": 21.2,
         "growth_tier": "high_growth"
@@ -1762,7 +1762,7 @@
       },
       "grade": "D",
       "recommendation": "Avoid",
-      "fetched_at": "2026-05-05T23:57:15.551533"
+      "fetched_at": "2026-05-06T02:57:09.922341"
     },
     {
       "symbol": "MSFT",
@@ -1772,11 +1772,11 @@
       "price": 411.38,
       "market_cap": 3055909601280,
       "fundamentals": {
-        "trailing_pe": 24.5,
+        "trailing_pe": 24.52,
         "forward_pe": 21.19,
         "pb_ratio": 7.82,
         "ps_ratio": 9.6,
-        "ev_ebitda": 16.91,
+        "ev_ebitda": 16.82,
         "earnings_yield": 4.08,
         "revenue_growth": 18.3,
         "earnings_growth": 23.4,
@@ -1804,7 +1804,7 @@
       },
       "grade": "D",
       "recommendation": "Avoid",
-      "fetched_at": "2026-05-05T23:57:08.442819"
+      "fetched_at": "2026-05-06T02:57:05.917670"
     },
     {
       "symbol": "GE",
@@ -1814,7 +1814,7 @@
       "price": 286.68,
       "market_cap": 299531763712,
       "fundamentals": {
-        "trailing_pe": 35.61,
+        "trailing_pe": 35.57,
         "forward_pe": 33.05,
         "pb_ratio": 16.1,
         "ps_ratio": 6.2,
@@ -1829,7 +1829,7 @@
         "sma_200": 297.82,
         "rsi": 34.84,
         "week_52_high": 348.48,
-        "week_52_low": 205.92,
+        "week_52_low": 208.22,
         "bollinger_position": 32.93,
         "price_vs_sma50": -5.5,
         "price_vs_sma200": -3.74
@@ -1846,7 +1846,7 @@
       },
       "grade": "D",
       "recommendation": "Avoid",
-      "fetched_at": "2026-05-05T23:57:31.238010"
+      "fetched_at": "2026-05-06T02:57:19.517948"
     },
     {
       "symbol": "KO",
@@ -1888,7 +1888,7 @@
       },
       "grade": "D",
       "recommendation": "Avoid",
-      "fetched_at": "2026-05-05T23:57:24.562601"
+      "fetched_at": "2026-05-06T02:57:15.430614"
     },
     {
       "symbol": "WMT",
@@ -1898,12 +1898,12 @@
       "price": 130.79,
       "market_cap": 1042525782016,
       "fundamentals": {
-        "trailing_pe": 48.08,
+        "trailing_pe": 47.91,
         "forward_pe": 39.85,
         "pb_ratio": 10.46,
         "ps_ratio": 1.46,
-        "ev_ebitda": 25.06,
-        "earnings_yield": 2.08,
+        "ev_ebitda": 25.14,
+        "earnings_yield": 2.09,
         "revenue_growth": 5.6,
         "earnings_growth": -19.0,
         "growth_tier": "declining"
@@ -1930,7 +1930,7 @@
       },
       "grade": "D",
       "recommendation": "Avoid",
-      "fetched_at": "2026-05-05T23:57:25.843554"
+      "fetched_at": "2026-05-06T02:57:16.155117"
     },
     {
       "symbol": "V",
@@ -1940,11 +1940,11 @@
       "price": 322.03,
       "market_cap": 612418519040,
       "fundamentals": {
-        "trailing_pe": 28.08,
+        "trailing_pe": 28.1,
         "forward_pe": 21.72,
         "pb_ratio": 16.07,
         "ps_ratio": 14.23,
-        "ev_ebitda": 20.79,
+        "ev_ebitda": 20.48,
         "earnings_yield": 3.56,
         "revenue_growth": 17.1,
         "earnings_growth": 35.5,
@@ -1972,7 +1972,7 @@
       },
       "grade": "D",
       "recommendation": "Avoid",
-      "fetched_at": "2026-05-05T23:57:14.976408"
+      "fetched_at": "2026-05-06T02:57:09.586208"
     },
     {
       "symbol": "COST",
@@ -1982,11 +1982,11 @@
       "price": 1016.42,
       "market_cap": 450937323520,
       "fundamentals": {
-        "trailing_pe": 52.83,
+        "trailing_pe": 52.91,
         "forward_pe": 45.23,
         "pb_ratio": 27.27,
         "ps_ratio": 1.58,
-        "ev_ebitda": 33.24,
+        "ev_ebitda": 33.36,
         "earnings_yield": 1.89,
         "revenue_growth": 21.5,
         "earnings_growth": 45.5,
@@ -2014,7 +2014,7 @@
       },
       "grade": "D",
       "recommendation": "Avoid",
-      "fetched_at": "2026-05-05T23:57:26.400068"
+      "fetched_at": "2026-05-06T02:57:16.420477"
     },
     {
       "symbol": "ABBV",
@@ -2028,7 +2028,7 @@
         "forward_pe": 12.72,
         "pb_ratio": -111.41,
         "ps_ratio": 5.8,
-        "ev_ebitda": 14.37,
+        "ev_ebitda": 14.25,
         "earnings_yield": 0.99,
         "revenue_growth": 12.4,
         "earnings_growth": -45.8,
@@ -2056,7 +2056,7 @@
       },
       "grade": "D",
       "recommendation": "Avoid",
-      "fetched_at": "2026-05-05T23:57:19.838476"
+      "fetched_at": "2026-05-06T02:57:12.390400"
     },
     {
       "symbol": "NVDA",
@@ -2066,11 +2066,11 @@
       "price": 196.5,
       "market_cap": 4775932329984,
       "fundamentals": {
-        "trailing_pe": 40.1,
+        "trailing_pe": 40.18,
         "forward_pe": 17.48,
         "pb_ratio": 30.36,
         "ps_ratio": 22.12,
-        "ev_ebitda": 35.45,
+        "ev_ebitda": 35.46,
         "earnings_yield": 2.49,
         "revenue_growth": 73.2,
         "earnings_growth": 95.6,
@@ -2081,7 +2081,7 @@
         "sma_200": 184.09,
         "rsi": 47.58,
         "week_52_high": 216.83,
-        "week_52_low": 110.82,
+        "week_52_low": 112.28,
         "bollinger_position": 42.14,
         "price_vs_sma50": 4.84,
         "price_vs_sma200": 6.74
@@ -2098,7 +2098,7 @@
       },
       "grade": "D",
       "recommendation": "Avoid",
-      "fetched_at": "2026-05-05T23:57:09.663190"
+      "fetched_at": "2026-05-06T02:57:06.741512"
     },
     {
       "symbol": "GOOGL",
@@ -2108,11 +2108,11 @@
       "price": 388.43,
       "market_cap": 4706001747968,
       "fundamentals": {
-        "trailing_pe": 29.63,
+        "trailing_pe": 29.58,
         "forward_pe": 27.04,
         "pb_ratio": 11.31,
         "ps_ratio": 11.14,
-        "ev_ebitda": 28.59,
+        "ev_ebitda": 28.98,
         "earnings_yield": 3.38,
         "revenue_growth": 21.8,
         "earnings_growth": 82.0,
@@ -2140,7 +2140,7 @@
       },
       "grade": "D",
       "recommendation": "Avoid",
-      "fetched_at": "2026-05-05T23:57:08.733698"
+      "fetched_at": "2026-05-06T02:57:06.117616"
     },
     {
       "symbol": "LLY",
@@ -2182,7 +2182,7 @@
       },
       "grade": "D",
       "recommendation": "Avoid",
-      "fetched_at": "2026-05-05T23:57:22.790448"
+      "fetched_at": "2026-05-06T02:57:14.219257"
     },
     {
       "symbol": "AMZN",
@@ -2192,12 +2192,12 @@
       "price": 273.55,
       "market_cap": 2942607294464,
       "fundamentals": {
-        "trailing_pe": 32.76,
+        "trailing_pe": 32.68,
         "forward_pe": 27.68,
         "pb_ratio": 7.14,
         "ps_ratio": 3.96,
-        "ev_ebitda": 19.37,
-        "earnings_yield": 3.05,
+        "ev_ebitda": 19.47,
+        "earnings_yield": 3.06,
         "revenue_growth": 16.6,
         "earnings_growth": 74.8,
         "growth_tier": "hypergrowth"
@@ -2207,7 +2207,7 @@
         "sma_200": 227.86,
         "rsi": 82.32,
         "week_52_high": 278.56,
-        "week_52_low": 183.85,
+        "week_52_low": 185.01,
         "bollinger_position": 89.04,
         "price_vs_sma50": 20.29,
         "price_vs_sma200": 20.05
@@ -2224,7 +2224,7 @@
       },
       "grade": "D",
       "recommendation": "Avoid",
-      "fetched_at": "2026-05-05T23:57:09.021236"
+      "fetched_at": "2026-05-06T02:57:06.310438"
     },
     {
       "symbol": "AAPL",
@@ -2234,12 +2234,12 @@
       "price": 284.18,
       "market_cap": 4173852573696,
       "fundamentals": {
-        "trailing_pe": 34.45,
+        "trailing_pe": 34.36,
         "forward_pe": 29.74,
         "pb_ratio": 47.38,
         "ps_ratio": 9.25,
-        "ev_ebitda": 25.52,
-        "earnings_yield": 2.9,
+        "ev_ebitda": 26.19,
+        "earnings_yield": 2.91,
         "revenue_growth": 16.6,
         "earnings_growth": 21.8,
         "growth_tier": "high_growth"
@@ -2266,7 +2266,7 @@
       },
       "grade": "D",
       "recommendation": "Avoid",
-      "fetched_at": "2026-05-05T23:57:08.134158"
+      "fetched_at": "2026-05-06T02:57:05.668826"
     },
     {
       "symbol": "INTC",
@@ -2280,7 +2280,7 @@
         "forward_pe": 72.51,
         "pb_ratio": 4.73,
         "ps_ratio": 10.11,
-        "ev_ebitda": 35.79,
+        "ev_ebitda": 40.17,
         "earnings_yield": 0,
         "revenue_growth": 7.2,
         "earnings_growth": 0,
@@ -2308,7 +2308,7 @@
       },
       "grade": "D",
       "recommendation": "Avoid",
-      "fetched_at": "2026-05-05T23:57:11.070567"
+      "fetched_at": "2026-05-06T02:57:07.485251"
     },
     {
       "symbol": "BA",
@@ -2318,12 +2318,12 @@
       "price": 224.38,
       "market_cap": 176879288320,
       "fundamentals": {
-        "trailing_pe": 89.04,
+        "trailing_pe": 88.34,
         "forward_pe": 52.32,
         "pb_ratio": 29.56,
         "ps_ratio": 1.92,
         "ev_ebitda": -63.31,
-        "earnings_yield": 1.12,
+        "earnings_yield": 1.13,
         "revenue_growth": 14.0,
         "earnings_growth": 0,
         "growth_tier": "moderate_growth"
@@ -2350,7 +2350,7 @@
       },
       "grade": "D",
       "recommendation": "Avoid",
-      "fetched_at": "2026-05-05T23:57:30.566263"
+      "fetched_at": "2026-05-06T02:57:19.085688"
     },
     {
       "symbol": "SBUX",
@@ -2392,7 +2392,7 @@
       },
       "grade": "D",
       "recommendation": "Avoid",
-      "fetched_at": "2026-05-05T23:57:28.686121"
+      "fetched_at": "2026-05-06T02:57:17.738467"
     },
     {
       "symbol": "CAT",
@@ -2406,7 +2406,7 @@
         "forward_pe": 30.98,
         "pb_ratio": 22.46,
         "ps_ratio": 5.89,
-        "ev_ebitda": 30.66,
+        "ev_ebitda": 31.61,
         "earnings_yield": 2.22,
         "revenue_growth": 22.2,
         "earnings_growth": 30.2,
@@ -2434,7 +2434,7 @@
       },
       "grade": "D",
       "recommendation": "Avoid",
-      "fetched_at": "2026-05-05T23:57:29.912406"
+      "fetched_at": "2026-05-06T02:57:18.684091"
     },
     {
       "symbol": "AMD",
@@ -2444,11 +2444,11 @@
       "price": 355.26,
       "market_cap": 579219816448,
       "fundamentals": {
-        "trailing_pe": 136.64,
+        "trailing_pe": 137.17,
         "forward_pe": 31.67,
         "pb_ratio": 9.19,
         "ps_ratio": 16.72,
-        "ev_ebitda": 81.59,
+        "ev_ebitda": 84.9,
         "earnings_yield": 0.73,
         "revenue_growth": 34.1,
         "earnings_growth": 217.1,
@@ -2476,7 +2476,7 @@
       },
       "grade": "D",
       "recommendation": "Avoid",
-      "fetched_at": "2026-05-05T23:57:10.525924"
+      "fetched_at": "2026-05-06T02:57:07.176053"
     },
     {
       "symbol": "TSLA",
@@ -2486,11 +2486,11 @@
       "price": 389.37,
       "market_cap": 1462366109696,
       "fundamentals": {
-        "trailing_pe": 353.97,
+        "trailing_pe": 357.22,
         "forward_pe": 153.58,
         "pb_ratio": 17.78,
         "ps_ratio": 14.94,
-        "ev_ebitda": 130.34,
+        "ev_ebitda": 129.25,
         "earnings_yield": 0.28,
         "revenue_growth": 15.8,
         "earnings_growth": 8.3,
@@ -2518,27 +2518,27 @@
       },
       "grade": "D",
       "recommendation": "Avoid",
-      "fetched_at": "2026-05-05T23:57:10.158571"
+      "fetched_at": "2026-05-06T02:57:06.995830"
     }
   ],
   "statistics": {
     "total_analyzed": 60,
     "successful": 60,
     "failed": 0,
-    "avg_score": 39.09,
-    "max_score": 63.02,
+    "avg_score": 39.05,
+    "max_score": 61.28,
     "min_score": 14.83,
     "grade_distribution": {
       "A+": 0,
       "A": 0,
       "B+": 3,
-      "B": 8,
-      "C": 21,
+      "B": 9,
+      "C": 20,
       "D": 28
     }
   },
   "failed_symbols": [],
-  "last_updated": "2026-05-05T23:57:41.376756",
+  "last_updated": "2026-05-06T02:57:25.589706",
   "screening_criteria": {
     "min_score": 0,
     "symbols_count": 60
