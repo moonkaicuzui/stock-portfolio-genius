@@ -1,14 +1,14 @@
 {
-  "last_updated": "2026-05-07T20:12:10.721853",
+  "last_updated": "2026-05-07T21:54:53.828950",
   "initial_capital": 146031.04,
   "start_date": "2025-12-22",
   "summary": {
-    "total_value": 170025.64,
+    "total_value": 170019.94,
     "total_cost": 146031.04,
-    "total_gain_loss": 23994.6,
+    "total_gain_loss": 23988.9,
     "total_gain_loss_pct": 16.43,
     "cash": 34153.94,
-    "invested": 135871.7,
+    "invested": 135866.0,
     "holdings_count": 8
   },
   "holdings": [
@@ -78,11 +78,11 @@
       "shares": 120,
       "avg_price": 84.09,
       "added_date": "2025-12-22",
-      "current_price": 160.02,
-      "market_value": 19202.4,
+      "current_price": 160.01,
+      "market_value": 19201.2,
       "cost_basis": 10090.8,
-      "gain_loss": 9111.6,
-      "gain_loss_pct": 90.3,
+      "gain_loss": 9110.4,
+      "gain_loss_pct": 90.28,
       "ai_score": 54.0,
       "reasoning": "데이터센터 성장, 오닐 CAN SLIM 충족, 린치 10배 후보",
       "recommendation": "관망"
@@ -123,11 +123,11 @@
       "shares": 30,
       "avg_price": 485.92,
       "added_date": "2025-12-22",
-      "current_price": 420.92,
-      "market_value": 12627.6,
+      "current_price": 420.77,
+      "market_value": 12623.1,
       "cost_basis": 14577.6,
-      "gain_loss": -1950.0,
-      "gain_loss_pct": -13.38,
+      "gain_loss": -1954.5,
+      "gain_loss_pct": -13.41,
       "ai_score": 66.0,
       "reasoning": "클라우드+AI 양대 성장, 보글 인덱스 핵심, 최고 안정성",
       "recommendation": "보유"
@@ -821,18 +821,6 @@
     }
   ],
   "decisions": [
-    {
-      "date": "2026-04-30T08:21:10.993567",
-      "action": "hold",
-      "symbol": "ALL",
-      "reasoning": "AI 포트폴리오가 사용자 대비 18.41%p 뒤처지고 있습니다. 하워드 막스의 '2차적 사고'에 따라 현재 포지션을 재평가하고 있습니다. 단기 변동에 휘둘리지 않고 장기적 관점을 유지하되, 저평가 종목 발굴에 집중합니다.",
-      "details": {
-        "ai_return": "14.70%",
-        "user_return": "33.11%",
-        "difference": "-18.41%p",
-        "strategy": "장기 가치 투자 유지"
-      }
-    },
     {
       "date": "2026-04-30T10:52:35.231203",
       "action": "hold",
@@ -2020,6 +2008,18 @@
         "difference": "-29.04%p",
         "strategy": "장기 가치 투자 유지"
       }
+    },
+    {
+      "date": "2026-05-07T21:54:53.828980",
+      "action": "hold",
+      "symbol": "ALL",
+      "reasoning": "AI 포트폴리오가 사용자 대비 29.04%p 뒤처지고 있습니다. 하워드 막스의 '2차적 사고'에 따라 현재 포지션을 재평가하고 있습니다. 단기 변동에 휘둘리지 않고 장기적 관점을 유지하되, 저평가 종목 발굴에 집중합니다.",
+      "details": {
+        "ai_return": "16.43%",
+        "user_return": "45.47%",
+        "difference": "-29.04%p",
+        "strategy": "장기 가치 투자 유지"
+      }
     }
   ],
   "metrics": {
@@ -2031,11 +2031,6 @@
     "days_active": 136
   },
   "learning_log": [
-    {
-      "date": "2026-05-03",
-      "lesson": "SMR의 -36.44% 손실 관찰. ",
-      "adjustment": "유사 패턴 종목 투자시 주의 필요"
-    },
     {
       "date": "2026-05-03",
       "lesson": "SMR의 -36.44% 손실 관찰. ",
@@ -2279,6 +2274,11 @@
     {
       "date": "2026-05-07",
       "lesson": "SMR의 -34.24% 손실 관찰. ",
+      "adjustment": "유사 패턴 종목 투자시 주의 필요"
+    },
+    {
+      "date": "2026-05-07",
+      "lesson": "SMR의 -34.14% 손실 관찰. ",
       "adjustment": "유사 패턴 종목 투자시 주의 필요"
     }
   ],
