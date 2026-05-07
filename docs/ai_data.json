@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-05-06T23:47:01.720467",
+  "last_updated": "2026-05-07T02:37:16.692997",
   "initial_capital": 146031.04,
   "start_date": "2025-12-22",
   "summary": {
@@ -813,21 +813,14 @@
       "date": "2026-05-06",
       "total_value": 168058.84,
       "return_pct": 15.08
+    },
+    {
+      "date": "2026-05-07",
+      "total_value": 171655.64,
+      "return_pct": 17.55
     }
   ],
   "decisions": [
-    {
-      "date": "2026-04-29T15:10:31.302192",
-      "action": "hold",
-      "symbol": "ALL",
-      "reasoning": "AI 포트폴리오가 사용자 대비 17.76%p 뒤처지고 있습니다. 하워드 막스의 '2차적 사고'에 따라 현재 포지션을 재평가하고 있습니다. 단기 변동에 휘둘리지 않고 장기적 관점을 유지하되, 저평가 종목 발굴에 집중합니다.",
-      "details": {
-        "ai_return": "14.43%",
-        "user_return": "32.19%",
-        "difference": "-17.76%p",
-        "strategy": "장기 가치 투자 유지"
-      }
-    },
     {
       "date": "2026-04-29T17:25:31.887355",
       "action": "hold",
@@ -2015,15 +2008,27 @@
         "difference": "-31.83%p",
         "strategy": "장기 가치 투자 유지"
       }
+    },
+    {
+      "date": "2026-05-07T02:37:16.693043",
+      "action": "hold",
+      "symbol": "ALL",
+      "reasoning": "AI 포트폴리오가 사용자 대비 31.83%p 뒤처지고 있습니다. 하워드 막스의 '2차적 사고'에 따라 현재 포지션을 재평가하고 있습니다. 단기 변동에 휘둘리지 않고 장기적 관점을 유지하되, 저평가 종목 발굴에 집중합니다.",
+      "details": {
+        "ai_return": "17.55%",
+        "user_return": "49.38%",
+        "difference": "-31.83%p",
+        "strategy": "장기 가치 투자 유지"
+      }
     }
   ],
   "metrics": {
-    "win_rate": 58.8,
-    "avg_return": 2.2,
-    "sharpe_ratio": 0.39,
+    "win_rate": 59.1,
+    "avg_return": 2.31,
+    "sharpe_ratio": 0.41,
     "max_drawdown": -7.87,
     "trade_count": 0,
-    "days_active": 135
+    "days_active": 136
   },
   "learning_log": [
     {
