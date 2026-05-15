@@ -1,14 +1,14 @@
 {
-  "last_updated": "2026-05-15T20:14:41.287263",
+  "last_updated": "2026-05-15T21:57:06.745703",
   "initial_capital": 146031.04,
   "start_date": "2025-12-22",
   "summary": {
-    "total_value": 174031.04,
+    "total_value": 174023.44,
     "total_cost": 146031.04,
-    "total_gain_loss": 28000.0,
+    "total_gain_loss": 27992.4,
     "total_gain_loss_pct": 19.17,
     "cash": 34153.94,
-    "invested": 139877.1,
+    "invested": 139869.5,
     "holdings_count": 8
   },
   "holdings": [
@@ -108,11 +108,11 @@
       "shares": 40,
       "avg_price": 288.95,
       "added_date": "2025-12-22",
-      "current_price": 404.54,
-      "market_value": 16181.6,
+      "current_price": 404.35,
+      "market_value": 16174.0,
       "cost_basis": 11558.0,
-      "gain_loss": 4623.6,
-      "gain_loss_pct": 40.0,
+      "gain_loss": 4616.0,
+      "gain_loss_pct": 39.94,
       "ai_score": 65.0,
       "reasoning": "반도체 제조 독점, 그레이엄 가치주, 탈레브 안티프래질",
       "recommendation": "보유"
@@ -861,18 +861,6 @@
     }
   ],
   "decisions": [
-    {
-      "date": "2026-05-07T06:07:34.372407",
-      "action": "hold",
-      "symbol": "ALL",
-      "reasoning": "AI 포트폴리오가 사용자 대비 31.83%p 뒤처지고 있습니다. 하워드 막스의 '2차적 사고'에 따라 현재 포지션을 재평가하고 있습니다. 단기 변동에 휘둘리지 않고 장기적 관점을 유지하되, 저평가 종목 발굴에 집중합니다.",
-      "details": {
-        "ai_return": "17.55%",
-        "user_return": "49.38%",
-        "difference": "-31.83%p",
-        "strategy": "장기 가치 투자 유지"
-      }
-    },
     {
       "date": "2026-05-07T09:29:00.862410",
       "action": "hold",
@@ -2060,6 +2048,18 @@
         "difference": "-32.17%p",
         "strategy": "장기 가치 투자 유지"
       }
+    },
+    {
+      "date": "2026-05-15T21:57:06.745738",
+      "action": "hold",
+      "symbol": "ALL",
+      "reasoning": "AI 포트폴리오가 사용자 대비 32.16%p 뒤처지고 있습니다. 하워드 막스의 '2차적 사고'에 따라 현재 포지션을 재평가하고 있습니다. 단기 변동에 휘둘리지 않고 장기적 관점을 유지하되, 저평가 종목 발굴에 집중합니다.",
+      "details": {
+        "ai_return": "19.17%",
+        "user_return": "51.33%",
+        "difference": "-32.16%p",
+        "strategy": "장기 가치 투자 유지"
+      }
     }
   ],
   "metrics": {
@@ -2071,11 +2071,6 @@
     "days_active": 144
   },
   "learning_log": [
-    {
-      "date": "2026-05-10",
-      "lesson": "SMR의 -34.29% 손실 관찰. ",
-      "adjustment": "유사 패턴 종목 투자시 주의 필요"
-    },
     {
       "date": "2026-05-10",
       "lesson": "SMR의 -34.29% 손실 관찰. ",
@@ -2319,6 +2314,11 @@
     {
       "date": "2026-05-15",
       "lesson": "SMR의 -41.26% 손실 관찰. ",
+      "adjustment": "유사 패턴 종목 투자시 주의 필요"
+    },
+    {
+      "date": "2026-05-15",
+      "lesson": "SMR의 -41.20% 손실 관찰. ",
       "adjustment": "유사 패턴 종목 투자시 주의 필요"
     }
   ],
