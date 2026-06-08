@@ -1,9 +1,9 @@
 {
-  "last_updated": "2026-06-08T07:27:07.444625",
+  "last_updated": "2026-06-08T13:07:12.589374",
   "vix": {
-    "value": 20.0,
-    "source": "기본값",
-    "success": false
+    "value": 18.86,
+    "source": "Yahoo Finance",
+    "success": true
   },
   "fear_greed": {
     "value": 42,
@@ -18,7 +18,7 @@
   },
   "yield_curve": {
     "value": 0.91,
-    "ten_year": 4.54,
+    "ten_year": 4.53,
     "two_year": 3.62,
     "source": "Yahoo Finance",
     "success": true
@@ -55,7 +55,7 @@
       "success": true
     }
   },
-  "market_cycle": "trough",
+  "market_cycle": "contraction",
   "technical_indicators": {
     "AAPL": {
       "price": 307.34,
@@ -358,7 +358,7 @@
     }
   },
   "data_quality": {
-    "vix": false,
+    "vix": true,
     "fear_greed": true,
     "cape": false,
     "yield_curve": true
