@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-06-08T22:43:04.737508",
+  "last_updated": "2026-06-09T06:44:24.618259",
   "vix": {
     "value": 18.92,
     "source": "Yahoo Finance",
@@ -45,13 +45,13 @@
       "success": true
     },
     "kospi": {
-      "value": 8160.59,
-      "change_pct": -5.54,
+      "value": 8107.88,
+      "change_pct": 8.33,
       "success": true
     },
     "kosdaq": {
-      "value": 1002.44,
-      "change_pct": -4.5,
+      "value": 968.37,
+      "change_pct": 6.25,
       "success": true
     }
   },
@@ -106,16 +106,16 @@
         "signal": "중립"
       },
       "macd": {
-        "macd": 0.64,
-        "signal": 0.51,
+        "macd": 0.66,
+        "signal": 0.53,
         "histogram": 0.13
       },
       "macd_signal": "상승",
       "bollinger": {
-        "upper": 408.51,
-        "middle": 383.5,
-        "lower": 358.49,
-        "position": 9.6
+        "upper": 408.24,
+        "middle": 383.28,
+        "lower": 358.32,
+        "position": 10.0
       },
       "bb_signal": "하단 근처",
       "success": true
@@ -249,7 +249,7 @@
   },
   "dividend_data": {
     "AAPL": {
-      "dividend_yield": 35.0,
+      "dividend_yield": 36.0,
       "dividend_rate": 1.08,
       "annual_dividend": 1.08,
       "ex_dividend_date": "2026-05-11",
@@ -258,7 +258,7 @@
       "success": true
     },
     "MSFT": {
-      "dividend_yield": 87.0,
+      "dividend_yield": 88.0,
       "dividend_rate": 3.64,
       "annual_dividend": 3.64,
       "ex_dividend_date": "2026-05-21",
@@ -267,7 +267,7 @@
       "success": true
     },
     "JNJ": {
-      "dividend_yield": 230.0,
+      "dividend_yield": 231.0,
       "dividend_rate": 5.36,
       "annual_dividend": 5.36,
       "ex_dividend_date": "2026-05-26",
@@ -285,7 +285,7 @@
       "success": true
     },
     "PG": {
-      "dividend_yield": 291.0,
+      "dividend_yield": 294.0,
       "dividend_rate": 4.26,
       "annual_dividend": 4.26,
       "ex_dividend_date": "2026-04-24",
@@ -294,7 +294,7 @@
       "success": true
     },
     "VZ": {
-      "dividend_yield": 624.0,
+      "dividend_yield": 623.0,
       "dividend_rate": 2.83,
       "annual_dividend": 2.83,
       "ex_dividend_date": "2026-07-10",
@@ -303,7 +303,7 @@
       "success": true
     },
     "T": {
-      "dividend_yield": 488.0,
+      "dividend_yield": 493.0,
       "dividend_rate": 1.11,
       "annual_dividend": 1.11,
       "ex_dividend_date": "2026-04-10",
@@ -312,7 +312,7 @@
       "success": true
     },
     "XOM": {
-      "dividend_yield": 275.0,
+      "dividend_yield": 271.0,
       "dividend_rate": 4.12,
       "annual_dividend": 4.12,
       "ex_dividend_date": "2026-05-15",
