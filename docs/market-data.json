@@ -1,9 +1,9 @@
 {
-  "last_updated": "2026-06-13T22:11:20.406035",
+  "last_updated": "2026-06-14T07:19:29.164461",
   "vix": {
-    "value": 17.68,
-    "source": "Yahoo Finance",
-    "success": true
+    "value": 20.0,
+    "source": "기본값",
+    "success": false
   },
   "fear_greed": {
     "value": 34,
@@ -55,7 +55,7 @@
       "success": true
     }
   },
-  "market_cycle": "peak",
+  "market_cycle": "contraction",
   "technical_indicators": {
     "AAPL": {
       "price": 291.13,
@@ -358,7 +358,7 @@
     }
   },
   "data_quality": {
-    "vix": true,
+    "vix": false,
     "fear_greed": true,
     "cape": false,
     "yield_curve": true
