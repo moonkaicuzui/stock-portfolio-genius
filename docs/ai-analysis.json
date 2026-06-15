@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-06-15T08:56:25.686331",
+  "generated_at": "2026-06-15T15:15:14.616061",
   "rule_based": {
     "type": "rule_based",
-    "timestamp": "2026-06-15T08:56:25.563261",
+    "timestamp": "2026-06-15T15:15:14.484278",
     "portfolio_metrics": {
       "total_value": 210449.06,
       "total_cost": 125818.63,
@@ -18,11 +18,18 @@
       "leverage_pct": 8.9
     },
     "market_conditions": {
-      "vix": 16.66,
-      "fear_greed": 34,
+      "vix": 16.25,
+      "fear_greed": 40,
       "market_cycle": "peak"
     },
-    "technical_signals": [],
+    "technical_signals": [
+      {
+        "symbol": "AMZN",
+        "signal": "RSI 과매수",
+        "value": 75.33,
+        "action": "sell_consider"
+      }
+    ],
     "score": 71,
     "winners": [
       {
