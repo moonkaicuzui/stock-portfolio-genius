@@ -1,24 +1,24 @@
 {
-  "generated_at": "2026-06-17T08:25:13.525676",
+  "generated_at": "2026-06-17T12:51:30.865537",
   "rule_based": {
     "type": "rule_based",
-    "timestamp": "2026-06-17T08:25:13.388368",
+    "timestamp": "2026-06-17T12:51:30.745552",
     "portfolio_metrics": {
-      "total_value": 210114.41,
+      "total_value": NaN,
       "total_cost": 125818.63,
-      "total_return_pct": 67.0,
+      "total_return_pct": NaN,
       "holdings_count": 12
     },
     "risk_metrics": {
       "sector_concentration": {
-        "기타": 100.0
+        "기타": 0
       },
-      "max_sector": "기타",
-      "max_sector_pct": 100.0,
-      "leverage_pct": 8.6
+      "max_sector": null,
+      "max_sector_pct": 0,
+      "leverage_pct": 0
     },
     "market_conditions": {
-      "vix": 16.2,
+      "vix": 16.28,
       "fear_greed": 39,
       "market_cycle": "peak"
     },
@@ -30,7 +30,7 @@
         "action": "sell_consider"
       }
     ],
-    "score": 71,
+    "score": 65,
     "winners": [
       {
         "symbol": "SOXL",
@@ -85,16 +85,6 @@
     ],
     "losers": [
       {
-        "symbol": "SMR",
-        "name": "NuScale Power Corp.",
-        "shares": 200,
-        "avg_price": 19.1,
-        "current_price": 9.89,
-        "value": 1978.0,
-        "gain_loss_pct": -48.22,
-        "sector": "기타"
-      },
-      {
         "symbol": "SMCI",
         "name": "Super Micro Computer Inc.",
         "shares": 140,
@@ -111,9 +101,9 @@
         "name": "NuScale Power Corp.",
         "shares": 200,
         "avg_price": 19.1,
-        "current_price": 9.89,
-        "value": 1978.0,
-        "gain_loss_pct": -48.22,
+        "current_price": NaN,
+        "value": NaN,
+        "gain_loss_pct": NaN,
         "sector": "기타"
       },
       {
