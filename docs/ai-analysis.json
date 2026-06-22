@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-06-22T08:53:49.338362",
+  "generated_at": "2026-06-22T14:40:28.750482",
   "rule_based": {
     "type": "rule_based",
-    "timestamp": "2026-06-22T08:53:49.222944",
+    "timestamp": "2026-06-22T14:40:28.634464",
     "portfolio_metrics": {
       "total_value": 226546.89,
       "total_cost": 125818.63,
@@ -18,7 +18,7 @@
       "leverage_pct": 9.9
     },
     "market_conditions": {
-      "vix": 17.59,
+      "vix": 16.9,
       "fear_greed": 37,
       "market_cycle": "peak"
     },
@@ -26,19 +26,19 @@
       {
         "symbol": "GOOGL",
         "signal": "RSI 과매수",
-        "value": 76.61,
+        "value": 85.37,
         "action": "sell_consider"
       },
       {
         "symbol": "NVDA",
         "signal": "RSI 과매수",
-        "value": 71.38,
+        "value": 83.64,
         "action": "sell_consider"
       },
       {
         "symbol": "AMZN",
         "signal": "RSI 과매수",
-        "value": 78.67,
+        "value": 84.44,
         "action": "sell_consider"
       }
     ],
