@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-06-25T23:15:14.308041",
+  "last_updated": "2026-06-26T03:24:02.065028",
   "initial_capital": 146031.04,
   "start_date": "2025-12-22",
   "summary": {
@@ -1063,21 +1063,14 @@
       "date": "2026-06-25",
       "total_value": 175791.34,
       "return_pct": 20.38
+    },
+    {
+      "date": "2026-06-26",
+      "total_value": 174445.24,
+      "return_pct": 19.46
     }
   ],
   "decisions": [
-    {
-      "date": "2026-06-13T07:43:30.261508",
-      "action": "hold",
-      "symbol": "ALL",
-      "reasoning": "AI 포트폴리오가 사용자 대비 45.40%p 뒤처지고 있습니다. 하워드 막스의 '2차적 사고'에 따라 현재 포지션을 재평가하고 있습니다. 단기 변동에 휘둘리지 않고 장기적 관점을 유지하되, 저평가 종목 발굴에 집중합니다.",
-      "details": {
-        "ai_return": "21.86%",
-        "user_return": "67.26%",
-        "difference": "-45.40%p",
-        "strategy": "장기 가치 투자 유지"
-      }
-    },
     {
       "date": "2026-06-13T10:25:49.322459",
       "action": "hold",
@@ -2265,22 +2258,29 @@
         "difference": "-51.82%p",
         "strategy": "장기 가치 투자 유지"
       }
+    },
+    {
+      "date": "2026-06-26T03:24:02.065070",
+      "action": "hold",
+      "symbol": "ALL",
+      "reasoning": "AI 포트폴리오가 사용자 대비 51.82%p 뒤처지고 있습니다. 하워드 막스의 '2차적 사고'에 따라 현재 포지션을 재평가하고 있습니다. 단기 변동에 휘둘리지 않고 장기적 관점을 유지하되, 저평가 종목 발굴에 집중합니다.",
+      "details": {
+        "ai_return": "19.46%",
+        "user_return": "71.28%",
+        "difference": "-51.82%p",
+        "strategy": "장기 가치 투자 유지"
+      }
     }
   ],
   "metrics": {
-    "win_rate": 69.9,
-    "avg_return": 7.41,
-    "sharpe_ratio": 0.74,
+    "win_rate": 70.1,
+    "avg_return": 7.48,
+    "sharpe_ratio": 0.75,
     "max_drawdown": -7.87,
     "trade_count": 0,
-    "days_active": 185
+    "days_active": 186
   },
   "learning_log": [
-    {
-      "date": "2026-06-20",
-      "lesson": "SMR의 -38.53% 손실 관찰. ",
-      "adjustment": "유사 패턴 종목 투자시 주의 필요"
-    },
     {
       "date": "2026-06-20",
       "lesson": "SMR의 -38.53% 손실 관찰. ",
@@ -2523,6 +2523,11 @@
     },
     {
       "date": "2026-06-25",
+      "lesson": "SMR의 -47.28% 손실 관찰. ",
+      "adjustment": "유사 패턴 종목 투자시 주의 필요"
+    },
+    {
+      "date": "2026-06-26",
       "lesson": "SMR의 -47.28% 손실 관찰. ",
       "adjustment": "유사 패턴 종목 투자시 주의 필요"
     }
