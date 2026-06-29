@@ -1,9 +1,9 @@
 {
-  "last_updated": "2026-06-29T07:26:11.960174",
+  "last_updated": "2026-06-29T13:06:55.983063",
   "vix": {
-    "value": 20.0,
-    "source": "기본값",
-    "success": false
+    "value": 18.36,
+    "source": "Yahoo Finance",
+    "success": true
   },
   "fear_greed": {
     "value": 24,
@@ -17,8 +17,8 @@
     "success": false
   },
   "yield_curve": {
-    "value": 0.71,
-    "ten_year": 4.37,
+    "value": 0.72,
+    "ten_year": 4.38,
     "two_year": 3.66,
     "source": "Yahoo Finance",
     "success": true
@@ -358,7 +358,7 @@
     }
   },
   "data_quality": {
-    "vix": false,
+    "vix": true,
     "fear_greed": true,
     "cape": false,
     "yield_curve": true
